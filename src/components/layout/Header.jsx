@@ -2,6 +2,51 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// ─── Senior Level Animated Quote Button ──────────────────────────────────────
+function AnimatedQuoteButton({ onClick }) {
+  const text = "GET A QUOTE";
+  return (
+    <Link
+      to="/contact"
+      onClick={onClick}
+      className="group relative flex items-center justify-center overflow-hidden border border-accent/20 px-6 py-2.5 min-w-[150px] bg-transparent transition-colors duration-500"
+    >
+      {/* Sweep backgrounds (Diagonal slice effect) */}
+      <div className="absolute inset-0 bg-secondary -translate-x-[105%] group-hover:translate-x-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0 skew-x-12 scale-110 origin-left" />
+      <div className="absolute inset-0 bg-accent -translate-x-[105%] group-hover:translate-x-0 transition-transform duration-[600ms] delay-[50ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0" />
+
+      {/* Staggered text roll-up */}
+      <div className="relative z-10 flex overflow-hidden font-label-caps text-[11px] tracking-[0.2em] font-semibold text-accent">
+        {text.split('').map((char, i) => (
+          <div key={i} className="relative flex flex-col items-center justify-center">
+            {/* Initial text */}
+            <span 
+              className="inline-block transition-transform duration-[500ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[150%]"
+              style={{ transitionDelay: `${i * 0.02}s` }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </span>
+            {/* Hover text (rolls up from bottom) */}
+            <span 
+              className="absolute top-full left-0 text-white inline-block transition-transform duration-[500ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full"
+              style={{ transitionDelay: `${i * 0.02}s` }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </span>
+          </div>
+        ))}
+      </div>
+      
+      {/* Right arrow icon pushes in */}
+      <div className="relative z-10 ml-2 overflow-hidden flex items-center h-[14px]">
+        <span className="material-symbols-outlined text-[13px] text-accent group-hover:text-white -translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-[400ms] delay-300 ease-[cubic-bezier(0.76,0,0.24,1)]">
+          arrow_forward
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 // ─── Animated SVG Icons ────────────────────────────────────────────────────
 function IconBolt({ active }) {
   return (
@@ -270,7 +315,7 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           scrolled
             ? 'bg-surface/95 backdrop-blur-xl border-b border-outline-variant/40 shadow-sm'
             : 'bg-surface border-b border-outline-variant/30'
@@ -339,23 +384,19 @@ export function Header() {
               />
             </div>
 
-            <Link
-              to="/contact"
-              onClick={close}
-              className="font-label-caps text-[11px] tracking-[0.12em] inline-flex items-center justify-center bg-accent text-white hover:bg-primary px-5 py-2.5 transition-colors duration-200"
-            >
-              Get a Quote
-            </Link>
+            <AnimatedQuoteButton onClick={close} />
           </div>
         </nav>
       </header>
+
+
 
       {/* ── Mega Menu Panel ───────────────────────────────────────────────── */}
       <AnimatePresence>
         {open && menu && (
           <motion.div
             key={open}
-            className="fixed left-0 right-0 z-40 bg-surface border-b border-outline-variant/40 shadow-2xl overflow-hidden"
+            className="fixed left-0 right-0 z-[90] bg-surface border-b border-outline-variant/40 shadow-2xl overflow-hidden"
             style={{ top: headerH }}
             onMouseEnter={() => handleEnter(open)}
             onMouseLeave={handleLeave}
@@ -429,7 +470,7 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-30 bg-black/15 backdrop-blur-[2px]"
+            className="fixed inset-0 z-[80] bg-black/15 backdrop-blur-[2px]"
             style={{ top: headerH }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
