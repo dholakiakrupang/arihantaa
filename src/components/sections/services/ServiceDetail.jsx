@@ -13,7 +13,7 @@ export function ServiceDetail({
   bgClass = 'bg-surface',
 }) {
   return (
-    <section id={id} className={`relative py-20 md:py-28 ${bgClass} overflow-hidden`}>
+    <section id={id} className={`relative py-20 md:py-28 ${bgClass} overflow-hidden scroll-mt-20`}>
 
       {/* Faint section number watermark */}
       <span className="absolute top-8 right-8 font-headline text-[120px] md:text-[180px] font-black text-on-surface/[0.03] leading-none select-none pointer-events-none tracking-tighter">

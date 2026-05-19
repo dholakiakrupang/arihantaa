@@ -45,7 +45,7 @@ export function Stats() {
   ];
 
   return (
-    <section className="bg-surface relative z-20 -mt-20">
+    <section className="bg-surface relative z-20">
       <div className="max-w-[1440px] mx-auto px-8 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-3 bg-surface-container-lowest shadow-2xl border border-outline-variant/30">
           

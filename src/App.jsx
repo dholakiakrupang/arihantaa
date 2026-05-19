@@ -17,10 +17,22 @@ import { Contact } from './pages/Contact';
 function App() {
   const location = useLocation();
 
-  // Scroll to top on route change
+  // Smart scroll: go to hash anchor if present, otherwise scroll to top
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    const hash = location.hash; // e.g. "#critical-power"
+    if (hash) {
+      // Give the new page time to paint its elements before scrolling
+      const timer = setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 120);
+      return () => clearTimeout(timer);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [location.pathname, location.hash]);
   // Initialize Lenis for smooth scrolling
   useEffect(() => {
     const lenis = new Lenis({

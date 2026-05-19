@@ -9,10 +9,12 @@ import { ProductCard } from '../../ui/ProductCard';
  * - Cards sit fully below the header, no clip issues
  */
 function SectorRow({ sector, index }) {
-  const isEven = index % 2 === 1; // even-indexed (0-based) = right-aligned header
+  const isEven = index % 2 === 1;
+  // slug: "Critical Power" → "critical-power"
+  const slug = sector.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
   return (
-    <div className="relative">
+    <div id={slug} className="relative scroll-mt-24">
 
       {/* ── Top separator line ─────────────────────────────────────────────── */}
       <motion.div
