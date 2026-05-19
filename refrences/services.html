@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Engineering Services | Arihantaa Powertech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#E9652B", // Updated to brand orange
+                        "on-primary": "#ffffff",
+                        "primary-container": "#c84d12",
+                        "surface": "#f9f9f9",
+                        "on-surface": "#1a1c1c",
+                        "on-surface-variant": "#584239",
+                        "background": "#f9f9f9",
+                        "on-background": "#1a1c1c",
+                        "secondary": "#5a5f68",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-highest": "#e2e2e2",
+                        "outline-variant": "#e0c0b4",
+                        "inverse-surface": "#2f3131"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px", // Professional industrial look
+                        "lg": "0.25rem",
+                        "xl": "0.5rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "32px",
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-h3": ["Montserrat"],
+                        "label-caps": ["Inter"],
+                        "display-hero": ["Montserrat"],
+                        "headline-h2": ["Montserrat"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Animation reveal class */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: all 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .eyebrow {
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .h-tight {
+            letter-spacing: -0.02em;
+        }
+
+        .diagonal-stitch {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+        }
+
+        .diagonal-stitch-reverse {
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 32px;
+        }
+
+        .stagger-1 { transition-delay: 100ms; }
+        .stagger-2 { transition-delay: 200ms; }
+        .stagger-3 { transition-delay: 300ms; }
+        .stagger-4 { transition-delay: 400ms; }
+        .stagger-5 { transition-delay: 500ms; }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 right-0 z-[1000] bg-surface/90 backdrop-blur-md border-b border-outline-variant/20">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-3">
+<img alt="Arihantaa Powertech" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDho_w5VTncbcMNxMKRTuO7MOPgYzg6QKa-FLu1_AvyYUw3rYe1LMvIUIAj7Z5JD0gBK9fLRzWujtnf0JhV48NZ7CTS7gWyCeIFNqgi6Ryae8YkSGINCw9YwFbGUyfyjEYqW7HLmMliBzMrqPcQSNnyJoDqsZ93nb17fTWPuju6gOpKmt59wK3JfDGrAdfIj7xMiVY4Hu3k0L_F6rC3k99M8wjbbd_36s_8KBOZOIDFmpUb8goJU8eta3px6JErFgn0UyxHRB-jvs"/>
+</div>
+<div class="hidden md:flex gap-10 items-center">
+<a class="text-secondary hover:text-primary transition-colors font-medium text-sm" href="#">Projects</a>
+<a class="text-primary font-semibold text-sm border-b-2 border-primary pb-1" href="#">Solutions</a>
+<a class="text-secondary hover:text-primary transition-colors font-medium text-sm" href="#">Expertise</a>
+<a class="text-secondary hover:text-primary transition-colors font-medium text-sm" href="#">About</a>
+<a class="text-secondary hover:text-primary transition-colors font-medium text-sm" href="#">Careers</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">search</span>
+<button class="bg-primary text-on-primary px-6 py-3 font-semibold text-sm hover:brightness-110 transition-all active:scale-95">
+                Get a Quote
+            </button>
+</div>
+</nav>
+</header>
+<!-- Page Hero -->
+<section class="relative pt-48 pb-64 bg-inverse-surface diagonal-stitch overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-20 grayscale" data-alt="Industrial engineering facility background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByKdJQFYxhdeQfgoVuKBQBOGbkiDqkvJ1yEAsBbhJ9sg9sFiJqCctfiINJaiAv94iEhcXGcpRnzFGFn9gONe81xv-Y8iRKVROHUjmbg4ddI6MuTm2pkSmGh2x9PQpS1JEEAsAYlWa_PqXB7q2C4z-xKqZg7pPbjHLb4-UA3qQqr-nVA6Zlqwe-QJo-fTSF1VnartNsKpc_aDC3Y0DHBaUcBOiEKo2qvUitDzVpykfjWSSiPGevQVfxSaGS4l6REQ6XvKZtkd4iRS4"/>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto px-8">
+<div class="grid-layout">
+<div class="col-span-12 md:col-span-8 reveal active">
+<span class="eyebrow text-primary mb-6 block">Service Portfolio</span>
+<h1 class="font-display-hero text-5xl md:text-7xl text-white h-tight mb-8 leading-tight">
+                    Engineering Services Built for Critical Infrastructure
+                </h1>
+<p class="text-xl text-surface-container-highest/90 mb-12 max-w-2xl leading-relaxed">
+                    From high-tension electrical systems to data center precision cooling — integrated, certified, and delivered turnkey for global excellence.
+                </p>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary px-10 py-5 font-semibold hover:brightness-110 transition-all flex items-center gap-3">
+                        View Sector Expertise <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services Nav (Sticky) -->
+<nav class="sticky top-[80px] z-[900] bg-surface border-b border-surface-container-highest shadow-sm">
+<div class="max-w-container-max mx-auto px-8 flex overflow-x-auto whitespace-nowrap scrollbar-hide">
+<a class="px-6 py-6 font-semibold text-sm border-b-4 border-primary text-primary" href="#electrical">Electrical</a>
+<a class="px-6 py-6 font-semibold text-sm text-secondary hover:text-primary transition-colors border-b-4 border-transparent" href="#mepf">MEPF</a>
+<a class="px-6 py-6 font-semibold text-sm text-secondary hover:text-primary transition-colors border-b-4 border-transparent" href="#elv">ELV</a>
+<a class="px-6 py-6 font-semibold text-sm text-secondary hover:text-primary transition-colors border-b-4 border-transparent" href="#hvac">HVAC</a>
+<a class="px-6 py-6 font-semibold text-sm text-secondary hover:text-primary transition-colors border-b-4 border-transparent" href="#datacenters">Data Centers</a>
+<a class="px-6 py-6 font-semibold text-sm text-secondary hover:text-primary transition-colors border-b-4 border-transparent" href="#infrastructure">Infrastructure</a>
+</div>
+</nav>
+<!-- Section 01: Electrical -->
+<section class="py-[120px] px-8 bg-surface" id="electrical">
+<div class="max-w-container-max mx-auto grid-layout items-center">
+<div class="col-span-12 md:col-span-5 reveal">
+<img class="w-full aspect-[4/5] object-cover shadow-2xl border-l-4 border-primary" data-alt="Industrial electrical panel close-up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXTaHZF2s9EkzujqLkbFGry7vOKPsNt08rADHH8cldx-PLWVBfX6u0hGiYUoZNcAzNC7Ehmw_-X_0QdDoUMyXBrLLW4L3pc4TwlDscR-6KnEo4MAuCKMiAUOkXHJK7_poGE5pNs4aOMu6CiUavm8gA9runwJkVJYn8vVZtdTud_VMyk0H3whG-zl4t0dvS1KnNhOUcLUA4dQzngEUerTrLQRsMQJ-ii3RggnHmSOMnNymRLZzcoxHoPn8v4HmkDrrCIGwITFcCyr4"/>
+</div>
+<div class="col-span-12 md:col-span-7 md:pl-16 reveal stagger-1">
+<span class="eyebrow text-primary mb-5 block">01 / Electrical</span>
+<h2 class="font-headline-h2 text-4xl md:text-5xl h-tight mb-5 text-on-surface">Precision Power Distribution</h2>
+<div class="space-y-6 text-secondary mb-10 leading-relaxed">
+<p class="text-lg">We deliver end-to-end electrical solutions ranging from High Voltage (HV) substation engineering to precise Low Voltage (LV) distribution. Our systems are engineered to ensure 99.99% uptime for industrial and commercial giants.</p>
+<p class="text-lg">Our approach integrates smart monitoring and predictive maintenance to minimize operational risks and maximize energy efficiency across complex grids.</p>
+</div>
+<ul class="grid grid-cols-2 gap-y-4 gap-x-8 mb-12">
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Substation Design</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> HV/LV Switchgear</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Power Quality Analysis</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Earthing &amp; Protection</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Energy Audits</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Grid Interconnectivity</li>
+</ul>
+<a class="text-primary font-bold flex items-center gap-2 hover:translate-x-2 transition-transform group" href="#">
+                Request a Service Quote <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Section 02: MEPF -->
+<section class="py-[120px] px-8 bg-surface-container-low" id="mepf">
+<div class="max-w-container-max mx-auto grid-layout items-center">
+<div class="col-span-12 md:col-span-7 md:pr-16 order-2 md:order-1 reveal">
+<span class="eyebrow text-primary mb-5 block">02 / MEPF</span>
+<h2 class="font-headline-h2 text-4xl md:text-5xl h-tight mb-5 text-on-surface">Integrated Life-Cycle Systems</h2>
+<div class="space-y-6 text-secondary mb-10 leading-relaxed">
+<p class="text-lg">Mechanical, Electrical, Plumbing, and Firefighting (MEPF) are the central nervous system of any structure. We utilize advanced BIM modeling to resolve clashes before construction begins.</p>
+<p class="text-lg">Our MEPF expertise guarantees that safety protocols meet international standards while maintaining functional requirements of modern architecture.</p>
+</div>
+<ul class="grid grid-cols-2 gap-y-4 gap-x-8 mb-12">
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> BIM/Revit Modeling</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Sanitary &amp; Water</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Automatic Sprinklers</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Fire Hydrant Systems</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Life Safety Audits</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> System Integration</li>
+</ul>
+<a class="text-primary font-bold flex items-center gap-2 hover:translate-x-2 transition-transform group" href="#">
+                Request a Service Quote <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+<div class="col-span-12 md:col-span-5 order-1 md:order-2 reveal stagger-1">
+<img class="w-full aspect-[4/5] object-cover shadow-2xl border-r-4 border-primary" data-alt="BIM model visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5FW8nf272gXSM_1xLQR9lKoi7xId3VLHIZFPFzZDDsZz-nkZBK2rLtsZtKJkruCgzVDafIT8sh-T2S4pquUpCFv5xVyBphjPjDfvrRtJhzcdElkAzpWf66KnClNbPqHBo7FDSKuqauWqmdmdjkPyWjklLYf1pyhqrHlKMFP7aTOT40qcirHI1QrKknjtv-vRFHkwL6Lqe96kLA6WOsS23v5Vqw3Ww0Ukxbs38PwDFBS-xum-nzeDdwKNE9LRjMiiG71SmAJODIrk"/>
+</div>
+</div>
+</section>
+<!-- Section 03: ELV -->
+<section class="py-[120px] px-8 bg-surface" id="elv">
+<div class="max-w-container-max mx-auto grid-layout items-center">
+<div class="col-span-12 md:col-span-5 reveal">
+<img class="w-full aspect-[4/5] object-cover shadow-2xl border-l-4 border-primary" data-alt="Security command center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH-XlVfiUims4FuvWQyfp3g5yMEYAXu5W8L_8uYh3Ih-vc25CLSwk9L91FOzpyjX9h727SvBUjEjzTBhCUqwDEK-faQqg481UUBnRtczffpJoLP1anXLQSjSbywiM4hLy9c-vAl8gzbbFVe31jx7-8HSB9kHwjLH0vRwKB0OyvY4pt3NC36MyAoa6pk4iMwlo0D_85spL5SOVT7mbLmZ7U2qyW31OsCPbgwf07HCkxHWpuRz8t4jdBA3Ls1Smb_5Z8nhRvbQ7fLOY"/>
+</div>
+<div class="col-span-12 md:col-span-7 md:pl-16 reveal stagger-1">
+<span class="eyebrow text-primary mb-5 block">03 / ELV</span>
+<h2 class="font-headline-h2 text-4xl md:text-5xl h-tight mb-5 text-on-surface">Smart Digital Connectivity</h2>
+<div class="space-y-6 text-secondary mb-10 leading-relaxed">
+<p class="text-lg">Extra Low Voltage (ELV) systems provide the digital backbone for surveillance, communication, and access control. We design secure, scalable networks that grow with your organization.</p>
+<p class="text-lg">From IP-based CCTV to sophisticated building management systems (BMS), we ensure that your facility is smart and fully connected.</p>
+</div>
+<ul class="grid grid-cols-2 gap-y-4 gap-x-8 mb-12">
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> IP Surveillance</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Access Control</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Public Address</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Structured Cabling</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> BMS Integration</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Network Security</li>
+</ul>
+<a class="text-primary font-bold flex items-center gap-2 hover:translate-x-2 transition-transform group" href="#">
+                Request a Service Quote <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Section 04: HVAC -->
+<section class="py-[120px] px-8 bg-surface-container-low" id="hvac">
+<div class="max-w-container-max mx-auto grid-layout items-center">
+<div class="col-span-12 md:col-span-7 md:pr-16 order-2 md:order-1 reveal">
+<span class="eyebrow text-primary mb-5 block">04 / HVAC</span>
+<h2 class="font-headline-h2 text-4xl md:text-5xl h-tight mb-5 text-on-surface">Climate Mastery &amp; Precision</h2>
+<div class="space-y-6 text-secondary mb-10 leading-relaxed">
+<p class="text-lg">We specialize in industrial-grade HVAC systems designed for mission-critical environments. Our solutions focus on air quality, thermal comfort, and extreme energy efficiency.</p>
+<p class="text-lg">By utilizing VRF technology and high-efficiency chillers, we significantly reduce carbon footprints while maintaining strict temperature controls.</p>
+</div>
+<ul class="grid grid-cols-2 gap-y-4 gap-x-8 mb-12">
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Central Chillers</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> VRF &amp; VRV Systems</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Air Distribution</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Clean Room Vent</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Exhaust Systems</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Humidity Control</li>
+</ul>
+<a class="text-primary font-bold flex items-center gap-2 hover:translate-x-2 transition-transform group" href="#">
+                Request a Service Quote <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+<div class="col-span-12 md:col-span-5 order-1 md:order-2 reveal stagger-1">
+<img class="w-full aspect-[4/5] object-cover shadow-2xl border-r-4 border-primary" data-alt="Industrial HVAC units" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs7GWrmO_Y24aIx0d_M368iwbT45iHy_7DqpZ7nch4fGcArhsG3Sgv3kEZJrQgufY4RuhkBeG0nzAVuZdo9xFBim7nRUdHZtnsUXXvA4N-7-sezh59f9vX1KfadhdMLz0Uj-yIVnI5c3gseMueQqUedxsfbbqL5ecgnT83a3xHXTG3h3mwsSqZyjqYaqua9ahuVxPAZbAQY0-mdX7ZKunjvj7d0CRfydIP5nD9glow6KMU8SoKRHqFaWIZB41-0SRYLfF8zA12KHQ"/>
+</div>
+</div>
+</section>
+<!-- Section 05: Data Centers -->
+<section class="py-[120px] px-8 bg-surface" id="datacenters">
+<div class="max-w-container-max mx-auto grid-layout items-center">
+<div class="col-span-12 md:col-span-5 reveal">
+<img class="w-full aspect-[4/5] object-cover shadow-2xl border-l-4 border-primary" data-alt="Data center server racks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_j1iuQ0YtLcldt8JSx_pL6Tr9jTReXCQyDLiBoT883DbJdFwpvS0uIH5j1tsqxDFBn9yn--_x5SDOgD2EF8M5dOAiaswQvtTy3wvyvWIlkT2x_gherOFwopyYImM1vR5Gkff_s4XV7nix9sUwMAJmmhp3xAlRN2ng0MXp71M7fTVapJOpPxVRGQTLUrmy0WqtMwCt-kxvdjV_FCyaK69cakhxd2A-NWvgzj88WdtSdwt2cLmkiF77x7b5r4E9f_OWFzysDvuHiXw"/>
+</div>
+<div class="col-span-12 md:col-span-7 md:pl-16 reveal stagger-1">
+<span class="eyebrow text-primary mb-5 block">05 / Data Centers</span>
+<h2 class="font-headline-h2 text-4xl md:text-5xl h-tight mb-5 text-on-surface">Uptime-Critical Engineering</h2>
+<div class="space-y-6 text-secondary mb-10 leading-relaxed">
+<p class="text-lg">Data centers require high-density cooling, redundant power, and physical security. We design and build Tier III and IV compliant facilities that power the digital economy.</p>
+<p class="text-lg">Our turnkey solutions cover everything from UPS systems and precision cooling units to raised flooring and specialized suppression.</p>
+</div>
+<ul class="grid grid-cols-2 gap-y-4 gap-x-8 mb-12">
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Tier Certification</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Precision Cooling</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Redundant Power</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Containment Systems</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Rack Infrastructure</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Remote Monitoring</li>
+</ul>
+<a class="text-primary font-bold flex items-center gap-2 hover:translate-x-2 transition-transform group" href="#">
+                Request a Service Quote <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Section 06: Infrastructure -->
+<section class="py-[120px] px-8 bg-surface-container-low" id="infrastructure">
+<div class="max-w-container-max mx-auto grid-layout items-center">
+<div class="col-span-12 md:col-span-7 md:pr-16 order-2 md:order-1 reveal">
+<span class="eyebrow text-primary mb-5 block">06 / Infrastructure</span>
+<h2 class="font-headline-h2 text-4xl md:text-5xl h-tight mb-5 text-on-surface">Scaling Global Excellence</h2>
+<div class="space-y-6 text-secondary mb-10 leading-relaxed">
+<p class="text-lg">Large-scale infrastructure projects like airports and industrial zones demand massive coordination. We provide the technical backbone for national-level assets.</p>
+<p class="text-lg">Our teams manage complex logistics and cross-disciplinary engineering to deliver projects that redefine efficiency for entire sectors.</p>
+</div>
+<ul class="grid grid-cols-2 gap-y-4 gap-x-8 mb-12">
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Smart City Foundations</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Airport Systems</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Rail Power Systems</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Industrial MEPF</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Renewable Farms</li>
+<li class="flex items-center gap-3"><span class="w-2 h-2 bg-primary rounded-full"></span> Master Planning</li>
+</ul>
+<a class="text-primary font-bold flex items-center gap-2 hover:translate-x-2 transition-transform group" href="#">
+                Request a Service Quote <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+<div class="col-span-12 md:col-span-5 order-1 md:order-2 reveal stagger-1">
+<img class="w-full aspect-[4/5] object-cover shadow-2xl border-r-4 border-primary" data-alt="Infrastructure glass and steel terminal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWkM0313qH3jG3iM4OsZ2M-4GN1J7fRO0UJ14K2Q8XtcL-BJkvnDzsHuDmkTlvQ7wJvlRMCi5sG7QfE7O4oD8GnQP1KN8oQKFARjj_bGo59BlFAh9XVMMB9YZ01EjyV8JwgEEy9s224FQplLl56xyOPwCN6bucutiTWLo4Ouqxu1RQvNY6ukTThfapNJyVuB-OF7zjkVeR5IbbE-W3iSB9Uk-w3OiuJA2T0mSvBp4XTAdm7mZXGJqIVpuMcBTF2YyvDeXCPpZV_rw"/>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="py-[140px] px-8 bg-inverse-surface text-white diagonal-stitch-reverse overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<div class="grid-layout mb-20">
+<div class="col-span-12 reveal">
+<span class="eyebrow text-primary mb-6 block">Our Methodology</span>
+<h2 class="font-headline-h2 text-4xl md:text-6xl h-tight">From Brief to Handover</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-12 relative">
+<!-- Continuous Line Decor -->
+<div class="hidden md:block absolute top-10 left-0 w-full h-[2px] bg-primary/20 -z-0"></div>
+<!-- Steps -->
+<div class="reveal stagger-1 flex flex-col items-start">
+<div class="w-20 h-20 bg-primary/10 border border-primary text-primary flex items-center justify-center text-3xl font-bold mb-8 relative z-10">1</div>
+<h4 class="text-xl font-bold mb-4">Requirement Analysis</h4>
+<p class="text-white/60 text-sm leading-relaxed">Detailed technical assessment of project parameters and client objectives.</p>
+</div>
+<div class="reveal stagger-2 flex flex-col items-start">
+<div class="w-20 h-20 bg-primary/10 border border-primary text-primary flex items-center justify-center text-3xl font-bold mb-8 relative z-10">2</div>
+<h4 class="text-xl font-bold mb-4">Design &amp; Engineering</h4>
+<p class="text-white/60 text-sm leading-relaxed">Custom engineering solutions using advanced BIM and CAD modeling.</p>
+</div>
+<div class="reveal stagger-3 flex flex-col items-start">
+<div class="w-20 h-20 bg-primary/10 border border-primary text-primary flex items-center justify-center text-3xl font-bold mb-8 relative z-10">3</div>
+<h4 class="text-xl font-bold mb-4">Approval &amp; Planning</h4>
+<p class="text-white/60 text-sm leading-relaxed">Securing certifications and meticulous resource scheduling.</p>
+</div>
+<div class="reveal stagger-4 flex flex-col items-start">
+<div class="w-20 h-20 bg-primary/10 border border-primary text-primary flex items-center justify-center text-3xl font-bold mb-8 relative z-10">4</div>
+<h4 class="text-xl font-bold mb-4">Execution</h4>
+<p class="text-white/60 text-sm leading-relaxed">On-site implementation led by certified industrial engineers.</p>
+</div>
+<div class="reveal stagger-5 flex flex-col items-start">
+<div class="w-20 h-20 bg-primary/10 border border-primary text-primary flex items-center justify-center text-3xl font-bold mb-8 relative z-10">5</div>
+<h4 class="text-xl font-bold mb-4">Commissioning</h4>
+<p class="text-white/60 text-sm leading-relaxed">Final testing, certification, and project handover to client.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-[120px] px-8 bg-primary">
+<div class="max-w-container-max mx-auto grid-layout items-center">
+<div class="col-span-12 md:col-span-8 reveal">
+<h2 class="font-headline-h2 text-4xl md:text-5xl text-white h-tight mb-4">Partner with Engineering Experts</h2>
+<p class="text-xl text-white/90">Discuss your infrastructure requirements with our specialist engineering teams today.</p>
+</div>
+<div class="col-span-12 md:col-span-4 md:flex md:justify-end mt-8 md:mt-0 reveal stagger-1">
+<button class="bg-white text-primary px-12 py-5 font-bold text-lg hover:bg-surface-container-low transition-all shadow-2xl active:scale-95">
+                Consult an Expert
+            </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-inverse-surface text-white py-24 border-t border-white/5">
+<div class="max-w-container-max mx-auto px-8">
+<div class="grid-layout mb-20">
+<div class="col-span-12 md:col-span-4 space-y-8">
+<img alt="Arihantaa Powertech" class="h-16 w-auto brightness-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDho_w5VTncbcMNxMKRTuO7MOPgYzg6QKa-FLu1_AvyYUw3rYe1LMvIUIAj7Z5JD0gBK9fLRzWujtnf0JhV48NZ7CTS7gWyCeIFNqgi6Ryae8YkSGINCw9YwFbGUyfyjEYqW7HLmMliBzMrqPcQSNnyJoDqsZ93nb17fTWPuju6gOpKmt59wK3JfDGrAdfIj7xMiVY4Hu3k0L_F6rC3k99M8wjbbd_36s_8KBOZOIDFmpUb8goJU8eta3px6JErFgn0UyxHRB-jvs"/>
+<p class="text-white/50 max-w-sm leading-relaxed">Empowering global industries through precision engineering and sustainable power solutions.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">language</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">share</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">mail</span>
+</div>
+</div>
+<div class="col-span-6 md:col-span-2">
+<h4 class="eyebrow text-primary text-xs mb-8">Sectors</h4>
+<ul class="space-y-4 text-white/50 text-sm">
+<li class="hover:text-white transition-colors cursor-pointer">Oil &amp; Gas</li>
+<li class="hover:text-white transition-colors cursor-pointer">Manufacturing</li>
+<li class="hover:text-white transition-colors cursor-pointer">Public Infrastructure</li>
+<li class="hover:text-white transition-colors cursor-pointer">Commercial Estates</li>
+<li class="hover:text-white transition-colors cursor-pointer">Healthcare</li>
+</ul>
+</div>
+<div class="col-span-6 md:col-span-2">
+<h4 class="eyebrow text-primary text-xs mb-8">Services</h4>
+<ul class="space-y-4 text-white/50 text-sm">
+<li class="hover:text-white transition-colors cursor-pointer">Electrical Systems</li>
+<li class="hover:text-white transition-colors cursor-pointer">MEPF Consulting</li>
+<li class="hover:text-white transition-colors cursor-pointer">HVAC Solutions</li>
+<li class="hover:text-white transition-colors cursor-pointer">Data Centers</li>
+<li class="hover:text-white transition-colors cursor-pointer">Infrastructure</li>
+</ul>
+</div>
+<div class="col-span-12 md:col-span-4">
+<h4 class="eyebrow text-primary text-xs mb-8">Contact</h4>
+<ul class="space-y-5 text-white/50 text-sm">
+<li class="flex items-center gap-4"><span class="material-symbols-outlined text-primary">location_on</span> Global Headquarters, Sector 5</li>
+<li class="flex items-center gap-4"><span class="material-symbols-outlined text-primary">phone</span> +1 (800) POWERTECH</li>
+<li class="flex items-center gap-4"><span class="material-symbols-outlined text-primary">mail</span> solutions@arihantaa.com</li>
+<li class="pt-6">
+<span class="eyebrow text-xs block mb-4">Newsletter</span>
+<div class="flex group border-b border-white/20 focus-within:border-primary transition-colors">
+<input class="bg-transparent border-none px-0 py-3 w-full text-white placeholder-white/30 focus:ring-0" placeholder="Email Address" type="email"/>
+<button class="text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-white/30 text-xs">© 2024 Arihantaa Powertech. All rights reserved.</p>
+<div class="flex gap-10">
+<a class="text-white/30 hover:text-white transition-colors text-xs" href="#">Legal &amp; Privacy</a>
+<a class="text-white/30 hover:text-white transition-colors text-xs" href="#">Sustainability</a>
+<a class="text-white/30 hover:text-white transition-colors text-xs" href="#">Vendor Portal</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    // Intersection Observer for scroll-driven reveals
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Sticky Nav active state handling
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        let current = "";
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (pageYOffset >= sectionTop - 150) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('border-primary', 'text-primary');
+            link.classList.add('border-transparent', 'text-secondary');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('border-primary', 'text-primary');
+                link.classList.remove('border-transparent', 'text-secondary');
+            }
+        });
+    });
+</script>
+</body></html>
