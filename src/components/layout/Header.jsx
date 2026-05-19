@@ -181,6 +181,7 @@ const NAV_LINKS = [
   { label: 'Home',     to: '/' },
   { label: 'Products', to: '/products', hasMega: true },
   { label: 'Services', to: '/services', hasMega: true },
+  { label: 'Projects', to: '/projects' },
   { label: 'About',    to: '/about' },
   { label: 'News',     to: '/news' },
 ];

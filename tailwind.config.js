@@ -93,6 +93,21 @@ export default {
         "display-xl": ["120px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
         "headline-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "700"}],
         "body-lg": ["20px", {"lineHeight": "1.8", "fontWeight": "400"}]
+      },
+      "keyframes": {
+        "marquee": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" }
+        },
+        "pulse-ring": {
+          "0%": { transform: "scale(0.95)", boxShadow: "0 0 0 0 rgba(233, 101, 43, 0.7)" },
+          "70%": { transform: "scale(1)", boxShadow: "0 0 0 10px rgba(233, 101, 43, 0)" },
+          "100%": { transform: "scale(0.95)", boxShadow: "0 0 0 0 rgba(233, 101, 43, 0)" }
+        }
+      },
+      "animation": {
+        "marquee": "marquee 40s linear infinite",
+        "pulse-ring": "pulse-ring 2s infinite"
       }
     },
   },
