@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import AnimatedQuoteButtonProjects from '../../ui/AnimatedQuoteButtonProjects.jsx';
 import {
   motion,
   useScroll,
@@ -404,15 +405,8 @@ export function ProjectsHero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.75 }}
             >
-              <Link
-                to="/contact"
-                className="group flex items-center gap-3 bg-accent text-white font-label-caps text-[11px] tracking-[0.18em] px-7 py-4 hover:bg-accent/90 transition-colors"
-              >
-                GET A QUOTE
-                <span className="material-symbols-outlined text-[17px] group-hover:translate-x-1 transition-transform" style={{ fontSize: '17px' }}>
-                  arrow_forward
-                </span>
-              </Link>
+              {/* Replaced with senior-level animated button for Projects section */}
+              <AnimatedQuoteButtonProjects />
               <button className="font-label-caps text-[11px] text-white/40 tracking-[0.18em] hover:text-white transition-colors">
                 EXPLORE ALL →
               </button>

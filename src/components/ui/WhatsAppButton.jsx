@@ -11,7 +11,7 @@ export function WhatsAppButton() {
 
   return (
     <motion.div
-      className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[99]"
+      className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[90]"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.5 }}
@@ -22,8 +22,7 @@ export function WhatsAppButton() {
         rel="noopener noreferrer"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="group relative flex items-center gap-4 border border-outline/30 bg-[#0c0c0c] px-5 py-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-colors duration-500 overflow-hidden select-none cursor-pointer"
-        style={{ minWidth: '190px' }}
+        className="group relative flex items-center gap-4 border border-outline/30 bg-[#0c0c0c] p-3.5 md:px-5 md:py-3.5 shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-colors duration-500 overflow-hidden select-none cursor-pointer md:min-w-[190px]"
       >
         {/* Luxury dual diagonal sweeps */}
         <div className="absolute inset-0 bg-accent -translate-x-[120%] group-hover:translate-x-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0 skew-x-12 scale-110 origin-left" />
@@ -65,11 +64,11 @@ export function WhatsAppButton() {
             </motion.svg>
           </div>
 
-          {/* Thin elegant separator */}
-          <div className="w-[1px] h-4 bg-white/20 group-hover:bg-white/40 transition-colors" />
+          {/* Thin elegant separator — hidden on mobile */}
+          <div className="w-[1px] h-4 bg-white/20 group-hover:bg-white/40 transition-colors hidden md:block" />
 
-          {/* Rolling character animation for senior-level look */}
-          <div className="flex overflow-hidden font-label-caps text-[10px] tracking-[0.2em] font-semibold text-white">
+          {/* Rolling character animation — hidden on mobile */}
+          <div className="hidden md:flex overflow-hidden font-label-caps text-[10px] tracking-[0.2em] font-semibold text-white">
             {text.split('').map((char, i) => (
               <div key={i} className="relative flex flex-col items-center justify-center">
                 {/* Default Text */}

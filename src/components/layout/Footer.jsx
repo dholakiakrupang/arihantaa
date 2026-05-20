@@ -92,8 +92,12 @@ export function Footer() {
                   <a href="mailto:info@arihantaa.com" className="font-body text-[14px] text-white/60 group-hover:text-white transition-colors">info@arihantaa.com</a>
                 </li>
                 <li className="flex gap-4 items-start group">
-                  <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors mt-0.5 text-[20px]">location_on</span>
-                  <span className="font-body text-[14px] leading-relaxed text-white/60 group-hover:text-white transition-colors opacity-0">.</span>
+                  <a href="https://www.google.com/maps/search/?api=1&query=22.6708056,71.5723889" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
+                    <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors mt-0.5 text-[20px]">location_on</span>
+                    <span className="font-body text-[14px] leading-relaxed text-white/60 group-hover:text-white transition-colors" style={{ fontWeight: '500', letterSpacing: '0.02em' }}>
+                      22°40'14.9"N 71°34'20.6"E
+                    </span>
+                  </a>
                 </li>
               </ul>
             </div>

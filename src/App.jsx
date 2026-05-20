@@ -11,6 +11,7 @@ import { Services } from './pages/Services';
 import { SpecificService } from './pages/SpecificService';
 import { Products } from './pages/Products';
 import { SpecificProduct } from './pages/SpecificProduct';
+import { SpecificSector } from './pages/SpecificSector';
 import { Projects } from './pages/Projects';
 import { News } from './pages/News';
 import { NewsArticle } from './pages/NewsArticle';
@@ -66,6 +67,7 @@ function App() {
           <Route path="/services/:categoryId" element={<SpecificService />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:categoryId" element={<SpecificProduct />} />
+          <Route path="/sectors/:sectorId" element={<SpecificSector />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/:articleId" element={<NewsArticle />} />

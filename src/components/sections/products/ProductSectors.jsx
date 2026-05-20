@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { productsData } from '../../../data/productsData';
 import { ProductCard } from '../../ui/ProductCard';
 
@@ -65,7 +66,15 @@ function SectorRow({ sector, index }) {
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.65, delay: 0.08, ease: [0.25, 1, 0.5, 1] }}
           >
-            {sector.title}
+            <Link 
+              to={`/sectors/${slug}`} 
+              className={`group/sec-link inline-flex items-center gap-4 hover:text-accent transition-colors duration-300 ${isEven ? 'flex-row-reverse' : ''}`}
+            >
+              <span>{sector.title}</span>
+              <span className="material-symbols-outlined text-[20px] sm:text-[28px] md:text-[34px] text-accent opacity-0 -translate-x-3 group-hover/sec-link:opacity-100 group-hover/sec-link:translate-x-0 transition-all duration-300 select-none">
+                arrow_forward
+              </span>
+            </Link>
           </motion.h2>
 
           <motion.div
