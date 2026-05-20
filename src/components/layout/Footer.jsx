@@ -58,7 +58,7 @@ export function Footer() {
               </h4>
               <ul className="flex flex-col gap-5">
                 <li><Link to="/about" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">About Us</Link></li>
-                <li><Link to="/portfolio" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Live Projects</Link></li>
+                <li><Link to="/projects" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Projects</Link></li>
                 <li><Link to="/news" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">News Hub</Link></li>
                 <li><Link to="/contact" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Request Quote</Link></li>
               </ul>

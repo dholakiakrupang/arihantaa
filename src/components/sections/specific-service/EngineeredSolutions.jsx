@@ -67,7 +67,95 @@ export function EngineeredSolutions() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
   
+  const [searchQuery, setSearchQuery] = useState('');
+  // Applied states (used for filtering the actual array)
+  const [appliedInfra, setAppliedInfra] = useState(null);
+  const [appliedEfficiency, setAppliedEfficiency] = useState(null);
+  // Pending states (used inside the dropdown until "APPLY FILTERS" is clicked)
+  const [tempInfra, setTempInfra] = useState(null);
+  const [tempEfficiency, setTempEfficiency] = useState(null);
+
+  const [sortBy, setSortBy] = useState('LATEST'); // 'LATEST' | 'EFFICIENCY'
+
   const categoryInfo = categoryMap[categoryId] || { title: 'Engineered Solutions', desc: 'Our portfolio of high-performance infrastructure services, designed for integration into mission-critical environments.' };
+
+  const handleToggleFilterDropdown = () => {
+    if (!isFilterOpen) {
+      // Sync temp state with applied state upon opening
+      setTempInfra(appliedInfra);
+      setTempEfficiency(appliedEfficiency);
+    }
+    setIsFilterOpen(!isFilterOpen);
+  };
+
+  const handleCloseDropdowns = () => {
+    setIsFilterOpen(false);
+    setIsSortOpen(false);
+    // Reset temp states to last applied states
+    setTempInfra(appliedInfra);
+    setTempEfficiency(appliedEfficiency);
+  };
+
+  const handleApplyFilters = () => {
+    setAppliedInfra(tempInfra);
+    setAppliedEfficiency(tempEfficiency);
+    setIsFilterOpen(false);
+  };
+
+  const handleResetFilters = () => {
+    setTempInfra(null);
+    setTempEfficiency(null);
+  };
+
+  const filteredSolutions = solutionsData
+    .filter(item => {
+      // 1. Search filter
+      if (searchQuery.trim() !== '') {
+        const query = searchQuery.toLowerCase();
+        const matchesTitle = item.title.toLowerCase().includes(query);
+        const matchesDesc = item.description.toLowerCase().includes(query);
+        const matchesTag = item.tag.toLowerCase().includes(query);
+        if (!matchesTitle && !matchesDesc && !matchesTag) {
+          return false;
+        }
+      }
+      
+      // 2. Infrastructure filter
+      if (appliedInfra === 'high') {
+        if (item.tag !== 'HT/LT INFRASTRUCTURE') return false;
+      } else if (appliedInfra === 'low') {
+        if (item.tag !== 'POWER RELIABILITY') return false;
+      }
+      
+      // 3. Efficiency filter
+      if (appliedEfficiency === 'ultra') {
+        const effStat = item.stats.find(s => s.label === 'EFFICIENCY');
+        if (effStat) {
+          const val = parseFloat(effStat.value);
+          if (isNaN(val) || val < 97.0) return false;
+        } else {
+          return false;
+        }
+      } else if (appliedEfficiency === 'standard') {
+        const effStat = item.stats.find(s => s.label === 'EFFICIENCY');
+        if (effStat) {
+          const val = parseFloat(effStat.value);
+          if (val >= 97.0) return false;
+        }
+      }
+      
+      return true;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'EFFICIENCY') {
+        const getEff = (item) => {
+          const s = item.stats.find(stat => stat.label === 'EFFICIENCY');
+          return s ? parseFloat(s.value) : 0;
+        };
+        return getEff(b) - getEff(a);
+      }
+      return b.id - a.id;
+    });
 
   return (
     <section className="bg-surface min-h-screen">
@@ -117,14 +205,14 @@ export function EngineeredSolutions() {
       </div>
 
       {/* ── Industrial Smart Sticky Toolbar ────────────────────────────────────────── */}
-      <div className="sticky top-[64px] md:top-[80px] z-40 bg-surface/85 backdrop-blur-xl border-b border-outline/50 transition-all duration-300">
+      <div className="relative md:sticky md:top-[80px] top-0 z-40 bg-surface/85 backdrop-blur-xl border-b border-outline/50 transition-all duration-300">
         
         {/* Invisible Click-Outside Detector (No blur or dimming) */}
         <AnimatePresence>
           {(isFilterOpen || isSortOpen) && (
             <div 
               className="fixed inset-0 bg-transparent z-0"
-              onClick={() => { setIsFilterOpen(false); setIsSortOpen(false); }}
+              onClick={handleCloseDropdowns}
             />
           )}
         </AnimatePresence>
@@ -132,9 +220,9 @@ export function EngineeredSolutions() {
         <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row items-stretch border-x border-outline/30 relative z-10">
           
           {/* Filter Button (Sharp, rigid) */}
-          <div className="relative border-b md:border-b-0 border-r border-outline/30 flex-shrink-0">
+          <div className="relative border-b md:border-b-0 border-r-0 md:border-r border-outline/30 flex-shrink-0">
             <button 
-              onClick={() => setIsFilterOpen(!isFilterOpen)}
+              onClick={handleToggleFilterDropdown}
               className={`w-full md:w-auto h-full min-h-[56px] md:min-h-[64px] px-6 md:px-8 flex items-center justify-between md:justify-start gap-4 font-label-caps text-[11px] tracking-[0.2em] uppercase transition-colors duration-300 ${isFilterOpen ? 'bg-accent text-white' : 'bg-transparent text-secondary hover:bg-surface-container'}`}
             >
               <div className="flex items-center gap-4">
@@ -154,7 +242,7 @@ export function EngineeredSolutions() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3, ease: [0.25, 1, 0.5, 1] }}
-                  className="absolute top-[100%] left-[-1px] w-[100vw] md:w-[600px] bg-surface border border-outline/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.18)] z-50 overflow-hidden"
+                  className="absolute top-[100%] left-[-1px] w-[calc(100%+2px)] md:w-[600px] bg-surface border border-outline/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.18)] z-50 overflow-hidden"
                 >
                   <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-accent" />
                   <div className="flex flex-col md:flex-row pt-1">
@@ -164,16 +252,18 @@ export function EngineeredSolutions() {
                         Infrastructure Type
                       </h4>
                       <div className="space-y-4">
-                        <label className="flex items-center gap-4 cursor-pointer group">
-                          <div className="w-5 h-5 border border-outline group-hover:border-accent transition-colors flex items-center justify-center"></div>
-                          <span className="font-body text-[13px] text-secondary group-hover:text-accent transition-colors">High Voltage Solutions</span>
-                        </label>
-                        <label className="flex items-center gap-4 cursor-pointer group">
-                          <div className="w-5 h-5 border border-accent bg-accent/10 flex items-center justify-center">
-                            <span className="w-2.5 h-2.5 bg-accent"></span>
+                        <div className="flex items-center gap-4 cursor-pointer group" onClick={() => setTempInfra(tempInfra === 'high' ? null : 'high')}>
+                          <div className={`w-5 h-5 border transition-colors flex items-center justify-center ${tempInfra === 'high' ? 'border-accent bg-accent/10' : 'border-outline group-hover:border-accent'}`}>
+                            {tempInfra === 'high' && <span className="w-2.5 h-2.5 bg-accent"></span>}
                           </div>
-                          <span className="font-body text-[13px] text-secondary font-semibold">Low Voltage Distribution</span>
-                        </label>
+                          <span className={`font-body text-[13px] transition-colors ${tempInfra === 'high' ? 'text-secondary font-semibold' : 'text-secondary/70 group-hover:text-accent'}`}>High Voltage Solutions</span>
+                        </div>
+                        <div className="flex items-center gap-4 cursor-pointer group" onClick={() => setTempInfra(tempInfra === 'low' ? null : 'low')}>
+                          <div className={`w-5 h-5 border transition-colors flex items-center justify-center ${tempInfra === 'low' ? 'border-accent bg-accent/10' : 'border-outline group-hover:border-accent'}`}>
+                            {tempInfra === 'low' && <span className="w-2.5 h-2.5 bg-accent"></span>}
+                          </div>
+                          <span className={`font-body text-[13px] transition-colors ${tempInfra === 'low' ? 'text-secondary font-semibold' : 'text-secondary/70 group-hover:text-accent'}`}>Low Voltage Distribution</span>
+                        </div>
                       </div>
                     </div>
                     <div className="flex-1 p-6 md:p-8">
@@ -182,22 +272,24 @@ export function EngineeredSolutions() {
                         Efficiency Rating
                       </h4>
                       <div className="space-y-4">
-                        <label className="flex items-center gap-4 cursor-pointer group">
-                          <div className="w-5 h-5 border border-outline group-hover:border-accent transition-colors flex items-center justify-center"></div>
-                          <span className="font-body text-[13px] text-secondary group-hover:text-accent transition-colors">Standard Efficiency</span>
-                        </label>
-                        <label className="flex items-center gap-4 cursor-pointer group">
-                          <div className="w-5 h-5 border border-accent bg-accent flex items-center justify-center">
-                            <span className="material-symbols-outlined text-[14px] text-white">check</span>
+                        <div className="flex items-center gap-4 cursor-pointer group" onClick={() => setTempEfficiency(tempEfficiency === 'standard' ? null : 'standard')}>
+                          <div className={`w-5 h-5 border transition-colors flex items-center justify-center ${tempEfficiency === 'standard' ? 'border-accent bg-accent/10' : 'border-outline group-hover:border-accent'}`}>
+                            {tempEfficiency === 'standard' && <span className="w-2.5 h-2.5 bg-accent"></span>}
                           </div>
-                          <span className="font-body text-[13px] text-secondary font-semibold">Ultra High (97%+)</span>
-                        </label>
+                          <span className={`font-body text-[13px] transition-colors ${tempEfficiency === 'standard' ? 'text-secondary font-semibold' : 'text-secondary/70 group-hover:text-accent'}`}>Standard Efficiency</span>
+                        </div>
+                        <div className="flex items-center gap-4 cursor-pointer group" onClick={() => setTempEfficiency(tempEfficiency === 'ultra' ? null : 'ultra')}>
+                          <div className={`w-5 h-5 border transition-colors flex items-center justify-center ${tempEfficiency === 'ultra' ? 'border-accent bg-accent/10' : 'border-outline group-hover:border-accent'}`}>
+                            {tempEfficiency === 'ultra' && <span className="material-symbols-outlined text-[14px] text-accent">check</span>}
+                          </div>
+                          <span className={`font-body text-[13px] transition-colors ${tempEfficiency === 'ultra' ? 'text-secondary font-semibold' : 'text-secondary/70 group-hover:text-accent'}`}>Ultra High (97%+)</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div className="flex border-t border-outline/30 bg-surface">
-                    <button onClick={() => setIsFilterOpen(false)} className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] hover:bg-surface-container transition-colors text-secondary/70">RESET ALL</button>
-                    <button onClick={() => setIsFilterOpen(false)} className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] text-surface bg-accent hover:bg-accent/90 transition-colors font-bold">APPLY FILTERS</button>
+                    <button onClick={handleResetFilters} className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] hover:bg-surface-container transition-colors text-secondary/70">RESET ALL</button>
+                    <button onClick={handleApplyFilters} className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] text-surface bg-accent hover:bg-accent/90 transition-colors font-bold">APPLY FILTERS</button>
                   </div>
                 </motion.div>
               )}
@@ -205,18 +297,20 @@ export function EngineeredSolutions() {
           </div>
 
           {/* Results Context */}
-          <div className="hidden lg:flex items-center px-8 border-r border-outline/30 flex-grow">
+          <div className="hidden lg:flex items-center justify-center px-8 border-r border-outline/30 flex-grow">
             <span className="font-label-caps text-[10px] tracking-[0.1em] text-secondary/60">
-              DATABASE QUERY: <span className="text-accent font-bold ml-2">2 MATCHES FOUND</span>
+              DATABASE QUERY: <span className="text-accent font-bold ml-2">{filteredSolutions.length} {filteredSolutions.length === 1 ? 'MATCH' : 'MATCHES'} FOUND</span>
             </span>
           </div>
 
           {/* Search Input */}
-          <div className="flex-1 lg:flex-grow-0 lg:w-[300px] border-b md:border-b-0 border-r border-outline/30 group/search flex items-center bg-transparent relative overflow-hidden transition-colors hover:bg-surface-container/50">
+          <div className="flex-1 lg:flex-grow-0 lg:w-[300px] border-b md:border-b-0 border-r-0 md:border-r border-outline/30 group/search flex items-center bg-transparent relative overflow-hidden transition-all hover:bg-surface-container">
             <span className="material-symbols-outlined absolute left-6 text-secondary/40 text-[18px]">search</span>
             <input 
               type="text" 
               placeholder="ENTER SERIAL OR NAME..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full bg-transparent h-full min-h-[56px] md:min-h-[64px] pl-14 pr-6 font-label-caps text-[10px] tracking-[0.1em] text-secondary placeholder:text-secondary/30 focus:outline-none"
             />
             {/* Animated bottom border on focus */}
@@ -231,7 +325,7 @@ export function EngineeredSolutions() {
             >
               <div className="flex items-center gap-2">
                 <span className="font-label-caps text-[10px] tracking-[0.1em] text-secondary/50">SORT:</span>
-                <span className="font-label-caps text-[11px] tracking-[0.1em] font-bold text-secondary group-hover/sort:text-accent transition-colors">LATEST</span>
+                <span className="font-label-caps text-[11px] tracking-[0.1em] font-bold text-secondary group-hover/sort:text-accent transition-colors">{sortBy}</span>
               </div>
               <span className={`material-symbols-outlined text-[16px] text-secondary/50 transition-transform duration-300 ${isSortOpen ? 'rotate-180' : ''}`}>expand_more</span>
             </button>
@@ -242,13 +336,19 @@ export function EngineeredSolutions() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -5 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-[100%] right-[-1px] w-[100vw] md:w-[240px] bg-surface border border-outline/50 shadow-xl z-50 overflow-hidden"
+                  className="absolute top-[100%] right-[-1px] w-[calc(100%+2px)] md:w-[240px] bg-surface border border-outline/50 shadow-xl z-50 overflow-hidden"
                 >
-                  <button className="w-full text-left px-6 py-4 font-label-caps text-[10px] tracking-[0.15em] font-bold text-accent bg-accent/5 flex justify-between items-center border-b border-outline/30">
-                    LATEST ENGINEERING <span className="material-symbols-outlined text-[14px]">check</span>
+                  <button 
+                    onClick={() => { setSortBy('LATEST'); setIsSortOpen(false); }}
+                    className={`w-full text-left px-6 py-4 font-label-caps text-[10px] tracking-[0.15em] flex justify-between items-center border-b border-outline/30 transition-colors ${sortBy === 'LATEST' ? 'font-bold text-accent bg-accent/5' : 'text-secondary/70 hover:bg-surface-container hover:text-secondary'}`}
+                  >
+                    LATEST ENGINEERING {sortBy === 'LATEST' && <span className="material-symbols-outlined text-[14px]">check</span>}
                   </button>
-                  <button className="w-full text-left px-6 py-4 font-label-caps text-[10px] tracking-[0.15em] text-secondary/70 hover:bg-surface-container hover:text-secondary transition-colors">
-                    ENERGY EFFICIENCY
+                  <button 
+                    onClick={() => { setSortBy('EFFICIENCY'); setIsSortOpen(false); }}
+                    className={`w-full text-left px-6 py-4 font-label-caps text-[10px] tracking-[0.15em] flex justify-between items-center transition-colors ${sortBy === 'EFFICIENCY' ? 'font-bold text-accent bg-accent/5' : 'text-secondary/70 hover:bg-surface-container hover:text-secondary'}`}
+                  >
+                    ENERGY EFFICIENCY {sortBy === 'EFFICIENCY' && <span className="material-symbols-outlined text-[14px]">check</span>}
                   </button>
                 </motion.div>
               )}
@@ -260,9 +360,17 @@ export function EngineeredSolutions() {
 
       {/* ── Cards Grid ──────────────────────────────────────────────────────── */}
       <div className="max-w-[1440px] mx-auto px-8 lg:px-16 py-20 space-y-16">
-        {solutionsData.map((solution, idx) => (
-          <EngineeredSolutionCard key={solution.id} index={idx} {...solution} />
-        ))}
+        {filteredSolutions.length > 0 ? (
+          filteredSolutions.map((solution, idx) => (
+            <EngineeredSolutionCard key={solution.id} index={idx} {...solution} />
+          ))
+        ) : (
+          <div className="py-20 text-center border border-dashed border-outline/30 bg-surface-container/10">
+            <span className="material-symbols-outlined text-[48px] text-secondary/30 mb-4 block">search_off</span>
+            <p className="font-headline text-[18px] text-secondary tracking-wide uppercase">No Engineering Solutions Found</p>
+            <p className="font-body text-[13px] text-secondary/50 mt-2">Try adjusting your filters or search query to find compatible specifications.</p>
+          </div>
+        )}
       </div>
 
       {/* ── Premium Pagination ──────────────────────────────────────────────── */}

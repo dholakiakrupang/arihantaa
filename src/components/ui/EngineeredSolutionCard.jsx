@@ -17,12 +17,57 @@ export function EngineeredSolutionCard({
   models = []
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [unitSystem, setUnitSystem] = useState('metric'); // 'metric' | 'imperial'
+
+  const convertWeight = (weightStr, system) => {
+    if (!weightStr) return '';
+    if (system === 'metric') return weightStr;
+    const numbers = weightStr.match(/\d+/g);
+    if (!numbers) return weightStr;
+    const converted = numbers.map(num => Math.round(parseInt(num, 10) * 2.20462));
+    if (converted.length === 2) {
+      return `${converted[0]}–${converted[1]} lbs`;
+    } else if (converted.length === 1) {
+      return `${converted[0]} lbs`;
+    }
+    return weightStr;
+  };
 
   // Default models for demonstration if none are provided
   const displayModels = models.length > 0 ? models : [
-    { name: `${title} - Base`, voltage: "220V / 400V", efficiency: `${scorePercentage}%`, height: "1710 mm", width: "600 mm", depth: "850 mm" },
-    { name: `${title} - Pro`, voltage: "400V", efficiency: `${scorePercentage + 2}%`, height: "2250 mm", width: "800 mm", depth: "850 mm" },
-    { name: `${title} - Max`, voltage: "400V", efficiency: `${scorePercentage + 3}%`, height: "2250 mm", width: "1000 mm", depth: "850 mm" }
+    { 
+      name: `${title} - Base`, 
+      capacity: "6–40 kVA", 
+      inputVoltage: "220V / 400V", 
+      outputVoltage: "220V / 400V",
+      efficiency: `${scorePercentage}%`, 
+      height: 1710, // mm
+      width: 600, // mm
+      depth: 850, // mm
+      weight: "410–514 kg" 
+    },
+    { 
+      name: `${title} - Pro`, 
+      capacity: "10–40 kVA", 
+      inputVoltage: "220V / 400V", 
+      outputVoltage: "220V / 400V",
+      efficiency: `${scorePercentage + 2}%`, 
+      height: 1710, // mm
+      width: 600, // mm
+      depth: 850, // mm
+      weight: "430–523 kg" 
+    },
+    { 
+      name: `${title} - Max`, 
+      capacity: "40–120 kVA", 
+      inputVoltage: "400V", 
+      outputVoltage: "400V",
+      efficiency: `${scorePercentage + 3}%`, 
+      height: 2250, // mm
+      width: 800, // mm
+      depth: 850, // mm
+      weight: "510–680 kg" 
+    }
   ];
 
   return (
@@ -179,32 +224,62 @@ export function EngineeredSolutionCard({
               <div className="flex items-center justify-between mb-6">
                 <h4 className="font-headline text-[18px] font-bold text-secondary">Technical Specifications</h4>
                 <div className="flex border border-outline bg-white font-body text-[11px] font-semibold shadow-sm">
-                  <button className="px-4 py-1.5 bg-secondary text-white">Metric</button>
-                  <button className="px-4 py-1.5 text-secondary hover:bg-surface-container transition-colors">Imperial</button>
+                  <button 
+                    onClick={() => setUnitSystem('metric')}
+                    className={`px-4 py-1.5 transition-colors ${unitSystem === 'metric' ? 'bg-secondary text-white' : 'text-secondary hover:bg-surface-container'}`}
+                  >
+                    Metric
+                  </button>
+                  <button 
+                    onClick={() => setUnitSystem('imperial')}
+                    className={`px-4 py-1.5 transition-colors ${unitSystem === 'imperial' ? 'bg-secondary text-white' : 'text-secondary hover:bg-surface-container'}`}
+                  >
+                    Imperial
+                  </button>
                 </div>
               </div>
               
               <div className="w-full overflow-x-auto border border-outline/50 rounded-sm">
-                <table className="w-full text-left border-collapse min-w-[800px]">
+                <table className="w-full text-left border-collapse min-w-[1000px]">
                   <thead>
                     <tr className="bg-surface text-secondary font-label-caps text-[10px] tracking-[0.15em] uppercase border-b border-outline">
                       <th className="py-4 px-6">Model ID</th>
+                      <th className="py-4 px-6">Power Rating / Capacity</th>
                       <th className="py-4 px-6">Input Voltage</th>
+                      <th className="py-4 px-6">Output Voltage</th>
                       <th className="py-4 px-6">Efficiency</th>
                       <th className="py-4 px-6">Height</th>
                       <th className="py-4 px-6">Width</th>
                       <th className="py-4 px-6">Depth</th>
+                      <th className="py-4 px-6">Weight</th>
                     </tr>
                   </thead>
                   <tbody>
                     {displayModels.map((model, idx) => (
                       <tr key={idx} className="border-b border-outline/50 last:border-0 hover:bg-surface-container transition-colors group/row">
                         <td className="py-4 px-6 font-headline text-[13px] font-semibold text-accent">{model.name}</td>
-                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">{model.voltage}</td>
+                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">{model.capacity || "N/A"}</td>
+                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">{model.inputVoltage || model.voltage || "N/A"}</td>
+                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">{model.outputVoltage || model.voltage || "N/A"}</td>
                         <td className="py-4 px-6 font-body text-[13px] text-secondary/80">{model.efficiency}</td>
-                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">{model.height}</td>
-                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">{model.width}</td>
-                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">{model.depth}</td>
+                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">
+                          {unitSystem === 'metric' 
+                            ? (typeof model.height === 'number' ? `${model.height} mm` : model.height) 
+                            : (typeof model.height === 'number' ? `${(model.height / 25.4).toFixed(1)} in` : model.height)}
+                        </td>
+                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">
+                          {unitSystem === 'metric' 
+                            ? (typeof model.width === 'number' ? `${model.width} mm` : model.width) 
+                            : (typeof model.width === 'number' ? `${(model.width / 25.4).toFixed(1)} in` : model.width)}
+                        </td>
+                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">
+                          {unitSystem === 'metric' 
+                            ? (typeof model.depth === 'number' ? `${model.depth} mm` : model.depth) 
+                            : (typeof model.depth === 'number' ? `${(model.depth / 25.4).toFixed(1)} in` : model.depth)}
+                        </td>
+                        <td className="py-4 px-6 font-body text-[13px] text-secondary/80">
+                          {convertWeight(model.weight, unitSystem)}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

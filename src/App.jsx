@@ -4,6 +4,7 @@ import Lenis from 'lenis';
 
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
+import { WhatsAppButton } from './components/ui/WhatsAppButton';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
@@ -72,6 +73,7 @@ function App() {
         </Routes>
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   );
 }

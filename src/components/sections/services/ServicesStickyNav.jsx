@@ -127,7 +127,15 @@ export function ServicesStickyNav() {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
         }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
       `}</style>
     </nav>
   );
 }
+

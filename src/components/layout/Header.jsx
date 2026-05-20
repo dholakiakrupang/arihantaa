@@ -12,8 +12,8 @@ function AnimatedQuoteButton({ onClick }) {
       className="group relative flex items-center justify-center overflow-hidden border border-accent/20 px-6 py-2.5 min-w-[150px] bg-transparent transition-colors duration-500"
     >
       {/* Sweep backgrounds (Diagonal slice effect) */}
-      <div className="absolute inset-0 bg-secondary -translate-x-[105%] group-hover:translate-x-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0 skew-x-12 scale-110 origin-left" />
-      <div className="absolute inset-0 bg-accent -translate-x-[105%] group-hover:translate-x-0 transition-transform duration-[600ms] delay-[50ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0" />
+      <div className="absolute inset-0 bg-secondary -translate-x-[120%] group-hover:translate-x-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0 skew-x-12 scale-110 origin-left" />
+      <div className="absolute inset-0 bg-accent -translate-x-[120%] group-hover:translate-x-0 transition-transform duration-[600ms] delay-[50ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0" />
 
       {/* Staggered text roll-up */}
       <div className="relative z-10 flex overflow-hidden font-label-caps text-[11px] tracking-[0.2em] font-semibold text-accent">
@@ -227,8 +227,8 @@ const NAV_LINKS = [
   { label: 'Products', to: '/products', hasMega: true },
   { label: 'Services', to: '/services', hasMega: true },
   { label: 'Projects', to: '/projects' },
-  { label: 'About',    to: '/about' },
   { label: 'News',     to: '/news' },
+  { label: 'About',    to: '/about' },
 ];
 
 // ─── Section card inside mega menu ─────────────────────────────────────────
