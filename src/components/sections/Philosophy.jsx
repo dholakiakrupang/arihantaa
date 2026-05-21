@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { Button } from '../ui/Button';
 
 export function Philosophy() {
   const containerRef = useRef(null);
@@ -85,19 +87,22 @@ export function Philosophy() {
             We maximize the benefits of engineering projects by considering the intricate connections they have with the world around them. By working to enhance economic, environmental, and social outcomes, we deliver transformational improvements for critical infrastructure.
           </motion.p>
 
-          <motion.a 
-            href="#"
-            className="inline-flex items-center gap-3 font-label-caps text-[11px] tracking-[0.15em] uppercase text-on-surface border border-outline px-8 py-4 hover:border-accent hover:text-accent hover:bg-accent/5 transition-all duration-300 group"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
-          >
-            Read Our Impact Story
-            <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform duration-300">
-              arrow_forward
-            </span>
-          </motion.a>
+          <Link to="/about">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <Button 
+                variant="outline"
+                size="lg"
+                className="rounded-none font-bold"
+              >
+                READ OUR IMPACT STORY
+              </Button>
+            </motion.div>
+          </Link>
         </div>
         
       </div>

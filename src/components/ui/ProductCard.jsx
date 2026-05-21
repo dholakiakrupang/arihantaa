@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
  * Reusable card for the Products page.
  * Uses a fixed min-height instead of aspect-ratio to avoid overflow on mobile.
  */
-export function ProductCard({ id, category, title, description, imageSrc, imageAlt, index = 0 }) {
+export function ProductCard({ id, categoryId, category, title, description, imageSrc, imageAlt, index = 0 }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 32 }}
@@ -15,7 +15,7 @@ export function ProductCard({ id, category, title, description, imageSrc, imageA
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 1, 0.5, 1] }}
     >
       <Link 
-        to={`/products/${id}`}
+        to={`/products/${categoryId || id}`}
         className="block group/card relative bg-surface overflow-hidden border border-surface-variant cursor-pointer"
         style={{ minHeight: '380px', height: 'clamp(380px, 45vw, 520px)' }}
       >

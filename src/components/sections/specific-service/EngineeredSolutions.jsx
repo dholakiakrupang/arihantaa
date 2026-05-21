@@ -2,53 +2,9 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EngineeredSolutionCard } from '../../ui/EngineeredSolutionCard';
+import { Button } from '../../ui/Button';
 
-const solutionsData = [
-  {
-    id: 1,
-    tag: "POWER RELIABILITY",
-    title: "Vertiv™ Liebert® EXM2 UPS",
-    scoreLabel: "SUSTAINABILITY SCORE",
-    scorePercentage: 94,
-    description: "The EXM2 offers high efficiency in a compact footprint, specifically engineered for mid-size mission-critical applications across various industry verticals including healthcare and IT.",
-    features: [
-      "Double Conversion Mode",
-      "Fault Tolerant Architecture",
-      "Smart-Grid Ready",
-      "Eco-Mode Operation"
-    ],
-    stats: [
-      { label: "EFFICIENCY", value: "97.2%" },
-      { label: "SCALABILITY", value: "100-250kW" }
-    ],
-    imageSrc: "/images/products/ups.png",
-    imageAlt: "Data Center Ecosystem",
-    primaryAction: { label: "REQUEST CONSULTATION", onClick: () => {} },
-    secondaryAction: { label: "DATASHEET", onClick: () => {} }
-  },
-  {
-    id: 2,
-    tag: "HT/LT INFRASTRUCTURE",
-    title: "Custom Switchgear Solutions",
-    scoreLabel: "DEPLOYMENT SCALE",
-    scorePercentage: 85,
-    description: "Bespoke electrical distribution panels engineered for heavy industrial loads, featuring integrated surge protection and advanced thermal monitoring.",
-    features: [
-      "High Interruption Capacity",
-      "Modbus Connectivity",
-      "Arc Flash Mitigation",
-      "IP54 Rated Enclosures"
-    ],
-    stats: [
-      { label: "RATED VOLTAGE", value: "Up to 33kV" },
-      { label: "MONITORING", value: "IoT Enabled" }
-    ],
-    imageSrc: "/images/products/switchgear.png",
-    imageAlt: "Switchgear Solutions",
-    primaryAction: { label: "REQUEST CONSULTATION", onClick: () => {} },
-    secondaryAction: { label: "CASE STUDY", onClick: () => {} }
-  }
-];
+import { engineeredServicesData as solutionsData } from '../../../data/engineeredServicesData';
 
 const categoryMap = {
   'spare-parts': { title: 'Spare Parts & Management', desc: 'Genuine OEM and high-compatibility spare parts sourced globally.' },
@@ -109,6 +65,11 @@ export function EngineeredSolutions() {
 
   const filteredSolutions = solutionsData
     .filter(item => {
+      // 0. Filter by active categoryId
+      if (categoryId && item.categoryId !== categoryId) {
+        return false;
+      }
+
       // 1. Search filter
       if (searchQuery.trim() !== '') {
         const query = searchQuery.toLowerCase();
@@ -122,39 +83,27 @@ export function EngineeredSolutions() {
       
       // 2. Infrastructure filter
       if (appliedInfra === 'high') {
-        if (item.tag !== 'HT/LT INFRASTRUCTURE') return false;
+        const isHV = item.tag.includes('INDUSTRIAL') || item.tag.includes('GENERATOR') || item.tag.includes('COMMISSIONING') || item.tag.includes('PROJECT');
+        if (!isHV) return false;
       } else if (appliedInfra === 'low') {
-        if (item.tag !== 'POWER RELIABILITY') return false;
+        const isHV = item.tag.includes('INDUSTRIAL') || item.tag.includes('GENERATOR') || item.tag.includes('COMMISSIONING') || item.tag.includes('PROJECT');
+        if (isHV) return false;
       }
       
       // 3. Efficiency filter
       if (appliedEfficiency === 'ultra') {
-        const effStat = item.stats.find(s => s.label === 'EFFICIENCY');
-        if (effStat) {
-          const val = parseFloat(effStat.value);
-          if (isNaN(val) || val < 97.0) return false;
-        } else {
-          return false;
-        }
+        if (item.scorePercentage < 97) return false;
       } else if (appliedEfficiency === 'standard') {
-        const effStat = item.stats.find(s => s.label === 'EFFICIENCY');
-        if (effStat) {
-          const val = parseFloat(effStat.value);
-          if (val >= 97.0) return false;
-        }
+        if (item.scorePercentage >= 97) return false;
       }
       
       return true;
     })
     .sort((a, b) => {
       if (sortBy === 'EFFICIENCY') {
-        const getEff = (item) => {
-          const s = item.stats.find(stat => stat.label === 'EFFICIENCY');
-          return s ? parseFloat(s.value) : 0;
-        };
-        return getEff(b) - getEff(a);
+        return b.scorePercentage - a.scorePercentage;
       }
-      return b.id - a.id;
+      return a.title.localeCompare(b.title);
     });
 
   return (
@@ -189,18 +138,7 @@ export function EngineeredSolutions() {
             </motion.h1>
           </div>
 
-          {/* Right Column: Context & Metadata */}
-          <motion.div 
-            className="md:max-w-[400px] lg:max-w-[480px] border-l-2 border-accent pl-6 py-0 flex flex-col justify-center shrink-0"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <span className="block font-label-caps text-[10px] tracking-[0.25em] text-accent uppercase font-bold mb-2 leading-none">Category Overview</span>
-            <p className="font-body text-[13px] text-inverse-on-surface/75 leading-relaxed text-left">
-              {categoryInfo.desc}
-            </p>
-          </motion.div>
+
         </div>
       </div>
 
@@ -287,9 +225,8 @@ export function EngineeredSolutions() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex border-t border-outline/30 bg-surface">
-                    <button onClick={handleResetFilters} className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] hover:bg-surface-container transition-colors text-secondary/70">RESET ALL</button>
-                    <button onClick={handleApplyFilters} className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] text-surface bg-accent hover:bg-accent/90 transition-colors font-bold">APPLY FILTERS</button>
+                  <div className="flex gap-3">
+                    <Button onClick={handleApplyFilters} variant="primary" theme="light" className="flex-1 rounded-none w-full" showArrow={false}>APPLY FILTERS</Button>
                   </div>
                 </motion.div>
               )}
@@ -362,7 +299,7 @@ export function EngineeredSolutions() {
       <div className="max-w-[1440px] mx-auto px-8 lg:px-16 py-20 space-y-16">
         {filteredSolutions.length > 0 ? (
           filteredSolutions.map((solution, idx) => (
-            <EngineeredSolutionCard key={solution.id} index={idx} {...solution} />
+            <EngineeredSolutionCard key={solution.id} index={idx} type="service" {...solution} />
           ))
         ) : (
           <div className="py-20 text-center border border-dashed border-outline/30 bg-surface-container/10">

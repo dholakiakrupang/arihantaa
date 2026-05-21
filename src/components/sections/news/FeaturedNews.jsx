@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Button } from '../../ui/Button';
 
 const newsItems = [
   {
@@ -167,10 +168,9 @@ export function FeaturedNews() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <button className="inline-flex items-center gap-3 border border-outline px-8 py-3.5 font-label-caps text-[11px] tracking-[0.2em] uppercase text-secondary hover:text-on-surface hover:border-accent hover:bg-accent/5 transition-all duration-300">
+          <Button variant="outline" icon="expand_more">
             Load More News
-            <span className="material-symbols-outlined text-[16px]">expand_more</span>
-          </button>
+          </Button>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '../ui/Button';
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1];
@@ -9,44 +10,15 @@ const EASE_IN_OUT_EXPO = [0.87, 0, 0.13, 1];
 
 // ─── Senior Level Animated Quote Button ──────────────────────────────────────
 function AnimatedQuoteButton({ onClick, className = '' }) {
-  const text = "GET A QUOTE";
   return (
-    <Link
+    <Button
       to="/contact"
       onClick={onClick}
-      className={`group relative flex items-center justify-center overflow-hidden border border-accent/20 px-6 py-2.5 min-w-[150px] bg-transparent transition-colors duration-500 ${className}`}
+      variant="nav"
+      className={`w-auto min-w-[160px] rounded-none ${className}`}
     >
-      {/* Sweep backgrounds (Diagonal slice effect) */}
-      <div className="absolute inset-0 bg-secondary -translate-x-[120%] group-hover:translate-x-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0 skew-x-12 scale-110 origin-left" />
-      <div className="absolute inset-0 bg-accent -translate-x-[120%] group-hover:translate-x-0 transition-transform duration-[600ms] delay-[50ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0" />
-
-      {/* Staggered text roll-up */}
-      <div className="relative z-10 flex overflow-hidden font-label-caps text-[11px] tracking-[0.2em] font-semibold text-accent">
-        {text.split('').map((char, i) => (
-          <div key={i} className="relative flex flex-col items-center justify-center">
-            <span 
-              className="inline-block transition-transform duration-[500ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-[150%]"
-              style={{ transitionDelay: `${i * 0.02}s` }}
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-            <span 
-              className="absolute top-full left-0 text-white inline-block transition-transform duration-[500ms] ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-full"
-              style={{ transitionDelay: `${i * 0.02}s` }}
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </span>
-          </div>
-        ))}
-      </div>
-      
-      {/* Right arrow icon pushes in */}
-      <div className="relative z-10 ml-2 overflow-hidden flex items-center h-[14px]">
-        <span className="material-symbols-outlined text-[13px] text-accent group-hover:text-white -translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-[400ms] delay-300 ease-[cubic-bezier(0.76,0,0.24,1)]">
-          arrow_forward
-        </span>
-      </div>
-    </Link>
+      GET A QUOTE
+    </Button>
   );
 }
 
@@ -266,7 +238,7 @@ function MobileAccordion({ label, index, sections, cta, onNavigate, isActive }) 
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="border-b border-white/[0.06]">
+    <div className="border-b border-white/[0.12]">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-full flex items-center justify-between py-5 min-h-[56px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-inset"
@@ -524,7 +496,7 @@ function MobileDrawer({ isOpen, onClose }) {
                         initial="hidden"
                         animate="visible"
                         exit="exit"
-                        className="border-b border-white/[0.06]"
+                        className="border-b border-white/[0.12]"
                       >
                         <Link
                           to={to}
@@ -557,15 +529,16 @@ function MobileDrawer({ isOpen, onClose }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.35, ease: EASE_OUT_EXPO }}
             >
-              <Link
+              <Button
                 to="/contact"
                 onClick={onClose}
-                className="group relative flex items-center justify-center gap-2.5 w-full bg-accent text-white font-label-caps text-[10px] uppercase tracking-[0.18em] py-[18px] min-h-[52px] overflow-hidden"
+                variant="primary"
+                theme="black"
+                size="lg"
+                className="w-full rounded-none"
               >
-                <div className="absolute inset-0 bg-white/10 -translate-x-[120%] group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] skew-x-12 scale-110" />
-                <span className="relative z-10">Get a Quote</span>
-                <span className="material-symbols-outlined text-[14px] relative z-10 group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </Link>
+                Get a Quote
+              </Button>
 
               <div className="flex items-center justify-between px-5 py-2.5 bg-[#050505]">
                 <span className="font-label-caps text-[7px] text-white/15 tracking-[0.25em] uppercase">Arihantaa Powertech</span>
@@ -636,11 +609,386 @@ function MegaSection({ section, onClick, index }) {
   );
 }
 
+// ─── Search Data ──────────────────────────────────────────────────────────
+// All items are flat — each has a `type` tag and a `link` to the real route.
+const ALL_SEARCH_ITEMS = [
+  // ── Products ──────────────────────────────────────────────────────────
+  { type: 'product', icon: 'bolt',            label: 'Uninterruptible Power Supplies (UPS)', desc: 'Double-conversion enterprise backup power for mission-critical infrastructure',  link: '/products/ups' },
+  { type: 'product', icon: 'power',           label: 'DC Power Systems',                    desc: 'Highly reliable DC power for telecom & industrial continuity',                   link: '/products/dc-power' },
+  { type: 'product', icon: 'electric_bolt',   label: 'Power Distribution',                  desc: 'Optimise power delivery to your critical IT equipment',                          link: '/products/power-distribution' },
+  { type: 'product', icon: 'factory',         label: 'Industrial AC & DC Systems',          desc: 'Robust power systems engineered for harsh industrial environments',               link: '/products/industrial-ac-dc' },
+  { type: 'product', icon: 'water_drop',      label: 'Liquid Cooling Solutions',            desc: 'Next-gen direct liquid cooling for ultra-high-density GPU & AI clusters',        link: '/products/liquid-cooling' },
+  { type: 'product', icon: 'thermostat',      label: 'Enclosure Cooling',                   desc: 'Precision thermal management for electrical enclosures & cabinets',              link: '/products/enclosure-cooling' },
+  { type: 'product', icon: 'dns',             label: 'Integrated Solutions',                desc: 'Fully integrated rack, power & cooling turnkey infrastructure',                  link: '/products/integrated-solutions' },
+  { type: 'product', icon: 'monitor_heart',   label: 'Digital Infrastructure Solutions',   desc: 'Complete DCIM monitoring & management platforms',                               link: '/products/digital-infrastructure' },
+  // ── Services ──────────────────────────────────────────────────────────
+  { type: 'service', icon: 'inventory_2',     label: 'Spare Parts & Management',            desc: 'Genuine OEM and high-compatibility parts sourced globally',                      link: '/services/spare-parts' },
+  { type: 'service', icon: 'build_circle',    label: 'Preventive Maintenance',              desc: 'Structured scheduled maintenance programmes to resolve potential failures',       link: '/services/preventive-maint' },
+  { type: 'service', icon: 'speed',           label: 'Performance Optimization',            desc: 'Data-driven performance tuning that extracts maximum efficiency',               link: '/services/performance-opt' },
+  { type: 'service', icon: 'router',          label: 'Remote Services (24/7 NOC)',          desc: '24/7 remote monitoring and instant incident response',                          link: '/services/remote-services' },
+  { type: 'service', icon: 'engineering',     label: 'Project & Commissioning',             desc: 'End-to-end project management from design to handover',                         link: '/services/project-commission' },
+  { type: 'service', icon: 'precision_manufacturing', label: 'Industrial Maintenance',      desc: 'Specialised maintenance for heavy industrial environments',                      link: '/services/industrial-maint' },
+  { type: 'service', icon: 'battery_full',    label: 'UPS & Battery Services',              desc: 'Comprehensive lifecycle management for UPS systems and battery banks',           link: '/services/ups-battery' },
+  { type: 'service', icon: 'settings',        label: 'Generator & Switchgear',              desc: 'Full-spectrum generator and switchgear servicing for reliable power',            link: '/services/generator' },
+  { type: 'service', icon: 'water',           label: 'Liquid Cooling Services',             desc: 'Advanced liquid cooling installation, commissioning & maintenance',              link: '/services/liquid-cooling' },
+  // ── Sectors ───────────────────────────────────────────────────────────
+  { type: 'sector',  icon: 'bolt',            label: 'Critical Power',                      desc: 'UPS, DC systems & power transfer for uptime-critical environments',              link: '/sectors/critical-power' },
+  { type: 'sector',  icon: 'thermostat',      label: 'Thermal Management',                  desc: 'In-row cooling, liquid cooling & perimeter climate control',                     link: '/sectors/thermal-management' },
+  { type: 'sector',  icon: 'dns',             label: 'Racks & Enclosures',                  desc: 'Server racks, IP-rated cabinets & micro data centre pods',                       link: '/sectors/racks-enclosures' },
+  { type: 'sector',  icon: 'monitor_heart',   label: 'Monitoring & DCIM',                   desc: 'Intelligent PDUs, DCIM platforms & BMS integration',                            link: '/sectors/monitoring-management' },
+  // ── Projects ──────────────────────────────────────────────────────────
+  { type: 'project', icon: 'local_hospital',  label: 'Haridwar Medical College',            desc: 'Complete HT/LT Installation',                                                   link: '/projects' },
+  { type: 'project', icon: 'engineering',     label: 'GMERS Sola',                          desc: 'Maintenance & Support Services',                                                link: '/projects' },
+  { type: 'project', icon: 'local_airport',   label: 'Rajkot Airport',                      desc: 'Aviation Infrastructure Backbone',                                              link: '/projects' },
+  { type: 'project', icon: 'subway',          label: 'Surat Metro',                         desc: 'Ongoing Power Grid Project',                                                    link: '/projects' },
+];
+
+const TYPE_META = {
+  product: { label: 'Product',  accent: 'bg-accent/20 text-accent',          icon: 'category' },
+  service: { label: 'Service',  accent: 'bg-blue-500/20 text-blue-300',      icon: 'build' },
+  sector:  { label: 'Sector',   accent: 'bg-emerald-500/20 text-emerald-300', icon: 'hub' },
+  project: { label: 'Project',  accent: 'bg-purple-500/20 text-purple-300',  icon: 'apartment' },
+};
+
+function SearchOverlay({ isOpen, onClose }) {
+  const [query, setQuery]     = useState('');
+  const [activeIdx, setActiveIdx] = useState(-1);
+  const inputRef  = useRef(null);
+  const listRef   = useRef(null);
+  const navigate  = useNavigate();
+
+  const q = query.toLowerCase().trim();
+
+  // Filter items matching query
+  const filtered = q
+    ? ALL_SEARCH_ITEMS.filter(i =>
+        i.label.toLowerCase().includes(q) ||
+        i.desc.toLowerCase().includes(q)  ||
+        i.type.toLowerCase().includes(q)
+      )
+    : [];
+
+  // Group results
+  const grouped = {
+    product: filtered.filter(i => i.type === 'product'),
+    service: filtered.filter(i => i.type === 'service'),
+    sector:  filtered.filter(i => i.type === 'sector'),
+    project: filtered.filter(i => i.type === 'project'),
+  };
+
+  // Flattened results for unified keyboard navigation matching actual displayed order
+  const flatResults = [
+    ...grouped.product,
+    ...grouped.service,
+    ...grouped.sector,
+    ...grouped.project
+  ];
+
+  const hasResults = flatResults.length > 0;
+
+  // Reset active on query change
+  useEffect(() => { setActiveIdx(-1); }, [query]);
+
+  // ESC + keyboard nav
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e) => {
+      if (e.key === 'Escape') { onClose(); return; }
+      if (!q) return; // Disable keyboard nav on empty state
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setActiveIdx(prev => Math.min(prev + 1, flatResults.length - 1));
+      }
+      if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setActiveIdx(prev => Math.max(prev - 1, -1));
+      }
+      if (e.key === 'Enter' && activeIdx >= 0 && flatResults[activeIdx]) {
+        navigate(flatResults[activeIdx].link);
+        onClose();
+      }
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [isOpen, onClose, flatResults, activeIdx, navigate, q]);
+
+  // Auto-scroll active item into view
+  useEffect(() => {
+    if (activeIdx < 0 || !listRef.current) return;
+    const el = listRef.current.querySelector(`[data-idx="${activeIdx}"]`);
+    el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  }, [activeIdx]);
+
+  // Focus + reset on open
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => inputRef.current?.focus(), 80);
+      setQuery('');
+      setActiveIdx(-1);
+    }
+  }, [isOpen]);
+
+  // Body lock
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  // Text highlight helper
+  const highlight = (text) => {
+    if (!q) return text;
+    const idx = text.toLowerCase().indexOf(q);
+    if (idx === -1) return text;
+    return (
+      <>
+        {text.slice(0, idx)}
+        <span className="text-accent font-bold">{text.slice(idx, idx + q.length)}</span>
+        {text.slice(idx + q.length)}
+      </>
+    );
+  };
+
+  const ResultCard = ({ item }) => {
+    const flatIndex = flatResults.findIndex(r => r.link === item.link && r.label === item.label);
+    const isKeyActive = flatIndex === activeIdx;
+    const meta = TYPE_META[item.type];
+    return (
+      <Link
+        data-idx={flatIndex}
+        to={item.link}
+        onClick={onClose}
+        onMouseEnter={() => setActiveIdx(flatIndex)}
+        className={`flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 ${
+          isKeyActive 
+            ? 'bg-[#1a1e2f]/90 border-accent/60 shadow-[0_4px_20px_rgba(233,101,43,0.15)] scale-[1.01]' 
+            : 'bg-[#121520]/75 border-white/[0.06] hover:bg-[#151928]/80 hover:border-white/[0.1]'
+        }`}
+      >
+        {/* Left Icon */}
+        <div className={`w-9 h-9 flex items-center justify-center shrink-0 border rounded-lg transition-all duration-300 ${
+          isKeyActive
+            ? 'bg-accent/10 border-accent/30 text-accent'
+            : 'bg-white/[0.03] border-white/[0.08] text-white/40'
+        }`}>
+          <span className="material-symbols-outlined text-[18px]">
+            {item.icon}
+          </span>
+        </div>
+
+        {/* Text Details */}
+        <div className="flex-grow min-w-0">
+          <div className="flex items-center justify-between gap-2 mb-0.5">
+            <h4 className={`font-headline text-[13px] font-bold tracking-tight truncate transition-colors duration-300 ${
+              isKeyActive ? 'text-accent' : 'text-white'
+            }`}>
+              {highlight(item.label)}
+            </h4>
+            <span className={`font-label-caps text-[8px] tracking-[0.15em] px-1.5 py-0.5 rounded-sm shrink-0 border ${
+              isKeyActive 
+                ? 'bg-accent/10 border-accent/20 text-accent' 
+                : 'bg-white/[0.03] border-white/[0.06] text-white/30'
+            }`}>
+              {meta.label.toUpperCase()}
+            </span>
+          </div>
+          <p className="font-body text-[11px] text-white/35 leading-snug truncate">
+            {item.desc}
+          </p>
+        </div>
+
+        {/* Right Arrow */}
+        <span className={`material-symbols-outlined text-[15px] shrink-0 transition-all duration-300 ${
+          isKeyActive ? 'text-accent translate-x-1' : 'text-white/20'
+        }`}>
+          arrow_forward
+        </span>
+      </Link>
+    );
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* ── Glassmorphism Backdrop — page blurs through ── */}
+          <motion.div
+            className="fixed inset-0 z-[150] pointer-events-auto"
+            style={{
+              backdropFilter: 'blur(16px) saturate(0.6) brightness(0.4)',
+              WebkitBackdropFilter: 'blur(16px) saturate(0.6) brightness(0.4)',
+              background: 'rgba(6, 8, 12, 0.7)',
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={onClose}
+          />
+
+          {/* ── Spotlight Center-Aligned Command Palette ── */}
+          <motion.div
+            className="fixed left-1/2 z-[151] flex flex-col pointer-events-auto rounded-xl border border-white/[0.08] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.65)] overflow-hidden"
+            style={{
+              x: '-50%',
+              width: '90dvw',
+              maxWidth: '680px',
+              maxHeight: '70dvh',
+              background: 'rgba(11, 13, 20, 0.94)',
+              boxShadow: '0 0 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+            }}
+            initial={{ scale: 0.96, opacity: 0, y: '30vh' }}
+            animate={{ 
+              scale: 1, 
+              opacity: 1, 
+              y: q ? '12vh' : '28vh' // Slides up when typing to reveal results below
+            }}
+            exit={{ scale: 0.96, opacity: 0, y: '30vh' }}
+            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top orange glow strip */}
+            <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-accent to-transparent shrink-0 opacity-80" />
+
+            {/* ── Search Input Block ── */}
+            <div className="relative flex items-center h-[72px] px-5 bg-white/[0.01]">
+              <span className="material-symbols-outlined text-accent animate-pulse shrink-0 mr-4" style={{ fontSize: '22px' }}>search</span>
+              <input
+                ref={inputRef}
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Type to search products, services, cases..."
+                className="flex-1 h-full bg-transparent border-none text-white text-[16px] font-body placeholder:text-white/20 focus:outline-none focus:ring-0"
+                style={{ caretColor: '#E9652B' }}
+                autoComplete="off"
+              />
+              <div className="flex items-center gap-3 shrink-0 ml-3">
+                {query && (
+                  <button 
+                    onClick={() => { setQuery(''); inputRef.current?.focus(); }} 
+                    className="p-1 rounded-full text-white/30 hover:text-white/70 hover:bg-white/[0.05] transition-all"
+                  >
+                    <span className="material-symbols-outlined text-[17px]">close</span>
+                  </button>
+                )}
+                <span className="font-label-caps text-[8px] text-white/25 border border-white/15 px-1.5 py-0.5 rounded tracking-wider select-none uppercase">ESC</span>
+              </div>
+            </div>
+
+            {/* ── Results Dropdown Panel (Only visible when q is entered) ── */}
+            {q && (
+              <div 
+                ref={listRef} 
+                className="flex-grow overflow-y-auto border-t border-white/[0.06] bg-black/[0.15]" 
+                style={{ scrollbarWidth: 'none', maxHeight: 'calc(70dvh - 74px)' }}
+              >
+                {/* Case 1: No matches */}
+                {!hasResults && (
+                  <div className="flex flex-col items-center justify-center py-12 gap-2.5">
+                    <span className="material-symbols-outlined text-[36px] text-white/10">search_off</span>
+                    <p className="font-body text-[13px] text-white/30">No matches found for <span className="text-accent">"{query}"</span></p>
+                  </div>
+                )}
+
+                {/* Case 2: Structured Card Grid Results */}
+                {hasResults && (
+                  <div className="flex flex-col gap-6 p-5">
+                    
+                    {/* Products Group */}
+                    {grouped.product.length > 0 && (
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-3 mb-3 select-none">
+                          <span className="font-label-caps text-[10px] text-accent tracking-[0.25em] uppercase font-bold">Products</span>
+                          <span className="h-[1px] flex-grow bg-accent/10" />
+                          <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.product.length}</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                          {grouped.product.map((item) => (
+                            <ResultCard key={item.link + item.label} item={item} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Services Group */}
+                    {grouped.service.length > 0 && (
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-3 mb-3 select-none">
+                          <span className="font-label-caps text-[10px] text-blue-400 tracking-[0.25em] uppercase font-bold">Services</span>
+                          <span className="h-[1px] flex-grow bg-blue-500/10" />
+                          <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.service.length}</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                          {grouped.service.map((item) => (
+                            <ResultCard key={item.link + item.label} item={item} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Sectors Group */}
+                    {grouped.sector.length > 0 && (
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-3 mb-3 select-none">
+                          <span className="font-label-caps text-[10px] text-emerald-400 tracking-[0.25em] uppercase font-bold">Sectors</span>
+                          <span className="h-[1px] flex-grow bg-emerald-500/10" />
+                          <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.sector.length}</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                          {grouped.sector.map((item) => (
+                            <ResultCard key={item.link + item.label} item={item} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Projects Group */}
+                    {grouped.project.length > 0 && (
+                      <div className="flex flex-col">
+                        <div className="flex items-center gap-3 mb-3 select-none">
+                          <span className="font-label-caps text-[10px] text-purple-400 tracking-[0.25em] uppercase font-bold">Projects</span>
+                          <span className="h-[1px] flex-grow bg-purple-500/10" />
+                          <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.project.length}</span>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                          {grouped.project.map((item) => (
+                            <ResultCard key={item.link + item.label} item={item} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                  </div>
+                )}
+                
+                {/* Result count strip at bottom */}
+                {hasResults && (
+                  <div className="px-5 py-2.5 bg-[#0f111a] border-t border-white/[0.04] flex justify-between items-center select-none shrink-0">
+                    <span className="font-label-caps text-[8px] text-white/15 tracking-[0.15em] uppercase">
+                      Use <span className="border border-white/10 px-1 py-0.2 rounded">↑↓</span> to navigate • <span className="border border-white/10 px-1 py-0.2 rounded">↵</span> to open
+                    </span>
+                    <span className="font-label-caps text-[8px] text-white/25 tracking-[0.15em] uppercase">
+                      {flatResults.length} matches found
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
+
+
 // ─── Header ────────────────────────────────────────────────────────────────
 export function Header() {
   const location   = useLocation();
   const [open, setOpen] = useState(null);        // desktop mega menu
   const [mobileOpen, setMobileOpen] = useState(false); // mobile drawer
+  const [searchOpen, setSearchOpen] = useState(false);  // search overlay
   const [scrolled, setScrolled] = useState(false);
   const closeTimer = useRef(null);
   const headerRef  = useRef(null);
@@ -671,6 +1019,8 @@ export function Header() {
   const close = useCallback(() => setOpen(null), []);
   const closeMobile = useCallback(() => setMobileOpen(false), []);
   const toggleMobile = useCallback(() => setMobileOpen((prev) => !prev), []);
+  const openSearch  = useCallback(() => { setOpen(null); setMobileOpen(false); setSearchOpen(true); }, []);
+  const closeSearch = useCallback(() => setSearchOpen(false), []);
 
   const menu = open ? MEGA_MENUS[open] : null;
   const headerH = headerRef.current?.offsetHeight ?? 64;
@@ -743,17 +1093,14 @@ export function Header() {
 
           {/* ── Right actions ── */}
           <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
-            {/* Expandable search — desktop only */}
-            <div className="relative group/search hidden lg:block overflow-hidden transition-all duration-500 w-9 h-9 focus-within:w-52 border border-outline-variant/40 bg-surface-container-highest cursor-pointer">
-              <span className="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-secondary group-focus-within/search:text-accent transition-colors pointer-events-none" style={{ fontSize: '1.1rem' }}>
-                search
-              </span>
-              <input
-                type="text"
-                placeholder="Search..."
-                className="w-full h-full pl-8 pr-3 bg-transparent text-sm font-body text-on-surface placeholder:text-secondary focus:outline-none opacity-0 group-focus-within/search:opacity-100 transition-opacity duration-300"
-              />
-            </div>
+            {/* Search trigger */}
+            <button
+              onClick={openSearch}
+              aria-label="Open search"
+              className="relative flex items-center justify-center w-9 h-9 border border-outline-variant/40 text-secondary hover:text-accent hover:border-accent/50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent group"
+            >
+              <span className="material-symbols-outlined transition-transform duration-200 group-hover:scale-110" style={{ fontSize: '1.1rem' }}>search</span>
+            </button>
 
             {/* Desktop CTA — hidden on mobile */}
             <AnimatedQuoteButton onClick={close} className="hidden sm:flex" />
@@ -828,14 +1175,15 @@ export function Header() {
                     ? 'Looking for a specific solution? Our engineers can help you choose.'
                     : 'Need a custom service plan? We tailor every engagement to your needs.'}
                 </p>
-                <Link
+                <Button
                   to="/contact"
                   onClick={close}
-                  className="shrink-0 inline-flex items-center gap-2 bg-accent text-white font-label-caps text-[10px] uppercase tracking-[0.16em] px-6 py-3 min-h-[44px] hover:bg-primary transition-colors duration-200"
+                  variant="primary"
+                  theme="light"
+                  className="shrink-0 rounded-none h-[44px]"
                 >
-                  Talk to a Specialist
-                  <span className="material-symbols-outlined text-[13px]">arrow_forward</span>
-                </Link>
+                  TALK TO A SPECIALIST
+                </Button>
               </div>
             </div>
           </motion.div>
@@ -856,6 +1204,9 @@ export function Header() {
           />
         )}
       </AnimatePresence>
+
+      {/* ── Search Overlay ──────────────────────────────────────────────────── */}
+      <SearchOverlay isOpen={searchOpen} onClose={closeSearch} />
     </>
   );
 }

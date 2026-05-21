@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Button } from '../../ui/Button';
 
 /**
  * NewsHero — Uses the exact same diagonal split-screen layout 
@@ -71,18 +72,16 @@ export function NewsHero() {
           </motion.p>
 
           {/* CTA */}
-          <motion.a
-            href="#media"
-            className="inline-flex items-center gap-2.5 bg-accent text-on-primary font-label-caps text-[11px] uppercase px-8 py-4 tracking-[0.2em] hover:bg-primary-container transition-colors duration-300 group"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
+          <Button 
+            to="#media" 
+            variant="primary" 
+            size="lg" 
+            icon="arrow_downward"
+            sweepBg="bg-inverse-surface"
+            className="rounded-none mt-4"
           >
             Media Enquiries
-            <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform duration-300">
-              arrow_forward
-            </span>
-          </motion.a>
+          </Button>
         </div>
       </div>
 

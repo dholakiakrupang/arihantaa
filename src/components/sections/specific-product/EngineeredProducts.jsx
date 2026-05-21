@@ -2,53 +2,9 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { EngineeredSolutionCard } from '../../ui/EngineeredSolutionCard';
+import { Button } from '../../ui/Button';
 
-const productsData = [
-  {
-    id: 1,
-    tag: "CRITICAL POWER",
-    title: "Vertiv™ Liebert® EXL S1 UPS",
-    scoreLabel: "EFFICIENCY RATING",
-    scorePercentage: 97,
-    description: "The Liebert EXL S1 delivers secure power while providing first class load protection and maximum energy saving for medium-large data centers and mission critical applications.",
-    features: [
-      "Dynamic Online Mode",
-      "Advanced Touchscreen Display",
-      "Optimized footprint",
-      "Li-ion battery compatible"
-    ],
-    stats: [
-      { label: "CAPACITY", value: "300-1200kW" },
-      { label: "EFFICIENCY", value: "Up to 99%" }
-    ],
-    imageSrc: "/images/products/ups.png",
-    imageAlt: "Uninterruptible Power Supply",
-    primaryAction: { label: "REQUEST QUOTE", onClick: () => {} },
-    secondaryAction: { label: "VIEW SPECS", onClick: () => {} }
-  },
-  {
-    id: 2,
-    tag: "THERMAL MANAGEMENT",
-    title: "Liebert® PCW Chilled Water System",
-    scoreLabel: "COOLING INDEX",
-    scorePercentage: 92,
-    description: "The Liebert PCW is designed to lead the market in cooling efficiency for data centers. It precisely controls temperature, humidity, and airflow, meeting the demands of high-density IT equipment.",
-    features: [
-      "EC Fans standard",
-      "Aerodynamic internal design",
-      "Smart control algorithms",
-      "Chilled water operation"
-    ],
-    stats: [
-      { label: "CAPACITY", value: "30-200kW" },
-      { label: "COMPLIANCE", value: "ASHRAE TC 9.9" }
-    ],
-    imageSrc: "/images/products/cooling.png",
-    imageAlt: "Thermal Management System",
-    primaryAction: { label: "REQUEST QUOTE", onClick: () => {} },
-    secondaryAction: { label: "VIEW SPECS", onClick: () => {} }
-  }
-];
+import { engineeredProductsData as productsData } from '../../../data/engineeredProductsData';
 
 const categoryMap = {
   'ups': { title: 'Uninterruptible Power Supplies (UPS)', desc: 'Deliver secure power while providing first-class load protection.' },
@@ -107,6 +63,11 @@ export function EngineeredProducts() {
 
   const filteredProducts = productsData
     .filter(item => {
+      // 0. Filter by active URL parameter categoryId
+      if (categoryId && item.categoryId !== categoryId) {
+        return false;
+      }
+
       // 1. Search query
       if (searchQuery.trim() !== '') {
         const query = searchQuery.toLowerCase();
@@ -118,26 +79,26 @@ export function EngineeredProducts() {
         }
       }
       
-      // 2. Category filter
+      // 2. Category filter (represented in the UI)
       if (appliedCategory === 'critical') {
-        if (item.tag !== 'CRITICAL POWER') return false;
+        const isCritical = item.tag === 'CRITICAL POWER' || item.tag === 'DC POWER SYSTEMS' || item.tag === 'POWER DISTRIBUTION' || item.tag === 'INDUSTRIAL AC & DC';
+        if (!isCritical) return false;
       } else if (appliedCategory === 'thermal') {
-        if (item.tag !== 'THERMAL MANAGEMENT') return false;
+        const isThermal = item.tag === 'THERMAL MANAGEMENT' || item.tag === 'LIQUID COOLING' || item.tag === 'ENCLOSURE COOLING';
+        if (!isThermal) return false;
       }
       
       // 3. Cooling filter
       if (appliedCooling === 'chilled') {
-        const hasChilled = item.features.some(f => f.toLowerCase().includes('chilled')) || 
+        const hasChilled = item.features.some(f => f.toLowerCase().includes('chilled') || f.toLowerCase().includes('liquid') || f.toLowerCase().includes('coolant')) || 
                            item.title.toLowerCase().includes('chilled') ||
                            item.description.toLowerCase().includes('chilled');
         if (!hasChilled) return false;
       } else if (appliedCooling === 'dx') {
-        const hasDX = item.features.some(f => f.toLowerCase().includes('dx') || f.toLowerCase().includes('direct expansion')) || 
+        const hasDX = item.features.some(f => f.toLowerCase().includes('dx') || f.toLowerCase().includes('direct expansion') || f.toLowerCase().includes('refrigerant') || f.toLowerCase().includes('split')) || 
                       item.title.toLowerCase().includes('dx') ||
                       item.description.toLowerCase().includes('dx');
-        if (hasDX || item.title.toLowerCase().includes('chilled')) {
-          if (item.title.toLowerCase().includes('chilled')) return false;
-        }
+        if (!hasDX) return false;
       }
       
       return true;
@@ -181,18 +142,7 @@ export function EngineeredProducts() {
             </motion.h1>
           </div>
 
-          {/* Right Column: Context & Metadata */}
-          <motion.div 
-            className="md:max-w-[400px] lg:max-w-[480px] border-l-2 border-accent pl-6 py-0 flex flex-col justify-center shrink-0"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <span className="block font-label-caps text-[10px] tracking-[0.25em] text-accent uppercase font-bold mb-2 leading-none">Category Overview</span>
-            <p className="font-body text-[13px] text-inverse-on-surface/75 leading-relaxed text-left">
-              {categoryInfo.desc}
-            </p>
-          </motion.div>
+
         </div>
       </div>
 
@@ -280,8 +230,10 @@ export function EngineeredProducts() {
                     </div>
                   </div>
                   <div className="flex border-t border-outline/30 bg-surface">
-                    <button onClick={handleResetFilters} className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] hover:bg-surface-container transition-colors text-secondary/70">RESET ALL</button>
-                    <button onClick={handleApplyFilters} className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] text-surface bg-accent hover:bg-accent/90 transition-colors font-bold">APPLY FILTERS</button>
+                    <Button onClick={handleResetFilters} variant="ghost" className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] rounded-none w-full" showArrow={false}>RESET ALL</Button>
+                    <div className="flex gap-3">
+                    <Button onClick={handleApplyFilters} variant="primary" theme="light" className="flex-1 py-4 font-label-caps text-[10px] tracking-[0.2em] rounded-none w-full" showArrow={false}>APPLY FILTERS</Button>
+                  </div>
                   </div>
                 </motion.div>
               )}

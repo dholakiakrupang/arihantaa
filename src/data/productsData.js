@@ -13,6 +13,7 @@ export const productsData = [
     cards: [
       {
         id: "cp-1",
+        categoryId: "ups",
         category: "Power Protection",
         title: "Uninterruptible Power Supplies (UPS)",
         description:
@@ -23,6 +24,7 @@ export const productsData = [
       },
       {
         id: "cp-2",
+        categoryId: "dc-power",
         category: "Distribution",
         title: "DC Power Systems",
         description:
@@ -33,6 +35,7 @@ export const productsData = [
       },
       {
         id: "cp-3",
+        categoryId: "power-distribution",
         category: "Switchgear",
         title: "Power Transfer Switches",
         description:
@@ -54,6 +57,7 @@ export const productsData = [
     cards: [
       {
         id: "tm-1",
+        categoryId: "enclosure-cooling",
         category: "Room Cooling",
         title: "Perimeter Cooling Systems",
         description:
@@ -64,6 +68,7 @@ export const productsData = [
       },
       {
         id: "tm-2",
+        categoryId: "liquid-cooling",
         category: "Row Cooling",
         title: "In-Row Cooling Units",
         description:
@@ -74,6 +79,7 @@ export const productsData = [
       },
       {
         id: "tm-3",
+        categoryId: "liquid-cooling",
         category: "Liquid Cooling",
         title: "Direct Liquid Cooling",
         description:
@@ -95,6 +101,7 @@ export const productsData = [
     cards: [
       {
         id: "re-1",
+        categoryId: "integrated-solutions",
         category: "Server Infrastructure",
         title: "Open-Frame Server Racks",
         description:
@@ -105,6 +112,7 @@ export const productsData = [
       },
       {
         id: "re-2",
+        categoryId: "integrated-solutions",
         category: "Secure Enclosures",
         title: "IP-Rated Industrial Cabinets",
         description:
@@ -115,6 +123,7 @@ export const productsData = [
       },
       {
         id: "re-3",
+        categoryId: "integrated-solutions",
         category: "Edge Computing",
         title: "Micro-Data Centre Pods",
         description:
@@ -136,6 +145,7 @@ export const productsData = [
     cards: [
       {
         id: "mm-1",
+        categoryId: "digital-infrastructure",
         category: "DCIM",
         title: "Data Centre Infrastructure Management",
         description:
@@ -146,6 +156,7 @@ export const productsData = [
       },
       {
         id: "mm-2",
+        categoryId: "digital-infrastructure",
         category: "Remote Monitoring",
         title: "Intelligent PDUs & Smart Sensors",
         description:
@@ -156,6 +167,7 @@ export const productsData = [
       },
       {
         id: "mm-3",
+        categoryId: "digital-infrastructure",
         category: "Network Management",
         title: "Building Management Systems",
         description:

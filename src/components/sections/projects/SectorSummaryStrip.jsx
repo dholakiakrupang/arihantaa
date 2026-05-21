@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const SECTORS = [
   { icon: 'local_hospital', title: 'Healthcare', count: '12 Projects', desc: 'Super Specialty Hospitals, Medical Colleges, Government Health Campuses.' },
@@ -36,12 +37,16 @@ export function SectorSummaryStrip() {
           {SECTORS.map((sector, i) => (
             <motion.div
               key={sector.title}
-              className="group bg-surface p-8 flex flex-col gap-6 hover:bg-surface-variant transition-colors duration-300 cursor-default"
+              className="h-full"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
             >
+              <Link
+                to={`/sectors/${sector.title.toLowerCase().replace(/\s+/g, '-')}`}
+                className="group h-full bg-surface p-8 flex flex-col gap-6 hover:bg-surface-variant transition-colors duration-300 block"
+              >
               {/* Top row */}
               <div className="flex items-start justify-between">
                 <div className="w-12 h-12 border border-outline flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all duration-300">
@@ -69,6 +74,7 @@ export function SectorSummaryStrip() {
                 <div className="h-px w-6 bg-current" />
                 <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>

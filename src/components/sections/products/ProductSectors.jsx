@@ -106,6 +106,7 @@ function SectorRow({ sector, index }) {
           <ProductCard
             key={card.id}
             id={card.id}
+            categoryId={card.categoryId}
             category={card.category}
             title={card.title}
             description={card.description}

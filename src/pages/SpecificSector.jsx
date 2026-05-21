@@ -1,71 +1,98 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { sectorsData, sectorExperts } from '../data/sectorsData';
+import { Button } from '../components/ui/Button';
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1];
+
+const sectorHeroImages = {
+  'critical-power': "https://lh3.googleusercontent.com/aida-public/AB6AXuCYzfnwnCVP9iBzA35pvF58Zbv6LpPN4QoLV5M6fqU1BLNzLEsmSLu5HPVPYfz9mcxzArrBz3WVniGQmCb9ZQPmx3f2D2kjq5mVNYoOEymJvHHxw9rVSgRQ_RV3cHYfVTj2AqyeRlyZAGRQL66qPukbhEn2gxpX51lEy0C52lkBz_V7d9k9FEZQuOcqj0S_hGjrzXgGpOZ_VWYQM-FfNCo-3M2-H-MOu2-sybDSu37IxEPxyE1S4HjBT79U9MMqnEiV0FoptlnVL50",
+  'thermal-management': "https://lh3.googleusercontent.com/aida-public/AB6AXuBs7GWrmO_Y24aIx0d_M368iwbT45iHy_7DqpZ7nch4fGcArhsG3Sgv3kEZJrQgufY4RuhkBeG0nzAVuZdo9xFBim7nRUdHZtnsUXXvA4N-7-sezh59f9vX1KfadhdMLz0Uj-yIVnI5c3gseMueQqUedxsfbbqL5ecgnT83a3xHXTG3h3mwsSqZyjqYaqua9ahuVxPAZbAQY0-mdX7ZKunjvj7d0CRfydIP5nD9glow6KMU8SoKRHqFaWIZB41-0SRYLfF8zA12KHQ",
+  'racks-enclosures': "https://lh3.googleusercontent.com/aida-public/AB6AXuDaZXpdbjLr9LR1AZHlH13OoPIe3jejJ5QnOcZ65UtIXTYGB3FhPhWEysa5L62jlOrhOuIauc30AyV27W61lMnslCrsaPW-417zxIv6lwC0psaVj4kKhOln4z4KLECJ_PGSJfsImraGudDu7PWlQES3CGRX27W8z1SbOwyT-mkSui_n_DpRCHOZJdsdHcWZ0ezqLgJkCeCvxXO-YSfJ6mNTUN7OMzS2PFmVWdky77FtgjIaJHenC1H4lGTuyumwdjVpcqwEBdaHTa0",
+  'monitoring-management': "https://lh3.googleusercontent.com/aida-public/AB6AXuAH-XlVfiUims4FuvWQyfp3g5yMEYAXu5W8L_8uYh3Ih-vc25CLSwk9L91FOzpyjX9h727SvBUjEjzTBhCUqwDEK-faQqg481UUBnRtczffpJoLP1anXLQSjSbywiM4hLy9c-vAl8gzbbFVe31jx7-8HSB9kHwjLH0vRwKB0OyvY4pt3NC36MyAoa6pk4iMwlo0D_85spL5SOVT7mbLmZ7U2qyW31OsCPbgwf07HCkxHWpuRz8t4jdBA3Ls1Smb_5Z8nhRvbQ7fLOY"
+};
+
+/* ─── Scroll-Linked Challenge Card ────────────────────────────────────── */
+function ChallengeCard({ prob, idx, total }) {
+  const cardRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "center center"]
+  });
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [0.15, 1]);
+  const x = useTransform(scrollYProgress, [0, 0.6], [60, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.6], [0.92, 1]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ opacity, x, scale }}
+      className="relative pl-12 md:pl-16 pb-12 last:pb-0"
+    >
+      {/* Vertical timeline connector */}
+      {idx < total - 1 && (
+        <div className="absolute left-[18px] md:left-[22px] top-10 bottom-0 w-[1px] bg-outline-variant/30" />
+      )}
+
+      {/* Numbered circle on the timeline */}
+      <div className="absolute left-0 top-0 w-9 h-9 md:w-11 md:h-11 bg-accent text-white font-headline font-bold text-[13px] md:text-[14px] flex items-center justify-center z-10">
+        {String(idx + 1).padStart(2, '0')}
+      </div>
+
+      {/* Card body */}
+      <div className="bg-white border border-outline-variant/30 p-6 md:p-8 hover:border-accent hover:shadow-md transition-all duration-300 group">
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 bg-accent/5 border border-accent/20 flex items-center justify-center shrink-0 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
+            <span className="material-symbols-outlined text-[20px]">{prob.icon}</span>
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-headline text-[16px] md:text-[18px] text-on-surface font-bold tracking-tight mb-2">
+              {prob.title}
+            </h3>
+            <p className="font-body text-[14px] md:text-[15px] text-secondary leading-relaxed">
+              {prob.description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export function SpecificSector() {
   const { sectorId } = useParams();
   const sector = sectorsData[sectorId];
+  const [openAccordionIdx, setOpenAccordionIdx] = useState(0);
+  const challengeSectionRef = useRef(null);
 
-  // Active section for sticky sub-nav
-  const [activeSection, setActiveSection] = useState('overview');
-
-  // Form State
   const [formState, setFormState] = useState({
-    firstName: '',
-    surname: '',
-    companyName: '',
-    email: '',
-    message: ''
+    name: '', company: '', email: '', projectType: 'Hospital', message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Scroll spy for sticky nav
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['overview', 'capabilities', 'stack', 'projects', 'enquiry'];
-      const scrollPosition = window.scrollY + 200;
+  // Scroll progress for challenges section progress bar
+  const { scrollYProgress: challengeProgress } = useScroll({
+    target: challengeSectionRef,
+    offset: ["start end", "end start"]
+  });
+  const progressHeight = useTransform(challengeProgress, [0.1, 0.85], ["0%", "100%"]);
 
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Scroll to top on load
   useEffect(() => {
     window.scrollTo(0, 0);
+    setOpenAccordionIdx(0);
   }, [sectorId]);
 
   if (!sector) {
     return (
-      <div className="bg-surface min-h-[70vh] flex flex-col items-center justify-center px-6 py-20 text-center">
+      <div className="bg-[#080808] min-h-[70vh] flex flex-col items-center justify-center px-6 py-20 text-center pt-[80px]">
         <span className="material-symbols-outlined text-[64px] text-accent mb-6">engineering</span>
-        <h1 className="font-headline text-[32px] font-black text-on-surface uppercase tracking-tight mb-4">
-          Sector Not Found
-        </h1>
-        <p className="font-body text-[15px] text-secondary max-w-md mb-8">
-          The requested industry sector does not exist or has been relocated.
-        </p>
-        <Link
-          to="/products"
-          className="inline-flex items-center gap-2.5 bg-accent text-on-primary font-label-caps text-[11px] uppercase px-8 py-4 tracking-[0.2em] hover:bg-primary-container transition-colors duration-300"
-        >
-          Back to Products
+        <h1 className="font-headline text-[32px] font-black text-white uppercase tracking-tight mb-4">Sector Not Found</h1>
+        <Link to="/products">
+          <Button variant="primary" theme="dark" className="rounded-none">
+            Back to Sectors
+          </Button>
         </Link>
       </div>
     );
@@ -78,519 +105,749 @@ export function SpecificSector() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formState.firstName || !formState.email || !formState.message) {
-      alert("Please fill in the required fields (First Name, Email, and Enquiry details).");
-      return;
-    }
+    if (!formState.name || !formState.email || !formState.message) return;
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitSuccess(true);
-      setFormState({
-        firstName: '',
-        surname: '',
-        companyName: '',
-        email: '',
-        message: ''
-      });
+      setFormState({ name: '', company: '', email: '', projectType: 'Hospital', message: '' });
       setTimeout(() => setSubmitSuccess(false), 5000);
     }, 1500);
   };
 
-  const scrollToAnchor = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      // Dynamically calculate actual sticky heights to ensure perfect alignment
-      const headerEl = document.querySelector('header');
-      const headerHeight = headerEl ? headerEl.offsetHeight : 80;
-      const offset = headerHeight + 56 + 12; // header height + subnav height + extra spacing
-
-      const bodyRect = document.body.getBoundingClientRect().top;
-      const elementRect = el.getBoundingClientRect().top;
-      const elementPosition = elementRect - bodyRect;
-      const offsetPosition = elementPosition - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+  const toggleAccordion = (idx) => {
+    setOpenAccordionIdx(openAccordionIdx === idx ? null : idx);
   };
 
+  const heroImage = sectorHeroImages[sectorId] || "https://lh3.googleusercontent.com/aida-public/AB6AXuByKdJQFYxhdeQfgoVuKBQBOGbkiDqkvJ1yEAsBbhJ9sg9sFiJqCctfiINJaiAv94iEhcXGcpRnzFGFn9gONe81xv-Y8iRKVROHUjmbg4ddI6MuTm2pkSmGh2x9PQpS1JEEAsAYlWa_PqXB7q2C4z-xKqZg7pPbjHLb4-UA3qQqr-nVA6Zlqwe-QJo-fTSF1VnartNsKpc_aDC3Y0DHBaUcBOiEKo2qvUitDzVpykfjWSSiPGevQVfxSaGS4l6REQ6XvKZtkd4iRS4";
+
   return (
-    <div className="bg-surface text-on-surface selection:bg-accent selection:text-white min-h-screen relative">
-      
-      {/* ── Section 1: Breadcrumb ── */}
-      <div className="bg-surface relative z-10 pt-8 pb-4 border-b border-surface-variant/40">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 md:px-16">
-          <nav className="font-label-caps text-[10px] text-secondary flex items-center gap-2 uppercase tracking-[0.18em]">
-            <Link to="/" className="hover:text-accent transition-colors">Home</Link>
-            <span className="material-symbols-outlined text-[12px] text-secondary/40 select-none">chevron_right</span>
-            <Link to="/products" className="hover:text-accent transition-colors">Sectors</Link>
-            <span className="material-symbols-outlined text-[12px] text-secondary/40 select-none">chevron_right</span>
-            <span className="text-on-surface font-semibold">{sector.title}</span>
-          </nav>
-        </div>
-      </div>
+    <div className="font-body selection:bg-accent selection:text-white bg-surface">
 
-      {/* ── Section 2: Sticky Anchor Sub-Nav ── */}
-      <div className="sticky top-[56px] sm:top-[64px] md:top-[80px] z-30 bg-surface/95 backdrop-blur-md border-b border-surface-variant/60">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 md:px-16 flex items-center justify-between overflow-x-auto hide-scrollbar">
-          <div className="flex whitespace-nowrap border-l border-surface-variant/40">
-            {[
-              { id: 'overview', label: '01 // INTENT' },
-              { id: 'capabilities', label: '02 // CAPABILITIES' },
-              { id: 'stack', label: '03 // ARCHITECTURE' },
-              { id: 'projects', label: '04 // TRACK RECORD' },
-              { id: 'enquiry', label: '05 // SPECIFICATION' }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => scrollToAnchor(tab.id)}
-                className={`font-label-caps text-[10px] sm:text-[11px] uppercase tracking-[0.18em] font-bold transition-all px-4 sm:px-6 py-5 border-r border-surface-variant/40 flex items-center gap-2 relative ${
-                  activeSection === tab.id 
-                    ? 'text-accent bg-surface-container-low' 
-                    : 'text-secondary hover:text-on-surface hover:bg-surface-container-low/40'
-                }`}
+      {/* ═══════════════════════════════════════════════════════════════════
+          HERO — Immersive split with diagonal divider, floating badges, scroll hint
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="relative w-full bg-inverse-surface overflow-hidden" style={{ minHeight: '100svh' }}>
+
+        {/* ── Sharp geometric accents instead of round blobs ── */}
+        <div aria-hidden className="absolute inset-0 pointer-events-none z-0">
+          <motion.div
+            className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-l from-accent/5 to-transparent skew-x-12 origin-top-right"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2 }}
+          />
+        </div>
+
+        {/* ── Right side: Sector image with Philosophy corner brackets ── */}
+        <div className="hidden md:block absolute top-0 right-0 bottom-0 w-[50%] z-0">
+          {/* The image itself */}
+          <img
+            src={heroImage}
+            alt={sector.title}
+            className="w-full h-full object-cover object-center"
+            style={{ filter: 'brightness(0.55) saturate(0.8)' }}
+            loading="eager"
+          />
+          {/* Gradient overlays for text protection */}
+          <div className="absolute inset-0 bg-gradient-to-r from-inverse-surface via-inverse-surface/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-inverse-surface/20" />
+
+          {/* Philosophy corner brackets on the image area */}
+          <motion.div
+            className="absolute top-10 right-10 w-16 h-16 border-t-[3px] border-r-[3px] border-accent z-20"
+            initial={{ opacity: 0, x: 20, y: -20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          />
+          <motion.div
+            className="absolute bottom-32 left-10 w-16 h-16 border-b-[3px] border-l-[3px] border-accent z-20"
+            initial={{ opacity: 0, x: -20, y: 20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
+          />
+        </div>
+
+        {/* ── Diagonal clip divider (ServicesHero pattern) ── */}
+        <div
+          className="hidden md:block absolute top-0 bottom-0 left-[46%] w-[100px] bg-inverse-surface z-10"
+          style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }}
+        />
+
+        {/* ── Mobile image (above content, visible only on small screens) ── */}
+        <div className="md:hidden relative w-full h-[280px] overflow-hidden">
+          <img
+            src={heroImage}
+            alt={sector.title}
+            className="w-full h-full object-cover object-center"
+            style={{ filter: 'brightness(0.45) saturate(0.7)' }}
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-inverse-surface via-inverse-surface/50 to-transparent" />
+        </div>
+
+        {/* ── Content layer ── */}
+        <div className="relative z-10 flex flex-col" style={{ minHeight: 'calc(100svh - 280px)' }}>
+          {/* Top spacer for header clearance */}
+          <div className="hidden md:block flex-1 min-h-[120px]" />
+
+          {/* ── Left content panel ── */}
+          <div className="max-w-[1440px] mx-auto w-full px-8 md:px-16 py-10 md:py-0 md:pb-12">
+            <div className="w-full md:w-[52%] lg:w-[48%]">
+
+              {/* Breadcrumb */}
+              <motion.nav
+                className="flex items-center gap-2 mb-8"
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
               >
-                {/* Active indicator dot */}
-                <span className={`w-1.5 h-1.5 rounded-full bg-accent transition-all duration-300 ${
-                  activeSection === tab.id ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-                }`} />
-                {tab.label}
-              </button>
-            ))}
-          </div>
-          
-          <button 
-            onClick={() => scrollToAnchor('enquiry')}
-            className="hidden lg:inline-flex items-center gap-2 bg-on-surface text-surface hover:bg-accent hover:text-white transition-colors px-5 py-3.5 font-label-caps text-[10px] uppercase tracking-wider font-bold"
-          >
-            Request Specs
-            <span className="material-symbols-outlined text-[14px]">arrow_outward</span>
-          </button>
-        </div>
-      </div>
+                <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
+                <span className="material-symbols-outlined text-surface-variant text-[14px]">chevron_right</span>
+                <Link to="/products" className="font-label-caps text-[10px] text-surface-variant tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Products</Link>
+                <span className="material-symbols-outlined text-surface-variant text-[14px]">chevron_right</span>
+                <span className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase font-bold">{sector.tag}</span>
+              </motion.nav>
 
-      {/* ── Section 3: Overview Hero ── */}
-      <section 
-        id="overview" 
-        className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 md:px-16 py-20 md:py-32 border-b border-surface-variant/40"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          
-          {/* Headline Column */}
-          <div className="lg:col-span-8 pr-0 lg:pr-10">
-            <span className="block font-label-caps text-[11px] text-accent tracking-[0.25em] uppercase mb-4 font-bold">
-              Sector Division
-            </span>
-            <motion.h1 
-              className="font-headline text-[38px] sm:text-[54px] md:text-[68px] lg:text-[76px] leading-[1.02] text-on-surface font-black tracking-tighter uppercase mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: EASE_OUT_EXPO }}
-            >
-              {sector.heroTitle}
-            </motion.h1>
-            
-            {/* Horizontal rule with geometric anchor */}
-            <div className="relative w-full flex items-center mb-8">
-              <div className="w-4 h-4 rounded-full border-2 border-accent bg-surface shrink-0" />
-              <div className="h-[1px] w-full bg-surface-variant/60" />
+              {/* Eyebrow */}
+              <motion.div
+                className="flex items-center gap-3 mb-8"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
+              >
+                <div className="h-[1px] w-8 bg-accent" />
+                <span className="font-label-caps text-[10px] text-accent tracking-[0.3em] uppercase">
+                  Sector Expertise
+                </span>
+              </motion.div>
+
+              {/* Headline — word-by-word staggered reveal (Hero.jsx DNA) */}
+              <h1 className="font-headline font-black uppercase leading-[0.92] tracking-tighter mb-8">
+                {[sector.heroHeadline.line1, sector.heroHeadline.line2, sector.heroHeadline.line3].map((line, i) => (
+                  <div key={i} className="overflow-hidden block">
+                    <motion.span
+                      className={`block whitespace-nowrap text-[30px] sm:text-[38px] md:text-[44px] lg:text-[52px] xl:text-[62px] ${
+                        i === 2 ? '' : 'text-inverse-on-surface'
+                      }`}
+                      initial={{ y: '110%', opacity: 0 }}
+                      animate={{ y: '0%', opacity: 1 }}
+                      transition={{ duration: 1.0, delay: 0.2 + i * 0.13, ease: [0.25, 1, 0.5, 1] }}
+                    >
+                      {i === 2 ? (
+                        <>
+                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">{sector.heroHeadline.orangeWord}</span>{' '}
+                          <span className="text-inverse-on-surface">{line.replace(sector.heroHeadline.orangeWord, '').trim()}</span>
+                        </>
+                      ) : line}
+                    </motion.span>
+                  </div>
+                ))}
+              </h1>
+
+              {/* Accent underline */}
+              <motion.div
+                className="h-[3px] w-16 bg-accent mb-8"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                style={{ originX: 0 }}
+              />
+
+              {/* Description */}
+              <motion.p
+                className="font-body text-[15px] md:text-[17px] text-surface-variant/80 leading-relaxed max-w-[430px] mb-10"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.65, ease: [0.25, 1, 0.5, 1] }}
+              >
+                {sector.heroDescription}
+              </motion.p>
+
+              {/* CTA Row */}
+              <motion.div
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mt-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
+              >
+                <Button
+                  onClick={() => document.getElementById('consult')?.scrollIntoView({ behavior: 'smooth' })}
+                  variant="primary"
+                  size="lg"
+                  className="rounded-none shadow-2xl shadow-accent/25 text-[10px] tracking-[0.2em] font-bold"
+                >
+                  GET A FREE CONSULTATION
+                </Button>
+                <button
+                  onClick={() => document.getElementById('proof')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/55 hover:text-white transition-colors duration-300 group"
+                >
+                  <span className="relative overflow-hidden inline-block">
+                    <span className="block group-hover:-translate-y-full transition-transform duration-300">VIEW PAST PROJECTS</span>
+                    <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">VIEW PAST PROJECTS</span>
+                  </span>
+                  <span className="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform duration-300">
+                    arrow_forward
+                  </span>
+                </button>
+              </motion.div>
             </div>
-            
-            <p className="font-body text-[16px] md:text-[18px] text-secondary leading-relaxed max-w-3xl">
-              {sector.heroDescription}
-            </p>
           </div>
 
-          {/* Key Indicators Column */}
-          <div className="lg:col-span-4 lg:mt-6">
-            <div className="bg-surface-container-low border border-surface-variant/60 p-8 relative overflow-hidden">
-              {/* Corner accent */}
-              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-accent" />
-              
-              <h3 className="font-label-caps text-[11px] text-on-surface uppercase tracking-[0.2em] font-black mb-8 border-b border-surface-variant/40 pb-4">
-                Operational Metrics
-              </h3>
-              
-              <div className="space-y-8">
-                {sector.stats.map((stat, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
-                    className="flex flex-col"
-                  >
-                    <span className="font-headline text-[32px] md:text-[38px] text-accent font-black leading-none mb-1">
-                      {stat.value}
-                    </span>
-                    <span className="font-label-caps text-[9px] text-secondary uppercase tracking-[0.2em] font-bold">
-                      {stat.label}
-                    </span>
-                  </motion.div>
+          {/* Bottom spacer */}
+          <div className="hidden md:block flex-1 min-h-[60px]" />
+
+          {/* ── Stats ticker strip (anchored to bottom) ── */}
+          <motion.div
+            className="border-t border-white/10 py-4 mt-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.1 }}
+          >
+            <div className="max-w-[1440px] mx-auto px-8 md:px-16">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-white/10">
+                {sector.contextStats.map((stat, idx) => (
+                  <div key={idx} className="lg:px-8 first:lg:pl-0 last:lg:pr-0">
+                    <div className="font-headline text-[28px] md:text-[36px] text-accent font-black leading-none mb-1">{stat.value}</div>
+                    <div className="font-label-caps text-[9px] text-white/45 tracking-[0.2em] uppercase">{stat.label}</div>
+                  </div>
                 ))}
               </div>
             </div>
+          </motion.div>
+        </div>
+
+        {/* ── Floating badge: ISO (Hero.jsx DNA) ── */}
+        <motion.div
+          className="absolute z-20 flex items-center gap-3 bg-[#111]/90 backdrop-blur-xl border border-white/10 px-4 py-3 shadow-2xl bottom-[120px] md:bottom-[100px] right-6 md:right-[8%] hidden md:flex"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.2, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <div className="w-8 h-8 bg-accent flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-white" style={{ fontSize: '15px' }}>verified</span>
+          </div>
+          <div>
+            <p className="font-label-caps text-[8px] text-accent tracking-[0.22em] uppercase leading-none mb-0.5">Certified Quality</p>
+            <p className="font-headline text-[11px] font-bold text-white leading-tight">ISO 9001 : 2015</p>
+          </div>
+        </motion.div>
+
+        {/* ── Floating badge: Sector-specific (Hero.jsx DNA) ── */}
+        <motion.div
+          className="absolute z-20 flex items-center gap-3 bg-[#111]/90 backdrop-blur-xl border border-white/10 px-4 py-3 shadow-2xl top-[25%] right-6 md:right-[6%] hidden lg:flex"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.4, ease: [0.25, 1, 0.5, 1] }}
+        >
+          <div className="w-8 h-8 bg-accent flex items-center justify-center shrink-0">
+            <span className="material-symbols-outlined text-white" style={{ fontSize: '15px' }}>electric_bolt</span>
+          </div>
+          <div>
+            <p className="font-label-caps text-[8px] text-accent tracking-[0.22em] uppercase leading-none mb-0.5">{sector.tag}</p>
+            <p className="font-headline text-[11px] font-bold text-white leading-tight">Specialist Division</p>
+          </div>
+        </motion.div>
+
+        {/* ── Vertical scroll hint (Hero.jsx DNA) ── */}
+        <motion.div
+          className="absolute bottom-[68px] left-6 md:left-20 z-20 flex-col items-center gap-2 hidden md:flex"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.8, duration: 0.8 }}
+        >
+          <motion.div
+            className="w-[1px] h-12 bg-gradient-to-b from-accent to-transparent"
+            animate={{ scaleY: [0, 1, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            style={{ transformOrigin: 'top' }}
+          />
+          <span className="font-label-caps text-[8px] text-white/30 tracking-[0.3em] uppercase rotate-90 origin-center mt-2">
+            Scroll
+          </span>
+        </motion.div>
+
+      </section>
+
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          CHALLENGES — Sticky left heading + Scroll-animated right cards
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section ref={challengeSectionRef} className="relative py-28 md:py-36 bg-surface overflow-hidden">
+
+        {/* Giant watermark */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 pointer-events-none select-none z-0">
+          <span className="text-[200px] md:text-[300px] font-headline font-black text-outline-variant/20 leading-none tracking-tighter uppercase whitespace-nowrap">
+            RISK
+          </span>
+        </div>
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+
+            {/* ─── LEFT: Sticky heading panel ─── */}
+            <div className="w-full lg:w-[38%] shrink-0">
+              <div className="lg:sticky lg:top-28">
+
+                {/* Eyebrow */}
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="h-[2px] w-8 bg-accent" />
+                  <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase">Sector Challenges</span>
+                </div>
+
+                {/* Heading */}
+                <h2 className="font-headline text-[32px] md:text-[46px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-6">
+                  {sector.problemHeader.headline}
+                </h2>
+
+                <p className="font-body text-[16px] leading-relaxed text-secondary mb-10 max-w-md">
+                  {sector.problemHeader.subhead}
+                </p>
+
+                {/* Scroll progress indicator (desktop only) */}
+                <div className="hidden lg:flex items-center gap-4">
+                  <div className="relative w-[3px] h-[120px] bg-outline-variant/20 overflow-hidden">
+                    <motion.div className="absolute top-0 left-0 w-full bg-accent origin-top" style={{ height: progressHeight }} />
+                  </div>
+                  <div>
+                    <div className="font-headline text-[36px] text-accent font-black leading-none">{sector.problems.length}</div>
+                    <div className="font-label-caps text-[9px] text-secondary tracking-[0.2em] uppercase mt-1">Critical Risks</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ─── RIGHT: Scroll-linked animated cards ─── */}
+            <div className="flex-1">
+              {sector.problems.map((prob, idx) => (
+                <ChallengeCard key={idx} prob={prob} idx={idx} total={sector.problems.length} />
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* ── Section 4: Capabilities ── */}
-      <section 
-        id="capabilities" 
-        className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 md:px-16 py-20 md:py-32 border-b border-surface-variant/40"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          
-          {/* Sticky left heading */}
-          <div className="lg:col-span-4 lg:sticky lg:top-[200px] h-fit">
-            <span className="block font-label-caps text-[11px] text-accent tracking-[0.25em] uppercase mb-4 font-bold">
-              Scope of Delivery
-            </span>
-            <h2 className="font-headline text-[32px] md:text-[44px] text-on-surface font-black uppercase tracking-tight mb-6 leading-none">
-              Engineering Capabilities
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          SOLUTIONS — Accordion explorer
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section id="solutions" className="relative py-28 md:py-36 bg-surface-container-low border-t border-outline-variant/30 overflow-hidden">
+
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 pointer-events-none select-none z-0">
+          <span className="text-[200px] md:text-[300px] font-headline font-black text-outline-variant/20 leading-none tracking-tighter uppercase whitespace-nowrap">
+            SOLVE
+          </span>
+        </div>
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
+
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-[2px] w-8 bg-accent" />
+              <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase">Our Capabilities</span>
+            </div>
+            <h2 className="font-headline text-[32px] md:text-[46px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-4 max-w-3xl">
+              {sector.solutionHeader.headline}
             </h2>
-            <p className="font-body text-[14px] text-secondary leading-relaxed">
-              Our capability stack spans conceptual layout planning, site commissioning, component testing, and long-term diagnostic operations matching global standards.
+            <p className="font-body text-[16px] leading-relaxed text-secondary max-w-2xl">{sector.solutionHeader.subhead}</p>
+          </div>
+
+          {/* Accordion */}
+          <div className="bg-white border border-outline-variant/30 divide-y divide-outline-variant/30 shadow-sm">
+            {sector.solutions.map((sol, idx) => {
+              const isOpen = openAccordionIdx === idx;
+              return (
+                <div key={idx}>
+                  <h3>
+                    <button onClick={() => toggleAccordion(idx)} className="w-full py-7 px-6 md:px-10 text-left flex items-center justify-between hover:bg-surface-container-low/50 transition-colors focus:outline-none">
+                      <div className="flex items-center gap-5 md:gap-8 flex-1 pr-6">
+                        <span className="font-headline text-[16px] text-accent font-black">{String(idx + 1).padStart(2, '0')}</span>
+                        <span className="font-headline text-[17px] md:text-[20px] text-on-surface font-extrabold tracking-tight">{sol.tag}</span>
+                      </div>
+                      <span className="material-symbols-outlined text-[24px] text-secondary/50">{isOpen ? 'remove' : 'add'}</span>
+                    </button>
+                  </h3>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: EASE_OUT_EXPO }} className="overflow-hidden">
+                        <div className="px-6 pb-10 md:px-10 md:pb-12 border-t border-outline-variant/10">
+                          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 pt-6">
+                            <div className="w-full lg:w-[45%]">
+                              <h4 className="font-headline text-[18px] text-on-surface font-extrabold tracking-tight mb-4">{sol.title}</h4>
+                              <p className="font-body text-[15px] leading-relaxed text-secondary">{sol.description}</p>
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-label-caps text-[10px] text-secondary font-bold tracking-wider mb-5">Key Capabilities:</div>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {sol.deliverables.map((del, dIdx) => (
+                                  <div key={dIdx} className="flex items-center gap-2.5">
+                                    <div className="w-5 h-5 bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0">
+                                      <span className="material-symbols-outlined text-[12px] text-accent">check</span>
+                                    </div>
+                                    <span className="font-body text-[13px] font-semibold text-on-surface/80">{del}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          PRODUCTS — Power chain + product grid
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="relative py-28 md:py-36 bg-surface overflow-hidden">
+
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 pointer-events-none select-none z-0">
+          <span className="text-[200px] md:text-[300px] font-headline font-black text-outline-variant/20 leading-none tracking-tighter uppercase whitespace-nowrap">
+            BUILD
+          </span>
+        </div>
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
+
+          {/* Section Header */}
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-[2px] w-8 bg-accent" />
+              <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase">Products & Systems</span>
+            </div>
+            <h2 className="font-headline text-[32px] md:text-[46px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-4">
+              What we install. Where it sits.
+            </h2>
+            <p className="font-body text-[16px] leading-relaxed text-secondary max-w-2xl">
+              High-performance physical and digital components mapped to critical infrastructure points.
             </p>
           </div>
 
-          {/* Right listing cards */}
-          <div className="lg:col-span-8 space-y-6">
-            {sector.capabilities.map((group, idx) => (
-              <div 
-                key={group.number}
-                className="bg-surface border border-surface-variant/50 p-6 md:p-8 hover:border-accent hover:shadow-xl transition-all duration-300 relative group"
+          {/* Power Chain Flow — 5-column grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-20">
+            {sector.powerChain.map((node, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.06 }}
+                className="bg-white p-6 border border-outline-variant/30 flex flex-col hover:border-accent transition-colors"
               >
-                {/* Visual grid numbers */}
-                <div className="absolute top-6 right-6 font-headline text-[24px] font-black text-accent/25 tracking-tighter select-none">
-                  {group.number}
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-10 h-10 bg-accent/10 border border-accent/30 flex items-center justify-center shrink-0 text-accent">
+                    <span className="material-symbols-outlined text-[20px]">{node.icon}</span>
+                  </span>
+                  <span className="font-label-caps text-[9px] text-secondary uppercase tracking-[0.15em] font-bold">Stage {idx + 1}</span>
                 </div>
-
-                <h3 className="font-headline text-[20px] md:text-[22px] text-on-surface font-extrabold uppercase tracking-tight mb-6 flex items-center gap-3">
-                  <span className="w-1.5 h-6 bg-accent" />
-                  {group.title}
-                </h3>
-
-                <div className="space-y-4 border-t border-surface-variant/30 pt-6">
-                  {group.items.map((item, itemIdx) => (
-                    <div key={itemIdx} className="flex items-start gap-3.5">
-                      <span className="material-symbols-outlined text-accent text-[18px] mt-0.5 select-none">
-                        arrow_right_alt
-                      </span>
-                      <p className="font-body text-[14px] sm:text-[15px] text-secondary leading-relaxed">
-                        <strong className="text-on-surface font-bold">{item.boldText}</strong> {item.restText}
-                      </p>
-                    </div>
+                <h4 className="font-headline text-[13px] text-on-surface font-black uppercase tracking-[0.05em] mb-4 border-b border-outline-variant/20 pb-3">{node.title}</h4>
+                <div className="space-y-1.5">
+                  {node.examples.map((ex, eIdx) => (
+                    <div key={eIdx} className="font-body text-[11px] text-secondary font-medium leading-tight">{ex}</div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Product Categories Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {sector.productCategories.map((prod, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: (idx % 3) * 0.06 }}
+                className="bg-white border border-outline-variant/30 p-8 flex flex-col h-full hover:shadow-md hover:border-accent transition-all duration-300 group"
+              >
+                <div className="w-12 h-12 bg-surface-container-low border border-outline-variant/30 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                  <span className="material-symbols-outlined text-[24px]">{prod.icon}</span>
+                </div>
+                <h4 className="font-headline text-[17px] text-on-surface font-bold tracking-tight mb-2">{prod.title}</h4>
+                <p className="font-body text-[14px] text-secondary mb-6 flex-grow leading-relaxed">{prod.desc}</p>
+                <div className="mt-auto pt-4 border-t border-outline-variant/20">
+                  <span className="font-label-caps text-[9px] text-secondary uppercase tracking-[0.15em] font-bold">{prod.environments}</span>
+                </div>
+              </motion.div>
             ))}
           </div>
 
         </div>
       </section>
 
-      {/* ── Section 5: The Complete Stack (Zones) ── */}
-      <section 
-        id="stack" 
-        className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 md:px-16 py-20 md:py-32 border-b border-surface-variant/40"
-      >
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
-          <span className="inline-block font-label-caps text-[11px] text-accent tracking-[0.25em] uppercase mb-4 font-bold">
-            Systems Architecture
-          </span>
-          <h2 className="font-headline text-[32px] md:text-[44px] text-on-surface font-black uppercase tracking-tight leading-none mb-6">
-            The Complete Infrastructure Stack
-          </h2>
-          <p className="font-body text-[15px] text-secondary leading-relaxed">
-            We deliver systems that cover every node of your critical network—from external high-voltage grids down to the telemetry controllers at the rack level.
-          </p>
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          EXECUTION — Dark section with process steps
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="relative py-28 md:py-36 bg-[#080808] text-white overflow-hidden">
+
+        <div aria-hidden className="absolute inset-0 pointer-events-none z-0">
+          <motion.div className="absolute top-0 right-[20%] w-[1px] h-full bg-white/5" />
+          <motion.div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/5" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {sector.zones.map((zone) => (
-            <div 
-              key={zone.label} 
-              className="bg-surface-container border border-surface-variant/50 p-8 flex flex-col h-full relative group hover:-translate-y-1.5 transition-all duration-300"
-            >
-              {/* Highlight top border */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-on-surface group-hover:bg-accent transition-colors" />
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
 
-              <div className="w-12 h-12 bg-surface flex items-center justify-center border border-surface-variant/60 mb-8 rounded-none group-hover:border-accent transition-colors">
-                <span className="material-symbols-outlined text-accent text-[26px]">
-                  {zone.icon}
-                </span>
-              </div>
-
-              <span className="block font-label-caps text-[10px] text-accent font-bold tracking-[0.2em] uppercase mb-2">
-                {zone.label}
-              </span>
-              <h3 className="font-headline text-[18px] text-on-surface font-bold uppercase tracking-tight mb-4">
-                {zone.title}
-              </h3>
-              
-              <p className="font-body text-[13px] text-secondary leading-relaxed">
-                {zone.description}
-              </p>
+          <div className="mb-20">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-[2px] w-8 bg-accent" />
+              <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase">Our Execution Protocol</span>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Section 6: Experience Projects ── */}
-      <section 
-        id="projects" 
-        className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 md:px-16 py-20 md:py-32 border-b border-surface-variant/40"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          
-          {/* Left info column */}
-          <div className="lg:col-span-4 lg:pr-8">
-            <span className="block font-label-caps text-[11px] text-accent tracking-[0.25em] uppercase mb-4 font-bold">
-              Landmark Cases
-            </span>
-            <h2 className="font-headline text-[32px] md:text-[44px] text-on-surface font-black uppercase tracking-tight mb-6 leading-none">
-              Proven Sector Records
+            <h2 className="font-headline text-[32px] md:text-[46px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-white mb-4 max-w-3xl">
+              From contract signing to live commissioning — one accountable process.
             </h2>
-            <p className="font-body text-[14px] text-secondary leading-relaxed mb-8">
-              We bring proven execution history in industrial infrastructure, with experience delivering on complex, heavy engineering specifications across India.
+            <p className="font-body text-[16px] leading-relaxed text-white/50 max-w-2xl">
+              We manage the entire engineering, procurement, and deployment timeline internally.
             </p>
-            
-            {/* Custom geometric outline element */}
-            <div className="hidden lg:block w-32 h-32 border-2 border-dashed border-surface-variant/80 p-2 relative">
-              <div className="w-full h-full bg-surface-container-low flex items-center justify-center">
-                <span className="material-symbols-outlined text-accent/50 text-[32px]">architecture</span>
-              </div>
-            </div>
           </div>
 
-          {/* Right columns: project list with blueprint styling */}
-          <div className="lg:col-span-8 lg:pl-10 lg:border-l border-surface-variant/40">
-            <div className="divide-y divide-surface-variant/40">
-              {sector.projects.map((proj, idx) => (
-                <div 
-                  key={idx} 
-                  className={`pb-8 group transition-all duration-200 ${idx > 0 ? 'pt-8' : ''}`}
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-2.5 h-2.5 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <h3 className="font-headline text-[18px] sm:text-[22px] text-on-surface font-extrabold uppercase tracking-tight group-hover:text-accent transition-colors">
-                        {proj.title}
-                      </h3>
-                    </div>
-                    <span className="font-label-caps text-[11px] text-accent bg-accent/5 border border-accent/35 px-4 py-1.5 font-bold uppercase tracking-[0.18em] shrink-0 self-start sm:self-auto select-none">
-                      {proj.cost}
-                    </span>
+          {/* Horizontal process line (desktop) */}
+          <div className="hidden md:block relative mb-20">
+            <div className="absolute top-5 left-0 w-full h-[2px] bg-white/10 z-0" />
+            <div className="grid grid-cols-5 gap-6 relative z-10">
+              {sector.executionSteps.map((step, idx) => (
+                <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.08 }} className="flex flex-col">
+                  <div className="w-10 h-10 bg-accent text-white font-headline font-bold flex items-center justify-center mb-6 text-[14px] relative z-10">
+                    {idx + 1}
                   </div>
-                  <p className="font-body text-[14px] text-secondary leading-relaxed pl-0 sm:pl-5">
-                    {proj.description}
-                  </p>
-                </div>
+                  <h4 className="font-headline text-[14px] text-white font-bold tracking-tight mb-3">{step.title}</h4>
+                  <ul className="space-y-2 pt-3 border-t border-white/10">
+                    {step.activities.map((act, aIdx) => (
+                      <li key={aIdx} className="font-body text-[11.5px] text-white/60 leading-relaxed flex items-start gap-2">
+                        <span className="w-1 h-1 bg-accent mt-1.5 shrink-0" />
+                        {act}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
               ))}
             </div>
           </div>
 
-        </div>
-      </section>
-
-      {/* ── Section 7: Credentials Bar ── */}
-      <section className="bg-surface-container-low border-b border-surface-variant/40 py-12 overflow-hidden">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-8 md:px-16">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {[
-              { icon: 'verified', label: 'ISO 9001:2015', sub: 'Quality Certified' },
-              { icon: 'electric_bolt', label: 'Class-A License', sub: 'EC Approved Class-A' },
-              { icon: 'badge', label: 'PAN & GST', sub: 'Fully Registered' },
-              { icon: 'security', label: 'PF & ESI Compliant', sub: 'Labour Standards' },
-              { icon: 'account_balance', label: 'Bank Solvency', sub: 'Audit Ready' },
-              { icon: 'history', label: 'Established 1994', sub: '30 Years Experience' }
-            ].map((cred, idx) => (
-              <div key={idx} className="flex flex-col items-center text-center p-2 border-r border-dashed border-surface-variant/40 last:border-r-0">
-                <span className="material-symbols-outlined text-[24px] text-accent mb-3 select-none">{cred.icon}</span>
-                <span className="font-label-caps text-[10px] text-on-surface font-bold uppercase tracking-wider mb-1">
-                  {cred.label}
-                </span>
-                <span className="font-body text-[9px] text-secondary">{cred.sub}</span>
-              </div>
+          {/* Mobile: stacked cards */}
+          <div className="md:hidden space-y-4 mb-20">
+            {sector.executionSteps.map((step, idx) => (
+              <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.06 }} className="bg-white/5 border border-white/10 p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-8 h-8 bg-accent text-white font-headline font-bold flex items-center justify-center text-[13px]">{idx + 1}</div>
+                  <h4 className="font-headline text-[14px] text-white font-bold">{step.title}</h4>
+                </div>
+                <ul className="space-y-2 pl-12">
+                  {step.activities.map((act, aIdx) => (
+                    <li key={aIdx} className="font-body text-[12px] text-white/60 leading-relaxed flex items-start gap-2">
+                      <span className="w-1 h-1 bg-accent mt-1.5 shrink-0" />{act}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             ))}
           </div>
+
+          {/* Commitment callout */}
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white/5 border-l-[3px] border-accent p-8 md:p-10">
+            <span className="block font-label-caps text-[9px] text-accent uppercase tracking-[0.25em] font-bold mb-4">Our Commitment to Clients</span>
+            <p className="font-body text-[16px] md:text-[18px] text-white/80 leading-relaxed max-w-4xl">
+              Arihantaa Powertech does not subcontract the core electrical scope. Every cable terminated, every panel energised, every relay set — by our own certified engineers.
+            </p>
+          </motion.div>
+
         </div>
       </section>
 
-      {/* ── Section 8: Enquiry & Contact Expert ── */}
-      <section 
-        id="enquiry" 
-        className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-8 md:px-16 py-20 md:py-32"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-          
-          {/* Expert contacts card (Left Column) */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
-            <div>
-              <span className="block font-label-caps text-[11px] text-accent tracking-[0.25em] uppercase mb-4 font-bold">
-                Direct Consulting
-              </span>
-              <h2 className="font-headline text-[32px] md:text-[44px] text-on-surface font-black uppercase tracking-tight mb-6 leading-none">
-                Speak with Partners
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          EXPERIENCE — Featured project + supporting grid
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section id="proof" className="relative py-28 md:py-36 bg-surface overflow-hidden">
+
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 pointer-events-none select-none z-0">
+          <span className="text-[200px] md:text-[300px] font-headline font-black text-outline-variant/20 leading-none tracking-tighter uppercase whitespace-nowrap">PROOF</span>
+        </div>
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
+
+          <div className="mb-16">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-[2px] w-8 bg-accent" />
+              <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase">Our Experience</span>
+            </div>
+            <h2 className="font-headline text-[32px] md:text-[46px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-4">
+              We have done this. Here is where.
+            </h2>
+            <p className="font-body text-[16px] leading-relaxed text-secondary max-w-2xl">Selected from our active and completed {sector.title.toLowerCase()} portfolio.</p>
+          </div>
+
+          {/* Flagship project card */}
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative bg-inverse-surface text-white flex flex-col lg:flex-row mb-12 shadow-sm">
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-[3px] border-l-[3px] border-accent z-20" />
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-[3px] border-r-[3px] border-accent z-20" />
+
+            <div className="w-full lg:w-[65%] p-8 md:p-14 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/10">
+              <span className="inline-block self-start border border-accent text-accent font-label-caps text-[9px] uppercase tracking-[0.22em] font-bold px-3 py-1 mb-6">Featured Project</span>
+              <h3 className="font-headline text-[24px] md:text-[32px] font-black tracking-tight mb-4 leading-tight">{sector.flagshipProject.name}</h3>
+              <div className="font-label-caps text-[10px] text-white/50 uppercase tracking-[0.15em] mb-6">Client: <span className="text-white font-bold">{sector.flagshipProject.client}</span></div>
+              <p className="font-body text-[15px] leading-relaxed text-white/70">{sector.flagshipProject.scope}</p>
+            </div>
+
+            <div className="w-full lg:w-[35%] flex flex-col justify-center bg-white/[0.02] divide-y divide-white/10">
+              {sector.flagshipProject.stats.map((stat, idx) => (
+                <div key={idx} className="p-8 flex flex-col justify-center hover:bg-white/[0.04] transition-colors">
+                  <div className="font-headline text-[28px] md:text-[34px] text-accent font-black leading-none mb-1">{stat.value}</div>
+                  <div className="font-label-caps text-[9px] text-white/60 uppercase tracking-[0.15em] font-bold">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Supporting project cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {sector.supportingProjects.map((proj, idx) => (
+              <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: (idx % 4) * 0.06 }} className="bg-white border border-outline-variant/30 p-6 flex flex-col justify-between hover:border-accent transition-all group">
+                <div>
+                  <div className="flex items-center justify-between mb-4 pb-2 border-b border-outline-variant/20">
+                    <span className="font-label-caps text-[9px] text-secondary font-bold uppercase tracking-wider">{proj.tag}</span>
+                    <span className="font-label-caps text-[9px] text-accent tracking-wider uppercase font-bold">{proj.location}</span>
+                  </div>
+                  <h4 className="font-headline text-[15px] text-on-surface font-extrabold tracking-tight mb-3 leading-snug group-hover:text-accent transition-colors">{proj.name}</h4>
+                  <div className="font-label-caps text-[9px] text-secondary uppercase mb-6">Client: <span className="font-medium">{proj.client}</span></div>
+                </div>
+                <div className="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
+                  <span className="font-headline text-[14px] text-on-surface font-bold">{proj.cost}</span>
+                  <span className="font-label-caps text-[8px] text-secondary tracking-widest uppercase font-bold">{proj.durationLabel}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* ═══════════════════════════════════════════════════════════════════
+          WHY ARIHANTAA + CONTACT
+      ═══════════════════════════════════════════════════════════════════ */}
+      <section className="relative bg-surface pb-32">
+
+        {/* Dark upper block */}
+        <div className="bg-[#080808] pt-28 pb-56 px-8 md:px-16 relative overflow-hidden">
+          <div aria-hidden className="absolute inset-0 pointer-events-none z-0">
+            <div className="absolute top-0 left-[10%] w-[1px] h-full bg-white/5" />
+            <div className="absolute top-0 right-[10%] w-[1px] h-full bg-white/5" />
+          </div>
+
+          <div className="relative z-10 max-w-[1440px] mx-auto">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="h-[2px] w-8 bg-accent" />
+              <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase">Why Arihantaa</span>
+            </div>
+            <h2 className="font-headline text-[32px] md:text-[46px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-white mb-4 max-w-3xl">
+              Five reasons procurement teams choose us for {sector.title.toLowerCase()}.
+            </h2>
+            <p className="font-body text-[16px] leading-relaxed text-white/50 max-w-2xl mb-20">We design and construct reliable infrastructure with dedicated engineering support.</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 text-left">
+              {sector.differentiators.map((diff, idx) => (
+                <div key={idx} className="flex flex-col pt-6 border-t border-white/10 hover:border-accent transition-colors group">
+                  <div className="font-headline text-[14px] text-accent font-black mb-3">{String(idx + 1).padStart(2, '0')}</div>
+                  <h4 className="font-headline text-[14px] text-white font-bold tracking-tight mb-3 leading-snug">{diff.title}</h4>
+                  <p className="font-body text-[13px] text-white/50 leading-relaxed group-hover:text-white/80 transition-colors">{diff.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Floating contact card */}
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16 -mt-36 relative z-10">
+          <div className="bg-white border border-outline-variant/40 shadow-xl flex flex-col lg:flex-row overflow-hidden">
+
+            {/* Left: Expert contacts */}
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="lg:w-1/2 p-8 md:p-14 border-b lg:border-b-0 lg:border-r border-outline-variant/40 bg-surface-container-lowest">
+              <span className="block font-label-caps text-[9px] text-accent uppercase tracking-[0.22em] font-bold mb-4">Speak to the Partners Directly</span>
+              <h2 className="font-headline text-[26px] md:text-[32px] text-on-surface font-black tracking-tight leading-[1.1] mb-4">
+                Direct accountability.<br />No sales desks.
               </h2>
-              <p className="font-body text-[15px] text-secondary mb-10 leading-relaxed">
-                Consult with our managing partners regarding specific tender files, custom electrical designs, or commercial details.
-              </p>
-              
-              <div className="space-y-6">
-                {sectorExperts.map((expert, i) => (
-                  <div key={i} className="flex gap-4 items-center pb-6 border-b border-surface-variant/40 last:border-b-0">
-                    <div className="w-12 h-12 bg-surface-container flex items-center justify-center rounded-full overflow-hidden border border-surface-variant/60">
-                      <span className="material-symbols-outlined text-secondary text-[24px]">
-                        {expert.avatar}
-                      </span>
-                    </div>
+              <p className="font-body text-[15px] leading-relaxed text-secondary mb-10 max-w-md">Both partners personally review project enquiries and technical scoping. Contact them directly for estimates, site visits, or bid submissions.</p>
+
+              <div className="space-y-4">
+                {sectorExperts.map((exp, idx) => (
+                  <div key={idx} className="bg-white p-5 flex items-center gap-5 border border-outline-variant/30 hover:border-accent transition-all">
+                    <div className="w-12 h-12 bg-accent/5 text-accent font-headline font-bold flex items-center justify-center shrink-0 text-[18px] border border-outline-variant/30">{exp.avatar}</div>
                     <div>
-                      <h3 className="font-headline text-[16px] text-on-surface font-bold uppercase tracking-tight mb-0.5">
-                        {expert.name}
-                      </h3>
-                      <p className="font-label-caps text-[9px] text-accent font-bold uppercase tracking-wider leading-none">
-                        {expert.role}
-                      </p>
+                      <h4 className="font-body text-[15px] text-on-surface font-bold tracking-tight">{exp.name}</h4>
+                      <div className="font-label-caps text-[9px] text-secondary uppercase tracking-widest mb-2 font-bold">{exp.role}</div>
+                      <div className="flex gap-4 font-body text-[12px] text-on-surface font-medium">
+                        <a href="tel:+91" className="flex items-center gap-1.5 hover:text-accent transition-colors"><span className="material-symbols-outlined text-[13px] text-accent">phone</span> Phone</a>
+                        <a href="mailto:info@" className="flex items-center gap-1.5 hover:text-accent transition-colors"><span className="material-symbols-outlined text-[13px] text-accent">mail</span> Email</a>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
-          </div>
+            {/* Right: Contact form */}
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }} className="lg:w-1/2 p-8 md:p-14 relative bg-white">
+              <div className="mb-8">
+                <span className="block font-label-caps text-[9px] text-accent uppercase tracking-[0.22em] font-bold mb-3">Send a Project Enquiry</span>
+                <h3 className="font-headline text-[22px] text-on-surface font-bold tracking-tight">Tell us what you need.</h3>
+              </div>
 
-          {/* Form container (Right Column) */}
-          <div className="lg:col-span-7 bg-surface-container-low border border-surface-variant/60 p-6 sm:p-10 relative overflow-hidden">
-            
-            {/* Top orange stripe */}
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-accent" />
-
-            <h3 className="font-headline text-[22px] text-on-surface font-extrabold uppercase tracking-tight mb-8 flex items-center justify-between">
-              <span>Submit Enquiry</span>
-              <span className="material-symbols-outlined text-[20px] text-accent select-none">description</span>
-            </h3>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div>
-                  <label className="font-label-caps text-[9px] text-on-surface uppercase tracking-widest block mb-2 font-bold">
-                    First Name <span className="text-accent">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formState.firstName}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full border border-surface-variant/80 focus:border-accent focus:ring-0 px-4 py-3 bg-surface text-[14px] rounded-none outline-none transition-all duration-200"
-                  />
+              <div className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <input type="text" name="name" value={formState.name} onChange={handleInputChange} placeholder="Full Name *" className="w-full bg-surface border border-outline-variant/60 px-4 py-3.5 font-body text-[14px] text-on-surface placeholder:text-secondary/60 focus:outline-none focus:border-accent transition-all" />
+                  <input type="text" name="company" value={formState.company} onChange={handleInputChange} placeholder="Company Name" className="w-full bg-surface border border-outline-variant/60 px-4 py-3.5 font-body text-[14px] text-on-surface placeholder:text-secondary/60 focus:outline-none focus:border-accent transition-all" />
                 </div>
-                <div>
-                  <label className="font-label-caps text-[9px] text-on-surface uppercase tracking-widest block mb-2 font-bold">
-                    Surname
-                  </label>
-                  <input
-                    type="text"
-                    name="surname"
-                    value={formState.surname}
-                    onChange={handleInputChange}
-                    className="w-full border border-surface-variant/80 focus:border-accent focus:ring-0 px-4 py-3 bg-surface text-[14px] rounded-none outline-none transition-all duration-200"
-                  />
+                <input type="email" name="email" value={formState.email} onChange={handleInputChange} placeholder="Email Address *" className="w-full bg-surface border border-outline-variant/60 px-4 py-3.5 font-body text-[14px] text-on-surface placeholder:text-secondary/60 focus:outline-none focus:border-accent transition-all" />
+                <div className="relative">
+                  <select name="projectType" value={formState.projectType} onChange={handleInputChange} className="w-full bg-surface border border-outline-variant/60 px-4 py-3.5 font-body text-[14px] text-on-surface focus:outline-none focus:border-accent transition-all appearance-none cursor-pointer">
+                    <option value="Hospital">Hospital / Healthcare</option>
+                    <option value="Data Centre">Data Centre</option>
+                    <option value="Airport">Airport / Transit</option>
+                    <option value="Industrial">Industrial Plant</option>
+                    <option value="Government">Government Complex</option>
+                    <option value="Heritage">Heritage / Solar</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-secondary pointer-events-none">expand_more</span>
                 </div>
-              </div>
+                <textarea name="message" value={formState.message} onChange={handleInputChange} placeholder="Project Brief / Equipment Required *" rows="4" className="w-full bg-surface border border-outline-variant/60 px-4 py-3.5 font-body text-[14px] text-on-surface placeholder:text-secondary/60 focus:outline-none focus:border-accent transition-all resize-none" />
 
-              <div>
-                <label className="font-label-caps text-[9px] text-on-surface uppercase tracking-widest block mb-2 font-bold">
-                  Company Name
-                </label>
-                <input
-                  type="text"
-                  name="companyName"
-                  value={formState.companyName}
-                  onChange={handleInputChange}
-                  className="w-full border border-surface-variant/80 focus:border-accent focus:ring-0 px-4 py-3 bg-surface text-[14px] rounded-none outline-none transition-all duration-200"
-                />
-              </div>
-
-              <div>
-                <label className="font-label-caps text-[9px] text-on-surface uppercase tracking-widest block mb-2 font-bold">
-                  Email Address <span className="text-accent">*</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formState.email}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full border border-surface-variant/80 focus:border-accent focus:ring-0 px-4 py-3 bg-surface text-[14px] rounded-none outline-none transition-all duration-200"
-                />
-              </div>
-
-              <div>
-                <label className="font-label-caps text-[9px] text-on-surface uppercase tracking-widest block mb-2 font-bold">
-                  Please Detail Your Enquiry <span className="text-accent">*</span>
-                </label>
-                <textarea
-                  name="message"
-                  value={formState.message}
-                  onChange={handleInputChange}
-                  required
-                  rows="4"
-                  className="w-full border border-surface-variant/80 focus:border-accent focus:ring-0 px-4 py-3 bg-surface text-[14px] rounded-none outline-none transition-all duration-200 resize-none"
-                />
-              </div>
-
-              <p className="font-body text-[11px] text-secondary leading-relaxed">
-                By submitting this form, you acknowledge that Arihantaa Powertech will use the provided details to respond directly to your commercial enquiry.
-              </p>
-
-              <div className="relative">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full sm:w-auto bg-accent text-on-primary font-label-caps text-[10px] uppercase tracking-[0.2em] py-4 px-10 hover:bg-primary-container disabled:bg-secondary/40 transition-colors flex items-center justify-center gap-2"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <svg className="animate-spin h-4.5 w-4.5 text-white" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                      </svg>
-                      Sending...
-                    </>
-                  ) : (
-                    'Submit Enquiry'
-                  )}
-                </button>
-
-                {/* Animated Form Success Message */}
-                <AnimatePresence>
-                  {submitSuccess && (
-                    <motion.div 
-                      className="absolute inset-0 bg-[#f3f3f3] flex items-center justify-center text-center px-4"
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="flex items-center gap-2.5 text-[#16a34a]">
+                <div className="relative pt-2">
+                  <Button onClick={handleSubmit} disabled={isSubmitting} variant="primary" theme="light" className="w-full" showArrow={false}>
+                    {isSubmitting ? 'SENDING...' : 'SEND ENQUIRY'}
+                  </Button>
+                  <AnimatePresence>
+                    {submitSuccess && (
+                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-white border border-[#16a34a] flex items-center justify-center gap-2 text-[#16a34a] shadow-lg">
                         <span className="material-symbols-outlined text-[20px] font-bold">check_circle</span>
-                        <span className="font-headline text-[13px] font-bold uppercase tracking-wide">Enquiry submitted successfully!</span>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                        <span className="font-label-caps text-[12px] font-bold uppercase tracking-wider">Received. We will contact you.</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-            </form>
+                <div className="text-center pt-2">
+                  <span className="font-label-caps text-[9px] text-secondary uppercase tracking-[0.15em] flex items-center justify-center gap-1.5">
+                    <span className="material-symbols-outlined text-[12px]">schedule</span> All enquiries acknowledged within 1 business day
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
           </div>
         </div>
+
       </section>
 
     </div>

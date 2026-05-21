@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import AnimatedQuoteButtonProjects from '../../ui/AnimatedQuoteButtonProjects.jsx';
+import { Button } from '../../ui/Button';
 import {
   motion,
   useScroll,
@@ -405,11 +405,21 @@ export function ProjectsHero() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.75 }}
             >
-              {/* Replaced with senior-level animated button for Projects section */}
-              <AnimatedQuoteButtonProjects />
-              <button className="font-label-caps text-[11px] text-white/40 tracking-[0.18em] hover:text-white transition-colors">
-                EXPLORE ALL →
-              </button>
+              <Button to="/contact" variant="primary" theme="dark" size="lg" className="rounded-none shadow-2xl shadow-accent/25 text-[10px] tracking-[0.2em] font-bold">
+                GET A QUOTE
+              </Button>
+              <Link
+                to="/sectors"
+                className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/55 hover:text-white transition-colors duration-300 group"
+              >
+                <span className="relative overflow-hidden inline-block">
+                  <span className="block group-hover:-translate-y-full transition-transform duration-300">EXPLORE ALL</span>
+                  <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">EXPLORE ALL</span>
+                </span>
+                <span className="material-symbols-outlined text-[14px] group-hover:translate-x-1 transition-transform duration-300">
+                  arrow_forward
+                </span>
+              </Link>
             </motion.div>
 
             {/* Compact credential strip */}

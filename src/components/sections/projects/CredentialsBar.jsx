@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { Button } from '../../ui/Button';
 
 const CREDS = [
   'ISO 9001:2015 Certified',
@@ -51,14 +52,12 @@ export function CredentialsBar() {
 
             {/* Buttons */}
             <div className="flex flex-col gap-4">
-              <Link to="/about" className="group flex items-center justify-between gap-8 bg-secondary text-surface font-label-caps text-[11px] tracking-[0.18em] px-8 py-5 hover:bg-accent transition-colors duration-300">
+              <Button to="/about" variant="primary" theme="light" size="lg" className="rounded-none w-full sm:w-auto">
                 VIEW COMPANY PROFILE
-                <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </Link>
-              <Link to="/contact" className="group flex items-center justify-between gap-8 border border-outline text-secondary font-label-caps text-[11px] tracking-[0.18em] px-8 py-5 hover:border-secondary transition-colors duration-300">
+              </Button>
+              <Button to="/contact" variant="outline" theme="light" size="lg" className="rounded-none w-full sm:w-auto">
                 CONTACT OUR TEAM
-                <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </Link>
+              </Button>
             </div>
           </div>
         </div>

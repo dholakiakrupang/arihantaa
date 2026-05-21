@@ -1,7 +1,56 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
+import { Button } from '../components/ui/Button';
 
 export function Contact() {
+  const [searchParams] = useSearchParams();
+  const inquiry = searchParams.get('inquiry');
+  const item = searchParams.get('item');
+
+  const [message, setMessage] = useState('');
+  const [topics, setTopics] = useState({
+    'Critical Power (UPS)': false,
+    'Thermal Management': false,
+    'Monitoring & Management': false,
+    'Racks & Enclosures': false
+  });
+
+  useEffect(() => {
+    let prefilledMessage = '';
+    const newTopics = {
+      'Critical Power (UPS)': false,
+      'Thermal Management': false,
+      'Monitoring & Management': false,
+      'Racks & Enclosures': false
+    };
+
+    if (inquiry && item) {
+      if (inquiry === 'brochure') {
+        prefilledMessage = `Hello, I would like to request the brochure/datasheet for: ${item}.`;
+      } else if (inquiry === 'support') {
+        prefilledMessage = `Hello, I require technical support regarding: ${item}.`;
+      }
+      
+      const itemLower = item.toLowerCase();
+      if (itemLower.includes('ups') || itemLower.includes('power')) {
+        newTopics['Critical Power (UPS)'] = true;
+      } else if (itemLower.includes('cooling') || itemLower.includes('thermal') || itemLower.includes('chilled') || itemLower.includes('pcw')) {
+        newTopics['Thermal Management'] = true;
+      } else if (itemLower.includes('monitoring') || itemLower.includes('management') || itemLower.includes('digital') || itemLower.includes('infrastructure')) {
+        newTopics['Monitoring & Management'] = true;
+      } else if (itemLower.includes('rack') || itemLower.includes('enclosure') || itemLower.includes('cabinet')) {
+        newTopics['Racks & Enclosures'] = true;
+      }
+    }
+    
+    setMessage(prefilledMessage);
+    setTopics(newTopics);
+  }, [inquiry, item]);
+
+  const handleTopicChange = (topic) => {
+    setTopics(prev => ({ ...prev, [topic]: !prev[topic] }));
+  };
   return (
     <div className="bg-background text-on-background font-body min-h-screen">
       
@@ -217,7 +266,12 @@ export function Contact() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {['Critical Power (UPS)', 'Thermal Management', 'Monitoring & Management', 'Racks & Enclosures'].map((topic) => (
                         <label key={topic} className="flex items-center p-4 border border-outline-variant/30 bg-surface cursor-pointer hover:bg-surface-variant transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5">
-                          <input type="checkbox" className="w-4 h-4 text-accent border-outline-variant rounded focus:ring-accent mr-4 accent-accent" />
+                          <input 
+                            type="checkbox" 
+                            checked={topics[topic]}
+                            onChange={() => handleTopicChange(topic)}
+                            className="w-4 h-4 text-accent border-outline-variant rounded focus:ring-accent mr-4 accent-accent" 
+                          />
                           <span className="font-body text-[14px] text-on-background font-medium">{topic}</span>
                         </label>
                       ))}
@@ -226,7 +280,14 @@ export function Contact() {
 
                   <div className="space-y-2">
                     <label className="font-label-caps text-[10px] uppercase tracking-[0.15em] text-secondary block" htmlFor="message">Project Description</label>
-                    <textarea id="message" rows="5" placeholder="Briefly describe your challenge or requirements..." className="w-full bg-surface border border-outline-variant/30 px-5 py-4 font-body text-[16px] text-on-background focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors resize-y"></textarea>
+                    <textarea 
+                      id="message" 
+                      rows="5" 
+                      placeholder="Briefly describe your challenge or requirements..." 
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      className="w-full bg-surface border border-outline-variant/30 px-5 py-4 font-body text-[16px] text-on-background focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-colors resize-y"
+                    ></textarea>
                   </div>
                 </div>
               </motion.div>
@@ -251,10 +312,11 @@ export function Contact() {
                   <input type="checkbox" required className="w-4 h-4 text-accent border-outline-variant rounded focus:ring-accent mr-3 accent-accent" />
                   <span className="font-body text-[14px] text-secondary">I consent to the Privacy Policy.</span>
                 </label>
-                <button type="submit" className="w-full sm:w-auto bg-accent text-white font-label-caps text-[11px] uppercase tracking-[0.15em] px-8 py-4 hover:bg-accent/90 transition-colors flex items-center justify-center gap-3 shadow-lg hover:shadow-accent/30 hover:-translate-y-1 duration-300">
-                  Submit Brief
-                  <span className="material-symbols-outlined text-[18px]">send</span>
-                </button>
+                <div className="mt-8 flex justify-end">
+                  <Button type="submit" variant="primary" theme="light" size="lg" className="w-full sm:w-auto">
+                    SUBMIT BRIEF
+                  </Button>
+                </div>
               </div>
 
             </form>

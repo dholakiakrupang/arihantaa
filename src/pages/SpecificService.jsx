@@ -3,7 +3,7 @@ import { EngineeredSolutions } from '../components/sections/specific-service/Eng
 
 export function SpecificService() {
   return (
-    <div className="bg-background min-h-screen pt-24">
+    <div className="bg-background min-h-screen pt-[56px] sm:pt-[64px] md:pt-[80px]">
       <EngineeredSolutions />
     </div>
   );

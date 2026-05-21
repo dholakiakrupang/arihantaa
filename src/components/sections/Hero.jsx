@@ -211,6 +211,7 @@ export function Hero() {
             <Link to="/contact">
               <Button
                 variant="primary"
+                theme="black"
                 size="lg"
                 className="rounded-none shadow-2xl shadow-accent/25 text-[10px] tracking-[0.2em] font-bold"
               >

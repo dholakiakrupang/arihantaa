@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { projectCategories, projectBoardData } from '../../../data/projectsData';
 
 function ProjectCard({ project, index }) {
@@ -12,8 +13,9 @@ function ProjectCard({ project, index }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.45, delay: index * 0.06, ease: [0.25, 1, 0.5, 1] }}
-      className="group flex flex-col bg-surface border border-outline hover:border-secondary/30 transition-all duration-300"
+      className="group flex flex-col bg-surface border border-outline hover:border-secondary/30 transition-all duration-300 relative"
     >
+      <Link to={`/projects/${project.id}`} className="absolute inset-0 z-20" aria-label={`View details for ${project.title}`} />
       {/* Image placeholder */}
       <div className="relative h-52 bg-surface-variant overflow-hidden">
         {/* Gradient overlay — gives depth to placeholder */}

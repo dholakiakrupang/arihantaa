@@ -9,10 +9,13 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
 import { SpecificService } from './pages/SpecificService';
+import { ServiceDetail } from './pages/ServiceDetail';
 import { Products } from './pages/Products';
 import { SpecificProduct } from './pages/SpecificProduct';
+import { ProductDetail } from './pages/ProductDetail';
 import { SpecificSector } from './pages/SpecificSector';
 import { Projects } from './pages/Projects';
+import { SpecificProject } from './pages/SpecificProject';
 import { News } from './pages/News';
 import { NewsArticle } from './pages/NewsArticle';
 import { Contact } from './pages/Contact';
@@ -65,10 +68,13 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/:categoryId" element={<SpecificService />} />
+          <Route path="/services/:categoryId/:serviceId" element={<ServiceDetail />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:categoryId" element={<SpecificProduct />} />
+          <Route path="/products/:categoryId/:productId" element={<ProductDetail />} />
           <Route path="/sectors/:sectorId" element={<SpecificSector />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:projectId" element={<SpecificProject />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/:articleId" element={<NewsArticle />} />
           <Route path="/contact" element={<Contact />} />

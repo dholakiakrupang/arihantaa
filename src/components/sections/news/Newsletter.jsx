@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Button } from '../../ui/Button';
 
 export function Newsletter() {
   return (
@@ -58,19 +59,23 @@ export function Newsletter() {
                 </div>
 
                 {/* Email Input */}
-                <div className="flex flex-col sm:flex-row group border border-outline-variant/60 focus-within:border-accent transition-colors duration-300 bg-surface-container-lowest">
+                <div className="flex flex-col sm:flex-row group border border-outline-variant/60 focus-within:border-accent transition-colors duration-300 bg-surface-container-lowest p-1 sm:p-0">
                   <input 
                     type="email" 
                     placeholder="Corporate Email Address" 
                     required 
-                    className="flex-grow bg-transparent px-6 py-4 md:py-5 text-[15px] font-body text-on-surface placeholder:text-secondary/50 focus:outline-none"
+                    className="flex-grow bg-transparent px-6 py-4 sm:py-0 h-[52px] text-[15px] font-body text-on-surface placeholder:text-secondary/50 focus:outline-none"
                   />
-                  <button 
+                  <Button 
                     type="submit" 
-                    className="bg-on-surface text-surface px-8 md:px-12 py-4 md:py-5 font-label-caps text-[11px] tracking-[0.2em] uppercase hover:bg-accent hover:text-on-primary transition-colors duration-300 whitespace-nowrap"
+                    variant="primary"
+                    theme="light"
+                    size="lg"
+                    className="rounded-none shrink-0"
+                    showArrow={false}
                   >
                     Subscribe
-                  </button>
+                  </Button>
                 </div>
                 
                 <p className="font-body text-[12px] text-secondary/60">

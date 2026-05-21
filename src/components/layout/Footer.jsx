@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import { Button } from '../ui/Button';
 export function Footer() {
   return (
     <footer className="bg-[#0a0a0a] border-t border-white/10 text-white pt-24 pb-8 overflow-hidden relative">
@@ -20,13 +20,9 @@ export function Footer() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/30">the future?</span>
             </h2>
           </div>
-          <Link to="/contact" className="group relative inline-flex items-center justify-center bg-accent text-white font-label-caps text-[12px] uppercase tracking-[0.2em] px-10 py-5 overflow-hidden shrink-0">
-            <span className="relative z-10 flex items-center gap-4">
-              Get a Quote
-              <span className="material-symbols-outlined text-[18px] group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
-            </span>
-            <div className="absolute inset-0 bg-white scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-500 ease-in-out z-0 mix-blend-difference" />
-          </Link>
+          <Button to="/contact" variant="primary" theme="black" size="lg" className="rounded-none w-full lg:w-auto mt-4 lg:mt-0">
+            GET A QUOTE
+          </Button>
         </div>
 
         {/* Main Footer Links */}
