@@ -1,27 +1,61 @@
+import { motion } from 'framer-motion';
 import { StatCard } from '../ui/StatCard';
 
-export function Stats() {
-  const statsData = [
-    { value: "29+", label: "YEARS OF RIGOR" },
-    { value: "500+", label: "COMPLETED PROJECTS" },
-    { value: "12", label: "GLOBAL FOOTPRINT" },
-  ];
+const STATS_DATA = [
+  {
+    value: "30+",
+    label: "YEARS OF RIGOR",
+    desc: "Active M&E consulting and turnkey systems delivery since 1995.",
+    indicator: "EST. 1995 | BASE"
+  },
+  {
+    value: "500+",
+    label: "COMPLETED PROJECTS",
+    desc: "Critical power, cooling, and infrastructure packages commissioned.",
+    indicator: "OPS | DEPLOYED"
+  },
+  {
+    value: "12",
+    label: "GLOBAL COUNTRIES",
+    desc: "International supply chain operations and multi-state compliance.",
+    indicator: "GEOGRAPHIC | SPAN"
+  }
+];
 
+export function Stats() {
   return (
-    <section className="bg-surface relative z-20">
-      <div className="max-w-[1440px] mx-auto px-8 md:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 bg-surface-container-lowest shadow-2xl border border-outline-variant/30">
-          
-          {statsData.map((stat, i) => (
-            <StatCard 
-              key={i}
-              value={stat.value}
-              label={stat.label}
-              delay={i * 0.1}
-              centered={true}
-            />
+    <section className="bg-surface border-b border-outline-variant/30 relative z-20">
+      <div className="max-w-[1440px] mx-auto">
+        
+        {/* 3-Column Structured Single-Pixel Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 border-t border-x border-outline-variant/30">
+          {STATS_DATA.map((stat, i) => (
+            <div 
+              key={i} 
+              className="border-r border-b border-outline-variant/30 last:border-r-0 md:last:border-r-0 flex flex-col justify-between p-8 md:p-12 hover:bg-accent/[0.01] transition-all duration-500 group"
+            >
+              {/* Big Animated Value */}
+              <div>
+                <StatCard
+                  value={stat.value}
+                  label={stat.label}
+                  delay={i * 0.08}
+                  centered={false}
+                  className="border-0 p-0 hover:bg-transparent bg-transparent"
+                />
+
+                {/* Subtitle / Desc */}
+                <p className="font-body text-[13px] text-secondary/70 leading-relaxed mt-4 max-w-xs group-hover:text-on-surface transition-colors duration-300">
+                  {stat.desc}
+                </p>
+              </div>
+
+              {/* Accent Line Indicator */}
+              <div className="w-full h-px bg-outline-variant/20 mt-8 overflow-hidden relative">
+                <div className="absolute left-0 top-0 h-full w-0 group-hover:w-full bg-accent transition-all duration-500 ease-out" />
+              </div>
+            </div>
           ))}
-          
         </div>
       </div>
     </section>

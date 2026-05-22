@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Button } from '../components/ui/Button';
 import { ProductImageGallery } from '../components/ui/ProductImageGallery';
 import { engineeredServicesData } from '../data/engineeredServicesData';
+import { UnifiedCTA } from '../components/sections/UnifiedCTA';
 
 /* ─── Category Maps ─────────────────────────────────────────────────────────── */
 const categoryMap = {
@@ -128,7 +129,7 @@ export function ServiceDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-surface">
         <div className="text-center">
-          <span className="material-symbols-outlined text-[64px] text-secondary/30 mb-4 block">search_off</span>
+          <span className="material-symbols-outlined text-[68px] text-secondary/30 mb-4 block">search_off</span>
           <h2 className="font-headline text-2xl font-bold text-secondary mb-4">Service Not Found</h2>
           <p className="text-secondary mb-8 text-[14px]">The service you're looking for doesn't exist or has been moved.</p>
           <Button to="/services" noTextAnimation={false}>Return to Catalog</Button>
@@ -157,14 +158,14 @@ export function ServiceDetail() {
             {/* Breadcrumb Trail */}
             <div className="text-[12px] text-secondary flex flex-wrap items-center gap-1.5 font-medium leading-none py-4 md:py-0 shrink-0">
               <Link to="/services" className="hover:text-primary transition-colors duration-200 flex items-center gap-1">
-                <span className="material-symbols-outlined text-[14px]">home</span>
+                <span className="material-symbols-outlined text-[17px]">home</span>
                 Services
               </Link>
-              <span className="material-symbols-outlined text-[14px] text-secondary/30 select-none">chevron_right</span>
+              <span className="material-symbols-outlined text-[17px] text-secondary/30 select-none">chevron_right</span>
               <Link to={`/services/${service.categoryId}`} className="hover:text-primary transition-colors duration-200">
                 {categoryTitle}
               </Link>
-              <span className="material-symbols-outlined text-[14px] text-secondary/30 select-none">chevron_right</span>
+              <span className="material-symbols-outlined text-[17px] text-secondary/30 select-none">chevron_right</span>
               <span className="text-on-surface font-semibold truncate max-w-[200px]">{service.title}</span>
             </div>
 
@@ -180,10 +181,10 @@ export function ServiceDetail() {
                       : 'border-transparent text-secondary/70 hover:text-secondary'
                   }`}
                 >
-                  <span className={`material-symbols-outlined text-[14px] transition-all duration-300 overflow-hidden ${
+                  <span className={`material-symbols-outlined text-[17px] transition-all duration-300 overflow-hidden ${
                     activeSection === item.id 
-                      ? 'max-w-[20px] opacity-100 mr-1.5' 
-                      : 'max-w-0 opacity-0 mr-0 group-hover:max-w-[20px] group-hover:opacity-100 group-hover:mr-1.5'
+                      ? 'max-w-[22px] opacity-100 mr-1.5' 
+                      : 'max-w-0 opacity-0 mr-0 group-hover:max-w-[22px] group-hover:opacity-100 group-hover:mr-1.5'
                   }`}>
                     {item.icon}
                   </span>
@@ -236,7 +237,7 @@ export function ServiceDetail() {
             >
               {/* Category eyebrow */}
               <div className="flex items-center gap-2.5 mb-4">
-                <span className="material-symbols-outlined text-accent text-[16px]">{categoryIcon}</span>
+                <span className="material-symbols-outlined text-accent text-[20px]">{categoryIcon}</span>
                 <span className="text-accent font-semibold tracking-[0.25em] text-[10px] uppercase font-label-caps">
                   {categoryTitle}
                 </span>
@@ -251,7 +252,7 @@ export function ServiceDetail() {
               {service.scorePercentage && (
                 <div className="flex items-center gap-3 mb-6">
                   <div className="flex items-center gap-2 bg-primary/8 border border-primary/20 px-3 py-1.5">
-                    <span className="material-symbols-outlined text-primary text-[16px]">verified</span>
+                    <span className="material-symbols-outlined text-primary text-[20px]">verified</span>
                     <span className="font-label-caps text-[9px] tracking-[0.12em] font-bold text-primary">
                       {service.scoreLabel}: {service.scorePercentage}%
                     </span>
@@ -274,10 +275,10 @@ export function ServiceDetail() {
                     transition={{ duration: 0.4, delay: 0.4 + idx * 0.1 }}
                     className="bg-surface-container-high/80 px-3.5 py-2 font-label-caps text-[8.5px] tracking-[0.08em] text-on-surface border border-surface-variant flex items-center gap-2 select-none hover:border-accent/50 transition-colors duration-300 font-bold"
                   >
-                    <span className="material-symbols-outlined text-primary text-[15px]">{getStatIcon(stat.label)}</span>
+                    <span className="material-symbols-outlined text-primary text-[18px]">{getStatIcon(stat.label)}</span>
                     <span className="text-secondary font-semibold">{stat.value}</span>
-                    <span className="text-secondary/50">·</span>
-                    <span className="text-secondary/60">{stat.label}</span>
+                    <span className="text-secondary/55">·</span>
+                    <span className="text-secondary/65">{stat.label}</span>
                   </motion.span>
                 ))}
               </div>
@@ -352,7 +353,7 @@ export function ServiceDetail() {
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-11 h-11 bg-primary/8 flex items-center justify-center shrink-0 group-hover:bg-primary/12 transition-colors duration-300">
-                    <span className="material-symbols-outlined text-primary text-[22px]">{getScopeIcon(idx)}</span>
+                    <span className="material-symbols-outlined text-primary text-[26px]">{getScopeIcon(idx)}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <span className="font-label-caps text-[8.5px] tracking-[0.15em] text-secondary/40 font-bold block mb-1">
@@ -412,7 +413,7 @@ export function ServiceDetail() {
                   <tr className="border-b border-surface-variant">
                     <th className="bg-surface-container-low py-4.5 px-6 font-label-caps text-[9.5px] tracking-[0.15em] uppercase text-secondary font-bold w-[28%]">
                       <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-[14px] text-secondary/40">tune</span>
+                        <span className="material-symbols-outlined text-[17px] text-secondary/40">tune</span>
                         Service Parameter
                       </div>
                     </th>
@@ -456,7 +457,7 @@ export function ServiceDetail() {
                       </td>
                       <td className="py-4 px-6 text-[13px] font-bold text-accent bg-accent/[0.02] border-l-2 border-r-2 border-accent/15 leading-snug">
                         <div className="flex items-start gap-1.5">
-                          <span className="material-symbols-outlined text-accent/60 text-[14px] mt-0.5 shrink-0">check_circle</span>
+                          <span className="material-symbols-outlined text-accent/60 text-[17px] mt-0.5 shrink-0">check_circle</span>
                           <span>{plan.gold}</span>
                         </div>
                       </td>
@@ -469,7 +470,7 @@ export function ServiceDetail() {
             {/* Table footer CTA */}
             <div className="border-t border-surface-variant bg-surface-container-low/50 px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <p className="text-[12px] text-secondary/60 flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[14px]">info</span>
+                <span className="material-symbols-outlined text-[17px]">info</span>
                 All tiers include standard Arihantaa warranty terms. Custom configurations available on request.
               </p>
               <Button
@@ -490,123 +491,18 @@ export function ServiceDetail() {
       </section>
 
       {/* ══════════════════════════════════════════════════════════════════════
-          Section 5: Inquiries / Consultation CTA
+          Section 5: Standardized Service Consultation CTA
           ══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-surface-container py-16 md:py-24" id="inquiries">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-16">
-
-          {/* Section Header */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={fadeUp}
-            className="mb-10 md:mb-12"
-          >
-            <div className="flex items-center gap-4 mb-3">
-              <span className="w-10 h-[3px] bg-primary block" />
-              <span className="font-label-caps text-[10px] tracking-[0.2em] text-secondary/60 font-bold uppercase">Get Started</span>
-            </div>
-            <h2 className="font-headline text-[24px] md:text-[30px] text-on-surface font-bold uppercase tracking-tight">
-              Request Service Consultation
-            </h2>
-          </motion.div>
-
-          {/* Split CTA Panel */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="grid grid-cols-1 lg:grid-cols-5 border border-surface-variant overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.05)] max-w-5xl"
-          >
-
-            {/* Left Panel: Consultation Details (3/5 width) */}
-            <div className="lg:col-span-3 p-8 md:p-12 flex flex-col justify-between bg-white relative overflow-hidden">
-              {/* Subtle corner accent */}
-              <div className="absolute top-0 left-0 w-20 h-[2px] bg-primary/20" />
-              <div className="absolute top-0 left-0 w-[2px] h-20 bg-primary/20" />
-
-              <div>
-                <h4 className="font-headline font-bold text-[20px] text-on-surface mb-3 tracking-tight">
-                  Discuss Custom SLA Parameters
-                </h4>
-                <p className="text-[14px] leading-[1.7] text-secondary mb-8 max-w-[480px]">
-                  We understand critical plant management demands custom uptime strategies. Our OEM-certified electrical and mechanical service consultants can review your single-line schematics or facility layouts to build custom response plans, spare parts reserves, and preventative diagnostics schedules.
-                </p>
-              </div>
-
-              {/* Feature badges */}
-              <div className="flex flex-wrap gap-x-6 gap-y-3">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 bg-primary/8 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-primary text-[16px]">verified</span>
-                  </div>
-                  <div>
-                    <span className="font-label-caps text-[8.5px] font-bold tracking-[0.12em] text-on-surface block leading-tight">Custom Coverage</span>
-                    <span className="text-[10px] text-secondary/50">Available on request</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 bg-primary/8 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-primary text-[16px]">support_agent</span>
-                  </div>
-                  <div>
-                    <span className="font-label-caps text-[8.5px] font-bold tracking-[0.12em] text-on-surface block leading-tight">24-Hour Dispatch</span>
-                    <span className="text-[10px] text-secondary/50">Engineer on-site</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 bg-primary/8 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-primary text-[16px]">description</span>
-                  </div>
-                  <div>
-                    <span className="font-label-caps text-[8.5px] font-bold tracking-[0.12em] text-on-surface block leading-tight">Full Documentation</span>
-                    <span className="text-[10px] text-secondary/50">Reports & audit trails</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Panel: Prefilled CTA (2/5 width) */}
-            <div className="lg:col-span-2 bg-[#141b2b] p-8 md:p-10 text-white flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-surface-variant relative overflow-hidden">
-              {/* Grid subtle background */}
-              <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none" />
-              <div className="absolute -right-12 -bottom-12 w-32 h-32 bg-primary/10 rounded-full blur-[60px] pointer-events-none" />
-
-              <div className="relative z-10">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="w-5 h-[2px] bg-primary block" />
-                  <span className="font-label-caps text-[9px] text-primary tracking-[0.2em] font-bold">Prefilled SLA Request</span>
-                </div>
-                <h5 className="font-headline text-[17px] font-bold mb-3 uppercase tracking-wide leading-snug">
-                  Consultation<br />Intake
-                </h5>
-                <p className="text-[12px] leading-[1.7] text-white/55 mb-8">
-                  Pre-loads the <span className="text-white/80 font-medium">{service.title}</span> plan parameters straight into our service intake portal for prioritized processing.
-                </p>
-              </div>
-
-              <div className="relative z-10">
-                <Button
-                  to={`/contact?inquiry=consultation&item=${encodeURIComponent(service.title)}`}
-                  variant="primary"
-                  theme="light"
-                  icon="arrow_forward"
-                  iconPosition="right"
-                  noTextAnimation={false}
-                  className="w-full justify-center text-[10px]"
-                >
-                  GO TO CONTACT FORM
-                </Button>
-                <p className="text-[10px] text-white/30 mt-3 text-center tracking-wide">
-                  No commitment required · Free consultation
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <UnifiedCTA 
+        heading={`Ready to deploy ${service.title}?`}
+        accent="Talk to our experts."
+        subtitle="We compile customized SLA preventative maintenance plans and layout briefs for your facility."
+        primaryText="CONSULT AN EXPERT"
+        primaryTo={`/contact?inquiry=consultation&item=${encodeURIComponent(service.title)}`}
+        outlineText="VIEW ALL SERVICES"
+        outlineTo="/services"
+        uppercase={true}
+      />
 
     </div>
   );

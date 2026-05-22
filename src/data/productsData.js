@@ -181,10 +181,9 @@ export const productsData = [
 ];
 
 export const trustStats = [
-  { value: "40+", label: "Years Experience" },
   { value: "500+", label: "Products" },
   { value: "98.9%", label: "Uptime Reliability" },
-  { value: "120+", label: "Countries Served" },
+  { value: "12+", label: "Countries Served" },
 ];
 
 export const industries = [

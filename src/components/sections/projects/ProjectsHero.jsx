@@ -334,7 +334,7 @@ export function ProjectsHero() {
 
           {/* ── LEFT: Text content */}
           <motion.div
-            className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0"
+            className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0 lg:pr-12 xl:pr-20"
             style={{ y: textY }}
           >
             {/* Breadcrumb */}
@@ -365,7 +365,7 @@ export function ProjectsHero() {
             {/* Headline — staggered words like home hero */}
             <h1 className="font-headline font-black uppercase leading-[0.88] tracking-tighter">
               {['Engineering', 'Excellence', 'Delivered.'].map((word, i) => (
-                <div key={word} className="overflow-hidden block">
+                <div key={word} className="overflow-hidden block w-max">
                   <motion.span
                     className={[
                       'block',
@@ -440,7 +440,7 @@ export function ProjectsHero() {
 
           {/* ── RIGHT: Animated SVG schematic */}
           <motion.div
-            className="relative w-full lg:w-[48%] flex items-center justify-center"
+            className="relative w-full lg:w-[48%] flex items-center justify-center lg:pl-12 xl:pl-20"
             style={{ y: svgY, opacity: svgOpacity, rotateX: rotX, rotateY: rotY, transformPerspective: 1000 }}
           >
             {/* Outer glow frame */}

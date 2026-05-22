@@ -2,85 +2,151 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export function AboutHero() {
+  const words = ['Engineering', 'Global', 'Excellence.'];
+
   return (
-    <section className="relative w-full min-h-[500px] md:min-h-[600px] flex flex-col md:flex-row bg-inverse-surface overflow-hidden">
+    <section
+      className="relative w-full bg-[#080808] overflow-hidden flex flex-col"
+      style={{ minHeight: '100svh' }}
+    >
+      {/* Ambient gradients */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none z-0">
+        <motion.div
+          className="absolute -top-[15%] -left-[8%] w-[55%] h-[65%] rounded-full"
+          style={{
+            background: 'radial-gradient(ellipse, rgba(233,101,43,0.12) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+          }}
+          animate={{ scale: [1, 1.06, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
 
-      {/* ── Left: Dark text panel ─────────────────────────────────────── */}
-      <div className="relative w-full md:w-[55%] flex items-center px-8 py-16 md:py-24 md:pl-16 md:pr-20 bg-inverse-surface z-10">
-        <div className="w-full max-w-[520px]">
+      {/* Vertical divider line */}
+      <div
+        aria-hidden
+        className="hidden lg:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/8 to-transparent z-10 pointer-events-none"
+      />
 
-          {/* Breadcrumb */}
-          <motion.nav
-            className="flex items-center gap-2 mb-8"
-            initial={{ opacity: 0, x: -16 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+      <div className="relative z-10 flex flex-col flex-1">
+        {/* Top spacer */}
+        <div className="min-h-[88px] md:min-h-[96px]" />
+
+        <div className="flex flex-col lg:flex-row flex-1 items-center max-w-[1440px] mx-auto w-full px-6 md:px-12 lg:px-20 pb-16 gap-12 lg:gap-0">
+          
+          {/* LEFT: Text content (52% width) */}
+          <motion.div 
+            className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0 lg:pr-12 xl:pr-20"
           >
-            <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
-            <span className="material-symbols-outlined text-surface-variant text-[14px]">chevron_right</span>
-            <span className="font-label-caps text-[10px] text-surface-variant tracking-[0.2em] uppercase">About Us</span>
-          </motion.nav>
+            {/* Breadcrumb */}
+            <motion.nav
+              className="flex items-center gap-2 mb-2"
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
+              <span className="material-symbols-outlined text-white/35 text-[14px]">chevron_right</span>
+              <span className="font-label-caps text-[10px] text-white/35 tracking-[0.2em] uppercase">About Us</span>
+            </motion.nav>
 
-          {/* Eyebrow */}
-          <motion.div className="flex items-center gap-3 mb-6"
-            initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}>
-            <div className="h-[2px] w-10 bg-accent" />
-            <span className="font-label-caps text-[11px] text-accent tracking-[0.25em] uppercase">Our Identity</span>
+            {/* Eyebrow */}
+            <motion.div 
+              className="flex items-center gap-3"
+              initial={{ opacity: 0, x: -20 }} 
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <div className="w-8 h-px bg-accent" />
+              <span className="font-label-caps text-[10px] text-accent tracking-[0.28em] uppercase font-bold">
+                Our Identity — EST. 1995
+              </span>
+            </motion.div>
+
+            {/* Headline — staggered words */}
+            <h1 className="font-headline font-black uppercase leading-[0.88] tracking-tighter">
+              {words.map((word, i) => (
+                <div key={word} className="overflow-hidden block w-max">
+                  <motion.span
+                    className={[
+                      'block text-[clamp(36px,4.8vw,72px)]',
+                      i === 1 ? 'text-accent' : 'text-white',
+                    ].join(' ')}
+                    initial={{ y: '110%', opacity: 0 }}
+                    animate={{ y: '0%', opacity: 1 }}
+                    transition={{
+                      duration: 0.9,
+                      delay: 0.2 + i * 0.13,
+                      ease: [0.25, 1, 0.5, 1],
+                    }}
+                  >
+                    {word}
+                  </motion.span>
+                </div>
+              ))}
+            </h1>
+
+            {/* Sub-copy */}
+            <motion.p
+              className="font-body text-base md:text-lg text-white/55 max-w-md leading-relaxed font-light"
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              Three decades of precision-engineered solutions powering infrastructure, energy, and high-voltage systems across India and globally.
+            </motion.p>
+
+            {/* Two pills / credential strip */}
+            <motion.div 
+              className="grid grid-cols-2 gap-4 border-t border-white/8 pt-8"
+              initial={{ opacity: 0, y: 16 }} 
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.75 }}
+            >
+              <div>
+                <span className="block font-label-caps text-[10px] text-white/35 tracking-[0.18em] uppercase mb-1">Sector Focus</span>
+                <p className="font-body text-[13px] text-white/70 font-medium">Infrastructure, Energy & High-Voltage Systems</p>
+              </div>
+              <div>
+                <span className="block font-label-caps text-[10px] text-white/35 tracking-[0.18em] uppercase mb-1">Commitment</span>
+                <p className="font-body text-[13px] text-white/70 font-medium">Sustainability-driven engineering for a resilient future</p>
+              </div>
+            </motion.div>
           </motion.div>
 
-          {/* Heading */}
-          <motion.h1
-            className="font-headline text-[38px] md:text-[60px] lg:text-[72px] leading-[1.0] font-black text-inverse-on-surface uppercase tracking-tighter mb-6"
-            initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}>
-            Engineering Global Excellence Since <span className="text-accent">1995</span>
-          </motion.h1>
+          {/* RIGHT: Visual area (48% width) */}
+          <motion.div 
+            className="relative w-full lg:w-[48%] flex items-center justify-center lg:pl-12 xl:pl-20"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="relative w-full max-w-[560px] aspect-[6/5]">
+              {/* Corner accent marks */}
+              {['top-0 left-0', 'top-0 right-0 rotate-90', 'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'].map((pos, i) => (
+                <motion.div
+                  key={i}
+                  className={`absolute ${pos} w-6 h-6`}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5 + i * 0.1, type: 'spring' }}
+                >
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M0 24 L0 0 L24 0" stroke="rgba(233,101,43,0.6)" strokeWidth="2" />
+                  </svg>
+                </motion.div>
+              ))}
 
-          {/* Accent line */}
-          <motion.div className="mb-6"
-            initial={{ opacity: 0, scaleX: 0 }} animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.6, delay: 0.25 }} style={{ originX: 0 }}>
-            <div className="h-[2px] w-[200px] bg-accent" />
-          </motion.div>
-
-          {/* Sub-copy */}
-          <motion.p
-            className="font-body text-[15px] md:text-[17px] leading-relaxed text-surface-variant/80 max-w-md mb-10"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}>
-            Three decades of precision-engineered solutions powering infrastructure, energy, and high-voltage systems across the globe.
-          </motion.p>
-
-          {/* Two pills */}
-          <motion.div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-8"
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.35 }}>
-            <div>
-              <span className="block font-label-caps text-[10px] text-surface-variant/60 tracking-[0.18em] uppercase mb-1">Sector Focus</span>
-              <p className="font-body text-[13px] text-inverse-on-surface/80 font-medium">Infrastructure, Energy & High-Voltage Systems</p>
-            </div>
-            <div>
-              <span className="block font-label-caps text-[10px] text-surface-variant/60 tracking-[0.18em] uppercase mb-1">Commitment</span>
-              <p className="font-body text-[13px] text-inverse-on-surface/80 font-medium">Sustainability-driven engineering for a resilient future</p>
+              <img
+                src="/images/philosophy-rigor.png"
+                alt="Arihantaa Powertech — Substation Infrastructure"
+                className="w-full h-full object-cover border border-white/10"
+                loading="eager" 
+                decoding="async"
+              />
             </div>
           </motion.div>
         </div>
-      </div>
-
-      {/* ── Diagonal Divider ──────────────────────────────────────────── */}
-      <div className="hidden md:block absolute top-0 bottom-0 left-[49%] w-[80px] bg-inverse-surface z-10"
-        style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
-
-      {/* ── Right: Photo ──────────────────────────────────────────────── */}
-      <div className="w-full md:w-[55%] md:absolute md:right-0 md:top-0 md:bottom-0 h-[300px] md:h-full z-0">
-        <img
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Ju3nfzYO0xZRXnoXEctzelT8KtX2mJdzYiJxUBlzHB_YqhVj5aceIPOf01VzBlHhHxQyp9go0foHDDXLX287OhE2GkTxEf1zr9Av2lnr7oFILJfAa0W1xPDM_ZYfft7ayQ2NTvk7saJ6czm28ilkoOfWSrlPY4xkh4HxlwIyv20BcbhICR5H6WRUTaiN2-sJ6ai8a2nxY0KuL8ms1WgD3-j-DFsZqcibUqLLVHnGIzYjnhcdTyidbfeG7sR1emqjBxaVZdkBb2k"
-          alt="Arihantaa Powertech — Substation Infrastructure"
-          className="w-full h-full object-cover object-center"
-          loading="eager" decoding="async"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-inverse-surface via-inverse-surface/30 to-transparent" />
       </div>
     </section>
   );

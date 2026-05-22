@@ -1,8 +1,9 @@
+import { motion } from 'framer-motion';
 import { Reveal } from '../../ui/Reveal';
 
 export function Certifications() {
   return (
-    <section className="py-24 bg-inverse-surface stitch-up">
+    <section className="py-24 bg-inverse-surface">
       <div className="max-w-[1440px] mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-12">
         
         <Reveal>
@@ -11,22 +12,30 @@ export function Certifications() {
           </h3>
         </Reveal>
         
-        <div className="flex gap-6 overflow-x-auto pb-4 w-full md:w-auto">
-          <Reveal delay={0.1}>
-            <div className="min-w-[200px] p-8 bg-white/5 border border-white/10 text-center">
-              <span className="material-symbols-outlined text-4xl text-primary mb-4">workspace_premium</span>
-              <p className="eyebrow !text-white !mb-1">ISO 9001:2015</p>
-              <p className="text-[10px] text-white/40 uppercase tracking-tighter">Quality Systems</p>
-            </div>
-          </Reveal>
+        <div className="grid grid-cols-2 border-t border-l border-white/10 w-full md:w-auto gap-0">
+          <motion.div 
+            className="p-8 border-r border-b border-white/10 bg-white/[0.02] text-center hover:bg-white/[0.04] transition-colors duration-300 rounded-none min-w-[150px] sm:min-w-[200px]"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <span className="material-symbols-outlined text-4xl text-primary mb-4 block">workspace_premium</span>
+            <p className="eyebrow !text-white !mb-1 text-sm md:text-base">ISO 9001:2015</p>
+            <p className="text-[10px] text-white/40 uppercase tracking-tighter">Quality Systems</p>
+          </motion.div>
           
-          <Reveal delay={0.2}>
-            <div className="min-w-[200px] p-8 bg-white/5 border border-white/10 text-center">
-              <span className="material-symbols-outlined text-4xl text-primary mb-4">gavel</span>
-              <p className="eyebrow !text-white !mb-1">Class 'A'</p>
-              <p className="text-[10px] text-white/40 uppercase tracking-tighter">Electrical Contractor</p>
-            </div>
-          </Reveal>
+          <motion.div 
+            className="p-8 border-r border-b border-white/10 bg-white/[0.02] text-center hover:bg-white/[0.04] transition-colors duration-300 rounded-none min-w-[150px] sm:min-w-[200px]"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <span className="material-symbols-outlined text-4xl text-primary mb-4 block">gavel</span>
+            <p className="eyebrow !text-white !mb-1 text-sm md:text-base">Class 'A'</p>
+            <p className="text-[10px] text-white/40 uppercase tracking-tighter">Electrical Contractor</p>
+          </motion.div>
         </div>
         
       </div>

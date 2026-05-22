@@ -11,7 +11,6 @@ export const projectsStats = [
 ];
 
 export const projectCategories = [
-  { id: "all",         label: "All Projects" },
   { id: "data-center", label: "Data Centers" },
   { id: "healthcare",  label: "Healthcare" },
   { id: "aviation",    label: "Aviation" },
@@ -85,6 +84,7 @@ export const projectBoardData = [
     status: "In Progress",
     progress: 65,
     isHighlighted: false,
+    image: "/images/project-data-center.png",
   },
   {
     id: "p2",
@@ -98,6 +98,7 @@ export const projectBoardData = [
     status: "In Progress",
     progress: 40,
     isHighlighted: true,
+    image: "/images/project-hospital.png",
   },
   {
     id: "p3",
@@ -111,6 +112,7 @@ export const projectBoardData = [
     status: "In Progress",
     progress: 75,
     isHighlighted: false,
+    image: "/images/project-airport.png",
   },
   {
     id: "p4",
@@ -124,6 +126,7 @@ export const projectBoardData = [
     status: "Completed",
     progress: 100,
     isHighlighted: false,
+    image: "/images/project-hospital.png",
   },
   {
     id: "p5",
@@ -137,6 +140,7 @@ export const projectBoardData = [
     status: "In Progress",
     progress: 30,
     isHighlighted: false,
+    image: "/images/project-metro.png",
   },
   {
     id: "p6",
@@ -150,6 +154,7 @@ export const projectBoardData = [
     status: "In Progress",
     progress: 55,
     isHighlighted: false,
+    image: "/images/project-hospital.png",
   },
   {
     id: "p7",
@@ -163,6 +168,7 @@ export const projectBoardData = [
     status: "In Progress",
     progress: 75,
     isHighlighted: false,
+    image: "/images/project-industrial.png",
   },
   {
     id: "p8",
@@ -176,6 +182,7 @@ export const projectBoardData = [
     status: "In Progress",
     progress: 60,
     isHighlighted: false,
+    image: "/images/project-dam.png",
   },
 ];
 

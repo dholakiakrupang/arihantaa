@@ -29,44 +29,28 @@ export function Timeline() {
           </p>
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Connector line */}
-          <div className="hidden md:block absolute top-[52px] left-0 right-0 h-px bg-outline-variant/30" />
-
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            {milestones.map((m, i) => (
-              <motion.div
-                key={m.year}
-                className="relative z-10"
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.55, delay: i * 0.1, ease: [0.25, 1, 0.5, 1] }}
-              >
-                {/* Year box */}
-                <div className={`w-[88px] h-[88px] flex items-center justify-center mb-6 border-2 transition-all duration-300 ${
-                  m.active
-                    ? 'bg-accent border-accent shadow-lg shadow-accent/20'
-                    : 'bg-surface border-outline-variant/30 hover:border-accent group'
+        {/* Timeline Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 border-t border-l border-outline-variant/30 gap-0">
+          {milestones.map((m, i) => (
+            <motion.div
+              key={m.year}
+              className={`p-8 border-r border-b border-outline-variant/30 bg-surface hover:bg-accent/[0.015] transition-all duration-300 flex flex-col justify-between group min-h-[240px] rounded-none`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55, delay: i * 0.1, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <div>
+                <span className={`block font-headline text-[38px] font-black leading-none tracking-tighter transition-colors duration-300 mb-6 ${
+                  m.active ? 'text-accent' : 'text-on-surface/20 group-hover:text-accent'
                 }`}>
-                  <span className={`font-headline text-[30px] font-black leading-none tracking-tighter ${
-                    m.active ? 'text-on-primary' : 'text-on-surface/40 group-hover:text-accent transition-colors'
-                  }`}>
-                    {m.year}
-                  </span>
-                </div>
-
+                  {m.year}
+                </span>
                 <h4 className="font-headline text-[17px] font-bold text-on-surface mb-2">{m.label}</h4>
-                <p className="font-body text-[13px] leading-relaxed text-secondary">{m.desc}</p>
-
-                {/* Active indicator dot */}
-                {m.active && (
-                  <div className="absolute top-[88px] left-[44px] -translate-x-1/2 w-2 h-2 bg-accent rounded-full hidden md:block" />
-                )}
-              </motion.div>
-            ))}
-          </div>
+              </div>
+              <p className="font-body text-[13px] leading-relaxed text-secondary mt-2">{m.desc}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

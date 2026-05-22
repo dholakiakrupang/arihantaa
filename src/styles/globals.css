@@ -41,6 +41,14 @@
   .body-constrained {
     max-width: 680px;
   }
+
+  /* Grid pattern utility for engineering theme */
+  .bg-grid-pattern {
+    background-size: 30px 30px;
+    background-image: 
+      linear-gradient(to right, rgba(233, 101, 43, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(233, 101, 43, 0.05) 1px, transparent 1px);
+  }
 }
 
 /* Reduced Motion Preference as per guidelines */
@@ -52,3 +60,50 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Enhanced Border Visibility Overrides */
+.border-outline-variant\/20 {
+  border-color: rgba(200, 166, 152, 0.45);
+}
+.border-outline-variant\/30 {
+  border-color: rgba(200, 166, 152, 0.65);
+}
+.border-outline-variant\/40 {
+  border-color: rgba(200, 166, 152, 0.8);
+}
+.border-outline-variant\/50 {
+  border-color: rgba(200, 166, 152, 0.9);
+}
+.border-outline-variant\/60 {
+  border-color: rgba(200, 166, 152, 0.95);
+}
+.border-outline-variant {
+  border-color: rgba(200, 166, 152, 1);
+}
+
+/* Enhanced Border Visibility Overrides for Dark/Charcoal backgrounds (white borders) */
+.border-white\/5 {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+.border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.border-white\/15 {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.border-white\/20 {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.border-white\/\[0\.06\] {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+.border-white\/\[0\.08\] {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+.border-white\/\[0\.12\] {
+  border-color: rgba(255, 255, 255, 0.32);
+}
+.border-white\/8 {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+

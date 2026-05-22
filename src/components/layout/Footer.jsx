@@ -1,6 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '../ui/Button';
+
 export function Footer() {
+  const location = useLocation();
+  const path = location.pathname;
+
+  // Paths that already have their own bottom CTA or enquiry forms
+  const shouldHidePreFooterCTA = 
+    path === '/' ||
+    path === '/about' ||
+    path === '/contact' ||
+    path === '/services' ||
+    path === '/products' ||
+    path === '/projects' ||
+    path === '/news' ||
+    /^\/projects\/[^/]+$/.test(path) ||
+    /^\/products\/[^/]+/.test(path) ||
+    /^\/services\/[^/]+/.test(path) ||
+    /^\/sectors\/[^/]+$/.test(path);
+
   return (
     <footer className="bg-[#0a0a0a] border-t border-white/10 text-white pt-24 pb-8 overflow-hidden relative">
       
@@ -10,49 +28,49 @@ export function Footer() {
       <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
         
         {/* Massive Pre-Footer CTA */}
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10 border-b border-white/10 pb-20 mb-20">
-          <div className="max-w-3xl">
-            <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase mb-6 block border-l-2 border-accent pl-3">
-              Initiate Project
-            </span>
-            <h2 className="font-headline text-[48px] md:text-[80px] lg:text-[100px] leading-[0.9] font-black text-white tracking-tighter uppercase">
-              Ready to power<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/30">the future?</span>
-            </h2>
+        {!shouldHidePreFooterCTA && (
+          <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10 border-b border-white/10 pb-20 mb-20">
+            <div className="max-w-3xl">
+              <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase mb-6 block border-l-2 border-accent pl-3">
+                Initiate Project
+              </span>
+              <h2 className="font-headline text-[48px] md:text-[80px] lg:text-[100px] leading-[0.9] font-black text-white tracking-tighter uppercase">
+                Ready to power<br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/30">the future?</span>
+              </h2>
+            </div>
+            <Button to="/contact" variant="primary" theme="black" size="lg" className="rounded-none w-full lg:w-auto mt-4 lg:mt-0">
+              GET A QUOTE
+            </Button>
           </div>
-          <Button to="/contact" variant="primary" theme="black" size="lg" className="rounded-none w-full lg:w-auto mt-4 lg:mt-0">
-            GET A QUOTE
-          </Button>
-        </div>
+        )}
 
         {/* Main Footer Links */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
+        <div className="flex flex-col lg:flex-row lg:items-stretch gap-16 lg:gap-0 mb-24">
           
           {/* Brand & Info */}
-          <div className="lg:col-span-4 flex flex-col justify-between">
-            <div>
-              <Link to="/" className="inline-block mb-10">
-                <img 
-                  src="/arihantaa-vertical-logo.png" 
-                  alt="Arihantaa Powertech Logo" 
-                  className="h-[100px] w-auto object-contain filter grayscale brightness-200" 
-                />
-              </Link>
-              <p className="font-body text-[15px] leading-relaxed text-white/60 max-w-sm">
-                Engineering solutions for a mission-critical world. From grid-scale deployment to high-density thermal management, we shape the future of global energy systems.
-              </p>
-            </div>
+          <div className="flex-shrink-0 lg:w-[320px] lg:pr-16 flex flex-col justify-between">
+            <Link to="/" className="inline-block">
+              <img 
+                src="/arihantaa-vertical-logo.png" 
+                alt="Arihantaa Powertech Logo" 
+                className="h-[160px] w-auto object-contain grayscale brightness-200" 
+              />
+            </Link>
+            <p className="font-body text-[15px] leading-relaxed text-white/60 max-w-sm">
+              Engineering solutions for a mission-critical world. From grid-scale deployment to high-density thermal management, we shape the future of global energy systems.
+            </p>
           </div>
           
           {/* Navigation Columns */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-12 lg:gap-8">
+          <div className="flex-1 flex flex-col sm:flex-row justify-between gap-12 sm:gap-8">
             
             {/* Sitemap */}
-            <div>
+            <div className="flex-1 flex flex-col">
               <h4 className="font-label-caps text-[11px] tracking-[0.2em] text-white mb-8 border-l-2 border-accent pl-3 uppercase">
                 Explore
               </h4>
-              <ul className="flex flex-col gap-5">
+              <ul className="flex flex-col gap-5 flex-1">
                 <li><Link to="/about" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">About Us</Link></li>
                 <li><Link to="/projects" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Projects</Link></li>
                 <li><Link to="/news" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">News Hub</Link></li>
@@ -61,11 +79,11 @@ export function Footer() {
             </div>
             
             {/* Expertise */}
-            <div>
+            <div className="flex-1 flex flex-col">
               <h4 className="font-label-caps text-[11px] tracking-[0.2em] text-white mb-8 border-l-2 border-accent pl-3 uppercase">
                 Expertise
               </h4>
-              <ul className="flex flex-col gap-5">
+              <ul className="flex flex-col gap-5 flex-1">
                 <li><Link to="/services" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Turnkey Projects</Link></li>
                 <li><Link to="/services" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">MEPF Solutions</Link></li>
                 <li><Link to="/products" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Critical Power</Link></li>
@@ -74,22 +92,22 @@ export function Footer() {
             </div>
             
             {/* Contact */}
-            <div>
+            <div className="flex-1 flex flex-col">
               <h4 className="font-label-caps text-[11px] tracking-[0.2em] text-white mb-8 border-l-2 border-accent pl-3 uppercase">
                 Contact
               </h4>
-              <ul className="flex flex-col gap-6">
+              <ul className="flex flex-col gap-6 flex-1">
                 <li className="flex gap-4 items-center group">
-                  <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors text-[20px]">call</span>
+                  <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors text-[30px]">call</span>
                   <a href="tel:+917434999919" className="font-body text-[14px] text-white/60 group-hover:text-white transition-colors">+91 7434999919</a>
                 </li>
                 <li className="flex gap-4 items-center group">
-                  <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors text-[20px]">mail</span>
+                  <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors text-[30px]">mail</span>
                   <a href="mailto:info@arihantaa.com" className="font-body text-[14px] text-white/60 group-hover:text-white transition-colors">info@arihantaa.com</a>
                 </li>
                 <li className="flex gap-4 items-start group">
                   <a href="https://www.google.com/maps/search/?api=1&query=22.6708056,71.5723889" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-colors">
-                    <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors mt-0.5 text-[20px]">location_on</span>
+                    <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors mt-0.5 text-[30px]">location_on</span>
                     <span className="font-body text-[14px] leading-relaxed text-white/60 group-hover:text-white transition-colors" style={{ fontWeight: '500', letterSpacing: '0.02em' }}>
                       22°40'14.9"N 71°34'20.6"E
                     </span>

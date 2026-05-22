@@ -47,8 +47,8 @@ export function StatCard({
   return (
     <motion.div
       className={cn(
-        "group relative flex flex-col overflow-hidden cursor-default transition-all border-outline-variant/30",
-        centered ? "justify-center items-center text-center p-12 lg:p-16 border-b md:border-b-0 md:border-r last:border-0" 
+        "group relative flex flex-col overflow-hidden cursor-default transition-all border-r border-b border-outline-variant/30 bg-surface hover:bg-accent/[0.015] duration-300",
+        centered ? "justify-center items-center text-center p-12 lg:p-16" 
                  : "justify-between px-6 py-10",
         className
       )}
@@ -57,16 +57,12 @@ export function StatCard({
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.6, delay, ease: [0.25, 1, 0.5, 1] }}
     >
-      {/* Double-slide-up background layers */}
-      <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-[550ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0" />
-      <div className="absolute inset-0 bg-inverse-surface translate-y-full group-hover:translate-y-0 transition-transform duration-[550ms] delay-[60ms] ease-[cubic-bezier(0.76,0,0.24,1)] z-0" />
-
       {/* Top: icon (if provided) */}
       {icon && (
         <div className={cn("relative z-10", centered ? "mb-4" : "mb-6")}>
           <span
             className="material-symbols-outlined text-accent opacity-60 group-hover:opacity-100 transition-all duration-300"
-            style={{ fontSize: '18px' }}
+            style={{ fontSize: '24px' }}
           >
             {icon}
           </span>
@@ -76,7 +72,7 @@ export function StatCard({
       {/* Middle: big value and label */}
       <div className="relative z-10 w-full">
         <div className={cn(
-          "font-headline font-light text-on-surface group-hover:text-white leading-none mb-3 transition-colors duration-500",
+          "font-headline font-light text-on-surface group-hover:text-accent leading-none mb-3 transition-colors duration-500",
           centered ? "text-[64px] md:text-[80px] lg:text-[96px] tracking-tighter" : "text-[28px] md:text-[32px]"
         )}>
           <AnimatedValue value={value} />
@@ -85,13 +81,13 @@ export function StatCard({
         {centered ? (
           <div className="flex items-center justify-center gap-3">
             <div className="h-[2px] w-4 bg-accent transition-colors duration-500" />
-            <span className="font-label-caps text-[11px] lg:text-[12px] text-secondary group-hover:text-white/70 uppercase tracking-[0.2em] transition-colors duration-500">
+            <span className="font-label-caps text-[11px] lg:text-[12px] text-secondary group-hover:text-on-surface uppercase tracking-[0.2em] transition-colors duration-500">
               {label}
             </span>
             <div className="h-[2px] w-4 bg-accent transition-colors duration-500" />
           </div>
         ) : (
-          <div className="font-label-caps text-[9px] text-on-surface-variant/60 group-hover:text-white/70 tracking-[0.2em] leading-relaxed transition-colors duration-500 uppercase">
+          <div className="font-label-caps text-[9px] text-secondary tracking-[0.2em] leading-relaxed transition-colors duration-500 uppercase">
             {label}
           </div>
         )}
@@ -99,7 +95,7 @@ export function StatCard({
 
       {/* Bottom: accent line that grows on hover (for non-centered variant) */}
       {!centered && (
-        <div className="relative z-10 mt-8 h-px w-full bg-outline overflow-hidden">
+        <div className="relative z-10 mt-8 h-px w-full bg-outline-variant/30 overflow-hidden">
           <div className="absolute left-0 top-0 h-full w-0 group-hover:w-full bg-accent transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]" />
         </div>
       )}

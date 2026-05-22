@@ -13,7 +13,7 @@ const SECTORS = [
 
 export function SectorSummaryStrip() {
   return (
-    <section className="bg-surface py-24 px-6 md:px-12 lg:px-20 border-t border-outline">
+    <section className="bg-surface py-24 px-6 md:px-12 lg:px-20 border-t border-outline-variant/30">
       <div className="max-w-[1440px] mx-auto">
 
         {/* Header */}
@@ -23,21 +23,21 @@ export function SectorSummaryStrip() {
               <div className="w-6 h-px bg-accent" />
               <span className="font-label-caps text-[10px] text-accent tracking-[0.26em]">SECTORS WE SERVE</span>
             </div>
-            <h2 className="font-headline font-black uppercase text-4xl md:text-5xl text-secondary tracking-tighter leading-none">
+            <h2 className="font-headline font-black uppercase text-4xl md:text-5xl text-on-surface tracking-tighter leading-none">
               Areas of Expertise
             </h2>
           </div>
-          <p className="font-body text-sm text-on-surface-variant max-w-xs leading-relaxed font-light">
+          <p className="font-body text-sm text-secondary max-w-xs leading-relaxed font-light">
             Arihantaa delivers critical electrical infrastructure across India's most demanding sectors.
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-x divide-outline border border-outline">
+        {/* Grid Container with Single-Pixel Borders */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30">
           {SECTORS.map((sector, i) => (
             <motion.div
               key={sector.title}
-              className="h-full"
+              className="border-r border-b border-outline-variant/30"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -45,35 +45,35 @@ export function SectorSummaryStrip() {
             >
               <Link
                 to={`/sectors/${sector.title.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group h-full bg-surface p-8 flex flex-col gap-6 hover:bg-surface-variant transition-colors duration-300 block"
+                className="group h-full bg-surface p-8 flex flex-col gap-6 hover:bg-surface-container-lowest transition-colors duration-300 block"
               >
-              {/* Top row */}
-              <div className="flex items-start justify-between">
-                <div className="w-12 h-12 border border-outline flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all duration-300">
-                  <span className="material-symbols-outlined text-[22px] text-secondary group-hover:text-white transition-colors" style={{ fontSize: '22px' }}>
-                    {sector.icon}
+                {/* Top row */}
+                <div className="flex items-start justify-between">
+                  <div className="w-12 h-12 border border-outline-variant/50 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all duration-300">
+                    <span className="material-symbols-outlined text-[24px] text-secondary group-hover:text-white transition-colors">
+                      {sector.icon}
+                    </span>
+                  </div>
+                  <span className="font-label-caps text-[9px] text-secondary/50 tracking-[0.16em]">
+                    {sector.count.toUpperCase()}
                   </span>
                 </div>
-                <span className="font-label-caps text-[9px] text-on-surface-variant/50 tracking-[0.16em]">
-                  {sector.count.toUpperCase()}
-                </span>
-              </div>
 
-              {/* Title */}
-              <h3 className="font-headline font-semibold text-xl text-secondary group-hover:text-accent transition-colors duration-300 uppercase tracking-tight">
-                {sector.title}
-              </h3>
+                {/* Title */}
+                <h3 className="font-headline font-semibold text-xl text-on-surface group-hover:text-accent transition-colors duration-300 uppercase tracking-tight">
+                  {sector.title}
+                </h3>
 
-              {/* Description */}
-              <p className="font-body text-sm text-on-surface-variant leading-relaxed font-light">
-                {sector.desc}
-              </p>
+                {/* Description */}
+                <p className="font-body text-sm text-secondary leading-relaxed font-light">
+                  {sector.desc}
+                </p>
 
-              {/* Arrow */}
-              <div className="mt-auto flex items-center gap-2 text-secondary/40 group-hover:text-accent transition-colors">
-                <div className="h-px w-6 bg-current" />
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </div>
+                {/* Arrow */}
+                <div className="mt-auto flex items-center gap-2 text-secondary/40 group-hover:text-accent transition-colors">
+                  <div className="h-px w-6 bg-current" />
+                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </div>
               </Link>
             </motion.div>
           ))}

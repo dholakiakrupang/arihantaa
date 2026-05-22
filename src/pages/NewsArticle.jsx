@@ -35,9 +35,9 @@ export function NewsArticle() {
             {/* Breadcrumbs */}
             <div className="flex items-center gap-2 mb-8 text-secondary font-label-caps text-[11px] tracking-[0.1em] uppercase">
               <Link to="/" className="hover:text-accent transition-colors">Home</Link>
-              <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+              <span className="material-symbols-outlined text-[18px]">chevron_right</span>
               <Link to="/news" className="hover:text-accent transition-colors">News Hub</Link>
-              <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+              <span className="material-symbols-outlined text-[18px]">chevron_right</span>
               <span className="text-on-surface">Press Release</span>
             </div>
 
@@ -73,10 +73,10 @@ export function NewsArticle() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <span className="material-symbols-outlined text-[16px]">calendar_today</span>
+              <span className="material-symbols-outlined text-[20px]">calendar_today</span>
               <span>October 24, 2026</span>
               <span className="mx-3 text-outline-variant">|</span>
-              <span className="material-symbols-outlined text-[16px]">schedule</span>
+              <span className="material-symbols-outlined text-[20px]">schedule</span>
               <span>6 min read</span>
             </motion.div>
           </header>
@@ -194,10 +194,10 @@ export function NewsArticle() {
                 <div className="flex items-center gap-4">
                   <span className="font-label-caps text-[11px] text-secondary uppercase tracking-[0.1em]">Share:</span>
                   <button className="w-10 h-10 border border-outline-variant/50 rounded-full flex items-center justify-center text-secondary hover:border-accent hover:text-accent transition-colors">
-                    <span className="material-symbols-outlined text-[18px]">link</span>
+                    <span className="material-symbols-outlined text-[22px]">link</span>
                   </button>
                   <button className="w-10 h-10 border border-outline-variant/50 rounded-full flex items-center justify-center text-secondary hover:border-accent hover:text-accent transition-colors">
-                    <span className="material-symbols-outlined text-[18px]">mail</span>
+                    <span className="material-symbols-outlined text-[22px]">mail</span>
                   </button>
                 </div>
               </motion.div>
@@ -206,7 +206,7 @@ export function NewsArticle() {
               <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <Link to="#" className="p-8 border border-outline-variant/40 hover:border-accent bg-surface-container-lowest shadow-sm hover:shadow-xl group transition-all duration-300 flex flex-col gap-4">
                   <span className="font-label-caps text-[10px] text-secondary flex items-center gap-2 group-hover:text-accent transition-colors tracking-[0.2em] uppercase">
-                    <span className="material-symbols-outlined text-[16px]">arrow_back</span>
+                    <span className="material-symbols-outlined text-[20px]">arrow_back</span>
                     Previous Insight
                   </span>
                   <span className="font-headline text-[18px] text-on-surface font-semibold group-hover:text-accent transition-colors">
@@ -216,7 +216,7 @@ export function NewsArticle() {
                 <Link to="#" className="p-8 border border-outline-variant/40 hover:border-accent bg-surface-container-lowest shadow-sm hover:shadow-xl group transition-all duration-300 flex flex-col gap-4 sm:text-right">
                   <span className="font-label-caps text-[10px] text-secondary flex items-center sm:justify-end gap-2 group-hover:text-accent transition-colors tracking-[0.2em] uppercase">
                     Next Insight
-                    <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
                   </span>
                   <span className="font-headline text-[18px] text-on-surface font-semibold group-hover:text-accent transition-colors">
                     New Material Tolerances in Turbine Construction
@@ -312,7 +312,7 @@ export function NewsArticle() {
                     </p>
                     <Link to="/products/power-distribution" className="inline-flex items-center gap-2 font-label-caps text-[11px] text-white hover:text-accent tracking-[0.1em] transition-colors uppercase border-b border-white/30 hover:border-accent pb-0.5">
                       View Technical Specs
-                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                      <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
                     </Link>
                   </div>
                 </motion.div>

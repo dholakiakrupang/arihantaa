@@ -24,11 +24,11 @@ export function ValuesBento() {
         </h2>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 border-t border-l border-outline-variant/30 gap-0">
           {values.map((v, i) => (
             <motion.div
               key={v.title}
-              className={`${v.span} group p-8 md:p-10 border border-outline-variant/20 bg-surface-container-low hover:bg-surface hover:border-accent hover:shadow-lg transition-all duration-400 cursor-default`}
+              className={`${v.span} group p-8 md:p-10 border-r border-b border-outline-variant/30 bg-surface hover:bg-accent/[0.015] transition-all duration-400 cursor-default rounded-none`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}

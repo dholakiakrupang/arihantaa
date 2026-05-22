@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 const stats = [
-  { value: '29+', label: 'Years Experience', icon: 'history' },
+  { value: '30+', label: 'Years Experience', icon: 'history' },
   { value: '500+', label: 'Projects Delivered', icon: 'engineering' },
   { value: '₹80Cr+', label: 'Annual Turnover', icon: 'trending_up' },
   { value: '100+', label: 'Elite Professionals', icon: 'groups' },
@@ -18,11 +18,11 @@ export function StatsGrid() {
           <span className="font-label-caps text-[11px] text-accent tracking-[0.25em] uppercase">By The Numbers</span>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5">
+        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-white/10 gap-0">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              className="bg-inverse-surface px-8 py-10 flex flex-col gap-4 group hover:bg-white/5 transition-colors duration-300"
+              className="bg-inverse-surface p-8 md:p-10 border-r border-b border-white/10 flex flex-col gap-4 group hover:bg-white/5 transition-colors duration-300 rounded-none"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}

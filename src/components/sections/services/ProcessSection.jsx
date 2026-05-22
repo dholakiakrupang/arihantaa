@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Reveal } from '../../ui/Reveal';
 
 export function ProcessSection() {
@@ -30,7 +31,7 @@ export function ProcessSection() {
   ];
 
   return (
-    <section className="py-[140px] px-8 bg-inverse-surface text-white stitch-up overflow-hidden">
+    <section className="py-[140px] px-8 bg-inverse-surface text-white overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-12 mb-20">
           <div className="col-span-12">
@@ -41,21 +42,28 @@ export function ProcessSection() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 relative">
-          {/* Continuous Line Decor */}
-          <div className="hidden md:block absolute top-10 left-0 w-full h-[2px] bg-primary/20 z-0"></div>
-          
-          {/* Steps */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 border-t border-l border-white/10 gap-0">
           {steps.map((step, index) => (
-            <div key={index} className="relative z-10 flex flex-col items-start">
-              <Reveal delay={0.1 * (index + 1)}>
-                <div className="w-20 h-20 bg-primary/10 border border-primary text-primary flex items-center justify-center text-3xl font-bold mb-8">
-                  {step.number}
-                </div>
-                <h4 className="text-xl font-bold mb-4">{step.title}</h4>
-                <p className="text-white/60 text-sm leading-relaxed">{step.desc}</p>
-              </Reveal>
-            </div>
+            <motion.div 
+              key={index} 
+              className="border-r border-b border-white/10 p-8 hover:bg-white/[0.02] transition-colors duration-300 flex flex-col justify-between group min-h-[250px] relative"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 * index }}
+            >
+              <div>
+                <span className="block font-headline text-sm font-bold text-primary mb-6 group-hover:translate-x-1 transition-transform duration-300">
+                  {`0${step.number}`}
+                </span>
+                <h4 className="text-lg font-bold mb-3 text-white group-hover:text-primary transition-colors duration-300">
+                  {step.title}
+                </h4>
+              </div>
+              <p className="text-white/60 text-[13px] leading-relaxed mt-4">
+                {step.desc}
+              </p>
+            </motion.div>
           ))}
         </div>
       </div>

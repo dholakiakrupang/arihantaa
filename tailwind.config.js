@@ -14,7 +14,7 @@ export default {
         "surface-container-lowest": "#ffffff",
         "surface-tint": "#a73a00",
         "on-error": "#ffffff",
-        "outline-variant": "#e0c0b4",
+        "outline-variant": "#c8a698",
         "secondary-fixed": "#e5e2e1",
         "on-background": "#1a1c1c",
         "on-primary-fixed": "#370e00",

@@ -2,7 +2,7 @@ import { ServicesHero } from '../components/sections/services/ServicesHero';
 import { ServicesStickyNav } from '../components/sections/services/ServicesStickyNav';
 import { ServiceDetail } from '../components/sections/services/ServiceDetail';
 import { ProcessSection } from '../components/sections/services/ProcessSection';
-import { FinalCTA } from '../components/sections/services/FinalCTA';
+import { UnifiedCTA } from '../components/sections/UnifiedCTA';
 
 export function Services() {
   const servicesData = [
@@ -99,7 +99,15 @@ export function Services() {
         ))}
       </div>
       <ProcessSection />
-      <FinalCTA />
+      <UnifiedCTA 
+        heading="Have a custom service requirement?"
+        accent="Talk to our experts."
+        subtitle="We respond to all technical support and custom SLA enquiries within 1 business day."
+        primaryText="CONSULT AN EXPERT"
+        primaryTo="/contact?inquiry=support"
+        outlineText="VIEW ALL SERVICES"
+        outlineTo="/services"
+      />
     </>
   );
 }

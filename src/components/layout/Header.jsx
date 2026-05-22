@@ -25,7 +25,7 @@ function AnimatedQuoteButton({ onClick, className = '' }) {
 // ─── Animated SVG Icons ────────────────────────────────────────────────────
 function IconBolt({ active }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <motion.path
         d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
         animate={active ? { pathLength: [0, 1] } : { pathLength: 1 }}
@@ -36,7 +36,7 @@ function IconBolt({ active }) {
 }
 function IconThermo({ active }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <motion.path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"
         animate={active ? { scale: [1, 1.1, 1] } : { scale: 1 }}
         transition={{ duration: 0.4 }}
@@ -46,7 +46,7 @@ function IconThermo({ active }) {
 }
 function IconServer({ active }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
       <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
       <motion.line x1="6" y1="6" x2="6.01" y2="6"
@@ -62,7 +62,7 @@ function IconServer({ active }) {
 }
 function IconMonitor({ active }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="2" y="3" width="20" height="14" rx="2" />
       <motion.path d="M8 21h8M12 17v4"
         animate={active ? { opacity: [0, 1] } : { opacity: 1 }}
@@ -73,7 +73,7 @@ function IconMonitor({ active }) {
 }
 function IconWrench({ active }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <motion.path
         d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
         animate={active ? { rotate: [0, 15, -15, 0] } : { rotate: 0 }}
@@ -84,7 +84,7 @@ function IconWrench({ active }) {
 }
 function IconConstruction({ active }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <motion.path d="M2 20h20M17 20V8M12 20V4M7 20v-8"
         animate={active ? { scaleY: [0, 1] } : { scaleY: 1 }}
         transition={{ duration: 0.5 }}
@@ -95,7 +95,7 @@ function IconConstruction({ active }) {
 }
 function IconGlobe({ active }) {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10" />
       <motion.path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
         animate={active ? { rotate: 360 } : { rotate: 0 }}
@@ -253,7 +253,7 @@ function MobileAccordion({ label, index, sections, cta, onNavigate, isActive }) 
           </span>
         </div>
         <motion.span
-          className="material-symbols-outlined text-white/25 text-[18px]"
+          className="material-symbols-outlined text-white/25 text-[30px]"
           animate={{ rotate: isExpanded ? 45 : 0 }}
           transition={{ duration: 0.2, ease: EASE_OUT_QUART }}
         >
@@ -307,7 +307,7 @@ function MobileAccordion({ label, index, sections, cta, onNavigate, isActive }) 
                 className="inline-flex items-center gap-1.5 font-label-caps text-[9px] tracking-[0.2em] uppercase text-accent/70 hover:text-accent transition-colors pl-7"
               >
                 {cta.label}
-                <span className="material-symbols-outlined text-[11px]">arrow_forward</span>
+                <span className="material-symbols-outlined text-[22px]">arrow_forward</span>
               </Link>
             </div>
           </motion.div>
@@ -443,7 +443,7 @@ function MobileDrawer({ isOpen, onClose }) {
                 className="flex items-center justify-center w-10 h-10 border border-white/[0.08] text-white/40 hover:text-white hover:border-white/20 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 aria-label="Close navigation menu"
               >
-                <span className="material-symbols-outlined text-[18px]">close</span>
+                <span className="material-symbols-outlined text-[30px]">close</span>
               </button>
             </div>
 
@@ -512,7 +512,7 @@ function MobileDrawer({ isOpen, onClose }) {
                             </span>
                           </div>
                           {isActive(to) && (
-                            <span className="material-symbols-outlined text-accent/30 text-[14px]">arrow_forward</span>
+                            <span className="material-symbols-outlined text-accent/30 text-[26px]">arrow_forward</span>
                           )}
                         </Link>
                       </motion.li>
@@ -566,45 +566,47 @@ function MegaSection({ section, onClick, index }) {
 
   return (
     <motion.div
-      className="group"
+      className="group border-r border-b border-outline-variant/30 p-8 hover:bg-accent/[0.015] transition-colors duration-300 flex flex-col justify-between"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.28, delay: 0.04 + index * 0.05, ease: EASE_OUT_QUART }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Category header */}
-      <Link
-        to={link}
-        onClick={onClick}
-        className="flex items-center gap-2.5 mb-4 group/header"
-      >
-        <span className={`transition-colors duration-200 ${hovered ? 'text-accent' : 'text-on-surface/40'}`}>
-          <Icon active={hovered} />
-        </span>
-        <span className="font-label-caps text-[10px] font-bold tracking-[0.22em] uppercase text-on-surface group-hover/header:text-accent transition-colors duration-200">
-          {title}
-        </span>
-        <span className="material-symbols-outlined text-[12px] text-on-surface/30 group-hover/header:text-accent group-hover/header:translate-x-0.5 transition-all duration-200 ml-auto">
-          arrow_forward
-        </span>
-      </Link>
+      <div>
+        {/* Category header */}
+        <Link
+          to={link}
+          onClick={onClick}
+          className="flex items-center gap-3 mb-6 group/header"
+        >
+          <span className={`transition-colors duration-200 ${hovered ? 'text-accent' : 'text-on-surface/40'}`}>
+            <Icon active={hovered} />
+          </span>
+          <span className="font-label-caps text-[11px] font-bold tracking-[0.22em] uppercase text-on-surface group-hover/header:text-accent transition-colors duration-200">
+            {title}
+          </span>
+          <span className="material-symbols-outlined text-[26px] text-on-surface/30 group-hover/header:text-accent group-hover/header:translate-x-0.5 transition-all duration-200 ml-auto">
+            arrow_forward
+          </span>
+        </Link>
 
-      {/* Items */}
-      <ul className="space-y-1.5">
-        {items.map((item) => (
-          <li key={item.label}>
-            <Link
-              to={item.link}
-              onClick={onClick}
-              className="flex items-center gap-2 font-body text-[13px] text-secondary hover:text-on-surface py-1 pl-1 group/item hover:pl-2.5 transition-all duration-200"
-            >
-              <span className="w-[3px] h-[3px] rounded-full bg-outline-variant group-hover/item:bg-accent transition-colors shrink-0" />
-              {item.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
+        {/* Items */}
+        <ul className="space-y-2">
+          {items.map((item) => (
+            <li key={item.label}>
+              <Link
+                to={item.link}
+                onClick={onClick}
+                className="flex items-center gap-2.5 font-body text-[13px] text-secondary hover:text-on-surface py-1 pl-1 group/item hover:pl-2.5 transition-all duration-200"
+              >
+                <span className="w-[4px] h-[4px] rounded-full bg-outline-variant group-hover/item:bg-accent transition-colors shrink-0" />
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </motion.div>
   );
 }
@@ -759,19 +761,19 @@ function SearchOverlay({ isOpen, onClose }) {
         to={item.link}
         onClick={onClose}
         onMouseEnter={() => setActiveIdx(flatIndex)}
-        className={`flex items-center gap-4 p-4 rounded-xl border transition-all duration-300 ${
+        className={`flex items-center gap-4 p-4 rounded-none border transition-all duration-300 ${
           isKeyActive 
-            ? 'bg-[#1a1e2f]/90 border-accent/60 shadow-[0_4px_20px_rgba(233,101,43,0.15)] scale-[1.01]' 
-            : 'bg-[#121520]/75 border-white/[0.06] hover:bg-[#151928]/80 hover:border-white/[0.1]'
+            ? 'bg-[#1a1e2f]/90 border-accent/80' 
+            : 'bg-[#121520]/75 border-white/[0.08] hover:bg-[#151928]/80 hover:border-white/20'
         }`}
       >
         {/* Left Icon */}
-        <div className={`w-9 h-9 flex items-center justify-center shrink-0 border rounded-lg transition-all duration-300 ${
+        <div className={`w-9 h-9 flex items-center justify-center shrink-0 border rounded-none transition-all duration-300 ${
           isKeyActive
             ? 'bg-accent/10 border-accent/30 text-accent'
-            : 'bg-white/[0.03] border-white/[0.08] text-white/40'
+            : 'bg-white/[0.02] border-white/10 text-white/40'
         }`}>
-          <span className="material-symbols-outlined text-[18px]">
+          <span className="material-symbols-outlined text-[30px]">
             {item.icon}
           </span>
         </div>
@@ -784,7 +786,7 @@ function SearchOverlay({ isOpen, onClose }) {
             }`}>
               {highlight(item.label)}
             </h4>
-            <span className={`font-label-caps text-[8px] tracking-[0.15em] px-1.5 py-0.5 rounded-sm shrink-0 border ${
+            <span className={`font-label-caps text-[8px] tracking-[0.15em] px-1.5 py-0.5 rounded-none shrink-0 border ${
               isKeyActive 
                 ? 'bg-accent/10 border-accent/20 text-accent' 
                 : 'bg-white/[0.03] border-white/[0.06] text-white/30'
@@ -798,7 +800,7 @@ function SearchOverlay({ isOpen, onClose }) {
         </div>
 
         {/* Right Arrow */}
-        <span className={`material-symbols-outlined text-[15px] shrink-0 transition-all duration-300 ${
+        <span className={`material-symbols-outlined text-[27px] shrink-0 transition-all duration-300 ${
           isKeyActive ? 'text-accent translate-x-1' : 'text-white/20'
         }`}>
           arrow_forward
@@ -828,14 +830,14 @@ function SearchOverlay({ isOpen, onClose }) {
 
           {/* ── Spotlight Center-Aligned Command Palette ── */}
           <motion.div
-            className="fixed left-1/2 z-[151] flex flex-col pointer-events-auto rounded-xl border border-white/[0.08] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.65)] overflow-hidden"
+            className="fixed left-1/2 z-[151] flex flex-col pointer-events-auto rounded-none border border-white/20 overflow-hidden"
             style={{
               x: '-50%',
               width: '90dvw',
               maxWidth: '680px',
               maxHeight: '70dvh',
-              background: 'rgba(11, 13, 20, 0.94)',
-              boxShadow: '0 0 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+              background: '#0a0a0a',
+              boxShadow: 'none',
             }}
             initial={{ scale: 0.96, opacity: 0, y: '30vh' }}
             animate={{ 
@@ -851,8 +853,8 @@ function SearchOverlay({ isOpen, onClose }) {
             <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-accent to-transparent shrink-0 opacity-80" />
 
             {/* ── Search Input Block ── */}
-            <div className="relative flex items-center h-[72px] px-5 bg-white/[0.01]">
-              <span className="material-symbols-outlined text-accent animate-pulse shrink-0 mr-4" style={{ fontSize: '22px' }}>search</span>
+            <div className="relative flex items-center h-[72px] px-5 bg-white/[0.01] border-b border-white/10">
+              <span className="material-symbols-outlined text-accent animate-pulse shrink-0 mr-4" style={{ fontSize: '34px' }}>search</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -867,12 +869,12 @@ function SearchOverlay({ isOpen, onClose }) {
                 {query && (
                   <button 
                     onClick={() => { setQuery(''); inputRef.current?.focus(); }} 
-                    className="p-1 rounded-full text-white/30 hover:text-white/70 hover:bg-white/[0.05] transition-all"
+                    className="p-1 rounded-none text-white/30 hover:text-white/70 hover:bg-white/[0.05] transition-all"
                   >
-                    <span className="material-symbols-outlined text-[17px]">close</span>
+                    <span className="material-symbols-outlined text-[29px]">close</span>
                   </button>
                 )}
-                <span className="font-label-caps text-[8px] text-white/25 border border-white/15 px-1.5 py-0.5 rounded tracking-wider select-none uppercase">ESC</span>
+                <span className="font-label-caps text-[8px] text-white/25 border border-white/15 px-1.5 py-0.5 rounded-none tracking-wider select-none uppercase">ESC</span>
               </div>
             </div>
 
@@ -886,7 +888,7 @@ function SearchOverlay({ isOpen, onClose }) {
                 {/* Case 1: No matches */}
                 {!hasResults && (
                   <div className="flex flex-col items-center justify-center py-12 gap-2.5">
-                    <span className="material-symbols-outlined text-[36px] text-white/10">search_off</span>
+                    <span className="material-symbols-outlined text-[56px] text-white/10">search_off</span>
                     <p className="font-body text-[13px] text-white/30">No matches found for <span className="text-accent">"{query}"</span></p>
                   </div>
                 )}
@@ -964,9 +966,9 @@ function SearchOverlay({ isOpen, onClose }) {
                 
                 {/* Result count strip at bottom */}
                 {hasResults && (
-                  <div className="px-5 py-2.5 bg-[#0f111a] border-t border-white/[0.04] flex justify-between items-center select-none shrink-0">
+                  <div className="px-5 py-2.5 bg-[#0d0d0d] border-t border-white/10 flex justify-between items-center select-none shrink-0">
                     <span className="font-label-caps text-[8px] text-white/15 tracking-[0.15em] uppercase">
-                      Use <span className="border border-white/10 px-1 py-0.2 rounded">↑↓</span> to navigate • <span className="border border-white/10 px-1 py-0.2 rounded">↵</span> to open
+                      Use <span className="border border-white/10 px-1 py-0.2 rounded-none">↑↓</span> to navigate • <span className="border border-white/10 px-1 py-0.2 rounded-none">↵</span> to open
                     </span>
                     <span className="font-label-caps text-[8px] text-white/25 tracking-[0.15em] uppercase">
                       {flatResults.length} matches found
@@ -980,6 +982,7 @@ function SearchOverlay({ isOpen, onClose }) {
       )}
     </AnimatePresence>
   );
+
 }
 
 
@@ -1079,7 +1082,7 @@ export function Header() {
                   {label}
                   {hasMega && (
                     <motion.span
-                      className="inline-flex items-center justify-center w-4 h-4 text-[16px] font-light leading-none"
+                      className="inline-flex items-center justify-center w-4 h-4 text-[20px] font-light leading-none"
                       animate={{ rotate: open === label ? 45 : 0 }}
                       transition={{ duration: 0.22, ease: EASE_OUT_QUART }}
                     >
@@ -1146,14 +1149,14 @@ export function Header() {
                   className="inline-flex items-center gap-2 font-label-caps text-[10px] tracking-[0.18em] uppercase text-secondary hover:text-accent border-b border-outline-variant hover:border-accent pb-0.5 transition-all duration-200 group"
                 >
                   {menu.cta.label}
-                  <span className="material-symbols-outlined text-[13px] group-hover:translate-x-0.5 transition-transform duration-200">
+                  <span className="material-symbols-outlined text-[24px] group-hover:translate-x-0.5 transition-transform duration-200">
                     arrow_forward
                   </span>
                 </Link>
               </div>
 
               {/* Section columns */}
-              <div className={`grid gap-x-8 gap-y-8 ${
+              <div className={`grid border-t border-l border-outline-variant/30 ${
                 open === 'Products'
                   ? 'grid-cols-2 md:grid-cols-4'
                   : 'grid-cols-1 md:grid-cols-3'

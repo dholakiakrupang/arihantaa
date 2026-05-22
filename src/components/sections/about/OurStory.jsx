@@ -70,14 +70,15 @@ export function OurStory() {
             </div>
 
             {/* Key pillars */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-outline-variant/30 gap-0">
               {['Technical Integrity', 'Global Expertise', 'Certified Excellence', 'Sustainability First'].map((pillar, i) => (
                 <motion.div key={pillar}
-                  className="flex items-center gap-2.5 group"
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  className="border-r border-b border-outline-variant/30 p-3.5 flex items-center gap-3.5 hover:bg-accent/[0.015] transition-all duration-300 group"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.15 + i * 0.07 }}>
+                  transition={{ duration: 0.4, delay: 0.15 + i * 0.05 }}
+                >
                   <div className="w-5 h-5 bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition-colors duration-300">
                     <span className="material-symbols-outlined text-[12px] text-accent group-hover:text-on-primary transition-colors duration-300">check</span>
                   </div>

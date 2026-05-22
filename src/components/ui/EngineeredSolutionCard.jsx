@@ -98,7 +98,7 @@ export function EngineeredSolutionCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1], delay: index * 0.05 }}
-      className="bg-white border border-outline/30 flex flex-col relative w-full group shadow-md hover:shadow-xl hover:border-accent/40 transition-all duration-500 overflow-hidden"
+      className="bg-white border border-outline/30 flex flex-col relative w-full shadow-md transition-all duration-500 overflow-hidden"
     >
       {/* ── Main Layout (Split Image/Content) ────────────────────────────── */}
       <div className="flex flex-col lg:flex-row w-full min-h-[300px]">
@@ -114,7 +114,7 @@ export function EngineeredSolutionCard({
               transition={{ duration: 0.8, ease: "easeOut" }}
               src={imageSrc}
               alt={imageAlt || title}
-              className="absolute inset-0 w-full h-full object-cover z-0 filter grayscale group-hover/img:grayscale-0 transition-all duration-500"
+              className="absolute inset-0 w-full h-full object-cover z-0 transition-all duration-500"
             />
           )}
           
@@ -216,7 +216,7 @@ export function EngineeredSolutionCard({
               <motion.span 
                 animate={{ rotate: isExpanded ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
-                className="material-symbols-outlined text-[15px] text-secondary group-hover/exp:text-accent transition-colors"
+                className="material-symbols-outlined text-[23px] text-secondary group-hover/exp:text-accent transition-colors"
               >
                 expand_more
               </motion.span>
@@ -232,7 +232,7 @@ export function EngineeredSolutionCard({
                 <span className="relative flex items-center">
                   {/* Icon — absolutely positioned to left, hidden by default */}
                   <span 
-                    className="material-symbols-outlined text-[13px] text-accent absolute right-full mr-1.5 opacity-0 -translate-x-1.5 group-hover/brochure:opacity-100 group-hover/brochure:translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                    className="material-symbols-outlined text-[21px] text-accent absolute right-full mr-1.5 opacity-0 -translate-x-1.5 group-hover/brochure:opacity-100 group-hover/brochure:translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
                   >
                     download
                   </span>
@@ -253,7 +253,7 @@ export function EngineeredSolutionCard({
                   </span>
                   {/* Icon — absolutely positioned to right, hidden by default */}
                   <span 
-                    className="material-symbols-outlined text-[13px] text-accent absolute left-full ml-1.5 opacity-0 translate-x-1.5 group-hover/support:opacity-100 group-hover/support:translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                    className="material-symbols-outlined text-[21px] text-accent absolute left-full ml-1.5 opacity-0 translate-x-1.5 group-hover/support:opacity-100 group-hover/support:translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
                   >
                     support_agent
                   </span>

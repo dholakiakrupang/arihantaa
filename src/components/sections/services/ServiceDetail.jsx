@@ -13,7 +13,7 @@ export function ServiceDetail({
   bgClass = 'bg-surface',
 }) {
   return (
-    <section id={id} className={`relative py-20 md:py-28 ${bgClass} overflow-hidden scroll-mt-20`}>
+    <section id={id} className={`relative py-20 md:py-28 ${bgClass} overflow-hidden scroll-mt-20 border-b border-outline-variant/30`}>
 
       {/* Faint section number watermark */}
       <span className="absolute top-8 right-8 font-headline text-[120px] md:text-[180px] font-black text-on-surface/[0.03] leading-none select-none pointer-events-none tracking-tighter">
@@ -91,13 +91,13 @@ export function ServiceDetail({
             </div>
 
             {/* Features grid */}
-            <div className="grid grid-cols-2 gap-x-6 gap-y-3 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-outline-variant/30 mb-10 gap-0">
               {features.map((feature, i) => (
                 <motion.div
                   key={i}
-                  className="flex items-center gap-2.5 group"
-                  initial={{ opacity: 0, x: -12 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  className="border-r border-b border-outline-variant/30 p-4 flex items-center gap-3 hover:bg-accent/[0.015] transition-all duration-300 group"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
                 >
