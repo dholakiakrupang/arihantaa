@@ -12,11 +12,11 @@ const pipeline = [
 
 export function CurrentPipeline() {
   return (
-    <section className="bg-inverse-surface py-24 px-6 md:px-12 lg:px-20">
+    <section className="bg-inverse-surface py-20 px-6 md:px-12 lg:px-20">
       <div className="max-w-[1440px] mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-white/10 pb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 border-b border-white/10 pb-6">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-6 h-px bg-accent" />
@@ -38,7 +38,7 @@ export function CurrentPipeline() {
             <thead>
               <tr className="border-b border-white/10">
                 {['#', 'Project', 'Client', 'Value', 'Duration', 'Status'].map((h) => (
-                  <th key={h} className={`pb-4 font-label-caps text-[9px] text-inverse-on-surface/30 tracking-[0.2em] font-normal ${h === 'Value' || h === 'Status' ? 'text-right' : 'text-left'} ${h !== '#' ? 'px-4' : ''}`}>
+                  <th key={h} className={`pb-3 font-label-caps text-[9px] text-inverse-on-surface/30 tracking-[0.2em] font-normal ${h === 'Value' || h === 'Status' ? 'text-right' : 'text-left'} ${h !== '#' ? 'px-4' : ''}`}>
                     {h}
                   </th>
                 ))}
@@ -54,18 +54,18 @@ export function CurrentPipeline() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                 >
-                  <td className="py-6 font-headline font-light text-2xl text-inverse-on-surface/15 w-10">
+                  <td className="py-4 font-headline font-light text-2xl text-inverse-on-surface/15 w-10">
                     {String(i + 1).padStart(2, '0')}
                   </td>
-                  <td className="py-6 px-4">
+                  <td className="py-4 px-4">
                     <span className="font-headline text-lg text-inverse-on-surface group-hover:text-accent transition-colors">
                       {row.name}
                     </span>
                   </td>
-                  <td className="py-6 px-4 font-body text-sm text-inverse-on-surface/50 font-light">{row.client}</td>
-                  <td className="py-6 px-4 text-right font-headline text-lg text-inverse-on-surface font-light">{row.value}</td>
-                  <td className="py-6 px-4 font-body text-sm text-inverse-on-surface/50 font-light">{row.duration}</td>
-                  <td className="py-6 pl-4 text-right">
+                  <td className="py-4 px-4 font-body text-sm text-inverse-on-surface/50 font-light">{row.client}</td>
+                  <td className="py-4 px-4 text-right font-headline text-lg text-inverse-on-surface font-light">{row.value}</td>
+                  <td className="py-4 px-4 font-body text-sm text-inverse-on-surface/50 font-light">{row.duration}</td>
+                  <td className="py-4 px-4 text-right">
                     <div className="inline-flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-ring" />
                       <span className="font-label-caps text-[9px] text-accent tracking-[0.16em]">LIVE</span>

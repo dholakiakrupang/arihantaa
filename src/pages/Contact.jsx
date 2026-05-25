@@ -75,16 +75,45 @@ export function Contact() {
       }
       
       const itemLower = decodedItem.toLowerCase();
-      if (itemLower.includes('ups') || itemLower.includes('power') || itemLower.includes('critical')) {
+      if (
+        itemLower.includes('ups') || 
+        itemLower.includes('power') || 
+        itemLower.includes('critical') || 
+        itemLower.includes('battery') || 
+        itemLower.includes('generator') || 
+        itemLower.includes('switchgear') || 
+        itemLower.includes('commission')
+      ) {
         newTopics['Critical Power (UPS)'] = true;
       }
-      if (itemLower.includes('cooling') || itemLower.includes('thermal') || itemLower.includes('chilled') || itemLower.includes('pcw')) {
+      if (
+        itemLower.includes('cooling') || 
+        itemLower.includes('thermal') || 
+        itemLower.includes('chilled') || 
+        itemLower.includes('pcw') || 
+        itemLower.includes('liquid')
+      ) {
         newTopics['Thermal Management'] = true;
       }
-      if (itemLower.includes('monitoring') || itemLower.includes('management') || itemLower.includes('digital') || itemLower.includes('infrastructure')) {
+      if (
+        itemLower.includes('monitoring') || 
+        itemLower.includes('management') || 
+        itemLower.includes('digital') || 
+        itemLower.includes('infrastructure') || 
+        itemLower.includes('remote') || 
+        itemLower.includes('telemetry') || 
+        itemLower.includes('optimiz') || 
+        itemLower.includes('performance')
+      ) {
         newTopics['Monitoring & Management'] = true;
       }
-      if (itemLower.includes('rack') || itemLower.includes('enclosure') || itemLower.includes('cabinet')) {
+      if (
+        itemLower.includes('rack') || 
+        itemLower.includes('enclosure') || 
+        itemLower.includes('cabinet') || 
+        itemLower.includes('spare') || 
+        itemLower.includes('parts')
+      ) {
         newTopics['Racks & Enclosures'] = true;
       }
     }

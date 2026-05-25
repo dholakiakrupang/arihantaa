@@ -1044,13 +1044,13 @@ export function Header() {
           {/* Logo — responsive sizing */}
           <Link
             to="/"
-            className="flex items-center flex-shrink-0 relative h-10 sm:h-12 md:h-14 w-[100px] sm:w-[120px] md:w-[160px]"
+            className="flex items-center flex-shrink-0 h-10 sm:h-12 md:h-14"
             onClick={() => { close(); closeMobile(); }}
           >
             <img
               src="/arihantaa-vertical-logo.png"
               alt="Arihantaa Powertech Logo"
-              className="absolute top-1/2 -translate-y-1/2 left-0 h-[60px] sm:h-[75px] md:h-[100px] w-auto object-contain max-w-none"
+              className="h-full w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
             />
           </Link>
 

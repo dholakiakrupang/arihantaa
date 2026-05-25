@@ -11,9 +11,9 @@ const STATS = [
 
 export function LiveStatsBar() {
   return (
-    <section className="bg-surface border-b border-outline overflow-hidden">
+    <section className="bg-surface overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 divide-x divide-outline">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-l border-outline-variant/30 gap-0">
           {STATS.map((stat, i) => (
             <StatCard
               key={i}

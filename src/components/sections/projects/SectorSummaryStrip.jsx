@@ -13,11 +13,11 @@ const SECTORS = [
 
 export function SectorSummaryStrip() {
   return (
-    <section className="bg-surface py-24 px-6 md:px-12 lg:px-20 border-t border-outline-variant/30">
+    <section className="bg-surface py-16 md:py-20 px-6 md:px-12 lg:px-20 border-t border-outline-variant/30">
       <div className="max-w-[1440px] mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="w-6 h-px bg-accent" />
@@ -45,12 +45,12 @@ export function SectorSummaryStrip() {
             >
               <Link
                 to={`/sectors/${sector.title.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group h-full bg-surface p-8 flex flex-col gap-6 hover:bg-surface-container-lowest transition-colors duration-300 block"
+                className="group h-full bg-surface p-6 flex flex-col gap-4 hover:bg-surface-container-lowest transition-colors duration-300 block"
               >
                 {/* Top row */}
                 <div className="flex items-start justify-between">
-                  <div className="w-12 h-12 border border-outline-variant/50 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all duration-300">
-                    <span className="material-symbols-outlined text-[24px] text-secondary group-hover:text-white transition-colors">
+                  <div className="text-secondary group-hover:text-accent group-hover:scale-105 transition-all duration-300 select-none">
+                    <span className="material-symbols-outlined text-[28px] md:text-[32px]">
                       {sector.icon}
                     </span>
                   </div>

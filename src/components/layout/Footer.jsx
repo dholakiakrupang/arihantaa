@@ -50,12 +50,12 @@ export function Footer() {
         <div className="flex flex-col lg:flex-row lg:items-stretch gap-16 lg:gap-0 mb-24">
           
           {/* Brand & Info */}
-          <div className="flex-shrink-0 lg:w-[320px] lg:pr-16 flex flex-col justify-between">
-            <Link to="/" className="inline-block">
+          <div className="flex-shrink-0 lg:w-[320px] lg:pr-16 flex flex-col gap-6 items-start">
+            <Link to="/" className="w-full block">
               <img 
                 src="/arihantaa-vertical-logo.png" 
                 alt="Arihantaa Powertech Logo" 
-                className="h-[160px] w-auto object-contain grayscale brightness-200" 
+                className="w-full h-auto object-contain grayscale brightness-200 transition-transform duration-300 hover:scale-[1.02] origin-left" 
               />
             </Link>
             <p className="font-body text-[15px] leading-relaxed text-white/60 max-w-sm">

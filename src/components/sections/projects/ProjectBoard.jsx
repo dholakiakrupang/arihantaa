@@ -209,7 +209,7 @@ export function ProjectBoard() {
             )}
           </AnimatePresence>
 
-          <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] relative z-10 flex flex-col md:flex-row items-stretch min-h-[56px]">
+          <div className="relative z-10 flex flex-col md:flex-row items-stretch min-h-[56px]">
 
             {/* Left: Breadcrumb context + count */}
             <div className="flex items-center gap-2 text-[11px] font-medium text-secondary min-w-0 flex-grow px-4 md:px-6 py-3.5">

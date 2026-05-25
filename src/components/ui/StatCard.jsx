@@ -93,12 +93,6 @@ export function StatCard({
         )}
       </div>
 
-      {/* Bottom: accent line that grows on hover (for non-centered variant) */}
-      {!centered && (
-        <div className="relative z-10 mt-8 h-px w-full bg-outline-variant/30 overflow-hidden">
-          <div className="absolute left-0 top-0 h-full w-0 group-hover:w-full bg-accent transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]" />
-        </div>
-      )}
     </motion.div>
   );
 }

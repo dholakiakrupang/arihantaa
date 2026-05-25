@@ -8,6 +8,8 @@ const sectors = [
   { id: 'monitoring-management', num: '04', label: 'Monitoring & Mgmt', icon: 'monitoring' },
 ];
 
+const doubledSectors = [...sectors, ...sectors, ...sectors, ...sectors];
+
 const telemetryData = {
   'critical-power': {
     status: 'ACTIVE',
@@ -35,6 +37,23 @@ const defaultTelemetry = {
   status: 'ONLINE',
   readout: 'ARIHANTAA CORE SYSTEM // CONNECTING TO GRID...',
   ticker: '◆ ARIHANTAA DIGITAL CONSOLE v2.10 ◆ READY TO ESTABLISH LINK ◆ CRITICAL POWER ◆ THERMAL MANAGEMENT ◆ RACKS & ENCLOSURES ◆ MONITORING & MANAGEMENT ◆ SELECT UNIT TO INSPECT'
+};
+
+const renderTickerText = (tickerText) => {
+  const parts = tickerText.split('◆').map(p => p.trim()).filter(Boolean);
+  return (
+    <>
+      {parts.map((part, index) => (
+        <span key={index} className="inline-flex items-center gap-3">
+          <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse">◆</span>
+          <span className="text-white font-mono text-[10.5px] md:text-[12px] tracking-[0.18em] uppercase font-semibold">
+            {part}
+          </span>
+        </span>
+      ))}
+      <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse ml-3">◆</span>
+    </>
+  );
 };
 
 function SectorSVG({ id, isActive }) {
@@ -200,20 +219,25 @@ export function ProductsStickyNav() {
         </div>
       </div>
 
-      {/* Bottom Telemetry Scrolling Stripe */}
-      <div className="overflow-hidden border-t border-white/5 py-1 bg-black/45">
-        <div className="relative flex items-center overflow-hidden h-[18px]">
-          <div
-            className="flex gap-16 items-center whitespace-nowrap w-max"
-            style={{ animation: 'productsMarquee 30s linear infinite' }}
-          >
-            <span className="font-mono text-[9px] tracking-[0.15em] text-accent/60 uppercase">
-              {currentTelemetry.ticker}
+      {/* Subtle marquee ticker at the bottom — purely decorative, shows all product sector names looping */}
+      <div className="overflow-hidden border-t border-white/5 py-1.5 bg-inverse-surface/80">
+        <div
+          className="flex gap-8 items-center whitespace-nowrap w-max"
+          style={{ animation: 'productsMarquee 35s linear infinite' }}
+        >
+          {doubledSectors.map((sec, i) => (
+            <span key={i} className="flex items-center gap-8">
+              <button
+                onClick={(e) => handleNavClick(e, sec.id)}
+                className={`font-label-caps text-[10px] tracking-[0.18em] uppercase transition-colors duration-200 ${
+                  activeId === sec.id ? 'text-accent' : 'text-surface-variant/50 hover:text-accent'
+                }`}
+              >
+                {sec.num} — {sec.label}
+              </button>
+              <span className="text-accent/30 text-[10px] select-none">◆</span>
             </span>
-            <span className="font-mono text-[9px] tracking-[0.15em] text-accent/60 uppercase">
-              {currentTelemetry.ticker}
-            </span>
-          </div>
+          ))}
         </div>
       </div>
 

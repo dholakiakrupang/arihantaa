@@ -121,6 +121,23 @@ export function ServicesStickyNav() {
     }
   }, [activeId]);
 
+  const handleNavClick = (e, id) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 120; // offset to account for header + sticky nav heights
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Duplicate for seamless infinite marquee (only shown when nothing is active)
   const doubled = [...services, ...services];
 
@@ -136,58 +153,69 @@ export function ServicesStickyNav() {
           </span>
         </div>
 
-        {/* Scrollable clickable nav */}
-        <div ref={scrollContainerRef} className="flex overflow-x-auto scrollbar-hide flex-grow">
-          {services.map((svc) => {
-            const isActive = activeId === svc.id;
-            return (
-              <Link
-                key={svc.id}
-                id={`nav-item-${svc.id}`}
-                to={`/services/${svc.id}`}
-                className={`group relative flex items-center justify-start px-5 py-4 flex-shrink-0 border-r border-white/10 transition-all duration-300 outline-none ${
-                  isActive ? 'bg-black/30' : 'hover:bg-white/5'
-                }`}
-              >
-                {/* Active indicator bar */}
-                <div className={`absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300 ${
-                  isActive ? 'bg-accent' : 'bg-transparent group-hover:bg-white/20'
-                }`} />
+        {/* Scrollable clickable nav wrapper with gradient fades to gracefully mask scrolling edges */}
+        <div className="relative flex items-stretch flex-grow overflow-hidden">
+          {/* Left edge fade */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-inverse-surface to-transparent pointer-events-none z-10 select-none" />
 
-                {/* Corner bracket decorators */}
-                {isActive && (
-                  <>
-                    <span className="absolute top-1.5 left-1.5 font-mono text-[8px] text-accent/50 select-none">⌜</span>
-                    <span className="absolute top-1.5 right-1.5 font-mono text-[8px] text-accent/50 select-none">⌝</span>
-                    <span className="absolute bottom-1.5 left-1.5 font-mono text-[8px] text-accent/50 select-none">⌞</span>
-                    <span className="absolute bottom-1.5 right-1.5 font-mono text-[8px] text-accent/50 select-none">⌟</span>
-                  </>
-                )}
+          <div
+            ref={scrollContainerRef}
+            className="flex overflow-x-auto scrollbar-hide flex-grow scroll-smooth"
+          >
+            {services.map((svc) => {
+              const isActive = activeId === svc.id;
+              return (
+                <button
+                  key={svc.id}
+                  id={`nav-item-${svc.id}`}
+                  onClick={(e) => handleNavClick(e, svc.id)}
+                  className={`group relative flex items-center justify-start px-5 py-4 flex-shrink-0 border-r border-white/10 transition-all duration-300 outline-none ${
+                    isActive ? 'bg-black/30' : 'hover:bg-white/5'
+                  }`}
+                >
+                  {/* Active indicator bar */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300 ${
+                    isActive ? 'bg-accent' : 'bg-transparent group-hover:bg-white/20'
+                  }`} />
 
-                {/* Number */}
-                <span className={`font-mono text-[10px] tracking-wider transition-colors duration-300 mr-2 ${
-                  isActive ? 'text-accent' : 'text-surface-variant/40 group-hover:text-accent/70'
-                }`}>
-                  {svc.num}
-                </span>
+                  {/* Corner bracket decorators */}
+                  {isActive && (
+                    <>
+                      <span className="absolute top-1.5 left-1.5 font-mono text-[8px] text-accent/50 select-none">⌜</span>
+                      <span className="absolute top-1.5 right-1.5 font-mono text-[8px] text-accent/50 select-none">⌝</span>
+                      <span className="absolute bottom-1.5 left-1.5 font-mono text-[8px] text-accent/50 select-none">⌞</span>
+                      <span className="absolute bottom-1.5 right-1.5 font-mono text-[8px] text-accent/50 select-none">⌟</span>
+                    </>
+                  )}
 
-                {/* Divider dot */}
-                <span className={`w-1 h-1 rounded-full flex-shrink-0 transition-colors duration-300 mr-2 ${
-                  isActive ? 'bg-accent/70' : 'bg-surface-variant/20'
-                }`} />
+                  {/* Number */}
+                  <span className={`font-mono text-[10px] tracking-wider transition-colors duration-300 mr-2 ${
+                    isActive ? 'text-accent' : 'text-surface-variant/40 group-hover:text-accent/70'
+                  }`}>
+                    {svc.num}
+                  </span>
 
-                {/* Service Icon SVG */}
-                <ServiceSVG id={svc.id} isActive={isActive} />
+                  {/* Divider dot */}
+                  <span className={`w-1 h-1 rounded-full flex-shrink-0 transition-colors duration-300 mr-2 ${
+                    isActive ? 'bg-accent/70' : 'bg-surface-variant/20'
+                  }`} />
 
-                {/* Label */}
-                <span className={`font-label-caps text-[10px] tracking-[0.18em] uppercase whitespace-nowrap transition-colors duration-300 ${
-                  isActive ? 'text-inverse-on-surface' : 'text-surface-variant/70 group-hover:text-inverse-on-surface'
-                }`}>
-                  {svc.label}
-                </span>
-              </Link>
-            );
-          })}
+                  {/* Service Icon SVG */}
+                  <ServiceSVG id={svc.id} isActive={isActive} />
+
+                  {/* Label */}
+                  <span className={`font-label-caps text-[10px] tracking-[0.18em] uppercase whitespace-nowrap transition-colors duration-300 ${
+                    isActive ? 'text-inverse-on-surface' : 'text-surface-variant/70 group-hover:text-inverse-on-surface'
+                  }`}>
+                    {svc.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right edge fade */}
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-inverse-surface to-transparent pointer-events-none z-10 select-none" />
         </div>
       </div>
 
@@ -199,14 +227,14 @@ export function ServicesStickyNav() {
         >
           {doubled.map((svc, i) => (
             <span key={i} className="flex items-center gap-8">
-              <Link
-                to={`/services/${svc.id}`}
-                className={`font-label-caps text-[10px] tracking-[0.18em] uppercase transition-colors duration-200 ${
+              <button
+                onClick={(e) => handleNavClick(e, svc.id)}
+                className={`font-label-caps text-[10px] tracking-[0.18em] uppercase transition-colors duration-200 outline-none ${
                   activeId === svc.id ? 'text-accent' : 'text-surface-variant/50 hover:text-accent'
                 }`}
               >
                 {svc.num} — {svc.label}
-              </Link>
+              </button>
               <span className="text-accent/30 text-[10px] select-none">◆</span>
             </span>
           ))}

@@ -1,5 +1,4 @@
 import { ProductsHero } from '../components/sections/products/ProductsHero';
-import { ProductsTrustBar } from '../components/sections/products/ProductsTrustBar';
 import { ProductsStickyNav } from '../components/sections/products/ProductsStickyNav';
 import { ProductSectors } from '../components/sections/products/ProductSectors';
 import { UnifiedCTA } from '../components/sections/UnifiedCTA';
@@ -11,7 +10,6 @@ export function Products() {
   return (
     <>
       <ProductsHero />
-      <ProductsTrustBar />
       <ProductsStickyNav />
       <ProductSectors />
       <UnifiedCTA 

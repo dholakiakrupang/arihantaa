@@ -6,35 +6,7 @@ import { Button } from '../components/ui/Button';
 
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1];
 
-const sectorHeroImages = {
-  'critical-power': "https://lh3.googleusercontent.com/aida-public/AB6AXuCYzfnwnCVP9iBzA35pvF58Zbv6LpPN4QoLV5M6fqU1BLNzLEsmSLu5HPVPYfz9mcxzArrBz3WVniGQmCb9ZQPmx3f2D2kjq5mVNYoOEymJvHHxw9rVSgRQ_RV3cHYfVTj2AqyeRlyZAGRQL66qPukbhEn2gxpX51lEy0C52lkBz_V7d9k9FEZQuOcqj0S_hGjrzXgGpOZ_VWYQM-FfNCo-3M2-H-MOu2-sybDSu37IxEPxyE1S4HjBT79U9MMqnEiV0FoptlnVL50",
-  'thermal-management': "https://lh3.googleusercontent.com/aida-public/AB6AXuBs7GWrmO_Y24aIx0d_M368iwbT45iHy_7DqpZ7nch4fGcArhsG3Sgv3kEZJrQgufY4RuhkBeG0nzAVuZdo9xFBim7nRUdHZtnsUXXvA4N-7-sezh59f9vX1KfadhdMLz0Uj-yIVnI5c3gseMueQqUedxsfbbqL5ecgnT83a3xHXTG3h3mwsSqZyjqYaqua9ahuVxPAZbAQY0-mdX7ZKunjvj7d0CRfydIP5nD9glow6KMU8SoKRHqFaWIZB41-0SRYLfF8zA12KHQ",
-  'racks-enclosures': "https://lh3.googleusercontent.com/aida-public/AB6AXuDaZXpdbjLr9LR1AZHlH13OoPIe3jejJ5QnOcZ65UtIXTYGB3FhPhWEysa5L62jlOrhOuIauc30AyV27W61lMnslCrsaPW-417zxIv6lwC0psaVj4kKhOln4z4KLECJ_PGSJfsImraGudDu7PWlQES3CGRX27W8z1SbOwyT-mkSui_n_DpRCHOZJdsdHcWZ0ezqLgJkCeCvxXO-YSfJ6mNTUN7OMzS2PFmVWdky77FtgjIaJHenC1H4lGTuyumwdjVpcqwEBdaHTa0",
-  'monitoring-management': "https://lh3.googleusercontent.com/aida-public/AB6AXuAH-XlVfiUims4FuvWQyfp3g5yMEYAXu5W8L_8uYh3Ih-vc25CLSwk9L91FOzpyjX9h727SvBUjEjzTBhCUqwDEK-faQqg481UUBnRtczffpJoLP1anXLQSjSbywiM4hLy9c-vAl8gzbbFVe31jx7-8HSB9kHwjLH0vRwKB0OyvY4pt3NC36MyAoa6pk4iMwlo0D_85spL5SOVT7mbLmZ7U2qyW31OsCPbgwf07HCkxHWpuRz8t4jdBA3Ls1Smb_5Z8nhRvbQ7fLOY"
-};
 
-const sectorTelemetryNodes = {
-  'critical-power': [
-    { top: '35%', left: '45%', label: 'UPS BUS A // ACTIVE' },
-    { top: '65%', left: '70%', label: 'PF MODULE // 0.99' },
-    { top: '48%', left: '22%', label: 'TEMP // 24.2°C' }
-  ],
-  'thermal-management': [
-    { top: '28%', left: '55%', label: 'PCW TEMP // 7.2°C' },
-    { top: '58%', left: '32%', label: 'FLOW RATE // 14.5 L/s' },
-    { top: '72%', left: '68%', label: 'RETURN // 21.8°C' }
-  ],
-  'racks-enclosures': [
-    { top: '32%', left: '60%', label: 'ZONE 04 // SECURED' },
-    { top: '62%', left: '28%', label: 'AIR INTAKE // OK' },
-    { top: '50%', left: '75%', label: 'PDU LOAD // 12.8 kW' }
-  ],
-  'monitoring-management': [
-    { top: '30%', left: '35%', label: 'NOC LINK // 4.2ms' },
-    { top: '68%', left: '60%', label: 'CORE SYSTEM // OK' },
-    { top: '45%', left: '80%', label: 'NODES // 1,420 ACTIVE' }
-  ]
-};
 
 const getProjectImage = (tag) => {
   const tagLower = tag.toLowerCase();
@@ -103,8 +75,8 @@ function ChallengeCard({ prob, idx, total }) {
       </div>
       
       {/* Icon badge */}
-      <div className="w-10 h-10 bg-accent/5 border border-accent/20 flex items-center justify-center shrink-0 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
-        <span className="material-symbols-outlined text-[22px]">{prob.icon}</span>
+      <div className="flex items-center justify-center shrink-0 text-accent pt-0.5 select-none">
+        <span className="material-symbols-outlined text-[26px] md:text-[30px] group-hover:scale-110 transition-transform duration-300">{prob.icon}</span>
       </div>
       
       {/* Content */}
@@ -123,7 +95,7 @@ function ChallengeCard({ prob, idx, total }) {
 export function SpecificSector() {
   const { sectorId } = useParams();
   const sector = sectorsData[sectorId];
-  const telemetryNodes = sectorTelemetryNodes[sectorId] || [];
+  const telemetryNodes = sector?.telemetryNodes || [];
   const [openAccordionIdx, setOpenAccordionIdx] = useState(0);
   const challengeSectionRef = useRef(null);
 
@@ -143,7 +115,60 @@ export function SpecificSector() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setOpenAccordionIdx(0);
+    
+    // Dynamically set default projectType in local form based on sectorId
+    let defaultType = 'Data Centre';
+    if (sectorId === 'critical-power') defaultType = 'Data Centre';
+    else if (sectorId === 'thermal-management') defaultType = 'Industrial';
+    else if (sectorId === 'racks-enclosures') defaultType = 'Data Centre';
+    else if (sectorId === 'monitoring-management') defaultType = 'Government';
+    
+    setFormState(prev => ({ ...prev, projectType: defaultType }));
   }, [sectorId]);
+
+  const renderHeadlineLine = (line, orangeWord) => {
+    if (!line) return null;
+    if (!orangeWord) return <span className="text-white">{line}</span>;
+
+    const orangeWordLower = orangeWord.toLowerCase();
+    const lineLower = line.toLowerCase();
+    
+    // Check if orangeWord is present in any of the 3 lines of the headline
+    const isOrangeWordPresent = [
+      sector.heroHeadline.line1,
+      sector.heroHeadline.line2,
+      sector.heroHeadline.line3
+    ].some(l => l && l.toLowerCase().includes(orangeWordLower));
+
+    if (isOrangeWordPresent) {
+      const idx = lineLower.indexOf(orangeWordLower);
+      if (idx !== -1) {
+        const before = line.substring(0, idx);
+        const match = line.substring(idx, idx + orangeWord.length);
+        const after = line.substring(idx + orangeWord.length);
+        return (
+          <>
+            <span className="text-white">{before}</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">{match}</span>
+            <span className="text-white">{after}</span>
+          </>
+        );
+      }
+      return <span className="text-white">{line}</span>;
+    } else {
+      // Prepend behavior fallback for critical-power
+      const isLastLine = line === sector.heroHeadline.line3;
+      if (isLastLine) {
+        return (
+          <>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">{orangeWord}</span>{' '}
+            <span className="text-white">{line.replace(orangeWord, '').trim()}</span>
+          </>
+        );
+      }
+      return <span className="text-white">{line}</span>;
+    }
+  };
 
   if (!sector) {
     return (
@@ -180,7 +205,7 @@ export function SpecificSector() {
     setOpenAccordionIdx(openAccordionIdx === idx ? null : idx);
   };
 
-  const heroImage = sectorHeroImages[sectorId] || "https://lh3.googleusercontent.com/aida-public/AB6AXuByKdJQFYxhdeQfgoVuKBQBOGbkiDqkvJ1yEAsBbhJ9sg9sFiJqCctfiINJaiAv94iEhcXGcpRnzFGFn9gONe81xv-Y8iRKVROHUjmbg4ddI6MuTm2pkSmGh2x9PQpS1JEEAsAYlWa_PqXB7q2C4z-xKqZg7pPbjHLb4-UA3qQqr-nVA6Zlqwe-QJo-fTSF1VnartNsKpc_aDC3Y0DHBaUcBOiEKo2qvUitDzVpykfjWSSiPGevQVfxSaGS4l6REQ6XvKZtkd4iRS4";
+  const heroImage = sector?.heroImage || "https://lh3.googleusercontent.com/aida-public/AB6AXuByKdJQFYxhdeQfgoVuKBQBOGbkiDqkvJ1yEAsBbhJ9sg9sFiJqCctfiINJaiAv94iEhcXGcpRnzFGFn9gONe81xv-Y8iRKVROHUjmbg4ddI6MuTm2pkSmGh2x9PQpS1JEEAsAYlWa_PqXB7q2C4z-xKqZg7pPbjHLb4-UA3qQqr-nVA6Zlqwe-QJo-fTSF1VnartNsKpc_aDC3Y0DHBaUcBOiEKo2qvUitDzVpykfjWSSiPGevQVfxSaGS4l6REQ6XvKZtkd4iRS4";
 
   return (
     <div className="font-body selection:bg-accent selection:text-white bg-surface">
@@ -206,277 +231,207 @@ export function SpecificSector() {
         }
       `}</style>
 
-      {/* ═══════════════════════════════════════════════════════════════════
-          HERO — Redesigned Premium Telemetry HUD Splitted Section (Asymmetric Box Layout)
-      ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full bg-[#0a0a0a] overflow-hidden flex flex-col min-h-[90vh]">
-
-        {/* Ambient warm orange spotlight glows */}
-        <div aria-hidden className="absolute inset-0 pointer-events-none z-0">
-          <motion.div
-            className="absolute -top-[30%] -left-[10%] w-[60%] h-[70%] rounded-full animate-pulse"
-            style={{
-              background: 'radial-gradient(ellipse, rgba(233,101,43,0.12) 0%, transparent 70%)',
-              filter: 'blur(100px)',
-            }}
+      <section
+        className="relative w-full bg-[#080808] overflow-hidden flex flex-col"
+        style={{ minHeight: '100svh' }}
+      >
+        {/* ── Full-bleed right image panel */}
+        <motion.div
+          className="hidden lg:block absolute top-0 right-0 w-[48%] h-full z-0 overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <motion.img
+            src={heroImage}
+            alt={sector.title}
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            initial={{ scale: 1.06 }}
+            animate={{ scale: 1.02 }}
+            transition={{ duration: 1.4, ease: [0.25, 1, 0.5, 1] }}
           />
-        </div>
+          <div className="absolute inset-0 pointer-events-none z-10"
+            style={{ background: 'linear-gradient(to right, rgba(8,8,8,0.78) 0%, rgba(8,8,8,0.2) 30%, transparent 60%)' }} />
+          <div className="absolute inset-0 pointer-events-none z-10"
+            style={{ background: 'linear-gradient(to top, rgba(8,8,8,0.90) 0%, rgba(8,8,8,0.3) 28%, transparent 55%)' }} />
+          <div className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
+            style={{ background: 'linear-gradient(to bottom, rgba(8,8,8,0.82) 0%, transparent 100%)' }} />
 
-        {/* ── Vertical divider line down screen */}
-        <div
-          aria-hidden
-          className="hidden lg:block absolute top-0 left-[55%] w-px h-full bg-gradient-to-b from-transparent via-white/8 to-transparent z-10"
-        />
-
-        <div className="relative z-10 flex flex-col flex-1">
-          {/* Top spacer for header protection */}
-          <div className="min-h-[88px] md:min-h-[96px]" />
-
-          <div className="flex flex-col lg:flex-row flex-1 items-center max-w-[1440px] mx-auto w-full px-8 md:px-16 pb-16 pt-[20px] gap-12 lg:gap-0">
-
-            {/* ── LEFT COLUMN: Content & CTAs ── */}
-            <div className="w-full lg:w-[55%] flex flex-col gap-8 min-w-0 lg:pr-8">
-              
-              {/* Breadcrumb */}
-              <motion.nav
-                className="flex items-center gap-2"
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
-                <span className="material-symbols-outlined text-white/30 text-[17px]">chevron_right</span>
-                <Link to="/products" className="font-label-caps text-[10px] text-white/30 tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Products</Link>
-                <span className="material-symbols-outlined text-white/30 text-[17px]">chevron_right</span>
-                <span className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase font-bold">{sector.tag}</span>
-              </motion.nav>
-
-              {/* Eyebrow */}
-              <motion.div
-                className="flex items-center gap-3"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
-              >
-                <div className="h-[1px] w-8 bg-accent" />
-                <span className="font-label-caps text-[10px] text-accent tracking-[0.28em] uppercase font-bold">
-                  Sector Expertise
-                </span>
-              </motion.div>
-
-              {/* Headline — word-by-word staggered reveal */}
-              <h1 className="font-headline font-black uppercase leading-[0.88] tracking-tighter">
-                {[sector.heroHeadline.line1, sector.heroHeadline.line2, sector.heroHeadline.line3].map((line, i) => (
-                  <div key={i} className="overflow-hidden block w-max max-w-full">
-                    <motion.span
-                      className={[
-                        'block text-[clamp(24px,4.5vw,66px)]',
-                        i === 2 ? '' : 'text-white',
-                      ].join(' ')}
-                      initial={{ y: '110%', opacity: 0 }}
-                      animate={{ y: '0%', opacity: 1 }}
-                      transition={{ duration: 0.9, delay: 0.2 + i * 0.13, ease: [0.25, 1, 0.5, 1] }}
-                    >
-                      {i === 2 ? (
-                        <>
-                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">{sector.heroHeadline.orangeWord}</span>{' '}
-                          <span className="text-white">{line.replace(sector.heroHeadline.orangeWord, '').trim()}</span>
-                        </>
-                      ) : line}
-                    </motion.span>
-                  </div>
-                ))}
-              </h1>
-
-              {/* Accent underline */}
-              <motion.div
-                className="h-[3px] w-16 bg-accent"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-                style={{ originX: 0 }}
-              />
-
-              {/* Description */}
-              <motion.p
-                className="font-body text-base md:text-lg text-white/55 max-w-md leading-relaxed font-light"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.65, ease: [0.25, 1, 0.5, 1] }}
-              >
-                {sector.heroDescription}
-              </motion.p>
-
-              {/* CTA Row */}
-              <motion.div
-                className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mt-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
-              >
-                <Button
-                  onClick={() => document.getElementById('consult')?.scrollIntoView({ behavior: 'smooth' })}
-                  variant="primary"
-                  theme="dark"
-                  sweepBg="bg-[#0a0a0a]"
-                  size="lg"
-                  className="rounded-none shadow-2xl shadow-accent/25 text-[10px] tracking-[0.2em] font-bold"
-                >
-                  GET A FREE CONSULTATION
-                </Button>
-                <button
-                  onClick={() => document.getElementById('proof')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
-                >
-                  <span className="relative overflow-hidden inline-block">
-                    <span className="block group-hover:-translate-y-full transition-transform duration-300">VIEW PAST PROJECTS</span>
-                    <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">VIEW PAST PROJECTS</span>
-                  </span>
-                  <span className="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-y-1">
-                    arrow_downward
-                  </span>
-                </button>
-              </motion.div>
+          {/* Image label overlay */}
+          <motion.div
+            className="absolute left-10 z-20"
+            style={{ bottom: 'calc(72px + 28px)' }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-5 h-px bg-accent" />
+              <span className="font-label-caps text-[9px] text-accent tracking-[0.22em] uppercase font-bold">{sector.tag}</span>
             </div>
+            <p className="font-headline text-[20px] font-black uppercase text-white leading-tight tracking-tight max-w-[260px]">
+              {sector.title}
+            </p>
+          </motion.div>
+        </motion.div>
 
-            {/* ── RIGHT COLUMN: Padded Scope Box Container ── */}
-            <div className="w-full lg:w-[45%] flex items-center justify-center lg:pl-12 relative z-10">
-              
-              {/* Outer glow frame (perfect replica of ProjectsHero structural box) */}
-              <div className="relative w-full max-w-[480px] aspect-[4/3] border border-white/10 p-1.5 bg-[#070707] shadow-2xl">
-                
-                {/* Orange Corner SVG brackets from ProjectsHero */}
-                {['top-0 left-0', 'top-0 right-0 rotate-90', 'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'].map((pos, i) => (
-                  <motion.div
-                    key={i}
-                    className={`absolute ${pos} w-5 h-5`}
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 + i * 0.1, type: 'spring' }}
+        {/* ── Vertical divider */}
+        <div aria-hidden className="hidden lg:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none" />
+
+        {/* ── Left content */}
+        <div className="relative z-10 flex flex-col flex-1">
+          <div className="min-h-[88px] md:min-h-[96px] shrink-0" />
+
+          <div className="w-full flex flex-col flex-1">
+            <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-1 px-8 md:px-16">
+              <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-1 lg:pr-16">
+                <div className="flex flex-col gap-0">
+
+                  {/* Breadcrumb */}
+                  <motion.nav
+                    className="flex items-center gap-2 mb-6"
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
                   >
-                    <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
-                      <path d="M0 24 L0 0 L24 0" stroke="rgba(233,101,43,0.7)" strokeWidth="2" />
-                    </svg>
+                    <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
+                    <span className="material-symbols-outlined text-white/35 text-[14px]">chevron_right</span>
+                    <Link to="/products" className="font-label-caps text-[10px] text-white/35 tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Products</Link>
+                    <span className="material-symbols-outlined text-white/35 text-[14px]">chevron_right</span>
+                    <span className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase font-bold">{sector.tag}</span>
+                  </motion.nav>
+
+                  {/* Eyebrow */}
+                  <motion.div
+                    className="flex items-center gap-3 mb-5"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
+                  >
+                    <div className="w-8 h-px bg-accent" />
+                    <span className="font-label-caps text-[10px] text-accent tracking-[0.28em] uppercase font-bold">
+                      Sector Expertise
+                    </span>
                   </motion.div>
-                ))}
 
-                {/* Micro panel label hovering at top-left */}
-                <motion.div
-                  className="absolute -top-6 left-0 font-label-caps text-[9px] text-white/30 tracking-[0.25em]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                >
-                  SYSTEM TELEMETRY HUD — SEC.{sectorId.toUpperCase()}
-                </motion.div>
-
-                {/* Inner Canvas Image wrapper */}
-                <div className="relative w-full h-full overflow-hidden bg-[#070707] group/hud flex items-center justify-center">
-                  <img
-                    src={heroImage}
-                    alt={sector.title}
-                    className="w-full h-full object-cover object-center transition-transform duration-[1200ms] ease-out group-hover/hud:scale-105"
-                    style={{ filter: 'brightness(0.55) saturate(0.8)' }}
-                    loading="eager"
-                  />
-                  {/* Protection Gradient overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/90 via-transparent to-[#0a0a0a]/20 pointer-events-none z-10" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/20 via-transparent to-transparent pointer-events-none z-10" />
-
-                  {/* High-Tech HUD Radial Vignette Mask */}
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_50%,#0a0a0a_98%)] pointer-events-none z-10" />
-
-                  {/* High-Tech Scope Tick Marks */}
-                  <div className="absolute inset-4 border border-white/5 pointer-events-none z-20">
-                    <div className="absolute top-1/2 left-0 w-2.5 h-[1px] bg-white/10 -translate-y-1/2" />
-                    <div className="absolute top-1/2 right-0 w-2.5 h-[1px] bg-white/10 -translate-y-1/2" />
-                    <div className="absolute top-0 left-1/2 w-[1px] h-2.5 bg-white/10 -translate-x-1/2" />
-                    <div className="absolute bottom-0 left-1/2 w-[1px] h-2.5 bg-white/10 -translate-x-1/2" />
-                  </div>
-
-                  {/* Telematic Sensor Nodes */}
-                  <div className="absolute inset-0 z-20">
-                    {telemetryNodes.map((node, idx) => (
-                      <div
-                        key={idx}
-                        className="absolute group/node select-none"
-                        style={{ top: node.top, left: node.left }}
-                      >
-                        {/* Pulsing Sonar Ring */}
-                        <span className="absolute -left-2 -top-2 w-4 h-4 rounded-full bg-accent/30 animate-sonar-pulse" />
-                        <span className="relative block w-2 h-2 rounded-full bg-accent border border-white shadow-[0_0_6px_#ff6b00]" />
-                        
-                        {/* Hover telemetry label */}
-                        <div className="absolute top-1/2 left-3 -translate-y-1/2 bg-[#0d0d0d]/90 border border-white/10 px-2 py-0.5 whitespace-nowrap pointer-events-none shadow-lg">
-                          <span className="font-label-caps text-[8px] text-white tracking-widest font-bold">
-                            {node.label}
-                          </span>
-                        </div>
+                  {/* Headline — word-by-word staggered reveal */}
+                  <h1 className="font-headline font-black uppercase leading-[0.92] tracking-tighter mb-7">
+                    {[sector.heroHeadline.line1, sector.heroHeadline.line2, sector.heroHeadline.line3].map((line, i) => (
+                      <div key={i} className="overflow-hidden block w-max max-w-full">
+                        <motion.span
+                          className={[
+                            'block text-[clamp(28px,4.5vw,68px)]',
+                            (() => {
+                              const orangeWord = sector.heroHeadline.orangeWord;
+                              if (!line || !orangeWord) return 'text-white';
+                              const isOrangeWordPresent = [
+                                sector.heroHeadline.line1,
+                                sector.heroHeadline.line2,
+                                sector.heroHeadline.line3
+                              ].some(l => l && l.toLowerCase().includes(orangeWord.toLowerCase()));
+                              if (isOrangeWordPresent) {
+                                  return line.toLowerCase().includes(orangeWord.toLowerCase()) ? '' : 'text-white';
+                              }
+                              return i === 2 ? '' : 'text-white';
+                            })()
+                          ].join(' ')}
+                          initial={{ y: '110%', opacity: 0 }}
+                          animate={{ y: '0%', opacity: 1 }}
+                          transition={{ duration: 0.9, delay: 0.2 + i * 0.13, ease: [0.25, 1, 0.5, 1] }}
+                        >
+                          {renderHeadlineLine(line, sector.heroHeadline.orangeWord)}
+                        </motion.span>
                       </div>
                     ))}
-                  </div>
+                  </h1>
+
+                  {/* Description */}
+                  <motion.p
+                    className="font-body text-base md:text-lg text-white/50 leading-relaxed font-light w-full mb-9"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    {sector.heroDescription}
+                  </motion.p>
+
+                  {/* Separator line */}
+                  <motion.div
+                    className="w-full h-px bg-white/8 mb-9"
+                    initial={{ scaleX: 0, originX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.7, delay: 0.5 }}
+                  />
+
+                  {/* CTA Row */}
+                  <motion.div
+                    className="flex flex-wrap items-center gap-5"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.7, delay: 0.65 }}
+                  >
+                    <Button
+                      onClick={() => document.getElementById('consult')?.scrollIntoView({ behavior: 'smooth' })}
+                      variant="primary"
+                      theme="dark"
+                      sweepBg="bg-[#080808]"
+                      size="lg"
+                      className="rounded-none shadow-2xl shadow-accent/25 text-[10px] tracking-[0.2em] font-bold"
+                    >
+                      GET A FREE CONSULTATION
+                    </Button>
+                    <button
+                      onClick={() => document.getElementById('proof')?.scrollIntoView({ behavior: 'smooth' })}
+                      className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
+                    >
+                      <span className="relative overflow-hidden inline-block">
+                        <span className="block group-hover:-translate-y-full transition-transform duration-300">VIEW PAST PROJECTS</span>
+                        <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">VIEW PAST PROJECTS</span>
+                      </span>
+                      <span className="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-x-1">
+                        arrow_forward
+                      </span>
+                    </button>
+                  </motion.div>
+
                 </div>
-
-                {/* Floating overlap badge: ISO Quality (overlapping the bottom-left edge) */}
-                <Badge
-                  icon="verified"
-                  label="Certified Quality"
-                  value="ISO 9001 : 2015"
-                  delay={1.2}
-                  className="-bottom-6 -left-6 md:-left-10"
-                />
-
-                {/* Floating overlap badge: Division Tag (overlapping the top-right edge) */}
-                <Badge
-                  icon="electric_bolt"
-                  label={sector.tag}
-                  value="Specialist Division"
-                  delay={1.4}
-                  className="-top-6 -right-6 md:-right-10"
-                />
-
               </div>
             </div>
-
           </div>
 
-          {/* Full-width Stats Ticker Grid Row (Refined Technical Ledger) */}
-          <div className="col-span-12 grid grid-cols-2 lg:grid-cols-4 gap-0 border-t border-white/10">
+        </div>
+
+        {/* ── Bottom Stats Bar */}
+        <motion.div
+          className="w-full border-t border-white/10 bg-[#080808]/95 backdrop-blur-md shrink-0 relative z-30"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.95 }}
+        >
+          <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
             {sector.contextStats.map((stat, idx) => (
-              <div 
-                key={idx} 
-                className="p-6 md:p-8 hover:bg-white/[0.015] transition-all duration-300 border-r border-b border-white/10 last:border-r-0 relative group/stat overflow-hidden"
-              >
-                {/* Micro accent top bar */}
-                <div className="absolute top-0 left-0 w-0 h-[2px] bg-accent group-hover/stat:w-full transition-all duration-500 ease-out" />
-                
-                {/* Index tag */}
-                <span className="font-mono text-[9px] text-white/20 block mb-4 tracking-[0.2em] font-bold select-none">
-                  [{String(idx + 1).padStart(2, '0')}]
-                </span>
-                
-                <div className="font-headline text-[26px] md:text-[32px] text-accent font-black leading-none mb-1.5 transition-transform duration-300 group-hover/stat:translate-x-1">
+              <div key={idx} className="px-6 py-5 flex flex-col justify-center">
+                <span className="font-headline text-[18px] md:text-[22px] font-black text-accent tracking-tight leading-none mb-1">
                   {stat.value}
-                </div>
-                <div className="font-label-caps text-[9px] text-white/40 tracking-[0.2em] uppercase leading-relaxed max-w-[200px]">
+                </span>
+                <span className="font-label-caps text-[9px] text-white/40 tracking-wider uppercase leading-none">
                   {stat.label}
-                </div>
+                </span>
               </div>
             ))}
           </div>
-
-        </div>
+        </motion.div>
       </section>
 
 
       {/* ═══════════════════════════════════════════════════════════════════
           CHALLENGES — Sticky left heading + Zero-gap right grid
       ═══════════════════════════════════════════════════════════════════ */}
-      <section ref={challengeSectionRef} className="relative py-28 md:py-36 bg-surface overflow-hidden border-b border-outline-variant/30">
+      <section ref={challengeSectionRef} className="relative py-28 md:py-36 bg-surface border-b border-outline-variant/30">
 
-        {/* Giant watermark */}
-        <div className="absolute top-16 md:top-24 left-8 md:left-16 pointer-events-none select-none z-0">
-          <span className="text-[120px] sm:text-[180px] md:text-[240px] lg:text-[280px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
+        {/* Giant watermark — wrapped in its own overflow-hidden container so it clips without breaking sticky */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none select-none z-0">
+          <span className="absolute top-16 md:top-24 left-8 md:left-16 text-[120px] sm:text-[180px] md:text-[240px] lg:text-[280px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
             RISK
           </span>
         </div>
@@ -485,8 +440,8 @@ export function SpecificSector() {
           <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
 
             {/* ─── LEFT: Sticky heading panel ─── */}
-            <div className="w-full lg:w-[38%] shrink-0">
-              <div className="lg:sticky lg:top-28">
+            <div className="w-full lg:w-[38%] shrink-0 lg:sticky lg:top-[130px] lg:self-start lg:h-fit">
+              <div>
 
                 {/* Eyebrow */}
                 <div className="flex items-center gap-3 mb-5">
@@ -499,20 +454,10 @@ export function SpecificSector() {
                   {sector.problemHeader.headline}
                 </h2>
 
-                <p className="font-body text-[16px] leading-relaxed text-secondary mb-10 max-w-md">
+                <p className="font-body text-[16px] leading-relaxed text-secondary mb-0 max-w-md">
                   {sector.problemHeader.subhead}
                 </p>
 
-                {/* Scroll progress indicator (desktop only) */}
-                <div className="hidden lg:flex items-center gap-4">
-                  <div className="relative w-[3px] h-[120px] bg-outline-variant/20 overflow-hidden">
-                    <motion.div className="absolute top-0 left-0 w-full bg-accent origin-top" style={{ height: progressHeight }} />
-                  </div>
-                  <div>
-                    <div className="font-headline text-[36px] text-accent font-black leading-none">{sector.problems.length}</div>
-                    <div className="font-label-caps text-[9px] text-secondary tracking-[0.2em] uppercase mt-1">Critical Risks</div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -644,9 +589,9 @@ export function SpecificSector() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="w-10 h-10 bg-accent/5 border border-accent/20 flex items-center justify-center shrink-0 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                      <span className="material-symbols-outlined text-[22px]">{node.icon}</span>
-                    </span>
+                    <div className="flex items-center justify-center shrink-0 text-accent select-none">
+                      <span className="material-symbols-outlined text-[26px] md:text-[30px] group-hover:scale-110 transition-transform duration-300">{node.icon}</span>
+                    </div>
                     <span className="font-mono text-[12px] text-accent/60 font-bold select-none">{String(idx + 1).padStart(2, '0')}</span>
                   </div>
                   <h4 className="font-headline text-[13px] text-on-surface font-black uppercase tracking-[0.05em] mb-4 border-b border-outline-variant/20 pb-3">{node.title}</h4>
@@ -674,8 +619,8 @@ export function SpecificSector() {
                 transition={{ duration: 0.4, delay: (idx % 3) * 0.06 }}
                 className="border-r border-b border-outline-variant/30 p-8 flex flex-col h-full hover:bg-accent/[0.015] transition-colors duration-300 group"
               >
-                <div className="w-12 h-12 bg-surface-container-low border border-outline-variant/30 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                  <span className="material-symbols-outlined text-[26px]">{prod.icon}</span>
+                <div className="flex items-start mb-6 text-accent select-none">
+                  <span className="material-symbols-outlined text-[30px] md:text-[34px] group-hover:scale-110 transition-transform duration-300">{prod.icon}</span>
                 </div>
                 <h4 className="font-headline text-[17px] text-on-surface font-extrabold tracking-tight mb-3 uppercase">{prod.title}</h4>
                 <p className="font-body text-[14px] text-secondary mb-6 flex-grow leading-relaxed">{prod.desc}</p>

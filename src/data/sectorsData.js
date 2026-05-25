@@ -8,7 +8,13 @@ export const sectorsData = {
       line3: 'We Ensure It Doesn\'t.',
       orangeWord: 'Uninterrupted' // We'll inject this dynamically in the component or handle it manually
     },
-    heroDescription: 'Critical power infrastructure is the backbone of every facility where downtime carries human, financial, or operational consequences — hospitals, data centres, airports, industrial plants, and government complexes. Arihantaa Powertech designs, installs, and maintains the complete critical power chain: from utility intake and HT switching to UPS systems, battery banks, static transfer switches, and precision distribution — with 30 years of proven execution across India\'s most demanding environments.',
+    heroImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuCYzfnwnCVP9iBzA35pvF58Zbv6LpPN4QoLV5M6fqU1BLNzLEsmSLu5HPVPYfz9mcxzArrBz3WVniGQmCb9ZQPmx3f2D2kjq5mVNYoOEymJvHHxw9rVSgRQ_RV3cHYfVTj2AqyeRlyZAGRQL66qPukbhEn2gxpX51lEy0C52lkBz_V7d9k9FEZQuOcqj0S_hGjrzXgGpOZ_VWYQM-FfNCo-3M2-H-MOu2-sybDSu37IxEPxyE1S4HjBT79U9MMqnEiV0FoptlnVL50",
+    telemetryNodes: [
+      { top: '35%', left: '45%', label: 'UPS BUS A // ACTIVE' },
+      { top: '65%', left: '70%', label: 'PF MODULE // 0.99' },
+      { top: '48%', left: '22%', label: 'TEMP // 24.2°C' }
+    ],
+    heroDescription: 'Critical power infrastructure is the backbone of high-stakes facilities like data centres, hospitals, and airports where downtime is not an option. We design, install, and maintain the entire critical power chain with 30 years of proven execution across India.',
     contextStats: [
       { value: '₹97.53 Cr', label: 'SINGLE LARGEST ELECTRICAL CONTRACT' },
       { value: '22+', label: 'CRITICAL POWER PROJECTS ACTIVE' },
@@ -196,6 +202,12 @@ export const sectorsData = {
     tag: 'THERMAL MANAGEMENT',
     title: 'Thermal Management & Cooling',
     heroHeadline: { line1: 'Keep Computing Clusters', line2: 'Running at', line3: 'Peak Efficiency.', orangeWord: 'Peak' },
+    heroImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuBs7GWrmO_Y24aIx0d_M368iwbT45iHy_7DqpZ7nch4fGcArhsG3Sgv3kEZJrQgufY4RuhkBeG0nzAVuZdo9xFBim7nRUdHZtnsUXXvA4N-7-sezh59f9vX1KfadhdMLz0Uj-yIVnI5c3gseMueQqUedxsfbbqL5ecgnT83a3xHXTG3h3mwsSqZyjqYaqua9ahuVxPAZbAQY0-mdX7ZKunjvj7d0CRfydIP5nD9glow6KMU8SoKRHqFaWIZB41-0SRYLfF8zA12KHQ",
+    telemetryNodes: [
+      { top: '28%', left: '55%', label: 'PCW TEMP // 7.2°C' },
+      { top: '58%', left: '32%', label: 'FLOW RATE // 14.5 L/s' },
+      { top: '72%', left: '68%', label: 'RETURN // 21.8°C' }
+    ],
     heroDescription: 'Arihantaa Powertech deploys state-of-the-art thermal engineering to keep high-density computing clusters running at peak efficiency. From containment solutions to high-capacity chilled water networks and direct-to-chip liquid loops, we eliminate thermal risks.',
     contextStats: [
       { value: '35%', label: 'COOLING EFFICIENCY BOOST' },
@@ -253,6 +265,12 @@ export const sectorsData = {
     tag: 'RACKS & ENCLOSURES',
     title: 'Racks & Physical Enclosures',
     heroHeadline: { line1: 'The Structural', line2: 'Physical Foundation.', line3: 'Built to Last.', orangeWord: 'Foundation' },
+    heroImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuDaZXpdbjLr9LR1AZHlH13OoPIe3jejJ5QnOcZ65UtIXTYGB3FhPhWEysa5L62jlOrhOuIauc30AyV27W61lMnslCrsaPW-417zxIv6lwC0psaVj4kKhOln4z4KLECJ_PGSJfsImraGudDu7PWlQES3CGRX27W8z1SbOwyT-mkSui_n_DpRCHOZJdsdHcWZ0ezqLgJkCeCvxXO-YSfJ6mNTUN7OMzS2PFmVWdky77FtgjIaJHenC1H4lGTuyumwdjVpcqwEBdaHTa0",
+    telemetryNodes: [
+      { top: '32%', left: '60%', label: 'ZONE 04 // SECURED' },
+      { top: '62%', left: '28%', label: 'AIR INTAKE // OK' },
+      { top: '50%', left: '75%', label: 'PDU LOAD // 12.8 kW' }
+    ],
     heroDescription: 'Our server frames and industrial cabinets provide the physical security, organization, and airflow optimization needed to house critical systems.',
     contextStats: [ { value: 'IP54-IP66', label: 'CABINET RATINGS' } ],
     problemHeader: { headline: 'Physical infrastructure cannot be an afterthought.', subhead: 'We provide the secure, structured environments your equipment requires.' },
@@ -271,6 +289,12 @@ export const sectorsData = {
     tag: 'MONITORING & MANAGEMENT',
     title: 'Monitoring & Intelligent Infrastructure',
     heroHeadline: { line1: 'Unified', line2: 'Operational', line3: 'Visibility.', orangeWord: 'Visibility' },
+    heroImage: "https://lh3.googleusercontent.com/aida-public/AB6AXuAH-XlVfiUims4FuvWQyfp3g5yMEYAXu5W8L_8uYh3Ih-vc25CLSwk9L91FOzpyjX9h727SvBUjEjzTBhCUqwDEK-faQqg481UUBnRtczffpJoLP1anXLQSjSbywiM4hLy9c-vAl8gzbbFVe31jx7-8HSB9kHwjLH0vRwKB0OyvY4pt3NC36MyAoa6pk4iMwlo0D_85spL5SOVT7mbLmZ7U2qyW31OsCPbgwf07HCkxHWpuRz8t4jdBA3Ls1Smb_5Z8nhRvbQ7fLOY",
+    telemetryNodes: [
+      { top: '30%', left: '35%', label: 'NOC LINK // 4.2ms' },
+      { top: '68%', left: '60%', label: 'CORE SYSTEM // OK' },
+      { top: '45%', left: '80%', label: 'NODES // 1,420 ACTIVE' }
+    ],
     heroDescription: 'Arihantaa Powertech bridges hardware and software to create responsive, automated facilities.',
     contextStats: [ { value: '100k+', label: 'DATA NODES MONITORED' } ],
     problemHeader: { headline: 'You cannot manage what you cannot see.', subhead: 'We illuminate your critical infrastructure.' },

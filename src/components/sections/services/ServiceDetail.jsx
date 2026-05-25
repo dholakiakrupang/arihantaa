@@ -113,7 +113,7 @@ export function ServiceDetail({
 
             {/* CTA */}
             <Link
-              to={`/services/${id}`}
+              to={`/contact?inquiry=quote&item=${encodeURIComponent(title)}`}
               className="inline-flex items-center gap-2 font-label-caps text-[11px] tracking-[0.15em] uppercase text-accent border-b border-accent pb-0.5 hover:gap-4 transition-all duration-300 w-fit group"
             >
               Request a Service Quote

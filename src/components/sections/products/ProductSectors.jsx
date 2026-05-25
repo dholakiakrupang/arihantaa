@@ -19,7 +19,7 @@ function SectorRow({ sector, index }) {
 
       {/* ── Top separator line ─────────────────────────────────────────────── */}
       <motion.div
-        className="w-full h-px bg-outline-variant/40 mb-16 md:mb-20"
+        className="w-full h-px bg-outline-variant/40 mb-16 md:mb-24"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true, margin: '-40px' }}
@@ -101,7 +101,7 @@ function SectorRow({ sector, index }) {
       </div>
 
       {/* ── Product cards grid ─────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30 gap-0 mb-20 md:mb-32">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30 gap-0 mb-16 md:mb-24">
         {sector.cards.map((card, cardIndex) => (
           <ProductCard
             key={card.id}
