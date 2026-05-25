@@ -118,7 +118,7 @@ export function Hero() {
             
             {/* Left Column: Editorial & Copy (52% width split, matching subpage heroes) */}
             <motion.div
-              className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0 lg:pr-12 xl:pr-20"
+              className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0"
               style={{ y: textY }}
             >
               {/* Eyebrow */}

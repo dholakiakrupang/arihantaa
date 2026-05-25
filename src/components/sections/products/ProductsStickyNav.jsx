@@ -135,7 +135,7 @@ export function ProductsStickyNav() {
   const currentTelemetry = telemetryData[activeId] || defaultTelemetry;
 
   return (
-    <nav className="sticky top-[62px] md:top-[66px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
+    <nav className="sticky top-[79px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
       <div className="flex items-stretch h-[54px] md:h-[58px]">
         {/* Fixed label pill */}
         <div className="flex-shrink-0 flex items-center gap-3 px-6 md:px-10 bg-accent border-r border-accent/40">

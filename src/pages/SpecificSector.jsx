@@ -235,7 +235,7 @@ export function SpecificSector() {
           <div className="flex flex-col lg:flex-row flex-1 items-center max-w-[1440px] mx-auto w-full px-8 md:px-16 pb-16 pt-[20px] gap-12 lg:gap-0">
 
             {/* ── LEFT COLUMN: Content & CTAs ── */}
-            <div className="w-full lg:w-[55%] flex flex-col gap-8 min-w-0 lg:pr-12 xl:pr-20">
+            <div className="w-full lg:w-[55%] flex flex-col gap-8 min-w-0 lg:pr-8">
               
               {/* Breadcrumb */}
               <motion.nav

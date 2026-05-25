@@ -79,11 +79,11 @@ export function ProjectEditorial({ editorial }) {
   };
 
   return (
-    <div className="w-full bg-surface px-6 md:px-12 lg:px-20 py-24 md:py-36 relative z-10 border-b border-outline-variant/30">
+    <div className="w-full bg-surface px-8 md:px-16 py-24 md:py-36 relative z-10 border-b border-outline-variant/30">
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative">
         
         {/* ── Mobile Nav Pill Row (Sticky Below Header) ── */}
-        <div className="lg:hidden col-span-1 w-full overflow-x-auto no-scrollbar flex gap-4 border-b border-outline-variant/40 pb-4 sticky top-[72px] bg-surface/90 backdrop-blur-md z-45 -mx-6 px-6">
+        <div className="lg:hidden col-span-1 w-full overflow-x-auto no-scrollbar flex gap-4 border-b border-outline-variant/40 pb-4 sticky top-[72px] bg-surface/90 backdrop-blur-md z-45 -mx-8 px-8">
           {navItems.map((item) => (
             <button
               key={item.id}

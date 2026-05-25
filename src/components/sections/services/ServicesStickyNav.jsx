@@ -125,7 +125,7 @@ export function ServicesStickyNav() {
   const doubled = [...services, ...services];
 
   return (
-    <nav className="sticky top-[62px] md:top-[66px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
+    <nav className="sticky top-[79px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
       <div className="flex items-stretch">
 
         {/* Fixed label pill */}

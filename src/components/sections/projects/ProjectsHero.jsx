@@ -334,7 +334,7 @@ export function ProjectsHero() {
 
           {/* ── LEFT: Text content */}
           <motion.div
-            className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0 lg:pr-12 xl:pr-20"
+            className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0"
             style={{ y: textY }}
           >
             {/* Breadcrumb */}

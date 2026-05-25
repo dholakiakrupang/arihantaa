@@ -37,7 +37,7 @@ export function ProductsHero() {
           
           {/* LEFT: Text content (52% width) */}
           <motion.div 
-            className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0 lg:pr-12 xl:pr-20"
+            className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0"
           >
             {/* Breadcrumb */}
             <motion.nav
