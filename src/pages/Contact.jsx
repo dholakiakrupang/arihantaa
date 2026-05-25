@@ -267,7 +267,7 @@ export function Contact() {
           CONTACT
         </motion.div>
         
-        <div className="max-w-[1440px] mx-auto relative z-10 w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center px-4 md:px-8">
+        <div className="max-w-[1440px] mx-auto relative z-10 w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center px-8 md:px-16">
           <div className="md:col-span-9 space-y-8">
             <motion.span 
               className="inline-block font-label-caps text-[11px] text-accent uppercase tracking-[0.25em] border border-accent/30 px-4 py-2 bg-accent/5 backdrop-blur-md"
@@ -301,7 +301,7 @@ export function Contact() {
       </section>
 
       {/* ── Consultation Matrix Section ───────────────────────────────── */}
-      <section className="py-24 px-8 md:px-16 bg-surface-container-lowest relative overflow-hidden">
+      <section className="py-24 bg-surface-container-lowest relative overflow-hidden">
         
         {/* Soft glowing mesh circles in background */}
         <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden z-0 opacity-40">
@@ -321,7 +321,7 @@ export function Contact() {
           />
         </div>
 
-        <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
           
           <motion.div 
             className="mb-16 border-l-2 border-accent pl-5 font-headline"
@@ -435,8 +435,8 @@ export function Contact() {
       </section>
 
       {/* ── Smart Form Section ────────────────────────────────────────── */}
-      <section className="py-24 px-8 md:px-16 bg-background border-t border-outline-variant/30" id="quote-form">
-        <div className="max-w-[1440px] mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16">
+      <section className="py-24 bg-background border-t border-outline-variant/30" id="quote-form">
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
           
           {/* Form Context */}
           <div className="lg:col-span-4 space-y-8">

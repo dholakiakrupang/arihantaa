@@ -4,7 +4,7 @@ import { Reveal } from '../../ui/Reveal';
 export function Certifications() {
   return (
     <section className="py-24 bg-inverse-surface">
-      <div className="max-w-[1440px] mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-12">
+      <div className="max-w-[1440px] mx-auto px-8 md:px-16 flex flex-col md:flex-row items-center justify-between gap-12">
         
         <Reveal>
           <h3 className="font-headline text-3xl md:text-5xl font-bold text-white max-w-xl">

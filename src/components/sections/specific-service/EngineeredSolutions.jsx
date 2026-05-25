@@ -112,7 +112,7 @@ export function EngineeredSolutions() {
       
       {/* ── Compact Category Strip (Gridless) ────────────────────────────────────────── */}
       <div className="relative pt-8 pb-8 bg-inverse-surface border-b border-outline/30 z-10">
-        <div className="max-w-[1440px] mx-auto px-8 lg:px-16 relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-12">
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-12">
           
           {/* Left Column: Navigation & Identification */}
           <div className="flex-1 min-w-0">
@@ -144,7 +144,7 @@ export function EngineeredSolutions() {
       </div>
 
       {/* ── Industrial Smart Sticky Toolbar ────────────────────────────────────────── */}
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-16 sticky top-[80px] z-40 mb-14">
+      <div className="max-w-[1440px] mx-auto px-8 md:px-16 sticky top-[80px] z-40 mb-14">
         
         {/* Invisible Click-Outside Detector (No blur or dimming) */}
         <AnimatePresence>
@@ -172,7 +172,7 @@ export function EngineeredSolutions() {
           <div className="flex items-stretch flex-shrink-0 border-t md:border-t-0 md:border-l border-outline-variant/30 divide-x divide-outline-variant/30">
             
             {/* Box 1: Search Container */}
-            <div className="relative flex items-center bg-transparent px-4 focus-within:bg-surface-container/20 transition-all duration-300 min-w-[200px] md:min-w-[220px] flex-grow md:flex-grow-0">
+            <div className="relative flex items-center bg-transparent px-3 focus-within:px-4 focus-within:bg-surface-container/20 transition-all duration-300 min-w-[110px] md:min-w-[220px] flex-grow md:flex-grow-0">
               <span className="material-symbols-outlined text-[16px] text-secondary/40 mr-2 flex-shrink-0">search</span>
               <input 
                 type="text" 
@@ -371,7 +371,7 @@ export function EngineeredSolutions() {
         </div>
 
       {/* ── Cards Grid ──────────────────────────────────────────────────────── */}
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-16 py-20 space-y-16">
+      <div className="max-w-[1440px] mx-auto px-8 md:px-16 py-20 space-y-16">
         {filteredSolutions.length > 0 ? (
           filteredSolutions.map((solution, idx) => (
             <EngineeredSolutionCard key={solution.id} index={idx} type="service" {...solution} />
@@ -386,7 +386,7 @@ export function EngineeredSolutions() {
       </div>
 
       {/* ── Premium Pagination ──────────────────────────────────────────────── */}
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-16 pb-32 flex items-center justify-center gap-8">
+      <div className="max-w-[1440px] mx-auto px-8 md:px-16 pb-32 flex items-center justify-center gap-8">
         <button className="w-12 h-12 flex items-center justify-center border border-outline text-secondary hover:border-accent hover:text-accent transition-colors rounded-full" aria-label="Previous">
           <span className="material-symbols-outlined">west</span>
         </button>

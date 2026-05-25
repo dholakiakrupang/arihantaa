@@ -21,7 +21,7 @@ const NEWS_DATA = [
 export function NewsSnippet() {
   return (
     <section className="py-24 md:py-32 bg-surface border-t border-outline-variant/30 relative overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="max-w-[1440px] mx-auto px-8 md:px-16">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
           

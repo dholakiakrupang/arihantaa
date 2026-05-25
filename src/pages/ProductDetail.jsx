@@ -394,13 +394,12 @@ export function ProductDetail() {
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
             variants={fadeUp}
-            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 p-8 md:p-14 bg-surface-container-low/10 flex items-center justify-center order-1 lg:order-2 relative"
+            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 pt-12 pb-8 px-4 md:pt-20 md:pb-12 md:px-8 lg:pt-24 lg:pb-16 lg:px-12 bg-surface-container-low/10 flex items-center justify-center order-1 lg:order-2 relative"
           >
             <ProductImageGallery
               images={product.images}
               imageSrc={product.imageSrc}
               imageAlt={product.imageAlt}
-              tag={product.tag}
               categoryIcon={categoryIcon}
               onImageError={() => setImageError(true)}
             />
@@ -433,16 +432,13 @@ export function ProductDetail() {
           </motion.div>
 
           {/* Feature Cards Grid */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30 gap-0 bg-white"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30 gap-0 bg-white">
             {product.features && product.features.map((feature, idx) => (
               <motion.div
                 key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
                 variants={fadeUp}
                 custom={idx}
                 className="bg-surface-container-lowest p-8 border-r border-b border-outline-variant/30 hover:bg-accent/[0.015] transition-all duration-400 flex flex-col group relative"
@@ -461,7 +457,7 @@ export function ProductDetail() {
                 </p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
 
         </div>
       </section>
@@ -652,15 +648,12 @@ export function ProductDetail() {
           </motion.div>
 
           {/* Download Cards */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-outline-variant/30 gap-0 max-w-4xl bg-white shadow-none"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-outline-variant/30 gap-0 max-w-4xl bg-white shadow-none">
             {/* Datasheet Card */}
             <motion.a
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
               variants={fadeUp}
               custom={0}
               href="#"
@@ -686,6 +679,9 @@ export function ProductDetail() {
 
             {/* User Manual Card */}
             <motion.a
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-40px' }}
               variants={fadeUp}
               custom={1}
               href="#"
@@ -708,7 +704,7 @@ export function ProductDetail() {
                 <span className="material-symbols-outlined text-[18px] group-hover:translate-y-0.5 transition-transform duration-300">download</span>
               </span>
             </motion.a>
-          </motion.div>
+          </div>
 
         </div>
       </section>

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '../components/ui/Button';
 import { ProductImageGallery } from '../components/ui/ProductImageGallery';
 import { engineeredServicesData } from '../data/engineeredServicesData';
@@ -60,11 +60,11 @@ const getScopeIcon = (index) => {
 
 /* ─── Animation Variants ────────────────────────────────────────────────────── */
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 28 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.55, delay: i * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }
+    transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }
   })
 };
 
@@ -73,6 +73,14 @@ const staggerContainer = {
   visible: { transition: { staggerChildren: 0.1 } }
 };
 
+/* ─── Nav Items ─────────────────────────────────────────────────────────────── */
+const NAV_ITEMS = [
+  { id: 'overview', label: 'OVERVIEW', icon: 'visibility' },
+  { id: 'scope', label: 'SCOPE OF WORK', icon: 'assignment' },
+  { id: 'sla', label: 'SLA TIERS', icon: 'verified' },
+  { id: 'inquiries', label: 'INQUIRIES', icon: 'contact_support' }
+];
+
 /* ═══════════════════════════════════════════════════════════════════════════════
    ServiceDetail Component
    ═══════════════════════════════════════════════════════════════════════════════ */
@@ -80,7 +88,6 @@ export function ServiceDetail() {
   const { categoryId, serviceId } = useParams();
   const [activeSection, setActiveSection] = useState('overview');
   const [imageError, setImageError] = useState(false);
-  const heroRef = useRef(null);
 
   /* ── Scroll to top on service change ── */
   useEffect(() => {
@@ -92,7 +99,7 @@ export function ServiceDetail() {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-45% 0px -45% 0px',
+      rootMargin: '-40% 0px -50% 0px',
       threshold: 0,
     };
 
@@ -105,8 +112,11 @@ export function ServiceDetail() {
     };
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => observer.observe(section));
+    const sectionIds = ['overview', 'scope', 'sla', 'inquiries'];
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
 
     return () => observer.disconnect();
   }, [serviceId]);
@@ -114,7 +124,7 @@ export function ServiceDetail() {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = -140;
+      const yOffset = -145;
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
@@ -129,56 +139,51 @@ export function ServiceDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-surface">
         <div className="text-center">
-          <span className="material-symbols-outlined text-[68px] text-secondary/30 mb-4 block">search_off</span>
-          <h2 className="font-headline text-2xl font-bold text-secondary mb-4">Service Not Found</h2>
-          <p className="text-secondary mb-8 text-[14px]">The service you're looking for doesn't exist or has been moved.</p>
-          <Button to="/services" noTextAnimation={false}>Return to Catalog</Button>
+          <span className="material-symbols-outlined text-[64px] text-secondary/30 mb-6 block">search_off</span>
+          <h2 className="font-headline text-2xl font-bold text-on-surface mb-3">Service Not Found</h2>
+          <p className="text-secondary mb-8 text-[15px]">The requested service could not be located in our catalog.</p>
+          <Button to="/services" variant="primary" theme="light" icon="arrow_forward" iconPosition="right" noTextAnimation={false}>
+            RETURN TO SERVICES
+          </Button>
         </div>
       </div>
     );
   }
 
-  const navItems = [
-    { id: 'overview', label: 'OVERVIEW', icon: 'visibility' },
-    { id: 'scope', label: 'SCOPE OF WORK', icon: 'assignment' },
-    { id: 'sla', label: 'SLA TIERS', icon: 'verified' },
-    { id: 'inquiries', label: 'INQUIRIES', icon: 'contact_support' }
-  ];
-
   return (
-    <div className="bg-surface text-on-surface font-body selection:bg-primary/10 selection:text-primary min-h-screen">
+    <div className="bg-background text-on-background font-body min-h-screen selection:bg-primary-container selection:text-on-primary-container">
 
-      {/* ══════════════════════════════════════════════════════════════════════
-          Section 1: Sticky Sub-Navigation Bar
-          ══════════════════════════════════════════════════════════════════════ */}
-      <div className="bg-surface-container-low/95 backdrop-blur-md border-b border-surface-variant sticky top-[79px] z-40 shadow-[0_4px_16px_rgba(0,0,0,0.04)]">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-16 py-0">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-0 md:gap-6">
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 1 — Sticky Sub-Navigation Bar
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <div className="bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/30 sticky top-[79px] z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 py-3.5">
 
             {/* Breadcrumb Trail */}
-            <div className="text-[12px] text-secondary flex flex-wrap items-center gap-1.5 font-medium leading-none py-4 md:py-0 shrink-0">
-              <Link to="/services" className="hover:text-primary transition-colors duration-200 flex items-center gap-1">
-                <span className="material-symbols-outlined text-[17px]">home</span>
+            <nav className="text-[11.5px] text-secondary flex flex-wrap items-center gap-1 font-medium leading-none" aria-label="Breadcrumb">
+              <Link to="/services" className="hover:text-accent transition-colors duration-200 flex items-center gap-1">
+                <span className="material-symbols-outlined text-[17px]">support_agent</span>
                 Services
               </Link>
-              <span className="material-symbols-outlined text-[17px] text-secondary/30 select-none">chevron_right</span>
-              <Link to={`/services/${service.categoryId}`} className="hover:text-primary transition-colors duration-200">
+              <span className="material-symbols-outlined text-[16px] text-secondary/30 select-none">chevron_right</span>
+              <Link to={`/services/${service.categoryId}`} className="hover:text-accent transition-colors duration-200">
                 {categoryTitle}
               </Link>
-              <span className="material-symbols-outlined text-[17px] text-secondary/30 select-none">chevron_right</span>
+              <span className="material-symbols-outlined text-[16px] text-secondary/30 select-none">chevron_right</span>
               <span className="text-on-surface font-semibold truncate max-w-[200px]">{service.title}</span>
-            </div>
+            </nav>
 
-            {/* Jump Navigation Tabs */}
-            <div className="flex overflow-x-auto w-full md:w-auto gap-1 pb-0 hide-scrollbar select-none border-t md:border-t-0 border-surface-variant/50 md:border-none">
-              {navItems.map((item) => (
+            {/* Anchor Navigation Tabs */}
+            <div className="flex overflow-x-auto w-full md:w-auto gap-1 pb-0.5 md:pb-0 hide-scrollbar select-none">
+              {NAV_ITEMS.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`group flex items-center px-4 py-4 whitespace-nowrap font-label-caps text-[10.5px] tracking-[0.12em] font-bold transition-all duration-200 border-b-[2.5px] hover:text-primary relative ${
+                  className={`group relative px-4 py-2 font-label-caps text-[10px] tracking-[0.12em] font-bold whitespace-nowrap transition-all duration-300 flex items-center ${
                     activeSection === item.id
-                      ? 'border-primary text-primary'
-                      : 'border-transparent text-secondary/70 hover:text-secondary'
+                      ? 'text-accent'
+                      : 'text-secondary hover:text-on-surface'
                   }`}
                 >
                   <span className={`material-symbols-outlined text-[17px] transition-all duration-300 overflow-hidden ${
@@ -189,275 +194,255 @@ export function ServiceDetail() {
                     {item.icon}
                   </span>
                   {item.label}
+                  {/* Active indicator bar */}
+                  <span className={`absolute bottom-0 left-2 right-2 h-[2px] bg-accent transition-transform duration-300 origin-left ${
+                    activeSection === item.id ? 'scale-x-100' : 'scale-x-0'
+                  }`} />
                 </button>
               ))}
             </div>
+
           </div>
         </div>
       </div>
 
-      {/* ══════════════════════════════════════════════════════════════════════
-          Section 2: Premium Hero Section (Overview)
-          ══════════════════════════════════════════════════════════════════════ */}
-      <section
-        className="relative bg-gradient-to-b from-surface-container-lowest via-surface-container-lowest to-surface-container-low border-b border-surface-variant overflow-hidden"
-        id="overview"
-        ref={heroRef}
-      >
-        {/* Subtle decorative gradient orbs */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent/[0.02] rounded-full blur-[100px] pointer-events-none" />
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 2 — Premium Hero / Overview
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section id="overview" className="relative overflow-hidden bg-surface-container-lowest">
+        <div className="max-w-[1440px] mx-auto w-full grid grid-cols-12 border-t border-l border-outline-variant/30 gap-0 relative z-10 bg-white">
 
-        <div className="max-w-[1280px] mx-auto px-6 md:px-16 py-16 md:py-24 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-            {/* ── Right (Desktop): Service Image Gallery ── */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative order-1 lg:order-2"
-            >
-              <ProductImageGallery
-                images={service.images}
-                imageSrc={service.imageSrc}
-                imageAlt={service.imageAlt}
-                tag={service.tag}
-                categoryIcon={categoryIcon}
-                onImageError={() => setImageError(true)}
-              />
-            </motion.div>
-
-            {/* ── Left (Desktop): Content & CTAs ── */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex flex-col justify-center order-2 lg:order-1"
-            >
-              {/* Category eyebrow */}
-              <div className="flex items-center gap-2.5 mb-4">
-                <span className="material-symbols-outlined text-accent text-[20px]">{categoryIcon}</span>
-                <span className="text-accent font-semibold tracking-[0.25em] text-[10px] uppercase font-label-caps">
-                  {categoryTitle}
-                </span>
-              </div>
-
-              {/* Title */}
-              <h1 className="font-headline text-[30px] md:text-[40px] lg:text-[46px] leading-[1.1] font-bold text-on-surface mb-5 uppercase tracking-tight">
-                {service.title}
-              </h1>
-
-              {/* Score badge inline */}
-              {service.scorePercentage && (
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="flex items-center gap-2 bg-primary/8 border border-primary/20 px-3 py-1.5">
-                    <span className="material-symbols-outlined text-primary text-[20px]">verified</span>
-                    <span className="font-label-caps text-[9px] tracking-[0.12em] font-bold text-primary">
-                      {service.scoreLabel}: {service.scorePercentage}%
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              {/* Description */}
-              <p className="text-[15px] md:text-[16px] leading-[1.7] text-secondary mb-8 max-w-[540px]">
-                {service.description}
-              </p>
-
-              {/* Stat Badges */}
-              <div className="flex flex-wrap gap-2.5 mb-10">
-                {service.stats && service.stats.slice(0, 3).map((stat, idx) => (
-                  <motion.span
-                    key={idx}
-                    initial={{ opacity: 0, y: 12 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.4 + idx * 0.1 }}
-                    className="bg-surface-container-high/80 px-3.5 py-2 font-label-caps text-[8.5px] tracking-[0.08em] text-on-surface border border-surface-variant flex items-center gap-2 select-none hover:border-accent/50 transition-colors duration-300 font-bold"
-                  >
-                    <span className="material-symbols-outlined text-primary text-[18px]">{getStatIcon(stat.label)}</span>
-                    <span className="text-secondary font-semibold">{stat.value}</span>
-                    <span className="text-secondary/55">·</span>
-                    <span className="text-secondary/65">{stat.label}</span>
-                  </motion.span>
-                ))}
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button
-                  to={`/contact?inquiry=consultation&item=${encodeURIComponent(service.title)}`}
-                  variant="primary"
-                  theme="light"
-                  icon="arrow_forward"
-                  iconPosition="right"
-                  noTextAnimation={false}
-                  className="px-8 py-3.5 text-[11px] justify-center tracking-widest"
-                >
-                  REQUEST SLA CONSULTATION
-                </Button>
-                <Button
-                  onClick={() => scrollToSection('scope')}
-                  variant="outline"
-                  theme="light"
-                  icon="expand_more"
-                  iconPosition="left"
-                  noTextAnimation={false}
-                  className="px-8 py-3.5 text-[11px] justify-center tracking-widest"
-                >
-                  VIEW SCOPE OF WORK
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════════════
-          Section 3: Scope of Work & Responsibilities
-          ══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-surface-container py-16 md:py-24 border-b border-surface-variant" id="scope">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-16">
-
-          {/* Section Header */}
+          {/* Left Column (Content & CTAs) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={fadeUp}
-            className="mb-12 md:mb-14"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={staggerContainer}
+            className="col-span-12 lg:col-span-7 border-r border-b border-outline-variant/30 p-8 md:p-16 flex flex-col justify-center order-2 lg:order-1"
           >
-            <div className="flex items-center gap-4 mb-3">
-              <span className="w-10 h-[3px] bg-primary block" />
-              <span className="font-label-caps text-[10px] tracking-[0.2em] text-secondary/60 font-bold uppercase">Service Deliverables</span>
-            </div>
-            <h2 className="font-headline text-[24px] md:text-[30px] text-on-surface font-bold uppercase tracking-tight">
+            {/* Category Eyebrow */}
+            <motion.span
+              variants={fadeUp}
+              custom={0}
+              className="text-accent font-label-caps text-[10px] tracking-[0.25em] font-bold uppercase mb-3 flex items-center gap-2"
+            >
+              <span className="w-5 h-[1.5px] bg-accent block" />
+              {categoryTitle}
+            </motion.span>
+
+            {/* Title */}
+            <motion.h1
+              variants={fadeUp}
+              custom={1}
+              className="font-headline text-[30px] md:text-[40px] lg:text-[46px] leading-[1.1] font-black text-on-surface mb-5 uppercase tracking-tight"
+            >
+              {service.title}
+            </motion.h1>
+
+            {/* Score badge inline */}
+            {service.scorePercentage && (
+              <motion.div 
+                variants={fadeUp}
+                custom={1.5}
+                className="flex items-center gap-3 mb-6"
+              >
+                <div className="flex items-center gap-2 bg-accent/5 border border-accent/20 px-3 py-1.5 select-none">
+                  <span className="material-symbols-outlined text-accent text-[20px]">verified</span>
+                  <span className="font-label-caps text-[9px] tracking-[0.12em] font-bold text-accent">
+                    {service.scoreLabel}: {service.scorePercentage}%
+                  </span>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Description */}
+            <motion.p
+              variants={fadeUp}
+              custom={2}
+              className="text-secondary text-[15px] md:text-[16px] leading-[1.7] mb-8 max-w-[540px]"
+            >
+              {service.description}
+            </motion.p>
+
+            {/* Stat Badges Grid */}
+            <motion.div
+              variants={fadeUp}
+              custom={3}
+              className="grid grid-cols-2 sm:grid-cols-4 border-t border-l border-outline-variant/30 gap-0 mb-10 bg-white"
+            >
+              {service.stats && service.stats.slice(0, 4).map((stat, idx) => (
+                <div
+                  key={idx}
+                  className="border-r border-b border-outline-variant/30 p-4 bg-surface-container-high/20 hover:bg-accent/[0.015] transition-all flex flex-col justify-between group"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="material-symbols-outlined text-accent text-[20px]">{getStatIcon(stat.label)}</span>
+                    <span className="font-label-caps text-[9px] tracking-[0.06em] text-secondary/80 font-bold">{stat.label}</span>
+                  </div>
+                  <div className="font-headline text-[13px] md:text-[14px] font-bold text-on-surface uppercase truncate">
+                    {stat.value}
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div variants={fadeUp} custom={4} className="flex flex-col sm:flex-row gap-3.5">
+              <Button
+                to={`/contact?inquiry=consultation&item=${encodeURIComponent(service.title)}`}
+                variant="primary"
+                theme="light"
+                icon="arrow_forward"
+                iconPosition="right"
+                noTextAnimation={false}
+                className="px-8 py-3.5 text-[10px] tracking-[0.2em] font-bold justify-center"
+              >
+                REQUEST SLA CONSULTATION
+              </Button>
+              <Button
+                onClick={() => scrollToSection('scope')}
+                variant="outline"
+                theme="light"
+                icon="expand_more"
+                iconPosition="left"
+                noTextAnimation={false}
+                className="px-8 py-3.5 text-[10px] tracking-[0.2em] font-bold justify-center"
+              >
+                VIEW SCOPE OF WORK
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column (Image Gallery) */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={fadeUp}
+            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 pt-12 pb-8 px-4 md:pt-20 md:pb-12 md:px-8 lg:pt-24 lg:pb-16 lg:px-12 bg-surface-container-low/10 flex items-center justify-center order-1 lg:order-2 relative"
+          >
+            <ProductImageGallery
+              images={service.images}
+              imageSrc={service.imageSrc}
+              imageAlt={service.imageAlt}
+              categoryIcon={categoryIcon}
+              onImageError={() => setImageError(true)}
+            />
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 3 — Scope of Work & Responsibilities
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section id="scope" className="bg-surface-container border-y border-outline-variant/30 py-16 md:py-24">
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16">
+
+          {/* Section Heading */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={fadeUp}
+            className="mb-12"
+          >
+            <h2 className="font-headline text-[24px] md:text-[28px] text-on-surface flex items-center gap-4 font-bold uppercase tracking-tight">
+              <span className="w-8 h-[3px] bg-accent block shrink-0" />
               Scope of Work & Responsibilities
             </h2>
-          </motion.div>
-
-          {/* Scope Cards Grid */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"
-          >
-            {service.features && service.features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                variants={fadeUp}
-                custom={idx}
-                className="bg-surface-container-lowest p-7 md:p-8 border-t-[3px] border-primary shadow-[0_2px_16px_rgba(0,0,0,0.04)] hover:-translate-y-1.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] transition-all duration-400 flex flex-col group"
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-11 h-11 bg-primary/8 flex items-center justify-center shrink-0 group-hover:bg-primary/12 transition-colors duration-300">
-                    <span className="material-symbols-outlined text-primary text-[26px]">{getScopeIcon(idx)}</span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <span className="font-label-caps text-[8.5px] tracking-[0.15em] text-secondary/40 font-bold block mb-1">
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="font-headline text-[16px] md:text-[17px] font-bold text-on-surface leading-snug">
-                      {feature}
-                    </h3>
-                  </div>
-                </div>
-                <p className="text-secondary text-[13px] leading-[1.7] ml-[60px]">
-                  Executed per Arihantaa standardized quality metrics and OEM-certified safety guidelines.
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════════════════════
-          Section 4: SLA Tiers Comparison
-          ══════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-surface-container-lowest py-16 md:py-24 border-b border-surface-variant" id="sla">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-16">
-
-          {/* Section Header */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={fadeUp}
-            className="mb-12 md:mb-14"
-          >
-            <div className="flex items-center gap-4 mb-3">
-              <span className="w-10 h-[3px] bg-primary block" />
-              <span className="font-label-caps text-[10px] tracking-[0.2em] text-secondary/60 font-bold uppercase">Service Level Agreement</span>
-            </div>
-            <h2 className="font-headline text-[24px] md:text-[30px] text-on-surface font-bold uppercase tracking-tight">
-              SLA Tiers Comparison
-            </h2>
-            <p className="text-secondary text-[14px] mt-3 max-w-[600px] leading-relaxed">
-              Choose the service tier that matches your operational requirements and uptime targets.
+            <p className="text-secondary text-[14px] mt-3 ml-12 max-w-[520px]">
+              Standardized processes, deliverables, and engineering oversight included under this contract.
             </p>
           </motion.div>
 
-          {/* SLA Comparison Table */}
+          {/* Scope Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30 gap-0 bg-white">
+            {service.features && service.features.map((feature, idx) => (
+              <motion.div
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
+                variants={fadeUp}
+                custom={idx}
+                className="bg-surface-container-lowest p-8 border-r border-b border-outline-variant/30 hover:bg-accent/[0.015] transition-all duration-400 flex flex-col group relative"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <span className="w-10 h-10 bg-accent/5 border border-accent/20 flex items-center justify-center shrink-0 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                    <span className="material-symbols-outlined text-[22px]">{getScopeIcon(idx)}</span>
+                  </span>
+                  <span className="font-mono text-[14px] text-accent font-bold select-none">{String(idx + 1).padStart(2, '0')}</span>
+                </div>
+                <h3 className="font-headline text-[16px] font-bold mb-3 text-on-surface leading-snug uppercase tracking-tight">
+                  {feature}
+                </h3>
+                <p className="text-secondary text-[13.5px] leading-[1.65]">
+                  Executed according to Arihantaa certified processes, ensuring 100% compliance with industry standards.
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 4 — SLA Tiers Comparison
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <section id="sla" className="bg-surface-container-lowest py-16 md:py-24 border-b border-outline-variant/30">
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16">
+
+          {/* Section Heading */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="border border-surface-variant overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.04)] bg-white"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={fadeUp}
+            className="mb-10"
           >
-            <div className="w-full overflow-x-auto scrollbar-thin">
+            <h2 className="font-headline text-[24px] md:text-[28px] text-on-surface flex items-center gap-4 font-bold uppercase tracking-tight">
+              <span className="w-8 h-[3px] bg-accent block shrink-0" />
+              SLA Tiers Comparison
+            </h2>
+          </motion.div>
+
+          {/* Models Data Table */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-40px' }}
+            variants={fadeUp}
+            className="border border-outline-variant/30 overflow-hidden bg-white shadow-none"
+          >
+            <div className="w-full overflow-x-auto">
               <table className="w-full text-left border-collapse min-w-[760px]">
                 <thead>
-                  <tr className="border-b border-surface-variant">
-                    <th className="bg-surface-container-low py-4.5 px-6 font-label-caps text-[9.5px] tracking-[0.15em] uppercase text-secondary font-bold w-[28%]">
-                      <div className="flex items-center gap-2">
-                        <span className="material-symbols-outlined text-[17px] text-secondary/40">tune</span>
-                        Service Parameter
-                      </div>
-                    </th>
-                    <th className="bg-surface-container-low py-4.5 px-6 font-label-caps text-[9.5px] tracking-[0.15em] uppercase text-secondary font-bold w-[24%]">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-[#CD7F32]" />
-                        Bronze Standard
-                      </div>
-                    </th>
-                    <th className="bg-surface-container-low py-4.5 px-6 font-label-caps text-[9.5px] tracking-[0.15em] uppercase text-secondary font-bold w-[24%]">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-[#A0A0A0]" />
-                        Silver Priority
-                      </div>
-                    </th>
-                    <th className="bg-accent/[0.04] py-4.5 px-6 font-label-caps text-[9.5px] tracking-[0.15em] uppercase text-accent font-bold w-[24%] border-l-2 border-r-2 border-accent/15">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-accent" />
-                        Gold Enterprise
-                        <span className="bg-accent/15 text-accent text-[7px] px-1.5 py-0.5 tracking-[0.1em] font-bold ml-1">BEST</span>
-                      </div>
-                    </th>
+                  <tr className="bg-surface-container-high/45 border-b border-outline-variant/30 text-on-surface font-label-caps text-[9.5px] tracking-[0.15em] uppercase">
+                    <th className="py-4 px-6 font-bold border-r border-outline-variant/20">Service Parameter</th>
+                    <th className="py-4 px-6 font-bold border-r border-outline-variant/20">Bronze Standard</th>
+                    <th className="py-4 px-6 font-bold border-r border-outline-variant/20">Silver Priority</th>
+                    <th className="py-4 px-6 font-bold text-accent">Gold Enterprise</th>
                   </tr>
                 </thead>
                 <tbody>
                   {service.slaPlans && service.slaPlans.map((plan, idx) => (
                     <tr
                       key={idx}
-                      className={`border-b border-surface-variant/70 last:border-0 transition-colors duration-200 hover:bg-surface-container-low/50 ${idx % 2 === 1 ? 'bg-surface-container-lowest' : ''}`}
+                      className="border-b border-outline-variant/20 last:border-b-0 hover:bg-accent/[0.015] transition-colors duration-200"
                     >
-                      <td className="py-4 px-6">
-                        <span className="font-headline text-[13px] font-bold text-on-surface/80 leading-snug">
-                          {plan.parameter}
-                        </span>
+                      <td className="py-4 px-6 font-headline text-[13px] font-bold text-on-surface border-r border-outline-variant/20 uppercase tracking-tight">
+                        {plan.parameter}
                       </td>
-                      <td className="py-4 px-6 text-[12.5px] text-secondary/65 leading-snug">
+                      <td className="py-4 px-6 text-[13px] text-secondary border-r border-outline-variant/20">
                         {plan.bronze}
                       </td>
-                      <td className="py-4 px-6 text-[12.5px] text-secondary font-medium leading-snug">
+                      <td className="py-4 px-6 text-[13px] text-on-surface font-semibold border-r border-outline-variant/20">
                         {plan.silver}
                       </td>
-                      <td className="py-4 px-6 text-[13px] font-bold text-accent bg-accent/[0.02] border-l-2 border-r-2 border-accent/15 leading-snug">
-                        <div className="flex items-start gap-1.5">
-                          <span className="material-symbols-outlined text-accent/60 text-[17px] mt-0.5 shrink-0">check_circle</span>
+                      <td className="py-4 px-6 text-[13px] font-bold text-accent bg-accent/[0.01]">
+                        <div className="flex items-center gap-1.5">
+                          <span className="material-symbols-outlined text-accent text-[18px] shrink-0">check_circle</span>
                           <span>{plan.gold}</span>
                         </div>
                       </td>
@@ -467,42 +452,41 @@ export function ServiceDetail() {
               </table>
             </div>
 
-            {/* Table footer CTA */}
-            <div className="border-t border-surface-variant bg-surface-container-low/50 px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-              <p className="text-[12px] text-secondary/60 flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[17px]">info</span>
-                All tiers include standard Arihantaa warranty terms. Custom configurations available on request.
+            {/* Table Footer Note */}
+            <div className="border-t border-outline-variant/30 bg-surface-container-low/40 px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <p className="text-[12px] text-secondary/70 flex items-center gap-1.5 font-medium">
+                <span className="material-symbols-outlined text-[17px] text-accent">info</span>
+                All tiers include standard Arihantaa warranty terms. Custom configurations and response times are available.
               </p>
               <Button
                 to={`/contact?inquiry=consultation&item=${encodeURIComponent(service.title)}`}
                 variant="primary"
                 theme="light"
-                size="sm"
-                icon="arrow_forward"
-                iconPosition="right"
-                noTextAnimation={false}
-                className="text-[9px] tracking-widest shrink-0"
+                className="text-[9px] tracking-widest shrink-0 px-4 py-2 font-bold font-label-caps"
               >
                 COMPARE IN DETAIL
               </Button>
             </div>
           </motion.div>
+
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════════════
-          Section 5: Standardized Service Consultation CTA
-          ══════════════════════════════════════════════════════════════════════ */}
-      <UnifiedCTA 
-        heading={`Ready to deploy ${service.title}?`}
-        accent="Talk to our experts."
-        subtitle="We compile customized SLA preventative maintenance plans and layout briefs for your facility."
-        primaryText="CONSULT AN EXPERT"
-        primaryTo={`/contact?inquiry=consultation&item=${encodeURIComponent(service.title)}`}
-        outlineText="VIEW ALL SERVICES"
-        outlineTo="/services"
-        uppercase={true}
-      />
+      {/* ═══════════════════════════════════════════════════════════════════════
+          SECTION 5 — Standardized Consultation CTA
+          ═══════════════════════════════════════════════════════════════════════ */}
+      <div id="inquiries">
+        <UnifiedCTA 
+          heading={`Ready to deploy ${service.title}?`}
+          accent="Talk to our experts."
+          subtitle="We compile customized SLA preventative maintenance plans and layout briefs for your facility."
+          primaryText="CONSULT AN EXPERT"
+          primaryTo={`/contact?inquiry=consultation&item=${encodeURIComponent(service.title)}`}
+          outlineText="VIEW ALL SERVICES"
+          outlineTo="/services"
+          uppercase={true}
+        />
+      </div>
 
     </div>
   );

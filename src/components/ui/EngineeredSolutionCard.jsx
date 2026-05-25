@@ -247,13 +247,13 @@ export function EngineeredSolutionCard({
                 to={`/contact?inquiry=support&item=${encodeURIComponent(title)}`}
                 className="group/support relative flex items-center justify-center gap-0 border-0 border-b sm:border-b-0 sm:border-r border-outline/20 px-6 py-3.5 sm:py-0 min-h-[44px] transition-colors duration-300 overflow-hidden bg-transparent"
               >
-                <span className="relative flex items-center">
+                <span className="relative flex items-center pr-6">
                   <span className="font-label-caps text-[9.5px] tracking-[0.2em] font-semibold text-secondary group-hover/support:text-accent transition-colors duration-300 leading-none uppercase select-none">
                     SUPPORT
                   </span>
                   {/* Icon — absolutely positioned to right, hidden by default */}
                   <span 
-                    className="material-symbols-outlined text-[21px] text-accent absolute left-full ml-1.5 opacity-0 translate-x-1.5 group-hover/support:opacity-100 group-hover/support:translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                    className="material-symbols-outlined text-[21px] text-accent absolute right-0 opacity-0 translate-x-1.5 group-hover/support:opacity-100 group-hover/support:translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
                   >
                     support_agent
                   </span>

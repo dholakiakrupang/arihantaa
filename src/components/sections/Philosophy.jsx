@@ -33,7 +33,7 @@ export function Philosophy() {
   return (
     <section ref={containerRef} className="relative py-24 md:py-32 bg-surface overflow-hidden border-b border-outline-variant/30">
       
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           
           {/* ── Left Column: Premium Photo (5 cols) ── */}

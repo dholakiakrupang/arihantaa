@@ -12,7 +12,7 @@ export function UnifiedCTA({
   uppercase = false
 }) {
   return (
-    <section className="w-full bg-surface-variant/40 px-6 md:px-12 lg:px-20 py-24 border-y border-outline-variant/30">
+    <section className="w-full bg-surface-variant/40 px-8 md:px-16 py-24 border-y border-outline-variant/30">
       <div className="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
         
         {/* Left Column: Heading and Subtitle */}

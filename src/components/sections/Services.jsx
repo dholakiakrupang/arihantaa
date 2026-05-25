@@ -43,7 +43,7 @@ const SERVICES = [
 export function Services() {
   return (
     <section className="py-24 md:py-32 bg-surface relative overflow-hidden border-b border-outline-variant/30">
-      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
         
         {/* Header Block */}
         <div className="mb-16 md:mb-20 flex flex-col md:flex-row justify-between items-end gap-8">

@@ -33,7 +33,7 @@ export function ProductsHero() {
         {/* Top spacer */}
         <div className="min-h-[88px] md:min-h-[96px]" />
 
-        <div className="flex flex-col lg:flex-row flex-1 items-center max-w-[1440px] mx-auto w-full px-6 md:px-12 lg:px-20 pb-16 gap-12 lg:gap-0">
+        <div className="flex flex-col lg:flex-row flex-1 items-center max-w-[1440px] mx-auto w-full px-8 md:px-16 pb-16 gap-12 lg:gap-0">
           
           {/* LEFT: Text content (52% width) */}
           <motion.div 
@@ -67,10 +67,10 @@ export function ProductsHero() {
             {/* Headline — staggered words */}
             <h1 className="font-headline font-black uppercase leading-[0.88] tracking-tighter">
               {words.map((word, i) => (
-                <div key={word} className="overflow-hidden block w-max">
+                <div key={word} className="overflow-hidden block w-max max-w-full">
                   <motion.span
                     className={[
-                      'block text-[clamp(36px,4.8vw,72px)]',
+                      'block text-[clamp(28px,4.8vw,72px)]',
                       i === 1 ? 'text-accent' : 'text-white',
                     ].join(' ')}
                     initial={{ y: '110%', opacity: 0 }}

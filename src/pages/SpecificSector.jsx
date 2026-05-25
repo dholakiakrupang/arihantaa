@@ -13,6 +13,73 @@ const sectorHeroImages = {
   'monitoring-management': "https://lh3.googleusercontent.com/aida-public/AB6AXuAH-XlVfiUims4FuvWQyfp3g5yMEYAXu5W8L_8uYh3Ih-vc25CLSwk9L91FOzpyjX9h727SvBUjEjzTBhCUqwDEK-faQqg481UUBnRtczffpJoLP1anXLQSjSbywiM4hLy9c-vAl8gzbbFVe31jx7-8HSB9kHwjLH0vRwKB0OyvY4pt3NC36MyAoa6pk4iMwlo0D_85spL5SOVT7mbLmZ7U2qyW31OsCPbgwf07HCkxHWpuRz8t4jdBA3Ls1Smb_5Z8nhRvbQ7fLOY"
 };
 
+const sectorTelemetryNodes = {
+  'critical-power': [
+    { top: '35%', left: '45%', label: 'UPS BUS A // ACTIVE' },
+    { top: '65%', left: '70%', label: 'PF MODULE // 0.99' },
+    { top: '48%', left: '22%', label: 'TEMP // 24.2°C' }
+  ],
+  'thermal-management': [
+    { top: '28%', left: '55%', label: 'PCW TEMP // 7.2°C' },
+    { top: '58%', left: '32%', label: 'FLOW RATE // 14.5 L/s' },
+    { top: '72%', left: '68%', label: 'RETURN // 21.8°C' }
+  ],
+  'racks-enclosures': [
+    { top: '32%', left: '60%', label: 'ZONE 04 // SECURED' },
+    { top: '62%', left: '28%', label: 'AIR INTAKE // OK' },
+    { top: '50%', left: '75%', label: 'PDU LOAD // 12.8 kW' }
+  ],
+  'monitoring-management': [
+    { top: '30%', left: '35%', label: 'NOC LINK // 4.2ms' },
+    { top: '68%', left: '60%', label: 'CORE SYSTEM // OK' },
+    { top: '45%', left: '80%', label: 'NODES // 1,420 ACTIVE' }
+  ]
+};
+
+const getProjectImage = (tag) => {
+  const tagLower = tag.toLowerCase();
+  if (tagLower.includes('health') || tagLower.includes('hospital')) {
+    return "https://lh3.googleusercontent.com/aida-public/AB6AXuCYzfnwnCVP9iBzA35pvF58Zbv6LpPN4QoLV5M6fqU1BLNzLEsmSLu5HPVPYfz9mcxzArrBz3WVniGQmCb9ZQPmx3f2D2kjq5mVNYoOEymJvHHxw9rVSgRQ_RV3cHYfVTj2AqyeRlyZAGRQL66qPukbhEn2gxpX51lEy0C52lkBz_V7d9k9FEZQuOcqj0S_hGjrzXgGpOZ_VWYQM-FfNCo-3M2-H-MOu2-sybDSu37IxEPxyE1S4HjBT79U9MMqnEiV0FoptlnVL50";
+  }
+  if (tagLower.includes('infra') || tagLower.includes('airport')) {
+    return "https://lh3.googleusercontent.com/aida-public/AB6AXuAH-XlVfiUims4FuvWQyfp3g5yMEYAXu5W8L_8uYh3Ih-vc25CLSwk9L91FOzpyjX9h727SvBUjEjzTBhCUqwDEK-faQqg481UUBnRtczffpJoLP1anXLQSjSbywiM4hLy9c-vAl8gzbbFVe31jx7-8HSB9kHwjLH0vRwKB0OyvY4pt3NC36MyAoa6pk4iMwlo0D_85spL5SOVT7mbLmZ7U2qyW31OsCPbgwf07HCkxHWpuRz8t4jdBA3Ls1Smb_5Z8nhRvbQ7fLOY";
+  }
+  if (tagLower.includes('trans') || tagLower.includes('metro') || tagLower.includes('port')) {
+    return "https://lh3.googleusercontent.com/aida-public/AB6AXuBs7GWrmO_Y24aIx0d_M368iwbT45iHy_7DqpZ7nch4fGcArhsG3Sgv3kEZJrQgufY4RuhkBeG0nzAVuZdo9xFBim7nRUdHZtnsUXXvA4N-7-sezh59f9vX1KfadhdMLz0Uj-yIVnI5c3gseMueQqUedxsfbbqL5ecgnT83a3xHXTG3h3mwsSqZyjqYaqua9ahuVxPAZbAQY0-mdX7ZKunjvj7d0CRfydIP5nD9glow6KMU8SoKRHqFaWIZB41-0SRYLfF8zA12KHQ";
+  }
+  return "https://lh3.googleusercontent.com/aida-public/AB6AXuDaZXpdbjLr9LR1AZHlH13OoPIe3jejJ5QnOcZ65UtIXTYGB3FhPhWEysa5L62jlOrhOuIauc30AyV27W61lMnslCrsaPW-417zxIv6lwC0psaVj4kKhOln4z4KLECJ_PGSJfsImraGudDu7PWlQES3CGRX27W8z1SbOwyT-mkSui_n_DpRCHOZJdsdHcWZ0ezqLgJkCeCvxXO-YSfJ6mNTUN7OMzS2PFmVWdky77FtgjIaJHenC1H4lGTuyumwdjVpcqwEBdaHTa0";
+};
+
+const getProjectId = (idx, isFlagship = false) => {
+  if (isFlagship) return 'p2';
+  const ids = ['p4', 'p3', 'p5', 'p6', 'p2', 'p4', 'p2', 'p2'];
+  return ids[idx] || 'p2';
+};
+
+/* ─── Floating badge (matches ProjectsHero structural pattern) ─────────── */
+function Badge({ icon, label, value, delay, className }) {
+  return (
+    <motion.div
+      className={`absolute z-20 flex items-center gap-3 bg-[#111]/90 backdrop-blur-xl border border-white/10 px-4 py-3 shadow-2xl ${className}`}
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay, ease: [0.25, 1, 0.5, 1] }}
+    >
+      <div className="w-8 h-8 bg-accent flex items-center justify-center shrink-0">
+        <span className="material-symbols-outlined text-white" style={{ fontSize: '15px' }}>
+          {icon}
+        </span>
+      </div>
+      <div>
+        <p className="font-label-caps text-[8px] text-accent tracking-[0.22em] uppercase leading-none mb-0.5">
+          {label}
+        </p>
+        <p className="font-headline text-[11px] font-bold text-white leading-tight">{value}</p>
+      </div>
+    </motion.div>
+  );
+}
+
 /* ─── Scroll-Linked Challenge Card ────────────────────────────────────── */
 function ChallengeCard({ prob, idx, total }) {
   const cardRef = useRef(null);
@@ -56,6 +123,7 @@ function ChallengeCard({ prob, idx, total }) {
 export function SpecificSector() {
   const { sectorId } = useParams();
   const sector = sectorsData[sectorId];
+  const telemetryNodes = sectorTelemetryNodes[sectorId] || [];
   const [openAccordionIdx, setOpenAccordionIdx] = useState(0);
   const challengeSectionRef = useRef(null);
 
@@ -117,192 +185,287 @@ export function SpecificSector() {
   return (
     <div className="font-body selection:bg-accent selection:text-white bg-surface">
 
+      {/* Injecting Local Self-Contained Styles for HUD Animations */}
+      <style>{`
+        @keyframes hud-scan {
+          0% { transform: translateY(0); opacity: 0; }
+          10% { opacity: 0.6; }
+          90% { opacity: 0.6; }
+          100% { transform: translateY(380px); opacity: 0; }
+        }
+        @keyframes sonar-pulse {
+          0% { transform: scale(0.6); opacity: 0.6; }
+          50% { opacity: 0.8; }
+          100% { transform: scale(2.2); opacity: 0; }
+        }
+        .animate-hud-scan {
+          animation: hud-scan 6s linear infinite;
+        }
+        .animate-sonar-pulse {
+          animation: sonar-pulse 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        }
+      `}</style>
+
       {/* ═══════════════════════════════════════════════════════════════════
-          HERO — Immersive split with 1px border grid, floating badges, scroll hint
+          HERO — Redesigned Premium Telemetry HUD Splitted Section (Asymmetric Box Layout)
       ═══════════════════════════════════════════════════════════════════ */}
-      <section className="relative w-full bg-inverse-surface overflow-hidden border-b border-white/10" style={{ minHeight: '100svh' }}>
+      <section className="relative w-full bg-[#0a0a0a] overflow-hidden flex flex-col min-h-[90vh]">
 
-        <div className="max-w-[1440px] mx-auto w-full grid grid-cols-12 border-l border-white/10 gap-0 relative z-10">
+        {/* Ambient warm orange spotlight glows */}
+        <div aria-hidden className="absolute inset-0 pointer-events-none z-0">
+          <motion.div
+            className="absolute -top-[30%] -left-[10%] w-[60%] h-[70%] rounded-full animate-pulse"
+            style={{
+              background: 'radial-gradient(ellipse, rgba(233,101,43,0.12) 0%, transparent 70%)',
+              filter: 'blur(100px)',
+            }}
+          />
+        </div>
 
-          {/* Left Column (Content & CTAs) */}
-          <div className="col-span-12 md:col-span-7 border-r border-b border-white/10 p-8 md:p-16 pt-[120px] md:pt-[140px] flex flex-col justify-center relative z-10">
-            
-            {/* Breadcrumb */}
-            <motion.nav
-              className="flex items-center gap-2 mb-8"
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
-              <span className="material-symbols-outlined text-surface-variant text-[17px]">chevron_right</span>
-              <Link to="/products" className="font-label-caps text-[10px] text-surface-variant tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Products</Link>
-              <span className="material-symbols-outlined text-surface-variant text-[17px]">chevron_right</span>
-              <span className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase font-bold">{sector.tag}</span>
-            </motion.nav>
+        {/* ── Vertical divider line down screen */}
+        <div
+          aria-hidden
+          className="hidden lg:block absolute top-0 left-[55%] w-px h-full bg-gradient-to-b from-transparent via-white/8 to-transparent z-10"
+        />
 
-            {/* Eyebrow */}
-            <motion.div
-              className="flex items-center gap-3 mb-8"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
-            >
-              <div className="h-[1px] w-8 bg-accent" />
-              <span className="font-label-caps text-[10px] text-accent tracking-[0.3em] uppercase">
-                Sector Expertise
-              </span>
-            </motion.div>
+        <div className="relative z-10 flex flex-col flex-1">
+          {/* Top spacer for header protection */}
+          <div className="min-h-[88px] md:min-h-[96px]" />
 
-            {/* Headline — word-by-word staggered reveal */}
-            <h1 className="font-headline font-black uppercase leading-[0.92] tracking-tighter mb-8">
-              {[sector.heroHeadline.line1, sector.heroHeadline.line2, sector.heroHeadline.line3].map((line, i) => (
-                <div key={i} className="overflow-hidden block">
-                  <motion.span
-                    className={`block whitespace-nowrap text-[30px] sm:text-[38px] md:text-[44px] lg:text-[52px] xl:text-[62px] ${
-                      i === 2 ? '' : 'text-inverse-on-surface'
-                    }`}
-                    initial={{ y: '110%', opacity: 0 }}
-                    animate={{ y: '0%', opacity: 1 }}
-                    transition={{ duration: 1.0, delay: 0.2 + i * 0.13, ease: [0.25, 1, 0.5, 1] }}
+          <div className="flex flex-col lg:flex-row flex-1 items-center max-w-[1440px] mx-auto w-full px-8 md:px-16 pb-16 pt-[20px] gap-12 lg:gap-0">
+
+            {/* ── LEFT COLUMN: Content & CTAs ── */}
+            <div className="w-full lg:w-[55%] flex flex-col gap-8 min-w-0 lg:pr-12 xl:pr-20">
+              
+              {/* Breadcrumb */}
+              <motion.nav
+                className="flex items-center gap-2"
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
+                <span className="material-symbols-outlined text-white/30 text-[17px]">chevron_right</span>
+                <Link to="/products" className="font-label-caps text-[10px] text-white/30 tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Products</Link>
+                <span className="material-symbols-outlined text-white/30 text-[17px]">chevron_right</span>
+                <span className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase font-bold">{sector.tag}</span>
+              </motion.nav>
+
+              {/* Eyebrow */}
+              <motion.div
+                className="flex items-center gap-3"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
+              >
+                <div className="h-[1px] w-8 bg-accent" />
+                <span className="font-label-caps text-[10px] text-accent tracking-[0.28em] uppercase font-bold">
+                  Sector Expertise
+                </span>
+              </motion.div>
+
+              {/* Headline — word-by-word staggered reveal */}
+              <h1 className="font-headline font-black uppercase leading-[0.88] tracking-tighter">
+                {[sector.heroHeadline.line1, sector.heroHeadline.line2, sector.heroHeadline.line3].map((line, i) => (
+                  <div key={i} className="overflow-hidden block w-max max-w-full">
+                    <motion.span
+                      className={[
+                        'block text-[clamp(24px,4.5vw,66px)]',
+                        i === 2 ? '' : 'text-white',
+                      ].join(' ')}
+                      initial={{ y: '110%', opacity: 0 }}
+                      animate={{ y: '0%', opacity: 1 }}
+                      transition={{ duration: 0.9, delay: 0.2 + i * 0.13, ease: [0.25, 1, 0.5, 1] }}
+                    >
+                      {i === 2 ? (
+                        <>
+                          <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">{sector.heroHeadline.orangeWord}</span>{' '}
+                          <span className="text-white">{line.replace(sector.heroHeadline.orangeWord, '').trim()}</span>
+                        </>
+                      ) : line}
+                    </motion.span>
+                  </div>
+                ))}
+              </h1>
+
+              {/* Accent underline */}
+              <motion.div
+                className="h-[3px] w-16 bg-accent"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                style={{ originX: 0 }}
+              />
+
+              {/* Description */}
+              <motion.p
+                className="font-body text-base md:text-lg text-white/55 max-w-md leading-relaxed font-light"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.65, ease: [0.25, 1, 0.5, 1] }}
+              >
+                {sector.heroDescription}
+              </motion.p>
+
+              {/* CTA Row */}
+              <motion.div
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mt-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
+              >
+                <Button
+                  onClick={() => document.getElementById('consult')?.scrollIntoView({ behavior: 'smooth' })}
+                  variant="primary"
+                  theme="dark"
+                  sweepBg="bg-[#0a0a0a]"
+                  size="lg"
+                  className="rounded-none shadow-2xl shadow-accent/25 text-[10px] tracking-[0.2em] font-bold"
+                >
+                  GET A FREE CONSULTATION
+                </Button>
+                <button
+                  onClick={() => document.getElementById('proof')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
+                >
+                  <span className="relative overflow-hidden inline-block">
+                    <span className="block group-hover:-translate-y-full transition-transform duration-300">VIEW PAST PROJECTS</span>
+                    <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">VIEW PAST PROJECTS</span>
+                  </span>
+                  <span className="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-y-1">
+                    arrow_downward
+                  </span>
+                </button>
+              </motion.div>
+            </div>
+
+            {/* ── RIGHT COLUMN: Padded Scope Box Container ── */}
+            <div className="w-full lg:w-[45%] flex items-center justify-center lg:pl-12 relative z-10">
+              
+              {/* Outer glow frame (perfect replica of ProjectsHero structural box) */}
+              <div className="relative w-full max-w-[480px] aspect-[4/3] border border-white/10 p-1.5 bg-[#070707] shadow-2xl">
+                
+                {/* Orange Corner SVG brackets from ProjectsHero */}
+                {['top-0 left-0', 'top-0 right-0 rotate-90', 'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'].map((pos, i) => (
+                  <motion.div
+                    key={i}
+                    className={`absolute ${pos} w-5 h-5`}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.5 + i * 0.1, type: 'spring' }}
                   >
-                    {i === 2 ? (
-                      <>
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">{sector.heroHeadline.orangeWord}</span>{' '}
-                        <span className="text-inverse-on-surface">{line.replace(sector.heroHeadline.orangeWord, '').trim()}</span>
-                      </>
-                    ) : line}
-                  </motion.span>
+                    <svg viewBox="0 0 24 24" fill="none" className="w-full h-full">
+                      <path d="M0 24 L0 0 L24 0" stroke="rgba(233,101,43,0.7)" strokeWidth="2" />
+                    </svg>
+                  </motion.div>
+                ))}
+
+                {/* Micro panel label hovering at top-left */}
+                <motion.div
+                  className="absolute -top-6 left-0 font-label-caps text-[9px] text-white/30 tracking-[0.25em]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  SYSTEM TELEMETRY HUD — SEC.{sectorId.toUpperCase()}
+                </motion.div>
+
+                {/* Inner Canvas Image wrapper */}
+                <div className="relative w-full h-full overflow-hidden bg-[#070707] group/hud flex items-center justify-center">
+                  <img
+                    src={heroImage}
+                    alt={sector.title}
+                    className="w-full h-full object-cover object-center transition-transform duration-[1200ms] ease-out group-hover/hud:scale-105"
+                    style={{ filter: 'brightness(0.55) saturate(0.8)' }}
+                    loading="eager"
+                  />
+                  {/* Protection Gradient overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/90 via-transparent to-[#0a0a0a]/20 pointer-events-none z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/20 via-transparent to-transparent pointer-events-none z-10" />
+
+                  {/* High-Tech HUD Radial Vignette Mask */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_50%,#0a0a0a_98%)] pointer-events-none z-10" />
+
+                  {/* High-Tech Scope Tick Marks */}
+                  <div className="absolute inset-4 border border-white/5 pointer-events-none z-20">
+                    <div className="absolute top-1/2 left-0 w-2.5 h-[1px] bg-white/10 -translate-y-1/2" />
+                    <div className="absolute top-1/2 right-0 w-2.5 h-[1px] bg-white/10 -translate-y-1/2" />
+                    <div className="absolute top-0 left-1/2 w-[1px] h-2.5 bg-white/10 -translate-x-1/2" />
+                    <div className="absolute bottom-0 left-1/2 w-[1px] h-2.5 bg-white/10 -translate-x-1/2" />
+                  </div>
+
+                  {/* Telematic Sensor Nodes */}
+                  <div className="absolute inset-0 z-20">
+                    {telemetryNodes.map((node, idx) => (
+                      <div
+                        key={idx}
+                        className="absolute group/node select-none"
+                        style={{ top: node.top, left: node.left }}
+                      >
+                        {/* Pulsing Sonar Ring */}
+                        <span className="absolute -left-2 -top-2 w-4 h-4 rounded-full bg-accent/30 animate-sonar-pulse" />
+                        <span className="relative block w-2 h-2 rounded-full bg-accent border border-white shadow-[0_0_6px_#ff6b00]" />
+                        
+                        {/* Hover telemetry label */}
+                        <div className="absolute top-1/2 left-3 -translate-y-1/2 bg-[#0d0d0d]/90 border border-white/10 px-2 py-0.5 whitespace-nowrap pointer-events-none shadow-lg">
+                          <span className="font-label-caps text-[8px] text-white tracking-widest font-bold">
+                            {node.label}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </h1>
 
-            {/* Accent underline */}
-            <motion.div
-              className="h-[3px] w-16 bg-accent mb-8"
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              style={{ originX: 0 }}
-            />
+                {/* Floating overlap badge: ISO Quality (overlapping the bottom-left edge) */}
+                <Badge
+                  icon="verified"
+                  label="Certified Quality"
+                  value="ISO 9001 : 2015"
+                  delay={1.2}
+                  className="-bottom-6 -left-6 md:-left-10"
+                />
 
-            {/* Description */}
-            <motion.p
-              className="font-body text-[15px] md:text-[17px] text-surface-variant/80 leading-relaxed max-w-[430px] mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.65, ease: [0.25, 1, 0.5, 1] }}
-            >
-              {sector.heroDescription}
-            </motion.p>
+                {/* Floating overlap badge: Division Tag (overlapping the top-right edge) */}
+                <Badge
+                  icon="electric_bolt"
+                  label={sector.tag}
+                  value="Specialist Division"
+                  delay={1.4}
+                  className="-top-6 -right-6 md:-right-10"
+                />
 
-            {/* CTA Row */}
-            <motion.div
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mt-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 1, 0.5, 1] }}
-            >
-              <Button
-                onClick={() => document.getElementById('consult')?.scrollIntoView({ behavior: 'smooth' })}
-                variant="primary"
-                size="lg"
-                className="rounded-none shadow-2xl shadow-accent/25 text-[10px] tracking-[0.2em] font-bold"
-              >
-                GET A FREE CONSULTATION
-              </Button>
-              <button
-                onClick={() => document.getElementById('proof')?.scrollIntoView({ behavior: 'smooth' })}
-                className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/55 hover:text-white transition-colors duration-300 group"
-              >
-                <span className="relative overflow-hidden inline-block">
-                  <span className="block group-hover:-translate-y-full transition-transform duration-300">VIEW PAST PROJECTS</span>
-                  <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">VIEW PAST PROJECTS</span>
-                </span>
-                <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform duration-300">
-                  arrow_forward
-                </span>
-              </button>
-            </motion.div>
+              </div>
+            </div>
+
           </div>
 
-          {/* Right Column (Image & Floating Badges) */}
-          <div className="col-span-12 md:col-span-5 border-r border-b border-white/10 relative h-[380px] md:h-auto overflow-hidden bg-surface-container-low/10">
-            {/* The image itself */}
-            <img
-              src={heroImage}
-              alt={sector.title}
-              className="w-full h-full object-cover object-center"
-              style={{ filter: 'brightness(0.55) saturate(0.8)' }}
-              loading="eager"
-            />
-            {/* Gradient overlays for protection */}
-            <div className="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-inverse-surface/20" />
-            <div className="absolute inset-0 bg-gradient-to-r from-inverse-surface/20 via-transparent to-transparent" />
-
-            {/* Floating badge: ISO */}
-            <motion.div
-              className="absolute z-20 flex items-center gap-3 bg-[#111]/90 backdrop-blur-xl border border-white/10 px-4 py-3 shadow-2xl bottom-6 right-6 hidden sm:flex"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.2, ease: [0.25, 1, 0.5, 1] }}
-            >
-              <div className="w-8 h-8 bg-accent flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-white" style={{ fontSize: '18px' }}>verified</span>
-              </div>
-              <div>
-                <p className="font-label-caps text-[8px] text-accent tracking-[0.22em] uppercase leading-none mb-0.5">Certified Quality</p>
-                <p className="font-headline text-[11px] font-bold text-white leading-tight">ISO 9001 : 2015</p>
-              </div>
-            </motion.div>
-
-            {/* Floating badge: Sector-specific */}
-            <motion.div
-              className="absolute z-20 flex items-center gap-3 bg-[#111]/90 backdrop-blur-xl border border-white/10 px-4 py-3 shadow-2xl top-6 right-6 hidden sm:flex"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.4, ease: [0.25, 1, 0.5, 1] }}
-            >
-              <div className="w-8 h-8 bg-accent flex items-center justify-center shrink-0">
-                <span className="material-symbols-outlined text-white" style={{ fontSize: '18px' }}>electric_bolt</span>
-              </div>
-              <div>
-                <p className="font-label-caps text-[8px] text-accent tracking-[0.22em] uppercase leading-none mb-0.5">{sector.tag}</p>
-                <p className="font-headline text-[11px] font-bold text-white leading-tight">Specialist Division</p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Full-width Stats Ticker Grid Row */}
-          <div className="col-span-12 grid grid-cols-2 lg:grid-cols-4 gap-0">
+          {/* Full-width Stats Ticker Grid Row (Refined Technical Ledger) */}
+          <div className="col-span-12 grid grid-cols-2 lg:grid-cols-4 gap-0 border-t border-white/10">
             {sector.contextStats.map((stat, idx) => (
-              <div key={idx} className="border-r border-b border-white/10 p-6 md:p-8 hover:bg-white/[0.02] transition-colors duration-300">
-                <div className="font-headline text-[28px] md:text-[36px] text-accent font-black leading-none mb-1">{stat.value}</div>
-                <div className="font-label-caps text-[9px] text-white/45 tracking-[0.2em] uppercase">{stat.label}</div>
+              <div 
+                key={idx} 
+                className="p-6 md:p-8 hover:bg-white/[0.015] transition-all duration-300 border-r border-b border-white/10 last:border-r-0 relative group/stat overflow-hidden"
+              >
+                {/* Micro accent top bar */}
+                <div className="absolute top-0 left-0 w-0 h-[2px] bg-accent group-hover/stat:w-full transition-all duration-500 ease-out" />
+                
+                {/* Index tag */}
+                <span className="font-mono text-[9px] text-white/20 block mb-4 tracking-[0.2em] font-bold select-none">
+                  [{String(idx + 1).padStart(2, '0')}]
+                </span>
+                
+                <div className="font-headline text-[26px] md:text-[32px] text-accent font-black leading-none mb-1.5 transition-transform duration-300 group-hover/stat:translate-x-1">
+                  {stat.value}
+                </div>
+                <div className="font-label-caps text-[9px] text-white/40 tracking-[0.2em] uppercase leading-relaxed max-w-[200px]">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
 
         </div>
-
-        {/* ── Vertical scroll hint ── */}
-        <motion.div
-          className="absolute bottom-[68px] left-6 md:left-20 z-20 flex-col items-center gap-2 hidden md:flex"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.8, duration: 0.8 }}
-        >
-          <motion.div
-            className="w-[1px] h-12 bg-gradient-to-b from-accent to-transparent"
-            animate={{ scaleY: [0, 1, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            style={{ transformOrigin: 'top' }}
-          />
-          <span className="font-label-caps text-[8px] text-white/30 tracking-[0.3em] uppercase rotate-90 origin-center mt-2">
-            Scroll
-          </span>
-        </motion.div>
-
       </section>
 
 
@@ -312,8 +475,8 @@ export function SpecificSector() {
       <section ref={challengeSectionRef} className="relative py-28 md:py-36 bg-surface overflow-hidden border-b border-outline-variant/30">
 
         {/* Giant watermark */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 pointer-events-none select-none z-0">
-          <span className="text-[200px] md:text-[300px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
+        <div className="absolute top-16 md:top-24 left-8 md:left-16 pointer-events-none select-none z-0">
+          <span className="text-[120px] sm:text-[180px] md:text-[240px] lg:text-[280px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
             RISK
           </span>
         </div>
@@ -370,8 +533,8 @@ export function SpecificSector() {
       ═══════════════════════════════════════════════════════════════════ */}
       <section id="solutions" className="relative py-28 md:py-36 bg-surface-container-low border-b border-outline-variant/30 overflow-hidden">
 
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 pointer-events-none select-none z-0">
-          <span className="text-[200px] md:text-[300px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
+        <div className="absolute top-16 md:top-24 right-8 md:right-16 pointer-events-none select-none z-0">
+          <span className="text-[120px] sm:text-[180px] md:text-[240px] lg:text-[280px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
             SOLVE
           </span>
         </div>
@@ -446,8 +609,8 @@ export function SpecificSector() {
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative py-28 md:py-36 bg-surface overflow-hidden border-b border-outline-variant/30">
 
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/4 pointer-events-none select-none z-0">
-          <span className="text-[200px] md:text-[300px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
+        <div className="absolute top-16 md:top-24 left-8 md:left-16 pointer-events-none select-none z-0">
+          <span className="text-[120px] sm:text-[180px] md:text-[240px] lg:text-[280px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
             BUILD
           </span>
         </div>
@@ -532,10 +695,7 @@ export function SpecificSector() {
       ═══════════════════════════════════════════════════════════════════ */}
       <section className="relative py-28 md:py-36 bg-[#080808] text-white overflow-hidden border-b border-white/10">
 
-        <div aria-hidden className="absolute inset-0 pointer-events-none z-0">
-          <motion.div className="absolute top-0 right-[20%] w-[1px] h-full bg-white/5" />
-          <motion.div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/5" />
-        </div>
+
 
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
 
@@ -598,8 +758,10 @@ export function SpecificSector() {
       ═══════════════════════════════════════════════════════════════════ */}
       <section id="proof" className="relative py-28 md:py-36 bg-surface overflow-hidden border-b border-outline-variant/30">
 
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 pointer-events-none select-none z-0">
-          <span className="text-[200px] md:text-[300px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">PROOF</span>
+        <div className="absolute top-16 md:top-24 right-8 md:right-16 pointer-events-none select-none z-0">
+          <span className="text-[120px] sm:text-[180px] md:text-[240px] lg:text-[280px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
+            PROOF
+          </span>
         </div>
 
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
@@ -615,53 +777,193 @@ export function SpecificSector() {
             <p className="font-body text-[16px] leading-relaxed text-secondary max-w-2xl">Selected from our active and completed {sector.title.toLowerCase()} portfolio.</p>
           </div>
 
-          {/* Flagship project card - Redesigned into clean grid layout */}
+          {/* Flagship project card - Redesigned into clean, visually stunning layout */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative bg-inverse-surface text-white flex flex-col lg:flex-row mb-12 border-t border-l border-white/10 gap-0 shadow-sm"
+            transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+            className="group relative bg-[#0d0d0d] text-white flex flex-col lg:flex-row mb-12 border border-outline-variant/30 overflow-hidden shadow-2xl"
           >
-            <div className="w-full lg:w-[65%] p-8 md:p-14 flex flex-col justify-center border-r border-b border-white/10">
-              <span className="inline-block self-start border border-accent text-accent font-label-caps text-[9px] uppercase tracking-[0.22em] font-bold px-3 py-1 mb-6">Featured Project</span>
-              <h3 className="font-headline text-[24px] md:text-[32px] font-black tracking-tight mb-4 leading-tight uppercase">{sector.flagshipProject.name}</h3>
-              <div className="font-label-caps text-[10px] text-white/50 uppercase tracking-[0.15em] mb-6">Client: <span className="text-white font-bold">{sector.flagshipProject.client}</span></div>
-              <p className="font-body text-[15px] leading-relaxed text-white/70">{sector.flagshipProject.scope}</p>
+            {/* The clickable router overlay */}
+            <Link to={`/projects/${getProjectId(0, true)}`} className="absolute inset-0 z-30" aria-label={`View details for ${sector.flagshipProject.name}`} />
+
+            {/* Left: Beautiful zoom-enabled visual canvas */}
+            <div className="w-full lg:w-[45%] relative min-h-[300px] lg:min-h-auto overflow-hidden border-b lg:border-b-0 lg:border-r border-outline-variant/30">
+              <img 
+                src={getProjectImage(sector.flagshipProject.tag || 'infra')}
+                alt={sector.flagshipProject.name}
+                className="w-full h-full object-cover transition-transform duration-[1000ms] ease-out group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent pointer-events-none" />
+              
+              {/* Floating tags */}
+              <div className="absolute top-6 left-6 flex flex-col gap-2 z-10">
+                <span className="bg-accent text-white font-label-caps text-[9px] tracking-[0.2em] px-3.5 py-1.5 uppercase font-bold">
+                  FLAGSHIP PROJECT
+                </span>
+              </div>
+
+              <div className="absolute top-6 right-6 z-10 flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1.5 border border-white/10">
+                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                <span className="font-label-caps text-[8px] tracking-[0.15em] text-white font-bold">
+                  ACTIVE PIPELINE
+                </span>
+              </div>
+
+              {/* Bottom stats overlay on image */}
+              <div className="absolute bottom-6 left-6 right-6 z-10">
+                <div className="flex items-center gap-2 text-white/50 mb-1">
+                  <span className="material-symbols-outlined text-[16px] text-accent">location_on</span>
+                  <span className="font-label-caps text-[9px] tracking-[0.16em] uppercase">UTTARAKHAND, INDIA</span>
+                </div>
+                <h4 className="font-headline text-[13px] font-bold text-white tracking-[0.05em] uppercase">ARIHANTAA POWERTECH DIVISION</h4>
+              </div>
             </div>
 
-            <div className="w-full lg:w-[35%] flex flex-col justify-center bg-white/[0.01]">
-              {sector.flagshipProject.stats.map((stat, idx) => (
-                <div key={idx} className="p-8 flex flex-col justify-center border-r border-b border-white/10 hover:bg-white/[0.03] transition-colors duration-300">
-                  <div className="font-headline text-[28px] md:text-[34px] text-accent font-black leading-none mb-1">{stat.value}</div>
-                  <div className="font-label-caps text-[9px] text-white/60 uppercase tracking-[0.15em] font-bold">{stat.label}</div>
+            {/* Right: Technical specifications and statistics */}
+            <div className="w-full lg:w-[55%] p-8 md:p-12 flex flex-col justify-between space-y-8 bg-surface-container-lowest/15 relative z-10">
+              <div>
+                <span className="text-[10px] text-accent font-label-caps tracking-[0.25em] font-bold block mb-3">EXPERIENCE CASE STUDY</span>
+                <h3 className="font-headline text-[22px] md:text-[28px] font-black tracking-tight text-white group-hover:text-accent transition-colors duration-300 leading-tight uppercase mb-4">
+                  {sector.flagshipProject.name}
+                </h3>
+                <div className="font-label-caps text-[10px] text-white/50 uppercase tracking-[0.15em] border-b border-outline-variant/15 pb-4 mb-4">
+                  Client: <span className="text-white font-bold">{sector.flagshipProject.client}</span>
                 </div>
-              ))}
+                <p className="font-body text-[14px] leading-relaxed text-white/60">
+                  {sector.flagshipProject.scope}
+                </p>
+              </div>
+
+              {/* Sub-grid with technical statistics */}
+              <div className="grid grid-cols-3 gap-4 border-t border-b border-outline-variant/15 py-6">
+                {sector.flagshipProject.stats.map((stat, idx) => (
+                  <div key={idx} className="flex flex-col justify-center">
+                    <div className="font-headline text-[20px] md:text-[24px] text-accent font-black leading-none mb-1">{stat.value}</div>
+                    <div className="font-label-caps text-[8px] text-white/40 uppercase tracking-[0.12em] font-bold">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Progress gauge metrics */}
+              <div className="space-y-2 pt-2">
+                <div className="w-full h-[4px] bg-white/10 relative overflow-hidden">
+                  <motion.div
+                    className="absolute left-0 top-0 h-full bg-accent"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '95%' }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, ease: 'easeOut' }}
+                  />
+                </div>
+                <div className="flex justify-between font-label-caps text-[9px] text-white/45 tracking-[0.16em]">
+                  <span>CONTRACT SCHEDULE // LIVE</span>
+                  <span className="text-accent font-bold">95% COMPLETE</span>
+                </div>
+              </div>
+
+              {/* Action trigger bar */}
+              <div className="pt-4 flex items-center justify-between border-t border-white/5">
+                <span className="font-label-caps text-[9px] text-white/50 tracking-[0.16em] uppercase">EXPLORE FULL SCHEMATICS & SLA</span>
+                <div className="w-10 h-10 border border-outline-variant/30 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all duration-300">
+                  <span className="material-symbols-outlined text-[20px] text-white group-hover:text-white transition-transform duration-300 group-hover:translate-x-0.5">arrow_forward</span>
+                </div>
+              </div>
             </div>
           </motion.div>
 
-          {/* Supporting project cards — Zero-gap layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-outline-variant/30 gap-0 bg-white shadow-sm">
+          {/* Supporting project cards — Zero-gap visual grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-t border-l border-outline-variant/30 gap-0 bg-white shadow-2xl">
             {sector.supportingProjects.map((proj, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: (idx % 4) * 0.06 }}
-                className="border-r border-b border-outline-variant/30 p-6 md:p-8 flex flex-col justify-between hover:bg-accent/[0.015] transition-colors duration-300 group"
+                transition={{ duration: 0.4, delay: (idx % 4) * 0.06, ease: [0.25, 1, 0.5, 1] }}
+                className="group relative border-r border-b border-outline-variant/30 flex flex-col justify-between hover:bg-accent/[0.005] transition-all duration-300"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-4 pb-2 border-b border-outline-variant/20">
-                    <span className="font-label-caps text-[9px] text-secondary font-bold uppercase tracking-wider">{proj.tag}</span>
-                    <span className="font-label-caps text-[9px] text-accent tracking-wider uppercase font-bold">{proj.location}</span>
+                {/* Clickable router link overlay */}
+                <Link to={`/projects/${getProjectId(idx, false)}`} className="absolute inset-0 z-20" aria-label={`View details for ${proj.name}`} />
+
+                {/* Card Top: Visual Canvas */}
+                <div className="relative h-44 overflow-hidden border-b border-outline-variant/20">
+                  <img 
+                    src={getProjectImage(proj.tag)}
+                    alt={proj.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/20 pointer-events-none" />
+
+                  {/* Dynamic Category Badges */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="bg-black/60 backdrop-blur-md text-white font-label-caps text-[8px] tracking-[0.16em] px-2 py-0.5 border border-white/10 uppercase">
+                      {proj.tag.toUpperCase()}
+                    </span>
                   </div>
-                  <h4 className="font-headline text-[15px] text-on-surface font-extrabold tracking-tight mb-3 leading-snug group-hover:text-accent transition-colors uppercase">{proj.name}</h4>
-                  <div className="font-label-caps text-[9px] text-secondary uppercase mb-6">Client: <span className="font-medium">{proj.client}</span></div>
+
+                  {/* Mapped completion indicators */}
+                  <div className="absolute top-4 right-4 z-10 flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-0.5 border border-white/10">
+                    <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+                    <span className="font-label-caps text-[7.5px] tracking-[0.12em] text-white">
+                      COMPLETED
+                    </span>
+                  </div>
                 </div>
-                <div className="pt-4 border-t border-outline-variant/20 flex items-center justify-between">
-                  <span className="font-headline text-[14px] text-on-surface font-bold">{proj.cost}</span>
-                  <span className="font-label-caps text-[8px] text-secondary tracking-widest uppercase font-bold">{proj.durationLabel}</span>
+
+                {/* Card Middle: Rich Typography Metadata */}
+                <div className="p-6 flex flex-col flex-1 justify-between space-y-4">
+                  <div className="space-y-2">
+                    {/* Mapped Location with icon pin */}
+                    <div className="flex items-center gap-1.5 text-secondary/60">
+                      <span className="material-symbols-outlined text-[18px] text-accent">location_on</span>
+                      <span className="font-label-caps text-[8px] tracking-[0.16em] uppercase">{proj.location.toUpperCase()}</span>
+                    </div>
+
+                    {/* Mapped Project Title */}
+                    <h4 className="font-headline text-[14px] text-on-surface font-extrabold tracking-tight leading-snug group-hover:text-accent transition-colors duration-300 uppercase">
+                      {proj.name}
+                    </h4>
+
+                    {/* Mapped Client detail */}
+                    <div className="font-label-caps text-[8.5px] text-secondary uppercase tracking-wider">
+                      Client: <span className="font-bold text-on-surface/80">{proj.client}</span>
+                    </div>
+                  </div>
+
+                  {/* Card Bottom: Animated gauge bar + cost stats */}
+                  <div className="space-y-4 pt-2">
+                    <div className="flex justify-between text-[10px] font-body text-secondary border-t border-outline-variant/20 pt-3">
+                      <span>PROJECT VALUE</span>
+                      <span className="font-bold text-accent">{proj.cost}</span>
+                    </div>
+
+                    {/* Progress Gauge */}
+                    <div className="space-y-1">
+                      <div className="w-full h-[2px] bg-outline-variant/15 relative overflow-hidden">
+                        <motion.div
+                          className="absolute left-0 top-0 h-full bg-accent"
+                          initial={{ width: 0 }}
+                          whileInView={{ width: '100%' }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1.0, ease: 'easeOut', delay: 0.1 }}
+                        />
+                      </div>
+                      <div className="flex justify-between font-label-caps text-[8px] text-secondary/40 tracking-[0.12em]">
+                        <span>{proj.durationLabel.toUpperCase()}</span>
+                        <span className="text-secondary/70">100% COMPLETE</span>
+                      </div>
+                    </div>
+
+                    {/* Action trigger arrow */}
+                    <div className="pt-2 flex items-center justify-between border-t border-outline-variant/10">
+                      <span className="font-label-caps text-[8.5px] text-secondary/60 tracking-[0.14em]">VIEW DETAILS</span>
+                      <div className="w-7 h-7 border border-outline-variant/40 flex items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all duration-300">
+                        <span className="material-symbols-outlined text-[16px] text-secondary group-hover:text-white transition-colors duration-300">arrow_forward</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -678,10 +980,7 @@ export function SpecificSector() {
 
         {/* Dark upper block */}
         <div className="bg-[#080808] pt-28 pb-56 px-8 md:px-16 relative overflow-hidden">
-          <div aria-hidden className="absolute inset-0 pointer-events-none z-0">
-            <div className="absolute top-0 left-[10%] w-[1px] h-full bg-white/5" />
-            <div className="absolute top-0 right-[10%] w-[1px] h-full bg-white/5" />
-          </div>
+
 
           <div className="relative z-10 max-w-[1440px] mx-auto">
             <div className="flex items-center gap-3 mb-5">
