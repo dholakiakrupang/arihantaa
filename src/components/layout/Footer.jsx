@@ -17,7 +17,8 @@ export function Footer() {
     /^\/projects\/[^/]+$/.test(path) ||
     /^\/products\/[^/]+/.test(path) ||
     /^\/services\/[^/]+/.test(path) ||
-    /^\/sectors\/[^/]+$/.test(path);
+    /^\/sectors\/[^/]+$/.test(path) ||
+    /^\/news\/[^/]+$/.test(path);
 
   return (
     <footer className="bg-[#0a0a0a] border-t border-white/10 text-white pt-24 pb-8 overflow-hidden relative">

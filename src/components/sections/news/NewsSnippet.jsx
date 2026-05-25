@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NEWS_DATA = [
   {
+    id: 'eastern-grid-expansion',
     title: 'Arihantaa expands infrastructure consulting arm in the Middle East',
     date: 'OCT 24, 2026',
     tag: 'PRESS RELEASE',
@@ -10,6 +11,7 @@ const NEWS_DATA = [
     readTime: '3 min read'
   },
   {
+    id: 'liquid-cooling-standard',
     title: 'Next-Generation Liquid Cooling standard adopted for new data centers',
     date: 'NOV 02, 2026',
     tag: 'INNOVATION',
@@ -74,7 +76,7 @@ export function NewsSnippet() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.1 + (i * 0.12), ease: [0.25, 1, 0.5, 1] }}
                 >
-                  <Link to="/news" className="block p-8 md:p-10 relative z-10">
+                  <Link to={`/news/${item.id}`} className="block p-8 md:p-10 relative z-10">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
                       
                       {/* Left: Article Details */}

@@ -9,6 +9,7 @@ export function Contact() {
   const inquiry = searchParams.get('inquiry');
   const item = searchParams.get('item');
 
+
   const heroParticles = useMemo(() => Array.from({ length: 25 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
@@ -195,26 +196,29 @@ export function Contact() {
     <div className="bg-background text-on-background font-body min-h-screen">
       
       {/* ── Hero Section ──────────────────────────────────────────────── */}
-      <section className="relative bg-[#080808] text-white py-24 md:py-32 px-8 md:px-16 overflow-hidden border-b border-outline-variant/30 flex flex-col justify-center min-h-[55vh]">
+      <section 
+        className="relative bg-[#08090c] text-white pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden border-b border-outline-variant/30 flex flex-col justify-center"
+        style={{ minHeight: '100svh' }}
+      >
         
-        {/* Ambient warm orange spotlight glows */}
+        {/* Two-Tone Sunset Orange & Cobalt Blue Ambient Spotlight System */}
         <div aria-hidden className="absolute inset-0 pointer-events-none z-0">
           <motion.div
-            className="absolute -top-[30%] -left-[10%] w-[65%] h-[80%] rounded-full"
+            className="absolute -top-[30%] -left-[10%] w-[65%] h-[80%] rounded-full animate-pulse"
             style={{
-              background: 'radial-gradient(ellipse, rgba(233,101,43,0.15) 0%, transparent 75%)',
+              background: 'radial-gradient(ellipse, rgba(233,101,43,0.18) 0%, transparent 75%)',
               filter: 'blur(90px)',
             }}
-            animate={{ scale: [1, 1.08, 1], opacity: [0.8, 1, 0.8] }}
+            animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
             transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />
           <motion.div
-            className="absolute -bottom-[20%] -right-[10%] w-[50%] h-[70%] rounded-full"
+            className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[80%] rounded-full"
             style={{
-              background: 'radial-gradient(ellipse, rgba(233,101,43,0.06) 0%, transparent 70%)',
+              background: 'radial-gradient(ellipse, rgba(59,130,246,0.09) 0%, transparent 70%)',
               filter: 'blur(100px)',
             }}
-            animate={{ scale: [1, 1.15, 1], opacity: [0.6, 0.9, 0.6] }}
+            animate={{ scale: [1, 1.12, 1], opacity: [0.7, 0.9, 0.7] }}
             transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
           />
         </div>
@@ -248,12 +252,9 @@ export function Contact() {
           ))}
         </div>
 
-        {/* Diagonal micro structural grid backdrop */}
-        <div className="absolute inset-0 opacity-[0.025] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:36px_36px] pointer-events-none z-0" />
-
         {/* Ghost Text Background with subtle animation */}
         <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none font-headline font-black text-[120px] md:text-[220px] lg:text-[280px] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.02)] uppercase tracking-tighter whitespace-nowrap select-none"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none font-headline font-black text-[120px] md:text-[220px] lg:text-[280px] text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.015)] uppercase tracking-tighter whitespace-nowrap select-none"
           animate={{
             scale: [0.98, 1.02, 0.98],
             opacity: [0.3, 0.5, 0.3],
@@ -267,29 +268,35 @@ export function Contact() {
           CONTACT
         </motion.div>
         
-        <div className="max-w-[1440px] mx-auto relative z-10 w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center px-8 md:px-16">
-          <div className="md:col-span-9 space-y-8">
-            <motion.span 
-              className="inline-block font-label-caps text-[11px] text-accent uppercase tracking-[0.25em] border border-accent/30 px-4 py-2 bg-accent/5 backdrop-blur-md"
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.6 }}
+        {/* Responsive Intake Centered Block Layout */}
+        <div className="max-w-[1440px] mx-auto relative z-10 w-full px-8 md:px-16">
+          <div className="max-w-4xl space-y-8">
+            {/* Standard Breadcrumb Navigation */}
+            <motion.nav
+              className="flex items-center gap-2 mb-2"
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              Consultation & Intake
-            </motion.span>
+              <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
+              <span className="material-symbols-outlined text-white/35 text-[14px] select-none flex items-center justify-center">chevron_right</span>
+              <span className="font-label-caps text-[10px] text-white/35 tracking-[0.2em] uppercase">Contact</span>
+            </motion.nav>
             
             <motion.h1 
-              className="font-headline text-[40px] md:text-[68px] lg:text-[80px] text-white leading-[1.05] font-black tracking-tighter uppercase max-w-4xl"
+              className="font-headline text-[38px] md:text-[62px] lg:text-[72px] leading-[1.08] font-black tracking-tighter uppercase max-w-3xl"
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Engineering solutions<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">for a mission-critical world.</span>
+              <span className="text-white block">Engineering solutions</span>
+              <span className="text-white block mt-2 md:mt-3">
+                for a <span className="text-accent whitespace-nowrap">mission-critical</span> world.
+              </span>
             </motion.h1>
             
             <motion.p 
-              className="font-body text-[16px] md:text-[18px] text-white/60 max-w-2xl leading-relaxed font-light"
+              className="font-body text-[15px] md:text-[17px] text-white/60 max-w-xl leading-relaxed font-light"
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.6, delay: 0.2 }}
