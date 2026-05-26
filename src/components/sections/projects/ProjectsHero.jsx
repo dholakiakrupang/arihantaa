@@ -424,14 +424,14 @@ export function ProjectsHero() {
 
             {/* Compact credential strip */}
             <motion.div
-              className="flex items-center gap-6 pt-4 border-t border-white/8"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-4 md:gap-x-6 pt-4 border-t border-white/8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.9 }}
             >
               {['₹315 Cr+ Active', '22+ Live Projects', '9 States'].map((t, i) => (
-                <div key={t} className="flex items-center gap-6">
-                  <span className="font-label-caps text-[10px] text-white/35 tracking-[0.16em] whitespace-nowrap">{t}</span>
+                <div key={t} className="flex items-center gap-4 md:gap-6">
+                  <span className="font-label-caps text-[9px] md:text-[10px] text-white/35 tracking-[0.16em] whitespace-nowrap">{t}</span>
                   {i < 2 && <div className="w-px h-3 bg-white/15" />}
                 </div>
               ))}
@@ -479,21 +479,21 @@ export function ProjectsHero() {
                 label="Critical Power"
                 value="10 MVA UPS Systems"
                 delay={2.2}
-                className="top-[12%] -left-4 md:-left-12"
+                className="top-[12%] left-3 sm:left-4 md:-left-4 lg:-left-12"
               />
               <Badge
                 icon="done_all"
                 label="Completed"
                 value="GMERS Sola — ₹69.19 Cr"
                 delay={2.5}
-                className="bottom-[18%] -right-4 md:-right-10"
+                className="bottom-[18%] right-3 sm:right-4 md:-right-4 lg:-right-10"
               />
               <Badge
                 icon="construction"
                 label="In Progress"
                 value="22 Active Projects"
                 delay={2.8}
-                className="bottom-[2%] left-[8%]"
+                className="bottom-[2%] left-3 sm:left-[6%] md:left-[8%]"
               />
             </div>
           </motion.div>

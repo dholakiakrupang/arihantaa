@@ -197,7 +197,7 @@ export function ProjectBoard() {
         </div>
 
         {/* ── Sticky Toolbar — EngineeredSolutions-inspired ── */}
-        <div className="sticky top-[80px] z-40 mb-14">
+        <div className="sticky top-[64px] md:top-[80px] z-40 mb-14">
           
           {/* Invisible Click-Outside Detector (No blur or dimming) */}
           <AnimatePresence>
@@ -214,18 +214,19 @@ export function ProjectBoard() {
             {/* Left: Breadcrumb context + count */}
             <div className="flex items-center gap-2 text-[11px] font-medium text-secondary min-w-0 flex-grow px-4 md:px-6 py-3.5">
               <span className="material-symbols-outlined text-[18px] text-accent/60">folder_open</span>
-              <span className="hidden sm:inline whitespace-nowrap">Portfolio</span>
-              <span className="material-symbols-outlined text-[14px] text-secondary/30 hidden sm:inline select-none">chevron_right</span>
-              <span className="font-semibold text-on-surface truncate">{activeCategoryLabel}</span>
-              <span className="text-secondary/40 hidden md:inline">·</span>
-              <span className="text-accent font-bold hidden md:inline whitespace-nowrap">{filtered.length} {filtered.length === 1 ? 'project' : 'projects'}</span>
+              <span className="whitespace-nowrap">Portfolio</span>
+              <span className="material-symbols-outlined text-[14px] text-secondary/30 select-none">chevron_right</span>
+              <span className="font-semibold text-on-surface truncate">
+                {activeCategoryLabel}
+                <span className="text-accent font-bold ml-1.5">({filtered.length})</span>
+              </span>
             </div>
 
             {/* Right: Action controls (Search, Filter, Sort) in segmented box structure */}
             <div className="flex items-stretch flex-shrink-0 border-t md:border-t-0 md:border-l border-outline-variant/30 divide-x divide-outline-variant/30">
 
               {/* Box 1: Search Container */}
-              <div className="relative flex items-center bg-transparent px-4 focus-within:bg-surface-container/20 transition-all duration-300 min-w-[200px] md:min-w-[220px] flex-grow md:flex-grow-0">
+              <div className="relative flex items-center bg-transparent px-3 md:px-4 focus-within:bg-surface-container/20 transition-all duration-300 min-w-0 flex-1 md:min-w-[220px] md:flex-initial md:flex-grow-0">
                 <span className="material-symbols-outlined text-[18px] text-secondary/40 mr-2 flex-shrink-0">search</span>
                 <input 
                   type="text" 
@@ -245,7 +246,7 @@ export function ProjectBoard() {
               <div className="relative flex items-stretch">
                 <button
                   onClick={handleToggleFilterDropdown}
-                  className={`group relative flex items-center gap-2 px-5 py-3.5 font-label-caps text-[10px] tracking-[0.12em] font-bold whitespace-nowrap transition-all duration-300 hover:bg-surface-container/20 ${
+                  className={`group relative flex items-center gap-2 px-3 sm:px-5 py-3.5 font-label-caps text-[10px] tracking-[0.12em] font-bold whitespace-nowrap transition-all duration-300 hover:bg-surface-container/20 ${
                     filterOpen || activeCategory !== 'all'
                       ? 'text-accent'
                       : 'text-secondary hover:text-on-surface'
@@ -319,7 +320,7 @@ export function ProjectBoard() {
               <div className="relative flex items-stretch">
                 <button
                   onClick={() => { setSortOpen(!sortOpen); setFilterOpen(false); }}
-                  className={`group relative flex items-center gap-2 px-5 py-3.5 font-label-caps text-[10px] tracking-[0.12em] font-bold whitespace-nowrap transition-all duration-300 hover:bg-surface-container/20 ${
+                  className={`group relative flex items-center gap-2 px-3 sm:px-5 py-3.5 font-label-caps text-[10px] tracking-[0.12em] font-bold whitespace-nowrap transition-all duration-300 hover:bg-surface-container/20 ${
                     sortOpen || sortBy !== 'default'
                       ? 'text-accent'
                       : 'text-secondary hover:text-on-surface'

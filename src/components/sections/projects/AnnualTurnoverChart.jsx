@@ -43,7 +43,7 @@ export function AnnualTurnoverChart() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="relative flex items-end justify-around gap-2 md:gap-3 h-72 md:h-96 border-b border-white/10 pl-12 pb-0 min-w-[640px] md:min-w-0"
+            className="relative flex items-end justify-around gap-1 md:gap-3 h-72 md:h-96 border-b border-white/10 pl-12 pb-0 w-full min-w-0"
           >
 
             {/* Y-axis vertical line */}
@@ -94,7 +94,7 @@ export function AnnualTurnoverChart() {
                   </span>
 
                   {/* Bar */}
-                  <div className="w-10 sm:w-14 md:w-16 max-w-[64px] relative overflow-hidden rounded-t-sm" style={{ height: `${heightPct}%` }}>
+                  <div className="w-6 sm:w-12 md:w-16 max-w-[64px] relative overflow-hidden rounded-t-sm" style={{ height: `${heightPct}%` }}>
                     <motion.div
                       custom={i}
                       variants={barVariants}

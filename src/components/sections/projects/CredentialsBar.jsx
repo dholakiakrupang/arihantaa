@@ -15,14 +15,14 @@ export function CredentialsBar() {
     <>
       {/* Credentials strip */}
       <section className="bg-surface border-t border-outline-variant/30 py-5 overflow-hidden">
-        <div className="flex flex-wrap justify-center items-center gap-x-6 gap-y-2 px-6 md:px-12">
+        <div className="grid grid-cols-2 md:flex md:flex-nowrap justify-items-center md:justify-center items-center gap-x-4 md:gap-x-1.5 lg:gap-x-5 gap-y-3 px-4 md:px-5 lg:px-6 max-w-[1440px] mx-auto text-center">
           {CREDS.map((c, i) => (
             <React.Fragment key={i}>
-              <span className="font-label-caps text-[10px] text-secondary tracking-[0.2em]">
+              <span className="font-label-caps text-[8.5px] sm:text-[9.5px] md:text-[8px] lg:text-[10px] text-secondary tracking-[0.12em] md:tracking-[0.12em] lg:tracking-[0.2em] whitespace-nowrap">
                 {c.toUpperCase()}
               </span>
               {i < CREDS.length - 1 && (
-                <span className="text-accent text-[10px] hidden md:inline">/</span>
+                <span className="hidden md:inline text-accent text-[9px] md:text-[10px] mx-0.5 md:mx-0.5 lg:mx-2">/</span>
               )}
             </React.Fragment>
           ))}

@@ -32,9 +32,55 @@ export function CurrentPipeline() {
           </div>
         </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[700px]">
+        {/* Mobile Stacked List (scrollbar-free) */}
+        <div className="md:hidden space-y-4">
+          {pipeline.map((row, i) => (
+            <motion.div
+              key={row.id}
+              className="bg-white/[0.02] border border-white/5 p-4 flex flex-col gap-3 group hover:bg-white/[0.04] transition-colors"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+            >
+              {/* Header: Number, Name, Status */}
+              <div className="flex justify-between items-start gap-4">
+                <div className="flex items-start gap-3">
+                  <span className="font-headline font-light text-xl text-inverse-on-surface/30 mt-0.5">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="font-headline text-[15px] text-inverse-on-surface group-hover:text-accent transition-colors leading-snug">
+                    {row.name}
+                  </h3>
+                </div>
+                <div className="inline-flex items-center gap-1.5 shrink-0 bg-accent/10 px-2 py-0.5 border border-accent/20">
+                  <div className="w-1 h-1 rounded-full bg-accent animate-pulse" />
+                  <span className="font-label-caps text-[8px] text-accent tracking-[0.12em]">LIVE</span>
+                </div>
+              </div>
+
+              {/* Grid: Client, Value, Duration */}
+              <div className="grid grid-cols-3 gap-2 border-t border-white/5 pt-3">
+                <div>
+                  <span className="font-label-caps text-[8px] text-inverse-on-surface/20 tracking-wider block mb-0.5">CLIENT</span>
+                  <span className="font-body text-[11px] text-inverse-on-surface/50 leading-tight block truncate max-w-[100px]">{row.client}</span>
+                </div>
+                <div>
+                  <span className="font-label-caps text-[8px] text-inverse-on-surface/20 tracking-wider block mb-0.5">VALUE</span>
+                  <span className="font-headline text-[13px] text-accent font-semibold block">{row.value}</span>
+                </div>
+                <div>
+                  <span className="font-label-caps text-[8px] text-inverse-on-surface/20 tracking-wider block mb-0.5">DURATION</span>
+                  <span className="font-body text-[11px] text-inverse-on-surface/50 block">{row.duration}</span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop/Tablet Table layout */}
+        <div className="hidden md:block overflow-x-auto">
+          <table className="w-full min-w-full">
             <thead>
               <tr className="border-b border-white/10">
                 {['#', 'Project', 'Client', 'Value', 'Duration', 'Status'].map((h) => (
@@ -63,9 +109,9 @@ export function CurrentPipeline() {
                     </span>
                   </td>
                   <td className="py-4 px-4 font-body text-sm text-inverse-on-surface/50 font-light">{row.client}</td>
-                  <td className="py-4 px-4 text-right font-headline text-lg text-inverse-on-surface font-light">{row.value}</td>
-                  <td className="py-4 px-4 font-body text-sm text-inverse-on-surface/50 font-light">{row.duration}</td>
-                  <td className="py-4 px-4 text-right">
+                  <td className="py-4 px-4 text-right font-headline text-lg text-inverse-on-surface font-light whitespace-nowrap">{row.value}</td>
+                  <td className="py-4 px-4 font-body text-sm text-inverse-on-surface/50 font-light whitespace-nowrap">{row.duration}</td>
+                  <td className="py-4 px-4 text-right whitespace-nowrap">
                     <div className="inline-flex items-center gap-2">
                       <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-ring" />
                       <span className="font-label-caps text-[9px] text-accent tracking-[0.16em]">LIVE</span>
