@@ -224,39 +224,29 @@ export function EngineeredSolutionCard({
 
             {/* Actions Group (Brochure, Support, View Detail) */}
             <div className="flex flex-col sm:flex-row items-stretch">
-              {/* BROCHURE — text only, icon reveals on hover (absolute, no shift) */}
+              {/* BROCHURE — always visible icon, inline aligned */}
               <Link 
                 to={type === 'service' ? `${detailUrl}#inquiries` : `${detailUrl}#downloads`}
-                className="group/brochure relative flex items-center justify-center gap-0 border-0 border-b sm:border-b-0 sm:border-r border-outline/20 px-6 py-3.5 sm:py-0 min-h-[44px] transition-colors duration-300 overflow-hidden bg-transparent"
+                className="group/brochure relative flex items-center justify-center gap-2 border-0 border-b sm:border-b-0 sm:border-r border-outline/20 px-6 py-3.5 sm:py-0 min-h-[44px] transition-colors duration-300 bg-transparent text-secondary hover:text-accent"
               >
-                <span className="relative flex items-center">
-                  {/* Icon — absolutely positioned to left, hidden by default */}
-                  <span 
-                    className="material-symbols-outlined text-[21px] text-accent absolute right-full mr-1.5 opacity-0 -translate-x-1.5 group-hover/brochure:opacity-100 group-hover/brochure:translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                  >
-                    download
-                  </span>
-                  <span className="font-label-caps text-[9.5px] tracking-[0.2em] font-semibold text-secondary group-hover/brochure:text-accent transition-colors duration-300 leading-none uppercase select-none">
-                    BROCHURE
-                  </span>
+                <span className="material-symbols-outlined text-[19px] text-accent">
+                  download
+                </span>
+                <span className="font-label-caps text-[9.5px] tracking-[0.2em] font-semibold leading-none uppercase select-none">
+                  BROCHURE
                 </span>
               </Link>
 
-              {/* SUPPORT — text only, icon reveals on hover (absolute, no shift) */}
+              {/* SUPPORT — always visible icon, inline aligned */}
               <Link 
                 to={`/contact?inquiry=support&item=${encodeURIComponent(title)}`}
-                className="group/support relative flex items-center justify-center gap-0 border-0 border-b sm:border-b-0 sm:border-r border-outline/20 px-6 py-3.5 sm:py-0 min-h-[44px] transition-colors duration-300 overflow-hidden bg-transparent"
+                className="group/support relative flex items-center justify-center gap-2 border-0 border-b sm:border-b-0 sm:border-r border-outline/20 px-6 py-3.5 sm:py-0 min-h-[44px] transition-colors duration-300 bg-transparent text-secondary hover:text-accent"
               >
-                <span className="relative flex items-center pr-6">
-                  <span className="font-label-caps text-[9.5px] tracking-[0.2em] font-semibold text-secondary group-hover/support:text-accent transition-colors duration-300 leading-none uppercase select-none">
-                    SUPPORT
-                  </span>
-                  {/* Icon — absolutely positioned to right, hidden by default */}
-                  <span 
-                    className="material-symbols-outlined text-[21px] text-accent absolute right-0 opacity-0 translate-x-1.5 group-hover/support:opacity-100 group-hover/support:translate-x-0 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                  >
-                    support_agent
-                  </span>
+                <span className="material-symbols-outlined text-[19px] text-accent">
+                  support_agent
+                </span>
+                <span className="font-label-caps text-[9.5px] tracking-[0.2em] font-semibold leading-none uppercase select-none">
+                  SUPPORT
                 </span>
               </Link>
 

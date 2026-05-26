@@ -26,12 +26,11 @@ export function ProjectStatStrip({ stats }) {
   if (!stats || stats.length === 0) return null;
 
   return (
-    <section className="w-full bg-surface py-16 px-6 md:px-12 lg:px-20 border-b border-outline-variant/30 relative z-20">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-outline-variant/50">
-        
+    <div className="w-full border-t border-b border-white/10 bg-[#080808]/95 backdrop-blur-md shrink-0 relative z-30" style={{ opacity: 1, transform: 'none' }}>
+      <div className="max-w-[1440px] mx-auto grid grid-cols-3 divide-x divide-white/10">
         {stats.map((item, idx) => (
-          <div key={idx} className="flex flex-col items-center justify-center text-center px-6 py-4 md:py-0">
-            <div className="font-headline font-black text-[50px] md:text-[56px] text-accent leading-none tracking-tighter">
+          <div key={idx} className="px-6 py-5 flex flex-col justify-center">
+            <span className="font-headline text-[18px] md:text-[22px] font-black text-accent tracking-tight leading-none mb-1">
               {item.to !== undefined ? (
                 <AnimCount 
                   to={item.to} 
@@ -42,14 +41,13 @@ export function ProjectStatStrip({ stats }) {
               ) : (
                 item.value
               )}
-            </div>
-            <div className="font-label-caps text-[11px] text-secondary tracking-[0.2em] mt-4 uppercase font-bold">
+            </span>
+            <span className="font-label-caps text-[9px] text-white/40 tracking-wider uppercase leading-none">
               {item.label}
-            </div>
+            </span>
           </div>
         ))}
-
       </div>
-    </section>
+    </div>
   );
 }

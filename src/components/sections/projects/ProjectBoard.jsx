@@ -12,7 +12,7 @@ function ProjectCard({ project, index }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4, delay: index * 0.04, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
       className="group flex flex-col bg-surface border border-outline-variant/30 transition-all duration-300 relative hover:border-accent/30"
     >
       <Link to={`/projects/${project.id}`} className="absolute inset-0 z-20" aria-label={`View details for ${project.title}`} />
@@ -197,7 +197,7 @@ export function ProjectBoard() {
         </div>
 
         {/* ── Sticky Toolbar — EngineeredSolutions-inspired ── */}
-        <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 sticky top-[80px] z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)] mb-14">
+        <div className="sticky top-[80px] z-40 mb-14">
           
           {/* Invisible Click-Outside Detector (No blur or dimming) */}
           <AnimatePresence>
@@ -209,7 +209,7 @@ export function ProjectBoard() {
             )}
           </AnimatePresence>
 
-          <div className="relative z-10 flex flex-col md:flex-row items-stretch min-h-[56px]">
+          <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] relative z-10 flex flex-col md:flex-row items-stretch">
 
             {/* Left: Breadcrumb context + count */}
             <div className="flex items-center gap-2 text-[11px] font-medium text-secondary min-w-0 flex-grow px-4 md:px-6 py-3.5">
@@ -226,7 +226,7 @@ export function ProjectBoard() {
 
               {/* Box 1: Search Container */}
               <div className="relative flex items-center bg-transparent px-4 focus-within:bg-surface-container/20 transition-all duration-300 min-w-[200px] md:min-w-[220px] flex-grow md:flex-grow-0">
-                <span className="material-symbols-outlined text-[16px] text-secondary/40 mr-2 flex-shrink-0">search</span>
+                <span className="material-symbols-outlined text-[18px] text-secondary/40 mr-2 flex-shrink-0">search</span>
                 <input 
                   type="text" 
                   placeholder="SEARCH PROJECTS..." 

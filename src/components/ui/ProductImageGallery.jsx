@@ -88,21 +88,19 @@ export function ProductImageGallery({
   const hasValidImage = currentImage && !imageErrors[activeIndex];
 
   return (
-    <div className="w-full flex flex-col gap-6 relative group/gallery select-none">
+    <div className="w-full flex flex-col gap-0 relative group/gallery select-none">
       
       {/* ── Main Display Container (No borders, no white card, transparent background) ── */}
       <div className="relative w-full overflow-hidden flex items-center justify-center min-h-[360px] md:min-h-[440px] bg-transparent">
         
         {hasValidImage ? (
-          /* px-14 md:px-16 padding keeps the product image contained in the center, 
-             so the absolute left-0 and right-0 buttons sit perfectly on the outer sides without overlapping it */
-          <div className="relative w-full h-full px-14 md:px-16 flex items-center justify-center">
+          <div className="relative w-full h-full flex items-center justify-center">
             
             {/* Left Floating Arrow (Sharp B2B Box flush against left line) */}
             {hasMultiple && (
               <button 
                 onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-none flex items-center justify-center bg-white/80 hover:bg-accent border border-outline-variant/30 hover:border-accent text-secondary hover:text-white transition-all duration-300 shadow-sm opacity-100 lg:opacity-0 lg:group-hover/gallery:opacity-100"
+                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-none flex items-center justify-center bg-white/80 hover:bg-accent border border-outline-variant/30 hover:border-accent text-secondary hover:text-white transition-all duration-300 shadow-sm opacity-100 lg:opacity-0 lg:group-hover/gallery:opacity-100"
                 aria-label="Previous image"
               >
                 <span className="material-symbols-outlined text-[22px] select-none">chevron_left</span>
@@ -113,7 +111,7 @@ export function ProductImageGallery({
             {hasMultiple && (
               <button 
                 onClick={(e) => { e.stopPropagation(); goNext(); }}
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-none flex items-center justify-center bg-white/80 hover:bg-accent border border-outline-variant/30 hover:border-accent text-secondary hover:text-white transition-all duration-300 shadow-sm opacity-100 lg:opacity-0 lg:group-hover/gallery:opacity-100"
+                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-none flex items-center justify-center bg-white/80 hover:bg-accent border border-outline-variant/30 hover:border-accent text-secondary hover:text-white transition-all duration-300 shadow-sm opacity-100 lg:opacity-0 lg:group-hover/gallery:opacity-100"
                 aria-label="Next image"
               >
                 <span className="material-symbols-outlined text-[22px] select-none">chevron_right</span>
@@ -125,7 +123,7 @@ export function ProductImageGallery({
               src={currentImage.src}
               alt={currentImage.alt || `Product view ${activeIndex + 1}`}
               onClick={() => setIsZoomed(true)}
-              className="max-h-[360px] md:max-h-[440px] w-full h-auto object-contain filter drop-shadow-[0_12px_20px_rgba(0,0,0,0.05)] select-none mix-blend-multiply cursor-zoom-in z-10 hover:scale-[1.015] transition-transform duration-300"
+              className="w-full h-full max-h-[360px] md:max-h-[440px] object-contain select-none mix-blend-multiply cursor-zoom-in z-10 hover:scale-[1.015] transition-transform duration-300"
               onError={() => handleImageError(activeIndex)}
               draggable={false}
             />
@@ -146,7 +144,7 @@ export function ProductImageGallery({
 
       {/* ── Structured Thumbnail Strip (Clean, low-profile, completely transparent borderless buttons) ── */}
       {hasMultiple && (
-        <div className="flex items-center justify-center gap-2 overflow-x-auto hide-scrollbar py-1">
+        <div className="flex w-full items-center gap-2 overflow-x-auto hide-scrollbar justify-start sm:justify-center">
           {gallery.map((img, idx) => {
             const isActive = idx === activeIndex;
             const hasError = imageErrors[idx];
@@ -154,9 +152,9 @@ export function ProductImageGallery({
               <button
                 key={idx}
                 onClick={() => goTo(idx)}
-                className={`relative shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-none transition-all duration-300 overflow-hidden flex items-center justify-center bg-transparent border ${
+                className={`relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-none transition-all duration-300 overflow-hidden flex items-center justify-center bg-transparent border ${
                   isActive 
-                    ? 'border-accent opacity-100 bg-white ring-1 ring-accent/10' 
+                    ? 'border-accent opacity-100' 
                     : 'border-transparent opacity-60 hover:opacity-100 hover:border-outline-variant/30'
                 }`}
                 aria-label={`View thumbnail ${idx + 1}`}
@@ -165,7 +163,7 @@ export function ProductImageGallery({
                   <img 
                     src={img.src} 
                     alt={img.alt || `Thumbnail ${idx + 1}`}
-                    className="w-full h-full object-contain p-2 mix-blend-multiply transition-transform duration-500"
+                    className="w-full h-full object-contain p-1 mix-blend-multiply transition-transform duration-500"
                     onError={() => handleImageError(idx)}
                     draggable={false}
                   />

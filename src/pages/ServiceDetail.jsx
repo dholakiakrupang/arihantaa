@@ -319,7 +319,7 @@ export function ServiceDetail() {
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
             variants={fadeUp}
-            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 pt-12 pb-8 px-4 md:pt-20 md:pb-12 md:px-8 lg:pt-24 lg:pb-16 lg:px-12 bg-surface-container-low/10 flex items-center justify-center order-1 lg:order-2 relative"
+            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 pt-12 md:pt-20 lg:pt-24 pb-0 px-0 bg-surface-container-low/10 flex items-center justify-center order-1 lg:order-2 relative"
           >
             <ProductImageGallery
               images={service.images}
@@ -369,8 +369,8 @@ export function ServiceDetail() {
                 className="bg-surface-container-lowest p-8 border-r border-b border-outline-variant/30 hover:bg-accent/[0.015] transition-all duration-400 flex flex-col group relative"
               >
                 <div className="flex items-center justify-between mb-6">
-                  <span className="w-10 h-10 bg-accent/5 border border-accent/20 flex items-center justify-center shrink-0 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                    <span className="material-symbols-outlined text-[22px]">{getScopeIcon(idx)}</span>
+                  <span className="material-symbols-outlined text-[34px] text-accent/80 group-hover:text-accent group-hover:scale-110 transition-all duration-300">
+                    {getScopeIcon(idx)}
                   </span>
                   <span className="font-mono text-[14px] text-accent font-bold select-none">{String(idx + 1).padStart(2, '0')}</span>
                 </div>

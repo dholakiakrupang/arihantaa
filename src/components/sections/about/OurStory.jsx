@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export function OurStory() {
   return (
-    <section className="py-24 md:py-32 bg-surface overflow-hidden">
+    <section className="py-16 md:py-24 bg-surface overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-8 md:px-16">
         <div className="flex flex-col md:flex-row gap-16 md:gap-24 items-center">
 
@@ -79,9 +79,7 @@ export function OurStory() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.15 + i * 0.05 }}
                 >
-                  <div className="w-5 h-5 bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0 group-hover:bg-accent transition-colors duration-300">
-                    <span className="material-symbols-outlined text-[12px] text-accent group-hover:text-on-primary transition-colors duration-300">check</span>
-                  </div>
+                  <span className="material-symbols-outlined text-[18px] text-accent group-hover:scale-110 transition-transform duration-300">check</span>
                   <span className="font-body text-[13px] font-semibold text-on-surface/80">{pillar}</span>
                 </motion.div>
               ))}

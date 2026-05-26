@@ -61,8 +61,7 @@ const newsItems = [
   }
 ];
 
-export function FeaturedNews() {
-  const [activeCategory, setActiveCategory] = useState('All');
+export function FeaturedNews({ activeCategory, setActiveCategory }) {
   const [tempCategory, setTempCategory] = useState('All');
   const [sortBy, setSortBy] = useState('default');
   const [filterOpen, setFilterOpen] = useState(false);
@@ -72,13 +71,13 @@ export function FeaturedNews() {
   const categories = [
     { id: 'All', label: 'All Articles' },
     { id: 'Reports', label: 'Reports & Whitepapers' },
-    { id: 'Projects', label: 'Project Updates' },
+    { id: 'Project Updates', label: 'Project Updates' },
     { id: 'Press', label: 'Press Releases' },
   ];
 
   const filterOptions = [
     { id: 'Reports', label: 'Reports & Whitepapers' },
-    { id: 'Projects', label: 'Project Updates' },
+    { id: 'Project Updates', label: 'Project Updates' },
     { id: 'Press', label: 'Press Releases' },
   ];
 
@@ -123,7 +122,7 @@ export function FeaturedNews() {
         if (activeCategory === 'Reports') {
           isMatch = item.category.toLowerCase().includes('report') || 
                   item.category.toLowerCase().includes('whitepaper');
-        } else if (activeCategory === 'Projects') {
+        } else if (activeCategory === 'Project Updates') {
           isMatch = item.category.toLowerCase().includes('project') || 
                   item.category.toLowerCase().includes('update');
         } else if (activeCategory === 'Press') {
@@ -158,7 +157,7 @@ export function FeaturedNews() {
   const activeCategoryLabel = categories.find(c => c.id === activeCategory)?.label || 'All Articles';
 
   return (
-    <section className="py-24 bg-surface border-t border-outline-variant/30">
+    <section id="news" className="py-24 bg-surface border-t border-outline-variant/30">
       <div className="max-w-[1440px] mx-auto px-8 md:px-16">
         
         {/* Section Header */}
@@ -175,7 +174,7 @@ export function FeaturedNews() {
         </div>
 
         {/* ── Sticky Category/Sort Toolbar — EngineeredSolutions-inspired ── */}
-        <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 sticky top-[80px] z-30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] mb-12">
+        <div className="sticky top-[79px] z-40 mb-12">
           
           {/* Invisible Click-Outside Detector (No blur or dimming) */}
           <AnimatePresence>
@@ -187,7 +186,7 @@ export function FeaturedNews() {
             )}
           </AnimatePresence>
 
-          <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] relative z-10 flex flex-col md:flex-row items-stretch min-h-[56px]">
+          <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] relative z-10 flex flex-col md:flex-row items-stretch">
 
             {/* Left: Breadcrumb context + count */}
             <div className="flex items-center gap-2 text-[11px] font-medium text-secondary min-w-0 flex-grow px-4 md:px-6 py-3.5">
@@ -206,7 +205,7 @@ export function FeaturedNews() {
 
               {/* Box 1: Search Container */}
               <div className="relative flex items-center bg-transparent px-4 focus-within:bg-surface-container/20 transition-all duration-300 min-w-[200px] md:min-w-[220px] flex-grow md:flex-grow-0">
-                <span className="material-symbols-outlined text-[16px] text-secondary/40 mr-2 flex-shrink-0">search</span>
+                <span className="material-symbols-outlined text-[18px] text-secondary/40 mr-2 flex-shrink-0">search</span>
                 <input 
                   type="text" 
                   placeholder="SEARCH NEWS..." 
@@ -372,7 +371,7 @@ export function FeaturedNews() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05, ease: [0.25, 1, 0.5, 1] }}
+                transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
               >
                 <Link to={`/news/${item.id}`} className="flex flex-col h-full justify-between">
                   <div>

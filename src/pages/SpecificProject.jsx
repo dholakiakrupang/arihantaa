@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ProjectDetailHero } from '../components/sections/projects/detail/ProjectDetailHero';
-import { ProjectStatStrip } from '../components/sections/projects/detail/ProjectStatStrip';
 import { ProjectEditorial } from '../components/sections/projects/detail/ProjectEditorial';
 import { ProjectCTA } from '../components/sections/projects/detail/ProjectCTA';
 import { projectDetailsData } from '../data/projectDetailsData';
@@ -32,7 +31,6 @@ export function SpecificProject() {
       className="bg-surface min-h-screen"
     >
       <ProjectDetailHero project={project} />
-      <ProjectStatStrip stats={project.stats} />
       <ProjectEditorial editorial={project.editorial} />
       <ProjectCTA />
     </motion.div>

@@ -10,7 +10,7 @@ const milestones = [
 
 export function Timeline() {
   return (
-    <section className="py-24 md:py-32 bg-surface-container-low overflow-hidden">
+    <section className="py-16 md:py-24 bg-surface-container-low overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-8 md:px-16">
 
         {/* Header */}

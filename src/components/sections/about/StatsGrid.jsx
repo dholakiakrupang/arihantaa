@@ -9,7 +9,7 @@ const stats = [
 
 export function StatsGrid() {
   return (
-    <section className="bg-inverse-surface py-20 border-y border-white/5">
+    <section className="bg-inverse-surface py-16 md:py-24 border-y border-white/5">
       <div className="max-w-[1440px] mx-auto px-8 md:px-16">
 
         {/* Section label */}
@@ -29,12 +29,9 @@ export function StatsGrid() {
               transition={{ duration: 0.55, delay: i * 0.1, ease: [0.25, 1, 0.5, 1] }}
             >
               <div className="flex items-center justify-between">
-                <span className="material-symbols-outlined text-accent text-[22px] group-hover:scale-110 transition-transform duration-300">
+                <span className="material-symbols-outlined text-accent text-[36px] group-hover:scale-110 transition-transform duration-300">
                   {stat.icon}
                 </span>
-                <div className="w-6 h-6 border border-accent/30 flex items-center justify-center group-hover:bg-accent/10 transition-colors duration-300">
-                  <div className="w-1.5 h-1.5 bg-accent" />
-                </div>
               </div>
               <div>
                 <p className="font-headline text-[48px] md:text-[64px] font-black text-accent leading-none tracking-tighter">

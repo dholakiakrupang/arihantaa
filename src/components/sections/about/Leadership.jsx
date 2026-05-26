@@ -2,7 +2,7 @@ import { Reveal } from '../../ui/Reveal';
 
 export function Leadership() {
   return (
-    <section className="py-section-margin bg-surface-container">
+    <section className="py-16 md:py-24 bg-surface-container">
       <div className="max-w-[1440px] mx-auto px-8 md:px-16">
         <span className="eyebrow">Leadership</span>
         <h2 className="font-headline text-4xl md:text-6xl font-bold mb-16">Architects of Vision.</h2>

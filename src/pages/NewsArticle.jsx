@@ -2,14 +2,27 @@ import { motion, useScroll, useSpring } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { UnifiedCTA } from '../components/sections/UnifiedCTA';
+import { newsArticlesData } from '../data/newsArticlesData';
 
 export function NewsArticle() {
   const { articleId } = useParams();
 
-  // Scroll to top on mount
+  // Scroll to top on article change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [articleId]);
+
+  // Find the current article dynamically (fallback to the first one)
+  const currentArticle = newsArticlesData.find(
+    (item) => item.id.toString() === articleId?.toString()
+  ) || newsArticlesData[0];
+
+  // Calculate dynamic Previous and Next articles based on sorting in database
+  const currentIndex = newsArticlesData.findIndex(
+    (item) => item.id.toString() === currentArticle.id.toString()
+  );
+  const prevArticle = currentIndex > 0 ? newsArticlesData[currentIndex - 1] : null;
+  const nextArticle = currentIndex < newsArticlesData.length - 1 ? newsArticlesData[currentIndex + 1] : null;
 
   // Reading progress bar setup
   const { scrollYProgress } = useScroll();
@@ -70,7 +83,7 @@ export function NewsArticle() {
               <span className="material-symbols-outlined text-white/35 text-[14px] select-none flex items-center justify-center">chevron_right</span>
               <Link to="/news" className="font-label-caps text-[10px] text-white/35 tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">News Hub</Link>
               <span className="material-symbols-outlined text-white/35 text-[14px] select-none flex items-center justify-center">chevron_right</span>
-              <span className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase">Press Release</span>
+              <span className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase">{currentArticle.badge}</span>
             </motion.nav>
 
             {/* Tags */}
@@ -80,12 +93,18 @@ export function NewsArticle() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <span className="inline-block font-label-caps text-[10px] text-accent uppercase tracking-[0.2em] border border-accent/30 px-4 py-1.5 bg-accent/5 backdrop-blur-md">
-                Press Release
-              </span>
-              <span className="inline-block font-label-caps text-[10px] text-white/50 uppercase tracking-[0.2em] border border-white/10 px-4 py-1.5">
-                Critical Power
-              </span>
+              {currentArticle.tags.map((tag, tIdx) => (
+                <span 
+                  key={tIdx} 
+                  className={`inline-block font-label-caps text-[10px] uppercase tracking-[0.2em] border px-4 py-1.5 ${
+                    tIdx === 0 
+                      ? 'text-accent border-accent/30 bg-accent/5 backdrop-blur-md'
+                      : 'text-white/50 border-white/10'
+                  }`}
+                >
+                  {tag}
+                </span>
+              ))}
             </motion.div>
 
             {/* Headline */}
@@ -95,9 +114,14 @@ export function NewsArticle() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <span className="text-white">Eastern Grid Expansion:</span><br />
-              <span className="text-white">Securing ₹240 Cr. </span>
-              <span className="text-accent whitespace-nowrap">Infrastructure Contract</span>
+              {currentArticle.headlineLines.map((line, lIdx) => (
+                <span key={lIdx}>
+                  <span className={lIdx === currentArticle.headlineLines.length - 1 ? 'text-accent' : 'text-white'}>
+                    {line}
+                  </span>
+                  {lIdx < currentArticle.headlineLines.length - 1 && <br />}
+                </span>
+              ))}
             </motion.h1>
 
             {/* Meta Data */}
@@ -109,17 +133,17 @@ export function NewsArticle() {
             >
               <span className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[16px] text-accent">calendar_today</span>
-                October 24, 2026
+                {currentArticle.date}
               </span>
               <span className="hidden sm:inline text-white/20">|</span>
               <span className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[16px] text-accent">schedule</span>
-                6 min read
+                {currentArticle.readTime}
               </span>
               <span className="hidden sm:inline text-white/20">|</span>
               <span className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-[16px] text-accent">category</span>
-                Grid Systems
+                {currentArticle.category}
               </span>
             </motion.div>
           </div>
@@ -143,13 +167,13 @@ export function NewsArticle() {
               <div className="absolute bottom-[-1px] left-[-1px] w-3.5 h-3.5 border-b-2 border-l-2 border-accent pointer-events-none z-10" />
 
               <img 
-                alt="Massive industrial electrical substation" 
+                alt={currentArticle.title} 
                 className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-1000" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3LAEI6CRn5IIILEjifzbbaLhYXGbuWVwYk_VDSIkDvIo1jzDxWBU7qLRp6ROjH0LMIDq1UX1f7Rigb_h4tMQp4toFyQTydTDdwq1olOh1VUesNHNMFsy1iJbqhvQpYDe0y8YlhCJ_5ZGPx_KGp80NrUsNPoeFrWbgSTr9fxndwmpVE1wpQnsGbK-GVGG0_TEyouXlNdPtECSHJ2IUZf640erkXOAtL3HarvdPW35IyCg8upQ1v8pcaoaZO4KLDiZebs5MM8ZewSo"
+                src={currentArticle.img}
               />
             </div>
             <p className="mt-4 font-body text-[14px] text-secondary border-l-2 border-accent pl-4 font-light">
-              Phase II of the Eastern Grid heavy systems installation, featuring dual 200kVA backup modules.
+              {currentArticle.title}
             </p>
           </motion.div>
 
@@ -162,21 +186,21 @@ export function NewsArticle() {
                 className="font-body text-[18px] md:text-[20px] text-on-surface leading-relaxed font-light text-justify"
                 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, margin: '-50px' }}
               >
-                In a decisive move to fortify regional power stability, Industrial Authority Engineering has officially secured the Phase II contract for the Eastern Grid expansion project. The agreement, valued at a substantial ₹240 Crores, mandates the design, deployment, and structural integration of advanced Uninterruptible Power Supply (UPS) architecture and critical load balancing systems.
+                {currentArticle.p1}
               </motion.p>
               
               <motion.h2 
                 className="font-headline text-[28px] md:text-[36px] font-black text-on-surface uppercase tracking-tight pt-6 border-b border-outline-variant/30 pb-3"
                 initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               >
-                Strategic Redundancy Architecture
+                {currentArticle.headlineLines[1]}
               </motion.h2>
               
               <motion.p 
                 className="font-body text-[15px] md:text-[17px] text-secondary leading-relaxed font-light text-justify"
                 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
               >
-                The scope of work encompasses the installation of a multi-tiered redundant power matrix. Engineered to withstand catastrophic grid failures, the system leverages high-capacity lithium-ion Battery Energy Storage Systems (BESS) coupled with dynamic rotary UPS units. This hybrid approach ensures seamless transition times sub-2 milliseconds, critical for the interconnected data centers reliant on this sub-station.
+                {currentArticle.p2}
               </motion.p>
 
               {/* Stat Callout Box in premium console look */}
@@ -191,18 +215,18 @@ export function NewsArticle() {
                 <div className="absolute bottom-[-1px] left-[-1px] w-3 h-3 border-b-2 border-l-2 border-accent pointer-events-none" />
 
                 <div className="text-center group">
-                  <div className="font-headline text-[44px] font-black text-accent group-hover:scale-105 transition-transform duration-300">200<span className="text-[20px]">kVA</span></div>
-                  <div className="font-label-caps text-[9px] text-secondary tracking-[0.2em] uppercase mt-2">Peak Capacity / Module</div>
+                  <div className="font-headline text-[44px] font-black text-accent group-hover:scale-105 transition-transform duration-300">{currentArticle.statValue1}</div>
+                  <div className="font-label-caps text-[9px] text-secondary tracking-[0.2em] uppercase mt-2">{currentArticle.statLabel1}</div>
                 </div>
                 <div className="hidden md:block w-px h-12 bg-outline-variant/50"></div>
                 <div className="text-center group">
-                  <div className="font-headline text-[44px] font-black text-accent group-hover:scale-105 transition-transform duration-300">99.999%</div>
-                  <div className="font-label-caps text-[9px] text-secondary tracking-[0.2em] uppercase mt-2">Targeted Uptime</div>
+                  <div className="font-headline text-[44px] font-black text-accent group-hover:scale-105 transition-transform duration-300">{currentArticle.statValue2}</div>
+                  <div className="font-label-caps text-[9px] text-secondary tracking-[0.2em] uppercase mt-2">{currentArticle.statLabel2}</div>
                 </div>
                 <div className="hidden md:block w-px h-12 bg-outline-variant/50"></div>
                 <div className="text-center group">
-                  <div className="font-headline text-[44px] font-black text-accent group-hover:scale-105 transition-transform duration-300">18</div>
-                  <div className="font-label-caps text-[9px] text-secondary tracking-[0.2em] uppercase mt-2">Months to Delivery</div>
+                  <div className="font-headline text-[44px] font-black text-accent group-hover:scale-105 transition-transform duration-300">{currentArticle.statValue3}</div>
+                  <div className="font-label-caps text-[9px] text-secondary tracking-[0.2em] uppercase mt-2">{currentArticle.statLabel3}</div>
                 </div>
               </motion.div>
 
@@ -217,7 +241,7 @@ export function NewsArticle() {
                 className="font-body text-[15px] md:text-[17px] text-secondary leading-relaxed font-light text-justify"
                 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
               >
-                Beyond sheer power throughput, the project adheres to the stringent ISO 14001 environmental management standards. The integration of solid-state transformers aims to reduce ambient thermal waste by 14% compared to legacy installations.
+                {currentArticle.p3}
               </motion.p>
 
               {/* Pull Quote */}
@@ -226,10 +250,10 @@ export function NewsArticle() {
                 initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               >
                 <p className="font-headline text-[22px] md:text-[28px] text-on-surface font-medium italic leading-snug">
-                  "This contract is not merely an installation; it is an architectural commitment to zero-downtime tolerance in an increasingly volatile energy landscape."
+                  "{currentArticle.quote}"
                 </p>
                 <footer className="mt-4 font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase font-bold">
-                  — Dr. Aris Thorne, Chief Engineer, Heavy Systems Div.
+                  — {currentArticle.quoteAuthor}
                 </footer>
               </motion.blockquote>
 
@@ -237,7 +261,7 @@ export function NewsArticle() {
                 className="font-body text-[15px] md:text-[17px] text-secondary leading-relaxed font-light text-justify"
                 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
               >
-                Procurement of the primary stator cores will commence immediately, with ground breaking scheduled for late Q4. Investors and stakeholders can track the milestone progress via the Live Projects dashboard.
+                {currentArticle.p4}
               </motion.p>
 
               {/* Article Footer / Meta */}
@@ -246,9 +270,9 @@ export function NewsArticle() {
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               >
                 <div className="flex flex-wrap gap-2">
-                  <span className="font-label-caps text-[9px] tracking-[0.15em] text-secondary bg-surface-container-low px-4 py-2 hover:bg-accent hover:text-white transition-colors cursor-pointer uppercase">#UPS</span>
-                  <span className="font-label-caps text-[9px] tracking-[0.15em] text-secondary bg-surface-container-low px-4 py-2 hover:bg-accent hover:text-white transition-colors cursor-pointer uppercase">#DataCentre</span>
-                  <span className="font-label-caps text-[9px] tracking-[0.15em] text-secondary bg-surface-container-low px-4 py-2 hover:bg-accent hover:text-white transition-colors cursor-pointer uppercase">#GridExpansion</span>
+                  {currentArticle.hashtags.map((ht, hIdx) => (
+                    <span key={hIdx} className="font-label-caps text-[9px] tracking-[0.15em] text-secondary bg-surface-container-low px-4 py-2 hover:bg-accent hover:text-white transition-colors cursor-pointer uppercase">{ht}</span>
+                  ))}
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="font-label-caps text-[10px] text-secondary uppercase tracking-[0.2em] font-bold">Share:</span>
@@ -263,32 +287,56 @@ export function NewsArticle() {
 
               {/* Next / Prev Navigation */}
               <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-outline-variant/30">
-                <Link to="#" className="p-6 border border-outline-variant/40 hover:border-accent bg-surface-container-lowest shadow-sm hover:shadow-xl group transition-all duration-300 flex flex-col gap-3 relative">
-                  <div className="absolute top-[-1px] left-[-1px] w-2 h-2 border-t border-l border-accent/0 group-hover:border-accent/40 pointer-events-none" />
-                  <div className="absolute bottom-[-1px] right-[-1px] w-2 h-2 border-b border-r border-accent/0 group-hover:border-accent/40 pointer-events-none" />
-                  
-                  <span className="font-label-caps text-[9px] text-secondary flex items-center gap-2 group-hover:text-accent transition-colors tracking-[0.2em] uppercase font-bold">
-                    <span className="material-symbols-outlined text-[18px]">arrow_back</span>
-                    Previous Insight
-                  </span>
-                  <span className="font-headline text-[16px] text-on-surface font-bold group-hover:text-accent transition-colors line-clamp-2 leading-snug">
-                    Q3 Maintenance Protocols Updated for Heavy Machinery
-                  </span>
-                </Link>
-                <Link to="#" className="p-6 border border-outline-variant/40 hover:border-accent bg-surface-container-lowest shadow-sm hover:shadow-xl group transition-all duration-300 flex flex-col gap-3 sm:text-right relative">
-                  <div className="absolute top-[-1px] right-[-1px] w-2 h-2 border-t border-r border-accent/0 group-hover:border-accent/40 pointer-events-none" />
-                  <div className="absolute bottom-[-1px] left-[-1px] w-2 h-2 border-b border-l border-accent/0 group-hover:border-accent/40 pointer-events-none" />
+                {prevArticle ? (
+                  <Link to={`/news/${prevArticle.id}`} className="p-6 border border-outline-variant/40 hover:border-accent bg-surface-container-lowest shadow-sm hover:shadow-xl group transition-all duration-300 flex flex-col gap-3 relative">
+                    <div className="absolute top-[-1px] left-[-1px] w-2 h-2 border-t border-l border-accent/0 group-hover:border-accent/40 pointer-events-none" />
+                    <div className="absolute bottom-[-1px] right-[-1px] w-2 h-2 border-b border-r border-accent/0 group-hover:border-accent/40 pointer-events-none" />
+                    
+                    <span className="font-label-caps text-[9px] text-secondary flex items-center gap-2 group-hover:text-accent transition-colors tracking-[0.2em] uppercase font-bold">
+                      <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+                      Previous Insight
+                    </span>
+                    <span className="font-headline text-[16px] text-on-surface font-bold group-hover:text-accent transition-colors line-clamp-2 leading-snug">
+                      {prevArticle.title}
+                    </span>
+                  </Link>
+                ) : (
+                  <div className="p-6 border border-outline-variant/20 bg-surface-container-low/20 opacity-40 flex flex-col gap-3 relative select-none">
+                    <span className="font-label-caps text-[9px] text-secondary/60 flex items-center gap-2 tracking-[0.2em] uppercase font-bold">
+                      <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+                      Previous Insight
+                    </span>
+                    <span className="font-headline text-[16px] text-secondary/60 font-bold line-clamp-2 leading-snug">
+                      No previous articles
+                    </span>
+                  </div>
+                )}
+                
+                {nextArticle ? (
+                  <Link to={`/news/${nextArticle.id}`} className="p-6 border border-outline-variant/40 hover:border-accent bg-surface-container-lowest shadow-sm hover:shadow-xl group transition-all duration-300 flex flex-col gap-3 sm:text-right relative">
+                    <div className="absolute top-[-1px] right-[-1px] w-2 h-2 border-t border-r border-accent/0 group-hover:border-accent/40 pointer-events-none" />
+                    <div className="absolute bottom-[-1px] left-[-1px] w-2 h-2 border-b border-l border-accent/0 group-hover:border-accent/40 pointer-events-none" />
 
-                  <span className="font-label-caps text-[9px] text-secondary flex items-center sm:justify-end gap-2 group-hover:text-accent transition-colors tracking-[0.2em] uppercase font-bold">
-                    Next Insight
-                    <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-                  </span>
-                  <span className="font-headline text-[16px] text-on-surface font-bold group-hover:text-accent transition-colors line-clamp-2 leading-snug">
-                    New Material Tolerances in Turbine Construction
-                  </span>
-                </Link>
+                    <span className="font-label-caps text-[9px] text-secondary flex items-center sm:justify-end gap-2 group-hover:text-accent transition-colors tracking-[0.2em] uppercase font-bold">
+                      Next Insight
+                      <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </span>
+                    <span className="font-headline text-[16px] text-on-surface font-bold group-hover:text-accent transition-colors line-clamp-2 leading-snug">
+                      {nextArticle.title}
+                    </span>
+                  </Link>
+                ) : (
+                  <div className="p-6 border border-outline-variant/20 bg-surface-container-low/20 opacity-40 flex flex-col gap-3 sm:text-right relative select-none">
+                    <span className="font-label-caps text-[9px] text-secondary/60 flex items-center sm:justify-end gap-2 tracking-[0.2em] uppercase font-bold">
+                      Next Insight
+                      <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </span>
+                    <span className="font-headline text-[16px] text-secondary/60 font-bold line-clamp-2 leading-snug">
+                      No next articles
+                    </span>
+                  </div>
+                )}
               </div>
-
             </div>
 
             {/* ── Sidebar ──────────────────────────────────────────────────────── */}
@@ -303,17 +351,17 @@ export function NewsArticle() {
                   <div className="absolute top-0 left-0 w-full h-1 bg-accent" />
                   <div className="flex items-center gap-4 mb-6">
                     <img 
-                      alt="Marcus Vane" 
+                      alt={currentArticle.authorName} 
                       className="w-16 h-16 object-cover rounded-full border border-outline-variant p-0.5" 
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrQc39LqvlgVcSa-S26XUCnQexwclV6hw0j4wKz_Csm1Ml95ihfgH9VS680NuH2frs-Rl4h9kDmHvZdpoT3MWZANCjrSy1ef0FyjwlnHyRIGHN_3VwudoGPwGf5JkKb5XIiruDkorJyPuGJTX-BcjABtEXbgDTLx5Vb1mrUrUU6QsKPQLAJ3kNPRFI_e6i1Ub4DpNcVd2ZR0mSwaqK4kzhgAU79HARAdKwmTIzqnrQnT7F5ipsm_oMYOCrgvjNNTpcLq77K20EgDE"
+                      src={currentArticle.authorImg}
                     />
                     <div>
-                      <h3 className="font-headline text-[18px] font-black text-on-surface">Marcus Vane</h3>
-                      <p className="font-label-caps text-[9px] text-accent tracking-[0.2em] uppercase font-bold mt-1">Director of Comms</p>
+                      <h3 className="font-headline text-[18px] font-black text-on-surface">{currentArticle.authorName}</h3>
+                      <p className="font-label-caps text-[9px] text-accent tracking-[0.2em] uppercase font-bold mt-1">{currentArticle.authorTitle}</p>
                     </div>
                   </div>
                   <p className="font-body text-[14px] text-secondary leading-relaxed font-light">
-                    Marcus oversees strategic communications for Industrial Authority's global infrastructure projects, specializing in heavy systems deployment and grid integration reporting.
+                    {currentArticle.authorDesc}
                   </p>
                 </motion.div>
 

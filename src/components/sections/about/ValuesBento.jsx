@@ -11,7 +11,7 @@ const values = [
 
 export function ValuesBento() {
   return (
-    <section className="py-24 md:py-32 bg-surface">
+    <section className="py-16 md:py-24 bg-surface">
       <div className="max-w-[1440px] mx-auto px-8 md:px-16">
 
         {/* Header */}
@@ -36,11 +36,9 @@ export function ValuesBento() {
             >
               {/* Icon row */}
               <div className="flex items-start justify-between mb-6">
-                <div className="w-12 h-12 bg-accent/10 border border-accent/20 flex items-center justify-center group-hover:bg-accent transition-colors duration-300">
-                  <span className="material-symbols-outlined text-accent text-[22px] group-hover:text-on-primary transition-colors duration-300">
-                    {v.icon}
-                  </span>
-                </div>
+                <span className="material-symbols-outlined text-accent text-[36px] group-hover:scale-110 transition-transform duration-300">
+                  {v.icon}
+                </span>
                 <span className="material-symbols-outlined text-outline/30 text-[18px] group-hover:text-accent group-hover:rotate-45 transition-all duration-300">
                   arrow_outward
                 </span>

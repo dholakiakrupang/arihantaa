@@ -79,11 +79,11 @@ export function ProjectEditorial({ editorial }) {
   };
 
   return (
-    <div className="w-full bg-surface px-8 md:px-16 py-24 md:py-36 relative z-10 border-b border-outline-variant/30">
+    <div className="w-full bg-surface px-8 md:px-16 py-16 md:py-24 relative z-10 border-b border-outline-variant/30">
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative">
         
         {/* ── Mobile Nav Pill Row (Sticky Below Header) ── */}
-        <div className="lg:hidden col-span-1 w-full overflow-x-auto no-scrollbar flex gap-4 border-b border-outline-variant/40 pb-4 sticky top-[72px] bg-surface/90 backdrop-blur-md z-45 -mx-8 px-8">
+        <div className="lg:hidden col-span-1 w-full overflow-x-auto no-scrollbar flex gap-4 border-b border-outline-variant/40 pb-4 sticky top-[64px] bg-surface/90 backdrop-blur-md z-45 -mx-8 px-8">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -103,7 +103,7 @@ export function ProjectEditorial({ editorial }) {
             </button>
           ))}
         </div>
-
+ 
         {/* ── Desktop Sticky Left Sidebar (Asymmetric 3-Column) ── */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-[140px] h-fit self-start pl-2">
           <div className="relative border-l border-outline-variant/30 py-2">
@@ -135,9 +135,9 @@ export function ProjectEditorial({ editorial }) {
             </nav>
           </div>
         </aside>
-
+ 
         {/* ── Main Editorial Content Column (9-Column) ── */}
-        <main className="w-full lg:col-span-9 flex flex-col gap-32 md:gap-40">
+        <main className="w-full lg:col-span-9 flex flex-col gap-16 md:gap-24">
           
           {/* Sub-section 01: Project Overview */}
           <article id="project-overview" className="scroll-mt-36">
@@ -295,9 +295,11 @@ export function ProjectEditorial({ editorial }) {
                       <ul className="w-full flex flex-col gap-0 border-t lg:border-t-0 lg:border-l border-outline-variant/30 pt-6 lg:pt-0 lg:pl-10">
                         {block.points.map((point, j) => (
                           <li key={j} className="relative py-3.5 font-label-caps text-[10px] md:text-[11px] text-secondary uppercase tracking-[0.16em] border-b border-outline-variant/30 last:border-0 flex items-center gap-4 group/item">
-                            <span className="flex-shrink-0 w-5 h-5 rounded-full border border-accent/25 bg-accent/5 flex items-center justify-center group-hover/item:bg-accent group-hover/item:border-accent transition-all duration-300">
-                              <span className="material-symbols-outlined text-[10px] text-accent group-hover/item:text-white transition-colors">check</span>
-                            </span>
+                            <div className="w-5 h-5 bg-accent/10 border border-accent/30 flex items-center justify-center flex-shrink-0 group-hover/item:bg-accent transition-colors duration-300">
+                              <span className="material-symbols-outlined text-[12px] text-accent group-hover/item:text-on-primary transition-colors duration-300">
+                                check
+                              </span>
+                            </div>
                             <span className="group-hover/item:text-on-surface transition-colors">{point}</span>
                           </li>
                         ))}

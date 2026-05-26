@@ -1038,13 +1038,13 @@ export function Header() {
             : 'bg-surface border-b border-outline-variant/30'
         }`}
       >
-        {/* Responsive padding aligned to standard B2B grid lines */}
-        <nav className="flex justify-between items-center w-full px-8 md:px-16 py-2 md:py-3 max-w-[1440px] mx-auto">
+        {/* Responsive padding aligned to standard B2B grid lines, adapting to 44px content height */}
+        <nav className="flex justify-between items-center w-full px-8 md:px-16 py-[10px] md:py-[18px] max-w-[1440px] mx-auto">
 
-          {/* Logo — responsive sizing */}
+          {/* Logo — aligned to GET A QUOTE button height (44px) */}
           <Link
             to="/"
-            className="flex items-center flex-shrink-0 h-10 sm:h-12 md:h-14"
+            className="flex items-center flex-shrink-0 h-[44px]"
             onClick={() => { close(); closeMobile(); }}
           >
             <img
@@ -1096,13 +1096,13 @@ export function Header() {
 
           {/* ── Right actions ── */}
           <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
-            {/* Search trigger */}
+            {/* Search trigger — unified 44px square, matching GET A QUOTE button */}
             <button
               onClick={openSearch}
               aria-label="Open search"
-              className="relative flex items-center justify-center w-9 h-9 border border-outline-variant/40 text-secondary hover:text-accent hover:border-accent/50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent group"
+              className="relative flex items-center justify-center w-[44px] h-[44px] border border-outline-variant/40 text-secondary hover:text-accent hover:border-accent/50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent group"
             >
-              <span className="material-symbols-outlined transition-transform duration-200 group-hover:scale-110" style={{ fontSize: '1.1rem' }}>search</span>
+              <span className="material-symbols-outlined transition-transform duration-200 group-hover:scale-110 text-[18px]">search</span>
             </button>
 
             {/* Desktop CTA — hidden on mobile */}

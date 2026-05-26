@@ -31,6 +31,7 @@ export function EngineeredProducts() {
   const [tempCategory, setTempCategory] = useState(null);
   const [tempCooling, setTempCooling] = useState(null);
   const [sortBy, setSortBy] = useState('POPULARITY'); // 'POPULARITY' | 'AZ'
+  const [visibleCount, setVisibleCount] = useState(3);
 
   const categoryInfo = categoryMap[categoryId] || { title: 'Product Catalog', desc: 'Explore our comprehensive range of industrial-grade infrastructure products, engineered for resilience and efficiency.' };
 
@@ -55,11 +56,13 @@ export function EngineeredProducts() {
     setAppliedCategory(tempCategory);
     setAppliedCooling(tempCooling);
     setIsFilterOpen(false);
+    setVisibleCount(3);
   };
 
   const handleResetFilters = () => {
     setTempCategory(null);
     setTempCooling(null);
+    setVisibleCount(3);
   };
 
   const filteredProducts = productsData
@@ -160,7 +163,7 @@ export function EngineeredProducts() {
           )}
         </AnimatePresence>
 
-        <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] relative z-10 flex flex-col md:flex-row items-stretch min-h-[56px]">
+        <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] relative z-10 flex flex-col md:flex-row items-stretch">
           
           {/* Left: Breadcrumb context + count */}
           <div className="flex items-center gap-2 text-[11px] font-medium text-secondary min-w-0 flex-grow px-4 md:px-6 py-3.5">
@@ -177,16 +180,16 @@ export function EngineeredProducts() {
             
             {/* Box 1: Search Container */}
             <div className="relative flex items-center bg-transparent px-3 focus-within:px-4 focus-within:bg-surface-container/20 transition-all duration-300 min-w-[110px] md:min-w-[220px] flex-grow md:flex-grow-0">
-              <span className="material-symbols-outlined text-[16px] text-secondary/40 mr-2 flex-shrink-0">search</span>
+              <span className="material-symbols-outlined text-[18px] text-secondary/40 mr-2 flex-shrink-0">search</span>
               <input 
                 type="text" 
                 placeholder="SEARCH CATALOG..." 
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e) => { setSearchQuery(e.target.value); setVisibleCount(3); }}
                 className="bg-transparent text-[10px] font-label-caps tracking-[0.05em] text-secondary placeholder:text-secondary/30 focus:outline-none w-full py-3.5"
               />
               {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className="text-secondary/40 hover:text-accent transition-colors flex items-center justify-center ml-2">
+                <button onClick={() => { setSearchQuery(''); setVisibleCount(3); }} className="text-secondary/40 hover:text-accent transition-colors flex items-center justify-center ml-2">
                   <span className="material-symbols-outlined text-[14px]">close</span>
                 </button>
               )}
@@ -326,7 +329,7 @@ export function EngineeredProducts() {
                         <span className="font-label-caps text-[9px] tracking-[0.2em] text-secondary/60">ORDER BY</span>
                         {sortBy !== 'POPULARITY' && (
                           <button 
-                            onClick={() => { setSortBy('POPULARITY'); setIsSortOpen(false); }}
+                            onClick={() => { setSortBy('POPULARITY'); setIsSortOpen(false); setVisibleCount(3); }}
                             className="font-label-caps text-[9px] tracking-[0.14em] text-accent hover:text-accent/80 transition-colors"
                           >
                             RESET
@@ -337,6 +340,7 @@ export function EngineeredProducts() {
                         onClick={() => {
                           setSortBy('POPULARITY');
                           setIsSortOpen(false);
+                          setVisibleCount(3);
                         }}
                         className={`w-full h-[44px] px-5 text-left font-label-caps text-[10px] tracking-[0.14em] font-bold transition-all duration-200 flex items-center justify-between border-b border-outline-variant/10 last:border-b-0 ${
                           sortBy === 'POPULARITY'
@@ -353,6 +357,7 @@ export function EngineeredProducts() {
                         onClick={() => {
                           setSortBy('AZ');
                           setIsSortOpen(false);
+                          setVisibleCount(3);
                         }}
                         className={`w-full h-[44px] px-5 text-left font-label-caps text-[10px] tracking-[0.14em] font-bold transition-all duration-200 flex items-center justify-between border-b border-outline-variant/10 last:border-b-0 ${
                           sortBy === 'AZ'
@@ -377,7 +382,7 @@ export function EngineeredProducts() {
       {/* ── Cards Grid ──────────────────────────────────────────────────────── */}
       <div className="max-w-[1440px] mx-auto px-8 md:px-16 py-20 space-y-16">
         {filteredProducts.length > 0 ? (
-          filteredProducts.map((product, idx) => (
+          filteredProducts.slice(0, visibleCount).map((product, idx) => (
             <EngineeredSolutionCard key={product.id} index={idx} {...product} />
           ))
         ) : (
@@ -389,27 +394,46 @@ export function EngineeredProducts() {
         )}
       </div>
 
-      {/* ── Premium Pagination ──────────────────────────────────────────────── */}
-      <div className="max-w-[1440px] mx-auto px-8 md:px-16 pb-32 flex items-center justify-center gap-8">
-        <button className="w-12 h-12 flex items-center justify-center border border-outline text-secondary hover:border-accent hover:text-accent transition-colors rounded-full" aria-label="Previous">
-          <span className="material-symbols-outlined">west</span>
-        </button>
-        <div className="flex items-center gap-6">
-          <span className="font-headline font-bold text-accent text-2xl">01</span>
-          <div className="w-16 h-[2px] bg-outline relative overflow-hidden">
+      {/* ── Creative Load More Section ────────────────────────────────────────── */}
+      {filteredProducts.length > 0 && (
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16 pb-32 flex flex-col items-center">
+          {/* Progress Indicator */}
+          <div className="flex items-center gap-4 mb-4 text-secondary/60">
+            <span className="font-label-caps text-[10px] tracking-[0.15em] uppercase">
+              Showing <span className="font-bold text-accent">{Math.min(visibleCount, filteredProducts.length)}</span> of <span className="font-bold text-on-surface">{filteredProducts.length}</span> products
+            </span>
+          </div>
+
+          {/* Progress Bar (Visual indicator of what is loaded) */}
+          <div className="w-48 h-[2px] bg-outline-variant/30 relative overflow-hidden mb-8 rounded-full">
             <motion.div 
               className="absolute inset-y-0 left-0 bg-accent"
-              initial={{ width: "0%" }}
-              whileInView={{ width: "33%" }}
-              transition={{ duration: 1 }}
+              initial={{ width: 0 }}
+              animate={{ width: `${(Math.min(visibleCount, filteredProducts.length) / filteredProducts.length) * 100}%` }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
             />
           </div>
-          <span className="font-headline text-secondary/40 text-xl">03</span>
+
+          {/* Load More Trigger */}
+          {visibleCount < filteredProducts.length ? (
+            <Button
+              variant="outline"
+              theme="light"
+              showArrow
+              icon="arrow_downward"
+              onClick={() => setVisibleCount(prev => prev + 3)}
+              className="border-outline-variant/50 min-w-[200px]"
+            >
+              LOAD MORE
+            </Button>
+          ) : (
+            <div className="inline-flex items-center gap-2 border border-outline-variant/20 bg-surface-container-lowest/50 px-6 py-2.5 rounded-sm font-label-caps text-[9px] tracking-[0.15em] text-secondary/40 select-none uppercase font-bold">
+              <span className="material-symbols-outlined text-[16px] text-accent/50">check_circle</span>
+              ALL PRODUCTS LOADED
+            </div>
+          )}
         </div>
-        <button className="w-12 h-12 flex items-center justify-center border border-outline text-secondary hover:border-accent hover:text-accent transition-colors rounded-full" aria-label="Next">
-          <span className="material-symbols-outlined">east</span>
-        </button>
-      </div>
+      )}
 
       <SpecificProductsCTA />
 

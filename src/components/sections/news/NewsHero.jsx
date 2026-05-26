@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '../../ui/Button';
 
-export function NewsHero() {
+export function NewsHero({ onLatestStoriesClick }) {
   return (
     <section
       className="relative w-full bg-[#080808] overflow-hidden flex flex-col"
@@ -127,16 +127,16 @@ export function NewsHero() {
                       MEDIA ENQUIRIES
                     </Button>
                   </Link>
-                  <Link
-                    to="#media"
+                  <button
+                    onClick={onLatestStoriesClick}
                     className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
                   >
                     <span className="relative overflow-hidden inline-block">
                       <span className="block group-hover:-translate-y-full transition-transform duration-300">LATEST STORIES</span>
                       <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">LATEST STORIES</span>
                     </span>
-                    <span className="material-symbols-outlined text-[24px] group-hover:translate-x-1 transition-transform duration-300">arrow_forward</span>
-                  </Link>
+                    <span className="material-symbols-outlined text-[24px] group-hover:translate-y-1 transition-transform duration-300">arrow_downward</span>
+                  </button>
                 </motion.div>
 
               </div>

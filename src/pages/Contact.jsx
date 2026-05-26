@@ -387,11 +387,7 @@ export function Contact() {
                 <span className="material-symbols-outlined text-[100px] text-secondary">engineering</span>
               </div>
               <div className="relative z-10">
-                <div className="relative w-14 h-14 bg-white/80 border border-outline-variant/30 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-[0_0_0_0_rgba(233,101,43,0)] group-hover:shadow-[0_0_20px_rgba(233,101,43,0.3)]">
-                  {/* Outer glowing double border line */}
-                  <div className="absolute inset-[-4px] border border-accent/0 group-hover:border-accent/30 transition-all duration-500 scale-95 group-hover:scale-100" />
-                  <span className="material-symbols-outlined text-[28px] relative z-10">precision_manufacturing</span>
-                </div>
+                <span className="material-symbols-outlined text-[42px] text-accent group-hover:scale-110 transition-transform duration-300 mb-6 block">precision_manufacturing</span>
                 <h3 className="font-headline text-[22px] font-bold text-secondary mb-3 group-hover:text-accent transition-colors">Project Sales</h3>
                 <p className="font-body text-[14px] text-secondary/70 leading-relaxed max-w-xs font-light">
                   Working with our Sales team enables complex power and cooling configurations to be engineered to your unique technical needs.
@@ -419,11 +415,7 @@ export function Contact() {
                 <span className="material-symbols-outlined text-[100px] text-secondary">headset_mic</span>
               </div>
               <div className="relative z-10">
-                <div className="relative w-14 h-14 bg-white/80 border border-outline-variant/30 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-[0_0_0_0_rgba(233,101,43,0)] group-hover:shadow-[0_0_20px_rgba(233,101,43,0.3)]">
-                  {/* Outer glowing double border line */}
-                  <div className="absolute inset-[-4px] border border-accent/0 group-hover:border-accent/30 transition-all duration-500 scale-95 group-hover:scale-100" />
-                  <span className="material-symbols-outlined text-[28px] relative z-10">support_agent</span>
-                </div>
+                <span className="material-symbols-outlined text-[42px] text-accent group-hover:scale-110 transition-transform duration-300 mb-6 block">support_agent</span>
                 <h3 className="font-headline text-[22px] font-bold text-secondary mb-3 group-hover:text-accent transition-colors">Technical Support</h3>
                 <p className="font-body text-[14px] text-secondary/70 leading-relaxed max-w-xs font-light">
                   Post-deployment assistance, genuine spare parts management, routine compliance audits, and custom preventative SLA maintenance.
@@ -451,11 +443,7 @@ export function Contact() {
                 <span className="material-symbols-outlined text-[100px] text-secondary">hub</span>
               </div>
               <div className="relative z-10">
-                <div className="relative w-14 h-14 bg-white/80 border border-outline-variant/30 flex items-center justify-center mb-6 text-accent group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-[0_0_0_0_rgba(233,101,43,0)] group-hover:shadow-[0_0_20px_rgba(233,101,43,0.3)]">
-                  {/* Outer glowing double border line */}
-                  <div className="absolute inset-[-4px] border border-accent/0 group-hover:border-accent/30 transition-all duration-500 scale-95 group-hover:scale-100" />
-                  <span className="material-symbols-outlined text-[28px] relative z-10">handshake</span>
-                </div>
+                <span className="material-symbols-outlined text-[42px] text-accent group-hover:scale-110 transition-transform duration-300 mb-6 block">handshake</span>
                 <h3 className="font-headline text-[22px] font-bold text-secondary mb-3 group-hover:text-accent transition-colors">Partner Portal</h3>
                 <p className="font-body text-[14px] text-secondary/70 leading-relaxed max-w-xs font-light">
                   Connect with registered distributors and resellers for enterprise server racks, micro data centers, and standardized IT enclosures.

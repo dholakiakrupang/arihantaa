@@ -32,7 +32,7 @@ export function Stats() {
           {STATS_DATA.map((stat, i) => (
             <div 
               key={i} 
-              className="border-r border-b border-outline-variant/30 last:border-r-0 md:last:border-r-0 flex flex-col justify-between p-8 md:p-12 hover:bg-accent/[0.01] transition-all duration-500 group"
+              className="border-r border-b md:border-b-0 last:border-b-0 md:last:border-b-0 border-outline-variant/30 last:border-r-0 md:last:border-r-0 flex flex-col justify-between p-8 md:p-12 hover:bg-accent/[0.01] transition-all duration-500 group"
             >
               {/* Big Animated Value */}
               <div>

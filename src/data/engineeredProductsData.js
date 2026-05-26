@@ -117,6 +117,157 @@ export const engineeredProductsData = [
       }
     ]
   },
+  {
+    id: "vertiv-liebert-aps-ups",
+    categoryId: "ups",
+    tag: "CRITICAL POWER",
+    title: "Vertiv™ Liebert® APS UPS",
+    scoreLabel: "EFFICIENCY RATING",
+    scorePercentage: 93,
+    description: "A modular, redundant UPS solution designed for small-to-medium data centers, offering high adaptability and easy hot-swappable capacity scaling.",
+    features: [
+      "Modular design with hot-swappable modules",
+      "Internal N+1 redundancy capability",
+      "High power factor operation",
+      "Wide input voltage tolerance range",
+      "Integrated smart distribution panel"
+    ],
+    stats: [
+      { label: "CAPACITY", value: "5-20 kVA" },
+      { label: "MODULE SIZE", value: "5 kVA per Power Module" },
+      { label: "EFFICIENCY", value: "93.5% Double Conversion" },
+      { label: "SCALABILITY", value: "Up to 4 Modules" }
+    ],
+    imageSrc: "/images/products/ups.png",
+    imageAlt: "Vertiv Liebert APS UPS",
+    images: [
+      { src: "/images/products/ups.png", alt: "Liebert APS UPS — Front View" }
+    ],
+    models: [
+      { name: "Liebert APS - 10kVA", capacity: "10 kVA", inputVoltage: "230V Single-Phase", outputVoltage: "230V Single-Phase", efficiency: "93.2%", height: 1200, width: 600, depth: 800, weight: "180 kg" }
+    ]
+  },
+  {
+    id: "vertiv-liebert-ita2-ups",
+    categoryId: "ups",
+    tag: "CRITICAL POWER",
+    title: "Vertiv™ Liebert® ITA2 UPS",
+    scoreLabel: "EFFICIENCY RATING",
+    scorePercentage: 96,
+    description: "Highly reliable, double-conversion UPS designed for rack or tower configuration, providing premium load protection for edge network cabinets.",
+    features: [
+      "96.2% efficiency in double-conversion mode",
+      "Dynamic Eco Mode with 99% efficiency",
+      "0.99 Input Power Factor",
+      "Flexible rack/tower convertible design",
+      "Programmable outlet groups for load shedding"
+    ],
+    stats: [
+      { label: "CAPACITY", value: "5-30 kVA" },
+      { label: "POWER FACTOR", value: "1.0 (Unity)" },
+      { label: "HEIGHT", value: "2U / 3U rackmount space" },
+      { label: "BATTERY TYPE", value: "Internal / External Lead-Acid" }
+    ],
+    imageSrc: "/images/products/ups.png",
+    imageAlt: "Vertiv Liebert ITA2 UPS",
+    images: [
+      { src: "/images/products/ups.png", alt: "Liebert ITA2 UPS — Front View" }
+    ],
+    models: [
+      { name: "Liebert ITA2 - 10kVA", capacity: "10 kVA", inputVoltage: "400V 3-Phase", outputVoltage: "230V Single-Phase", efficiency: "96.2%", height: 85, width: 438, depth: 680, weight: "24 kg" }
+    ]
+  },
+  {
+    id: "vertiv-liebert-gxt5-ups",
+    categoryId: "ups",
+    tag: "CRITICAL POWER",
+    title: "Vertiv™ Liebert® GXT5 UPS",
+    scoreLabel: "EFFICIENCY RATING",
+    scorePercentage: 95,
+    description: "Online double-conversion UPS system offering premium power outage protection and continuous power conditioning in a compact deployment footprint.",
+    features: [
+      "Continuous power conditioning with low noise",
+      "User-friendly color LCD interface",
+      "Integrated communication slot (SNMP)",
+      "Eco-mode option for enhanced efficiency",
+      "Hot-swappable internal battery assemblies"
+    ],
+    stats: [
+      { label: "CAPACITY", value: "1-10 kVA" },
+      { label: "BATTERY RUNTIME", value: "Up to 14 minutes at half load" },
+      { label: "CERTIFICATIONS", value: "Energy Star 2.0 / CE" },
+      { label: "OUTPUT RECEPTACLES", value: "Programmable individual outlets" }
+    ],
+    imageSrc: "/images/products/ups.png",
+    imageAlt: "Vertiv Liebert GXT5 UPS",
+    images: [
+      { src: "/images/products/ups.png", alt: "Liebert GXT5 UPS — Product View" }
+    ],
+    models: [
+      { name: "Liebert GXT5 - 3000", capacity: "3000 VA", inputVoltage: "230V Single-Phase", outputVoltage: "230V Single-Phase", efficiency: "95.0%", height: 85, width: 430, depth: 540, weight: "28 kg" }
+    ]
+  },
+  {
+    id: "vertiv-apc-sym-ups",
+    categoryId: "ups",
+    tag: "CRITICAL POWER",
+    title: "APC™ Symmetra™ PX UPS",
+    scoreLabel: "EFFICIENCY RATING",
+    scorePercentage: 95,
+    description: "A world-class redundant, scalable, power protection system designed to cost-effectively provide high levels of availability for modular data centers.",
+    features: [
+      "Modular power, runtime, and control modules",
+      "Scalable power capacity from 16 to 160 kW",
+      "N+1 redundant modules in a single footprint",
+      "Remotely manageable over web network protocols",
+      "High efficiency at partial load levels"
+    ],
+    stats: [
+      { label: "CAPACITY", value: "16-160 kW" },
+      { label: "REDUNDANCY", value: "N+1 Power & Control Modules" },
+      { label: "VOLTAGE", value: "400V 3-Phase Input/Output" },
+      { label: "FOOTPRINT", value: "Fully integrated layout cabinet" }
+    ],
+    imageSrc: "/images/products/ups.png",
+    imageAlt: "APC Symmetra PX UPS",
+    images: [
+      { src: "/images/products/ups.png", alt: "Symmetra PX — Enclosure View" }
+    ],
+    models: [
+      { name: "Symmetra PX 48kW", capacity: "48 kW", inputVoltage: "400V 3-Phase", outputVoltage: "400V 3-Phase", efficiency: "95.4%", height: 2000, width: 600, depth: 1070, weight: "620 kg" }
+    ]
+  },
+  {
+    id: "vertiv-eaton-9px-ups",
+    categoryId: "ups",
+    tag: "CRITICAL POWER",
+    title: "Eaton® 9PX Double Conversion UPS",
+    scoreLabel: "EFFICIENCY RATING",
+    scorePercentage: 94,
+    description: "An exceptional double-conversion online UPS that delivers reliable, efficient, and versatile critical power protection for virtualized IT rooms.",
+    features: [
+      "Energy Star qualified with up to 94% efficiency",
+      "Next-generation graphical LCD interface display",
+      "Integrates with virtualization management software",
+      "Active battery integration technology",
+      "Standard rack/tower convertible design format"
+    ],
+    stats: [
+      { label: "CAPACITY", value: "5-11 kVA" },
+      { label: "POWER FACTOR", value: "0.9 (Standard)" },
+      { label: "VIRTUALIZATION", value: "VMware / Hyper-V Ready" },
+      { label: "WARRANTY", value: "3-Year Advanced replacement" }
+    ],
+    imageSrc: "/images/products/ups.png",
+    imageAlt: "Eaton 9PX UPS",
+    images: [
+      { src: "/images/products/ups.png", alt: "Eaton 9PX — Chassis View" }
+    ],
+    models: [
+      { name: "Eaton 9PX - 6000", capacity: "6000 VA", inputVoltage: "230V Single-Phase", outputVoltage: "230V Single-Phase", efficiency: "94.0%", height: 130, width: 440, depth: 685, weight: "48 kg" }
+    ]
+  },
+
 
   // ─── DC POWER SYSTEMS ──────────────────────────────────────────────────────
   {

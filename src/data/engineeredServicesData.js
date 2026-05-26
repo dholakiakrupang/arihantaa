@@ -55,6 +55,157 @@ export const engineeredServicesData = [
       }
     ]
   },
+  {
+    id: "emergency-spare-parts-logistics",
+    categoryId: "spare-parts",
+    tag: "SPARE PARTS MANAGEMENT",
+    title: "Emergency Parts Dispatch & Air Logistics",
+    scoreLabel: "DISPATCH SLA MET",
+    scorePercentage: 98,
+    description: "Expedited next-flight-out parts dispatch and dedicated air courier services for hyper-critical hardware failures that demand active time-critical site delivery.",
+    features: [
+      "Dedicated hot-shot courier delivery",
+      "Customs pre-clearance priority validation",
+      "Specialized protective transit packaging",
+      "Real-time GPS transit tracking alerts",
+      "24/7/365 active NOC hotline dispatch"
+    ],
+    stats: [
+      { label: "TRANSIT SPEED", value: "Next-Flight-Out" },
+      { label: "COURIER", value: "Dedicated Hand-Carry" },
+      { label: "DISPATCH SUCCESS", value: "99.4%" },
+      { label: "GLOBAL COVERAGE", value: "Multi-Hub Availability" }
+    ],
+    imageSrc: "/images/products/switchgear.png",
+    imageAlt: "Emergency Spare Parts Logistics",
+    images: [
+      { src: "/images/products/switchgear.png", alt: "Emergency Logistics — Air Transit" }
+    ],
+    slaPlans: [
+      { parameter: "Delivery Target", bronze: "Within 24 Hours", silver: "Within 6 Hours", gold: "Within 3 Hours Guaranteed" }
+    ]
+  },
+  {
+    id: "on-site-critical-parts-locker",
+    categoryId: "spare-parts",
+    tag: "SPARE PARTS MANAGEMENT",
+    title: "On-Site Critical Spares Cabinet Provisioning",
+    scoreLabel: "ON-SITE STOCK RATE",
+    scorePercentage: 100,
+    description: "Installation of a secure, environmentally monitored parts locker on-site containing all high-failure-rate parts, guaranteeing immediate physical replacement availability.",
+    features: [
+      "Custom tailored parts inventory locker",
+      "Secure RFID access logging control",
+      "Automatic replenishment inventory sensors",
+      "Climate and dust-proof storage container",
+      "Fully audited annual swap-out program"
+    ],
+    stats: [
+      { label: "STOCK AVAILABILITY", value: "100% On-Site" },
+      { label: "ACCESS LOGGING", value: "RFID / Pin Code" },
+      { label: "MONITORING", value: "24/7 Connectivity" },
+      { label: "REPLENISHMENT", value: "Automated Dispatch Trigger" }
+    ],
+    imageSrc: "/images/products/switchgear.png",
+    imageAlt: "On-Site Spares Locker",
+    images: [
+      { src: "/images/products/switchgear.png", alt: "Spares Locker — System cabinet" }
+    ],
+    slaPlans: [
+      { parameter: "Stock Level Integrity", bronze: "Monthly Audits", silver: "Bi-Weekly Auto-check", gold: "Real-time RFID Tracking" }
+    ]
+  },
+  {
+    id: "custom-switchgear-parts-sourcing",
+    categoryId: "spare-parts",
+    tag: "SPARE PARTS MANAGEMENT",
+    title: "Legacy Switchgear & Breaker Parts Sourcing",
+    scoreLabel: "LEGACY PARTS SOLVED",
+    scorePercentage: 97,
+    description: "Specialized reverse-engineering and sourcing services for discontinued or legacy high-voltage switchgear components, keeping aging electrical systems operational.",
+    features: [
+      "Discontinued breaker contact sourcing",
+      "Precision CNC machining of legacy copper busbars",
+      "OEM-certified remanufactured parts support",
+      "Electrical certification compliance testing",
+      "Custom isolation barriers manufacturing"
+    ],
+    stats: [
+      { label: "Sourcing time", value: "7-14 Days average" },
+      { label: "Legacy support", value: "Up to 40-year old gear" },
+      { label: "Machining", value: "ISO Certified Facility" },
+      { label: "Testing", value: "Dielectric certified" }
+    ],
+    imageSrc: "/images/products/switchgear.png",
+    imageAlt: "Legacy Parts Sourcing",
+    images: [
+      { src: "/images/products/switchgear.png", alt: "Legacy Parts — Switchgear panel" }
+    ],
+    slaPlans: [
+      { parameter: "Sourcing SLA", bronze: "Best-effort Sourcing", silver: "Priority Procurement Loop", gold: "Guaranteed Global search & Machining Plan" }
+    ]
+  },
+  {
+    id: "battery-terminal-replacement-kit",
+    categoryId: "spare-parts",
+    tag: "SPARE PARTS MANAGEMENT",
+    title: "Battery Terminal & Intercell Connector Spares",
+    scoreLabel: "CONNECTOR RELIABILITY",
+    scorePercentage: 99,
+    description: "Provisioning and on-site stocking of specialized heavy-duty copper intercell connectors, terminals, and anti-corrosion grease kits for UPS battery rooms.",
+    features: [
+      "Ultra-low resistance solid copper intercell bars",
+      "Specialized terminal lug connectors",
+      "Anti-oxidant conductant grease tubes",
+      "Flame-retardant terminal safety covers",
+      "IEEE-compliant battery maintenance tools"
+    ],
+    stats: [
+      { label: "Connector load", value: "Up to 800A capacity" },
+      { label: "Grease formula", value: "OEM certified conductive" },
+      { label: "Covers", value: "UL94 V-0 Rated" },
+      { label: "Testing", value: "Resistance drop certified" }
+    ],
+    imageSrc: "/images/products/switchgear.png",
+    imageAlt: "Battery intercell connectors",
+    images: [
+      { src: "/images/products/switchgear.png", alt: "Battery Parts — Intercell bars" }
+    ],
+    slaPlans: [
+      { parameter: "Parts availability", bronze: "Standard delivery", silver: "Next-Day Air", gold: "Pre-stocked in On-Site Locker" }
+    ]
+  },
+  {
+    id: "cooling-compressor-oem-parts",
+    categoryId: "spare-parts",
+    tag: "SPARE PARTS MANAGEMENT",
+    title: "OEM Compressors & Thermal Valves Provisioning",
+    scoreLabel: "THERMAL PARTS INDEX",
+    scorePercentage: 96,
+    description: "Sourcing and priority logistics for genuine Copeland, Danfoss, and Liebert scroll compressors and electronic expansion valves (EEV) for data center cooling loops.",
+    features: [
+      "OEM factory-matched scroll compressors",
+      "Electronic expansion valve (EEV) assemblies",
+      "Filter drier and receiver cores",
+      "Leak testing nitrogen manifolds",
+      "Eco-refrigerant recharge kits"
+    ],
+    stats: [
+      { label: "COMPRESSOR TYPES", value: "Digital Scroll, Inverter" },
+      { label: "REFRIGERANT", value: "R410A, R134a, R32 compatible" },
+      { label: "WARRANTY", value: "OEM Full replacement support" },
+      { label: "DELIVERY SLA", value: "< 24 Hours priority" }
+    ],
+    imageSrc: "/images/products/switchgear.png",
+    imageAlt: "OEM Cooling Compressors",
+    images: [
+      { src: "/images/products/switchgear.png", alt: "Cooling Parts — Compressor units" }
+    ],
+    slaPlans: [
+      { parameter: "Compressor dispatch", bronze: "Standard freight", silver: "Next-Day Air cargo", gold: "Next-flight-out express delivery" }
+    ]
+  },
+
 
   // ─── PREVENTIVE MAINTENANCE ───────────────────────────────────────────────
   {
