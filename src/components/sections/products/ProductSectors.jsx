@@ -15,7 +15,7 @@ function SectorRow({ sector, index }) {
   const slug = sector.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
   return (
-    <div id={slug} className="relative scroll-mt-24">
+    <div id={slug} className="relative scroll-mt-[120px] md:scroll-mt-[136px] lg:scroll-mt-[140px]">
 
       {/* ── Top separator line ─────────────────────────────────────────────── */}
       <motion.div
@@ -60,7 +60,7 @@ function SectorRow({ sector, index }) {
         {/* Title + description — separate column, no overlap */}
         <div className={`flex-1 pt-1 ${isEven ? 'md:text-right md:flex md:flex-col md:items-end' : ''}`}>
           <motion.h2
-            className="font-headline text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] leading-[1.0] font-black text-on-surface uppercase tracking-tighter mb-4"
+            className="font-headline text-[30px] sm:text-[42px] md:text-[56px] lg:text-[64px] leading-tight md:leading-[1.0] font-black text-on-surface uppercase tracking-tighter mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
@@ -101,7 +101,7 @@ function SectorRow({ sector, index }) {
       </div>
 
       {/* ── Product cards grid ─────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30 gap-0 mb-16 md:mb-24">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16 md:mb-24">
         {sector.cards.map((card, cardIndex) => (
           <ProductCard
             key={card.id}

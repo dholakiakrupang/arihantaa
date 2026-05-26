@@ -13,7 +13,7 @@ export function ProductCard({ id, categoryId, category, title, description, imag
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 1, 0.5, 1] }}
-      className="border-r border-b border-outline-variant/30 bg-surface h-full"
+      className="border border-outline-variant/30 bg-surface h-full rounded-none"
     >
       <Link 
         to={`/products/${categoryId || id}`}

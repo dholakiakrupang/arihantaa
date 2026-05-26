@@ -108,9 +108,13 @@ export function ProductsStickyNav() {
   useEffect(() => {
     const handleScroll = () => {
       let current = '';
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+      const threshold = isMobile ? 125 : isTablet ? 140 : 145;
+
       sectors.forEach(({ id }) => {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 160) {
+        if (el && window.scrollY >= el.offsetTop - threshold) {
           current = id;
         }
       });
@@ -138,7 +142,17 @@ export function ProductsStickyNav() {
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
-      const offset = 120; // offset to account for header + sticky nav heights
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+      let offset = 140;
+      if (isMobile) {
+        offset = 120;
+      } else if (isTablet) {
+        offset = 136;
+      } else {
+        offset = 140;
+      }
+
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = el.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -154,18 +168,26 @@ export function ProductsStickyNav() {
   const currentTelemetry = telemetryData[activeId] || defaultTelemetry;
 
   return (
-    <nav className="sticky top-[79px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
+    <nav className="sticky top-[64px] md:top-[80px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
       <div className="flex items-stretch h-[54px] md:h-[58px]">
-        {/* Fixed label pill */}
-        <div className="flex-shrink-0 flex items-center gap-3 px-6 md:px-10 bg-accent border-r border-accent/40">
-          <span className="material-symbols-outlined text-on-primary text-[16px]">inventory_2</span>
-          <span className="font-label-caps text-[10px] text-on-primary tracking-[0.22em] uppercase whitespace-nowrap">
+        {/* Fixed label pill — hidden below lg */}
+        <div className="hidden lg:flex flex-shrink-0 items-center gap-3 px-6 lg:px-10 bg-accent border-r border-accent/40">
+          <span className="material-symbols-outlined text-on-primary text-[14px] lg:text-[16px] !font-normal">inventory_2</span>
+          <span className="font-label-caps text-[9px] lg:text-[10px] text-on-primary tracking-[0.22em] uppercase whitespace-nowrap">
             Our Products
           </span>
         </div>
 
         {/* Scrollable Clickable Nav Items */}
-        <div ref={scrollContainerRef} className="flex md:grid md:grid-cols-4 flex-grow overflow-x-auto scrollbar-hide">
+        <div ref={scrollContainerRef} className="flex lg:grid lg:grid-cols-4 flex-grow overflow-x-auto scrollbar-hide">
+          {/* Mobile-only label pill inside the scroll list */}
+          <div className="flex lg:hidden items-center gap-2 px-5 bg-accent border-r border-accent/40 flex-shrink-0 select-none">
+            <span className="material-symbols-outlined text-on-primary text-[14px] !font-normal">inventory_2</span>
+            <span className="font-label-caps text-[9px] text-on-primary tracking-[0.22em] uppercase whitespace-nowrap">
+              Our Products
+            </span>
+          </div>
+
           {sectors.map((sec) => {
             const isActive = activeId === sec.id;
             return (
@@ -173,7 +195,7 @@ export function ProductsStickyNav() {
                 key={sec.id}
                 id={`nav-item-${sec.id}`}
                 onClick={(e) => handleNavClick(e, sec.id)}
-                className={`group relative flex items-center justify-start md:justify-center px-4 md:px-6 py-4 flex-shrink-0 border-r border-white/10 transition-all duration-300 text-left outline-none ${
+                className={`group relative flex items-center justify-start lg:justify-center px-4 lg:px-6 py-4 flex-shrink-0 border-r border-white/10 transition-all duration-300 text-left outline-none ${
                   isActive ? 'bg-black/30' : 'hover:bg-white/5'
                 }`}
               >

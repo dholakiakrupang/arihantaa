@@ -6,12 +6,12 @@ import { trustStats } from '../../../data/productsData';
 export function ProductsHero() {
   return (
     <section
-      className="relative w-full bg-[#080808] overflow-hidden flex flex-col"
+      className="relative w-full bg-[#080808] overflow-hidden flex flex-col lg:min-h-screen"
       style={{ minHeight: '100svh' }}
     >
       {/* ── Full-bleed right image panel */}
       <motion.div
-        className="hidden lg:block absolute top-0 right-0 w-[48%] h-full z-0 overflow-hidden"
+        className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[48%] overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
@@ -33,8 +33,7 @@ export function ProductsHero() {
 
         {/* Image label overlay */}
         <motion.div
-          className="absolute left-10 z-20"
-          style={{ bottom: 'calc(72px + 28px)' }}
+          className="absolute left-6 bottom-6 lg:left-10 lg:bottom-[100px] z-20"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}
@@ -53,12 +52,12 @@ export function ProductsHero() {
       <div aria-hidden className="hidden lg:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none" />
 
       {/* ── Left content */}
-      <div className="relative z-10 flex flex-col flex-1">
+      <div className="relative z-10 flex flex-col flex-grow order-1 lg:order-none">
         <div className="min-h-[88px] md:min-h-[96px] shrink-0" />
 
-        <div className="w-full flex flex-col flex-1">
-          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-1 px-8 md:px-16">
-            <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-1 lg:pr-16">
+        <div className="w-full flex flex-col flex-grow">
+          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-grow px-8 md:px-8 lg:px-16">
+            <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-grow lg:pr-16">
               <div className="flex flex-col gap-0">
 
                 {/* Breadcrumb */}
@@ -150,12 +149,12 @@ export function ProductsHero() {
 
       {/* ── Bottom Stats Bar */}
       <motion.div
-        className="w-full border-t border-white/10 bg-[#080808]/95 backdrop-blur-md shrink-0 relative z-30"
+        className="w-full border-t border-white/10 bg-[#080808]/95 backdrop-blur-md shrink-0 relative z-30 order-3 lg:order-none"
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.95 }}
       >
-        <div className="max-w-[1440px] mx-auto grid grid-cols-3 divide-x divide-white/10">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
           {trustStats.map((stat, i) => (
             <div key={i} className="px-6 py-5 flex flex-col justify-center">
               <span className="font-headline text-[18px] md:text-[22px] font-black text-accent tracking-tight leading-none mb-1">
