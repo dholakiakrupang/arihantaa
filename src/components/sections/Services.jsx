@@ -74,7 +74,7 @@ export function Services() {
         </div>
         
         {/* Services 3-Column Single-Pixel Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 border-t border-l border-outline-variant/30">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-0 lg:border-t lg:border-l border-outline-variant/30">
           {SERVICES.map((srv, idx) => (
             <motion.div
               key={srv.id}
@@ -82,7 +82,7 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.25, 1, 0.5, 1] }}
-              className="border-r border-b border-outline-variant/30 bg-surface flex flex-col justify-between group overflow-hidden relative"
+              className="border lg:border-0 lg:border-r lg:border-b border-outline-variant/30 bg-surface flex flex-col justify-between group overflow-hidden relative"
             >
               {/* Overlay Link */}
               <Link to={`/services`} className="absolute inset-0 z-20" aria-label={`Explore ${srv.title}`} />

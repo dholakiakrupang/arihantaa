@@ -76,14 +76,14 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full bg-[#080808] overflow-hidden flex flex-col"
+      className="relative w-full bg-[#080808] overflow-hidden flex flex-col lg:min-h-screen"
       style={{ minHeight: '100svh' }}
     >
       {/* ══════════════════════════════════════════════════
           RIGHT IMAGE PANEL — Absolutely positioned,
           covers full section height from very top (behind header)
       ══════════════════════════════════════════════════ */}
-      <div className="hidden lg:block absolute top-0 right-0 w-[48%] h-full z-0 overflow-hidden">
+      <div className="relative w-full aspect-[16/10] mt-10 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[48%] lg:h-full lg:z-0 lg:mt-0 overflow-hidden">
         {/* Slideshow images — crossfade */}
         <AnimatePresence mode="sync">
           <motion.img
@@ -125,7 +125,7 @@ export function Hero() {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPillar.id + '-label'}
-            className="absolute left-10 z-20"
+            className="hidden lg:block absolute left-10 z-20"
             style={{ bottom: 'calc(72px + 28px)' }}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -145,7 +145,7 @@ export function Hero() {
         </AnimatePresence>
 
         {/* ── Slide counter — top right */}
-        <div className="absolute top-8 right-8 z-20 flex flex-col items-end gap-3">
+        <div className="hidden lg:block absolute top-8 right-8 z-20 flex flex-col items-end gap-3">
           {/* Number */}
           <AnimatePresence mode="wait">
             <motion.span
@@ -189,13 +189,13 @@ export function Hero() {
       {/* ── Vertical divider line */}
       <div
         aria-hidden
-        className="hidden lg:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none"
+        className="hidden md:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none"
       />
 
       {/* ══════════════════════════════════════════════════
           LEFT CONTENT — aligned to footer container
       ══════════════════════════════════════════════════ */}
-      <div className="relative z-10 flex flex-col flex-1">
+      <div className="relative z-10 flex flex-col flex-grow order-1 lg:order-none">
         {/* Header spacer */}
         <div className="min-h-[88px] md:min-h-[96px] shrink-0" />
 
@@ -204,9 +204,9 @@ export function Hero() {
           className="w-full flex flex-col flex-1"
           style={{ y: textY }}
         >
-          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-1 px-8 md:px-16">
+          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-grow px-8 md:px-8 lg:px-16">
             {/* Inner left column — 52% width, right padding creates gap before divider */}
-            <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-1 lg:pr-16">
+            <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-grow lg:pr-16">
 
               {/* Single unified content block */}
               <div className="flex flex-col gap-0">
@@ -302,7 +302,7 @@ export function Hero() {
 
       {/* ── Bottom Stats Bar */}
       <motion.div
-        className="w-full border-t border-white/10 bg-[#080808]/95 backdrop-blur-md shrink-0 relative z-30"
+        className="w-full border-t border-white/10 bg-[#080808]/95 backdrop-blur-md shrink-0 relative z-30 order-3 lg:order-none"
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.95 }}

@@ -211,7 +211,7 @@ function HamburgerButton({ isOpen, onClick }) {
   return (
     <button
       onClick={onClick}
-      className="relative flex items-center justify-center w-11 h-11 md:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      className="relative flex items-center justify-center w-11 h-11 lg:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
       aria-expanded={isOpen}
     >
@@ -394,7 +394,7 @@ function MobileDrawer({ isOpen, onClose }) {
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 z-[95] bg-black/70 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-[95] bg-black/70 backdrop-blur-sm lg:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -406,7 +406,7 @@ function MobileDrawer({ isOpen, onClose }) {
           {/* Drawer */}
           <motion.div
             ref={drawerRef}
-            className="fixed top-0 right-0 bottom-0 z-[96] w-full max-w-[380px] bg-[#080808] md:hidden flex flex-col overflow-hidden"
+            className="fixed top-0 right-0 bottom-0 z-[96] w-full max-w-[380px] bg-[#080808] lg:hidden flex flex-col overflow-hidden"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -1039,7 +1039,7 @@ export function Header() {
         }`}
       >
         {/* Responsive padding aligned to standard B2B grid lines, adapting to 44px content height */}
-        <nav className="flex justify-between items-center w-full px-6 md:px-8 lg:px-16 py-[10px] md:py-[18px] max-w-[1440px] mx-auto">
+        <nav className="flex justify-between items-center w-full px-8 md:px-16 py-[10px] md:py-[18px] max-w-[1440px] mx-auto">
 
           {/* Logo — aligned to GET A QUOTE button height (44px) */}
           <Link
@@ -1054,8 +1054,8 @@ export function Header() {
             />
           </Link>
 
-          {/* ── Desktop Nav links (hidden below md) ── */}
-          <div className="hidden md:flex gap-1 items-center">
+          {/* ── Desktop Nav links (hidden below lg) ── */}
+          <div className="hidden lg:flex gap-1 items-center">
             {NAV_LINKS.map(({ label, to, hasMega }) => (
               <div
                 key={label}
@@ -1067,7 +1067,7 @@ export function Header() {
                   to={to}
                   onClick={close}
                   className={[
-                    'font-label-caps text-label-caps px-2 lg:px-4 py-2.5 flex items-center gap-1 transition-colors duration-200 relative group min-h-[44px]',
+                    'font-label-caps text-label-caps px-3 lg:px-4 py-2.5 flex items-center gap-1 transition-colors duration-200 relative group min-h-[44px]',
                     isActive(to)
                       ? 'text-accent'
                       : 'text-secondary hover:text-on-surface',
@@ -1076,7 +1076,7 @@ export function Header() {
                   aria-haspopup={hasMega ? 'true' : undefined}
                 >
                   {/* Active/hover underline */}
-                  <span className={`absolute bottom-0 left-2 right-2 lg:left-4 lg:right-4 h-[2px] bg-accent transition-transform duration-200 origin-left ${
+                  <span className={`absolute bottom-0 left-3 right-3 lg:left-4 lg:right-4 h-[2px] bg-accent transition-transform duration-200 origin-left ${
                     isActive(to) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                   }`} />
                   {label}
@@ -1095,7 +1095,7 @@ export function Header() {
           </div>
 
           {/* ── Right actions ── */}
-          <div className="flex items-center gap-2 sm:gap-3 lg:gap-5">
+          <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
             {/* Search trigger — unified 44px square, matching GET A QUOTE button */}
             <button
               onClick={openSearch}
@@ -1122,7 +1122,7 @@ export function Header() {
         {open && menu && (
           <motion.div
             key={open}
-            className="fixed left-0 right-0 z-[90] bg-surface border-b border-outline-variant/40 shadow-2xl overflow-hidden hidden md:block"
+            className="fixed left-0 right-0 z-[90] bg-surface border-b border-outline-variant/40 shadow-2xl overflow-hidden hidden lg:block"
             style={{ top: headerH }}
             onMouseEnter={() => handleEnter(open)}
             onMouseLeave={handleLeave}
@@ -1197,7 +1197,7 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[80] bg-black/15 backdrop-blur-[2px] hidden md:block"
+            className="fixed inset-0 z-[80] bg-black/15 backdrop-blur-[2px] hidden lg:block"
             style={{ top: headerH }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
