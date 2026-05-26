@@ -54,7 +54,7 @@ export function Portfolio() {
             </h2>
           </div>
           
-          <div className="lg:col-span-4 lg:text-right">
+          <div className="lg:col-span-4">
             <Link to="/projects">
               <Button 
                 variant="outline" 
@@ -81,8 +81,8 @@ export function Portfolio() {
                   isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 } gap-0 overflow-hidden`}
               >
-                {/* Visual Image Box with Zoom (60% width on desktop) */}
-                <div className="w-full lg:w-[55%] aspect-[16/10] overflow-hidden bg-surface-container-low relative group">
+                {/* Visual Image Box */}
+                <div className="w-full lg:w-[55%] aspect-[16/9] sm:aspect-[16/10] overflow-hidden bg-surface-container-low relative group">
                   <Link to={`/projects/${proj.id}`} className="absolute inset-0 z-10" />
                   <img
                     src={proj.image}
@@ -91,11 +91,11 @@ export function Portfolio() {
                   />
                 </div>
 
-                {/* Content & Metadata Table (45% width on desktop) */}
-                <div className="w-full lg:w-[45%] flex flex-col justify-between p-8 md:p-10">
+                {/* Content & Metadata Table */}
+                <div className="w-full lg:w-[45%] flex flex-col justify-between p-6 md:p-10">
                   <div>
                     {/* Category */}
-                    <div className="flex items-center gap-2 mb-4">
+                    <div className="flex items-center gap-2 mb-3">
                       <div className="w-1.5 h-1.5 bg-accent" />
                       <span className="font-label-caps text-[9px] text-accent tracking-widest font-bold uppercase">
                         {proj.category}
@@ -105,24 +105,24 @@ export function Portfolio() {
                     {/* Title */}
                     <Link 
                       to={`/projects/${proj.id}`} 
-                      className="font-headline text-[24px] md:text-[30px] font-black text-on-surface hover:text-accent transition-colors duration-300 leading-tight uppercase block mb-4"
+                      className="font-headline text-[22px] md:text-[30px] font-black text-on-surface hover:text-accent transition-colors duration-300 leading-tight uppercase block mb-3"
                     >
                       {proj.title}
                     </Link>
 
                     {/* Description */}
-                    <p className="font-body text-[14px] text-secondary leading-relaxed mb-6">
+                    <p className="font-body text-[13px] md:text-[14px] text-secondary leading-relaxed mb-5 line-clamp-3">
                       {proj.desc}
                     </p>
 
-                    {/* Specifications Grid Table */}
-                    <div className="border-t border-l border-outline-variant/30 grid grid-cols-3 mb-6">
+                    {/* Specifications Grid — 1 col mobile, 3 col on sm+ */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 border border-outline-variant/30 mb-5">
                       {proj.stats.map((stat, sIdx) => (
-                        <div key={sIdx} className="border-r border-b border-outline-variant/30 p-3 flex flex-col justify-between">
-                          <span className="font-label-caps text-[8px] text-secondary/40 tracking-wider uppercase block mb-1">
+                        <div key={sIdx} className="p-3 flex flex-row sm:flex-col justify-between sm:justify-start gap-2 border-b sm:border-b-0 sm:border-r border-outline-variant/30 last:border-0">
+                          <span className="font-label-caps text-[8px] text-secondary/40 tracking-wider uppercase whitespace-nowrap">
                             {stat.label}
                           </span>
-                          <span className="font-body text-[12px] font-bold text-on-surface truncate">
+                          <span className="font-body text-[12px] font-bold text-on-surface text-right sm:text-left">
                             {stat.value}
                           </span>
                         </div>

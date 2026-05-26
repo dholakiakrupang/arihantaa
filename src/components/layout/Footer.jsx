@@ -51,7 +51,7 @@ export function Footer() {
           
           {/* Brand & Info */}
           <div className="flex-shrink-0 lg:w-[320px] lg:pr-16 flex flex-col gap-6 items-start">
-            <Link to="/" className="w-full block">
+            <Link to="/" className="w-[140px] sm:w-[160px] lg:w-full lg:max-w-[180px] block">
               <img 
                 src="/arihantaa-vertical-logo.png" 
                 alt="Arihantaa Powertech Logo" 

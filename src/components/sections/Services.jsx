@@ -46,33 +46,35 @@ export function Services() {
       <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
         
         {/* Header Block */}
-        <div className="mb-16 md:mb-20 flex flex-col md:flex-row justify-between items-end gap-8">
-          <div className="max-w-xl">
-            <motion.div 
-              className="flex items-center gap-3 mb-4"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="h-px w-6 bg-accent" />
-              <span className="font-label-caps text-[10px] text-accent tracking-[0.25em] uppercase font-bold">
-                CORE CAPABILITIES | SOLUTIONS
-              </span>
-            </motion.div>
-            
-            <h2 className="font-headline text-[38px] sm:text-[48px] lg:text-[60px] leading-[1.0] font-black text-on-surface tracking-tighter uppercase">
-              Precision <br/> Solutions.
-            </h2>
-          </div>
+        <div className="mb-16 md:mb-20 flex flex-col gap-6">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+            <div className="max-w-xl">
+              <motion.div 
+                className="flex items-center gap-3 mb-4"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="h-px w-6 bg-accent" />
+                <span className="font-label-caps text-[10px] text-accent tracking-[0.25em] uppercase font-bold">
+                  CORE CAPABILITIES | SOLUTIONS
+                </span>
+              </motion.div>
+              
+              <h2 className="font-headline text-[38px] sm:text-[48px] lg:text-[60px] leading-[1.0] font-black text-on-surface tracking-tighter uppercase">
+                Precision <br /> Solutions.
+              </h2>
+            </div>
 
-          <p className="font-body text-[14px] md:text-[15px] text-secondary max-w-sm md:text-right leading-relaxed">
-            Delivering critical power, industrial ventilation, and cooling solutions for mission-critical sectors.
-          </p>
+            <p className="font-body text-[14px] md:text-[15px] text-secondary max-w-sm leading-relaxed text-left md:text-right">
+              Delivering critical power, industrial ventilation, and cooling solutions for mission-critical sectors.
+            </p>
+          </div>
         </div>
         
         {/* Services 3-Column Single-Pixel Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 border-t border-l border-outline-variant/30">
+        <div className="grid grid-cols-1 lg:grid-cols-3 border-t border-l border-outline-variant/30">
           {SERVICES.map((srv, idx) => (
             <motion.div
               key={srv.id}
@@ -85,7 +87,7 @@ export function Services() {
               {/* Overlay Link */}
               <Link to={`/services`} className="absolute inset-0 z-20" aria-label={`Explore ${srv.title}`} />
               
-              <div className="p-8 lg:p-10 flex flex-col gap-6">
+              <div className="p-6 sm:p-8 lg:p-10 flex flex-col gap-6">
                 
                 {/* Header (Icon Only) */}
                 <div className="flex justify-start items-center">
@@ -109,7 +111,7 @@ export function Services() {
                   {srv.specs.map((spec, sIdx) => (
                     <div key={sIdx} className="flex justify-between items-baseline text-[11px] font-body">
                       <span className="font-label-caps text-[8.5px] text-secondary/40 tracking-wider uppercase">{spec.label}</span>
-                      <span className="text-secondary/80 text-right font-medium max-w-[170px] truncate">{spec.value}</span>
+                      <span className="text-secondary/80 text-right font-medium max-w-[120px] sm:max-w-[150px] lg:max-w-none truncate">{spec.value}</span>
                     </div>
                   ))}
                 </div>

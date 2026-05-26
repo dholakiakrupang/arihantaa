@@ -1039,7 +1039,7 @@ export function Header() {
         }`}
       >
         {/* Responsive padding aligned to standard B2B grid lines, adapting to 44px content height */}
-        <nav className="flex justify-between items-center w-full px-8 md:px-16 py-[10px] md:py-[18px] max-w-[1440px] mx-auto">
+        <nav className="flex justify-between items-center w-full px-6 md:px-8 lg:px-16 py-[10px] md:py-[18px] max-w-[1440px] mx-auto">
 
           {/* Logo — aligned to GET A QUOTE button height (44px) */}
           <Link
@@ -1067,7 +1067,7 @@ export function Header() {
                   to={to}
                   onClick={close}
                   className={[
-                    'font-label-caps text-label-caps px-3 lg:px-4 py-2.5 flex items-center gap-1 transition-colors duration-200 relative group min-h-[44px]',
+                    'font-label-caps text-label-caps px-2 lg:px-4 py-2.5 flex items-center gap-1 transition-colors duration-200 relative group min-h-[44px]',
                     isActive(to)
                       ? 'text-accent'
                       : 'text-secondary hover:text-on-surface',
@@ -1076,7 +1076,7 @@ export function Header() {
                   aria-haspopup={hasMega ? 'true' : undefined}
                 >
                   {/* Active/hover underline */}
-                  <span className={`absolute bottom-0 left-3 right-3 lg:left-4 lg:right-4 h-[2px] bg-accent transition-transform duration-200 origin-left ${
+                  <span className={`absolute bottom-0 left-2 right-2 lg:left-4 lg:right-4 h-[2px] bg-accent transition-transform duration-200 origin-left ${
                     isActive(to) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                   }`} />
                   {label}
@@ -1095,7 +1095,7 @@ export function Header() {
           </div>
 
           {/* ── Right actions ── */}
-          <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
+          <div className="flex items-center gap-2 sm:gap-3 lg:gap-5">
             {/* Search trigger — unified 44px square, matching GET A QUOTE button */}
             <button
               onClick={openSearch}
