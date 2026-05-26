@@ -188,7 +188,7 @@ export function Hero() {
       {/* ── Vertical divider line */}
       <div
         aria-hidden
-        className="hidden md:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none"
+        className="hidden lg:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none"
       />
 
       {/* ══════════════════════════════════════════════════
@@ -306,9 +306,18 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.95 }}
       >
-        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4">
           {HERO_METRICS.map((metric, i) => (
-            <div key={i} className="px-6 py-5 flex flex-col justify-center">
+            <div 
+              key={i} 
+              className={`px-6 py-5 flex flex-col justify-center border-white/10 ${
+                i < 2 ? 'border-b border-white/10 md:border-b-0' : ''
+              } ${
+                i % 2 === 0 ? 'border-r' : ''
+              } ${
+                i < 3 ? 'md:border-r' : 'md:border-r-0'
+              }`}
+            >
               <span className="font-headline text-[18px] md:text-[22px] font-black text-accent tracking-tight leading-none mb-1">
                 {metric.value}
               </span>
