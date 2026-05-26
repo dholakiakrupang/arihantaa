@@ -373,36 +373,36 @@ export function NewsArticle() {
                     Related Briefs
                   </h3>
                   <div className="flex flex-col gap-6">
-                    <Link to="#" className="group flex gap-4 items-start">
+                    <Link to="/news/2" className="group flex gap-4 items-start">
                       <div className="overflow-hidden w-20 h-20 shrink-0 border border-outline-variant/50 relative">
                         <div className="absolute inset-0 border border-accent/0 group-hover:border-accent/40 transition-colors pointer-events-none z-10" />
                         <img 
-                          alt="Structural steel girders" 
+                          alt="Substation thermal efficiency" 
                           className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-550" 
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRC9xTeqb1jOBt7AUEQdqooZJ1T_ieleAPf5F4M_HeTS4er7KS6kY7XTSRIrlMUKuxEM6a1JiMm5VFEz2lWx_1rjkbk3CmY9wvc-nvDeOKRSZOKRm-tugBgBV_eG7pJH__4UUSA1aHboOuawCGJA0-jV0podfkFq6DUaEwWDAFRlOFoZo4R-5xpCvSiwVNAgdsggpDcp2VaiSsYFvoMwwYfRDde7wtTiVHXRBcwMLqJUMQOsHn-bYy1EIbmO2pdLkYJjFiXvqUxrM"
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXTaHZF2s9EkzujqLkbFGry7vOKPsNt08rADHH8cldx-PLWVBfX6u0hGiYUoZNcAzNC7Ehmw_-X_0QdDoUMyXBrLLW4L3pc4TwlDscR-6KnEo4MAuCKMiAUOkXHJK7_poGE5pNs4aOMu6CiUavm8gA9runwJkVJYn8vVZtdTud_VMyk0H3whG-zl4t0dvS1KnNhOUcLUA4dQzngEUerTrLQRsMQJ-ii3RggnHmSOMnNymRLZzcoxHoPn8v4HmkDrrCIGwITFcCyr4"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-label-caps text-[8.5px] text-accent tracking-[0.2em] uppercase mb-1 font-bold">Structural Integrity</p>
+                        <p className="font-label-caps text-[8.5px] text-accent tracking-[0.2em] uppercase mb-1 font-bold">Technical Report</p>
                         <h4 className="font-headline text-[14px] font-bold text-on-surface leading-snug group-hover:text-accent transition-colors line-clamp-2">
-                          Load Testing Commences on V-Series Anchors
+                          Optimizing Thermal Efficiency in Substations
                         </h4>
                       </div>
                     </Link>
                     
-                    <Link to="#" className="group flex gap-4 items-start">
+                    <Link to="/news/3" className="group flex gap-4 items-start">
                       <div className="overflow-hidden w-20 h-20 shrink-0 border border-outline-variant/50 relative">
                         <div className="absolute inset-0 border border-accent/0 group-hover:border-accent/40 transition-colors pointer-events-none z-10" />
                         <img 
-                          alt="Microchip macro" 
+                          alt="Hydro-electric stress testing" 
                           className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-550" 
-                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDosgQmpsWd8Oz6FWXJ0z-VLMSXAzFQF6qwWEfwVEBcg_VZu3-m5ilY-05A38EwilLzByzrLjk4Viupp6fxw_ZP0iSD1tGXTqhpsDkVT016n47-jJ4mJk-Z7gE2hOZK4t55Mim6GwgzQa3M_DzjTq80d9NUZvfRB2kB9bRKEzIubCcLcHEqhPwjbI1lJCD4AhYi781glJ5uCS2PjLafrSf8vlZ5Fdz41-dfzjP05axa7AedfI7-hiUipKGkNYIxsy_OnxK632wooUI"
+                          src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5FW8nf272gXSM_1xLQR9lKoi7xId3VLHIZFPFzZDDsZz-nkZBK2rLtsZtKJkruCgzVDafIT8sh-T2S4pquUpCFv5xVyBphjPjDfvrRtJhzcdElkAzpWf66KnClNbPqHBo7FDSKuqauWqmdmdjkPyWjklLYf1pyhqrHlKMFP7aTOT40qcirHI1QrKknjtv-vRFHkwL6Lqe96kLA6WOsS23v5Vqw3Ww0Ukxbs38PwDFBS-xum-nzeDdwKNE9LRjMiiG71SmAJODIrk"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="font-label-caps text-[8.5px] text-accent tracking-[0.2em] uppercase mb-1 font-bold">Automation</p>
+                        <p className="font-label-caps text-[8.5px] text-accent tracking-[0.2em] uppercase mb-1 font-bold">Whitepaper</p>
                         <h4 className="font-headline text-[14px] font-bold text-on-surface leading-snug group-hover:text-accent transition-colors line-clamp-2">
-                          Firmware v4.2 Rollout for Rotary Systems
+                          Hydro-Electric Stress Testing Protocols
                         </h4>
                       </div>
                     </Link>

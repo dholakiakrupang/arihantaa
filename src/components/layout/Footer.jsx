@@ -128,9 +128,9 @@ export function Footer() {
             <span>ISO 9001:2015 Certified</span>
           </div>
           <div className="flex flex-wrap justify-center gap-8">
-            <Link to="#" className="hover:text-white transition-colors">Privacy Protocol</Link>
-            <Link to="#" className="hover:text-white transition-colors">Safety Standards</Link>
-            <Link to="#" className="hover:text-white transition-colors">Terms</Link>
+            <Link to="/contact?inquiry=privacy" className="hover:text-white transition-colors">Privacy Protocol</Link>
+            <Link to="/about" className="hover:text-white transition-colors">Safety Standards</Link>
+            <Link to="/contact?inquiry=legal" className="hover:text-white transition-colors">Terms</Link>
           </div>
         </div>
 

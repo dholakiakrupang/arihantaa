@@ -1,15 +1,6 @@
 // ── Projects Page Data ────────────────────────────────────────────────────────
 // All data is structured to match Arihantaa's real scope and capabilities
 
-export const projectsStats = [
-  { value: "₹315 Cr+", label: "Active Work in Hand" },
-  { value: "₹80.18 Cr", label: "Peak Annual Turnover" },
-  { value: "1995", label: "Year Established" },
-  { value: "22+", label: "Active Projects" },
-  { value: "10,000+", label: "Installations" },
-  { value: "9 States", label: "GST Active Presence" },
-];
-
 export const projectCategories = [
   { id: "data-center", label: "Data Centers" },
   { id: "healthcare",  label: "Healthcare" },

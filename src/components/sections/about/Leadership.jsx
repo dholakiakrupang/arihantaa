@@ -1,4 +1,4 @@
-import { Reveal } from '../../ui/Reveal';
+import { Link } from 'react-router-dom';
 
 export function Leadership() {
   return (
@@ -21,9 +21,9 @@ export function Leadership() {
               <h4 className="font-headline text-2xl font-bold mb-1 text-on-surface">Kaushik Jariwala</h4>
               <p className="font-label-caps text-[11px] text-accent tracking-[0.15em] uppercase mb-4">Founder & Managing Director</p>
               <p className="text-sm text-secondary leading-relaxed mb-6">A pioneer in electrical infrastructure with over three decades of strategic leadership.</p>
-              <a className="inline-flex items-center gap-2 text-[11px] font-black tracking-widest text-accent hover:gap-4 transition-all" href="#">
+              <Link to="/about" className="inline-flex items-center gap-2 text-[11px] font-black tracking-widest text-accent hover:gap-4 transition-all">
                 BIOGRAPHY <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -39,9 +39,9 @@ export function Leadership() {
               <h4 className="font-headline text-2xl font-bold mb-1 text-on-surface">Lilam Shah</h4>
               <p className="font-label-caps text-[11px] text-accent tracking-[0.15em] uppercase mb-4">Director - Technical</p>
               <p className="text-sm text-secondary leading-relaxed mb-6">Driving technical innovation and ensuring the highest standards across global projects.</p>
-              <a className="inline-flex items-center gap-2 text-[11px] font-black tracking-widest text-accent hover:gap-4 transition-all" href="#">
+              <Link to="/about" className="inline-flex items-center gap-2 text-[11px] font-black tracking-widest text-accent hover:gap-4 transition-all">
                 BIOGRAPHY <span className="material-symbols-outlined text-sm">arrow_forward</span>
-              </a>
+              </Link>
             </div>
           </div>
           
