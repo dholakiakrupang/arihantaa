@@ -28,11 +28,11 @@ export function OurStory() {
             </div>
 
             {/* Floating inset image */}
-            <div className="absolute -bottom-8 -right-8 w-48 md:w-64 border-4 border-surface shadow-2xl overflow-hidden hidden md:block">
+            <div className="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 w-36 sm:w-48 md:w-64 border-4 border-surface shadow-2xl overflow-hidden block">
               <img
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg7rBZUOD8vyQzqX-9ckm2CxVg9Q_nUG_deLFiaHjcLnyt3EwgE-8o0oK63jpFs2mq1crW8BkQ8I1qXQ-ZaRe3V-SB2z-0V--RrTzOdmvmELjRUqfBYYtL107PQMEnxOk3qEHfHkddMpD7MBfu6ybtY4kfcJEkO93zilPC0YjI7J0-4F2N_RL15Pu7oT4s06r7rsWTgtmjiuy2bKANJSHH4Uu9C7sgCo0wgzEBAH0cLGyb1CwtTTe-t9stbkbL25vVwmEfdBjBBS0"
                 alt="Precision blueprints"
-                className="w-full h-32 md:h-40 object-cover grayscale"
+                className="w-full h-24 sm:h-32 md:h-40 object-cover grayscale"
                 loading="lazy" decoding="async"
               />
             </div>

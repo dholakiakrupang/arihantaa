@@ -30,15 +30,17 @@ export function Timeline() {
         </div>
 
         {/* Timeline Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 border-t border-l border-outline-variant/30 gap-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border-t border-l border-outline-variant/30 gap-0">
           {milestones.map((m, i) => (
             <motion.div
               key={m.year}
-              className={`p-8 border-r border-b border-outline-variant/30 bg-surface hover:bg-accent/[0.015] transition-all duration-300 flex flex-col justify-between group min-h-[240px] rounded-none`}
+              className={`p-6 lg:p-8 border-r border-b border-outline-variant/30 bg-surface hover:bg-accent/[0.015] transition-all duration-300 flex flex-col justify-between group min-h-[220px] sm:min-h-[240px] rounded-none ${
+                i === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
+              }`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, delay: i * 0.1, ease: [0.25, 1, 0.5, 1] }}
+              transition={{ duration: 0.55, delay: i * 0.08, ease: [0.25, 1, 0.5, 1] }}
             >
               <div>
                 <span className={`block font-headline text-[38px] font-black leading-none tracking-tighter transition-colors duration-300 mb-6 ${
@@ -46,9 +48,9 @@ export function Timeline() {
                 }`}>
                   {m.year}
                 </span>
-                <h4 className="font-headline text-[17px] font-bold text-on-surface mb-2">{m.label}</h4>
+                <h4 className="font-headline text-[16px] lg:text-[17px] font-bold text-on-surface mb-2">{m.label}</h4>
               </div>
-              <p className="font-body text-[13px] leading-relaxed text-secondary mt-2">{m.desc}</p>
+              <p className="font-body text-[13.5px] leading-relaxed text-secondary mt-2">{m.desc}</p>
             </motion.div>
           ))}
         </div>

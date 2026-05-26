@@ -9,7 +9,7 @@ export function Leadership() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 border-t border-l border-outline-variant/30 gap-0 mt-12">
           
-          <div className="border-r border-b border-outline-variant/30 p-8 md:p-12 hover:bg-accent/[0.01] transition-all duration-300 flex flex-col sm:flex-row gap-8 items-start bg-surface rounded-none">
+          <div className="border-r border-b border-outline-variant/30 p-6 md:p-8 lg:p-12 hover:bg-accent/[0.01] transition-all duration-300 flex flex-col lg:flex-row gap-6 lg:gap-8 items-start bg-surface rounded-none">
             <div className="w-full sm:w-[160px] shrink-0 aspect-[3/4] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 border border-outline-variant/20">
               <img 
                 alt="Kaushik Jariwala" 
@@ -27,7 +27,7 @@ export function Leadership() {
             </div>
           </div>
 
-          <div className="border-r border-b border-outline-variant/30 p-8 md:p-12 hover:bg-accent/[0.01] transition-all duration-300 flex flex-col sm:flex-row gap-8 items-start bg-surface rounded-none">
+          <div className="border-r border-b border-outline-variant/30 p-6 md:p-8 lg:p-12 hover:bg-accent/[0.01] transition-all duration-300 flex flex-col lg:flex-row gap-6 lg:gap-8 items-start bg-surface rounded-none">
             <div className="w-full sm:w-[160px] shrink-0 aspect-[3/4] overflow-hidden grayscale hover:grayscale-0 transition-all duration-700 border border-outline-variant/20">
               <img 
                 alt="Lilam Shah" 

@@ -22,7 +22,7 @@ export function StatsGrid() {
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              className="bg-inverse-surface p-8 md:p-10 border-r border-b border-white/10 flex flex-col gap-4 group hover:bg-white/5 transition-colors duration-300 rounded-none"
+              className="bg-inverse-surface p-5 sm:p-6 md:p-5 lg:p-10 border-r border-b border-white/10 flex flex-col gap-4 group hover:bg-white/5 transition-colors duration-300 rounded-none"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
@@ -34,7 +34,7 @@ export function StatsGrid() {
                 </span>
               </div>
               <div>
-                <p className="font-headline text-[48px] md:text-[64px] font-black text-accent leading-none tracking-tighter">
+                <p className="font-headline text-[32px] sm:text-[36px] md:text-[34px] lg:text-[64px] font-black text-accent leading-none tracking-tighter">
                   {stat.value}
                 </p>
                 <p className="font-label-caps text-[11px] text-surface-variant tracking-[0.18em] uppercase mt-2">

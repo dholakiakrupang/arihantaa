@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 const values = [
   { icon: 'bolt',                   title: 'Technical Integrity',   desc: 'Uncompromising standards in engineering design and meticulous project execution.', span: 'col-span-1' },
   { icon: 'shield_with_heart',      title: 'Unwavering Safety',     desc: 'Placing the well-being of our people and communities at the forefront of every action.', span: 'col-span-1' },
-  { icon: 'eco',                    title: 'Global Sustainability',  desc: 'Engineering solutions that respect the environment and preserve future resources for generations.', span: 'col-span-1 md:col-span-2' },
-  { icon: 'precision_manufacturing',title: 'Innovation Led',         desc: 'Applying the latest technological breakthroughs to solve infrastructure challenges at scale.', span: 'col-span-1 md:col-span-2' },
+  { icon: 'eco',                    title: 'Global Sustainability',  desc: 'Engineering solutions that respect the environment and preserve future resources for generations.', span: 'col-span-1 lg:col-span-2' },
+  { icon: 'precision_manufacturing',title: 'Innovation Led',         desc: 'Applying the latest technological breakthroughs to solve infrastructure challenges at scale.', span: 'col-span-1 lg:col-span-2' },
   { icon: 'group',                  title: 'Collaborative Growth',  desc: 'Building enduring partnerships through transparency and mutual excellence.', span: 'col-span-1' },
   { icon: 'verified',               title: 'Delivering Quality',    desc: 'A relentless pursuit of perfection in every detail, from grid to greatness.', span: 'col-span-1' },
 ];
@@ -24,7 +24,7 @@ export function ValuesBento() {
         </h2>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 border-t border-l border-outline-variant/30 gap-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-outline-variant/30 gap-0">
           {values.map((v, i) => (
             <motion.div
               key={v.title}
