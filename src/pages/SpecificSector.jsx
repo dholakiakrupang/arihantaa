@@ -232,12 +232,12 @@ export function SpecificSector() {
       `}</style>
 
       <section
-        className="relative w-full bg-[#080808] overflow-hidden flex flex-col"
+        className="relative w-full bg-[#080808] overflow-hidden flex flex-col lg:min-h-screen"
         style={{ minHeight: '100svh' }}
       >
         {/* ── Full-bleed right image panel */}
         <motion.div
-          className="hidden lg:block absolute top-0 right-0 w-[48%] h-full z-0 overflow-hidden"
+          className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[48%] overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
@@ -259,8 +259,7 @@ export function SpecificSector() {
 
           {/* Image label overlay */}
           <motion.div
-            className="absolute left-10 z-20"
-            style={{ bottom: 'calc(72px + 28px)' }}
+            className="absolute left-6 bottom-6 lg:left-10 lg:bottom-[100px] z-20"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}
@@ -279,7 +278,7 @@ export function SpecificSector() {
         <div aria-hidden className="hidden lg:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none" />
 
         {/* ── Left content */}
-        <div className="relative z-10 flex flex-col flex-1">
+        <div className="relative z-10 flex flex-col flex-grow order-1 lg:order-none">
           <div className="min-h-[88px] md:min-h-[96px] shrink-0" />
 
           <div className="w-full flex flex-col flex-1">
@@ -403,22 +402,29 @@ export function SpecificSector() {
 
         {/* ── Bottom Stats Bar */}
         <motion.div
-          className="w-full border-t border-white/10 bg-[#080808]/95 backdrop-blur-md shrink-0 relative z-30"
+          className="w-full border-t border-white/10 bg-[#080808]/95 backdrop-blur-md shrink-0 relative z-30 order-last lg:order-none"
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.95 }}
         >
-          <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-            {sector.contextStats.map((stat, idx) => (
-              <div key={idx} className="px-6 py-5 flex flex-col justify-center">
-                <span className="font-headline text-[18px] md:text-[22px] font-black text-accent tracking-tight leading-none mb-1">
-                  {stat.value}
-                </span>
-                <span className="font-label-caps text-[9px] text-white/40 tracking-wider uppercase leading-none">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
+          <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4">
+            {sector.contextStats.map((stat, idx) => {
+              let borderClass = "";
+              if (idx === 0) borderClass = "border-r border-b md:border-b-0 border-white/10";
+              else if (idx === 1) borderClass = "border-b md:border-r md:border-b-0 border-white/10";
+              else if (idx === 2) borderClass = "border-r md:border-r md:border-b-0 border-white/10";
+              else if (idx === 3) borderClass = "md:border-none border-white/10";
+              return (
+                <div key={idx} className={`px-6 py-5 flex flex-col justify-center ${borderClass}`}>
+                  <span className="font-headline text-[18px] md:text-[22px] font-black text-accent tracking-tight leading-none mb-1">
+                    {stat.value}
+                  </span>
+                  <span className="font-label-caps text-[9px] text-white/40 tracking-wider uppercase leading-none">
+                    {stat.label}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </motion.div>
       </section>
@@ -577,7 +583,7 @@ export function SpecificSector() {
           </div>
 
           {/* Power Chain Flow — 5-column zero-gap grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 border-t border-l border-outline-variant/30 gap-0 mb-20 bg-white shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border-t border-l border-outline-variant/30 gap-0 mb-20 bg-white shadow-sm">
             {sector.powerChain.map((node, idx) => (
               <motion.div
                 key={idx}
@@ -585,7 +591,9 @@ export function SpecificSector() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.06 }}
-                className="p-6 md:p-8 border-r border-b border-outline-variant/30 flex flex-col justify-between hover:bg-accent/[0.015] transition-colors duration-300 group"
+                className={`p-6 md:p-8 border-r border-b border-outline-variant/30 flex flex-col justify-between hover:bg-accent/[0.015] transition-colors duration-300 group ${
+                  idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
+                }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -658,7 +666,7 @@ export function SpecificSector() {
           </div>
 
           {/* Zero-gap Execution Process Grid (Responsive) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 border-t border-l border-white/10 gap-0 mb-20 bg-transparent">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border-t border-l border-white/10 gap-0 mb-20 bg-transparent">
             {sector.executionSteps.map((step, idx) => (
               <motion.div
                 key={idx}
@@ -666,7 +674,9 @@ export function SpecificSector() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className="border-r border-b border-white/10 p-8 hover:bg-white/[0.02] transition-colors duration-300 flex flex-col justify-between min-h-[280px] group relative"
+                className={`border-r border-b border-white/10 p-8 hover:bg-white/[0.02] transition-colors duration-300 flex flex-col justify-between min-h-[280px] group relative ${
+                  idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
+                }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -767,7 +777,7 @@ export function SpecificSector() {
             </div>
 
             {/* Right: Technical specifications and statistics */}
-            <div className="w-full lg:w-[55%] p-8 md:p-12 flex flex-col justify-between space-y-8 bg-surface-container-lowest/15 relative z-10">
+            <div className="w-full lg:w-[55%] p-6 sm:p-8 md:p-12 flex flex-col justify-between space-y-6 sm:space-y-8 bg-surface-container-lowest/15 relative z-10">
               <div>
                 <span className="text-[10px] text-accent font-label-caps tracking-[0.25em] font-bold block mb-3">EXPERIENCE CASE STUDY</span>
                 <h3 className="font-headline text-[22px] md:text-[28px] font-black tracking-tight text-white group-hover:text-accent transition-colors duration-300 leading-tight uppercase mb-4">
@@ -782,13 +792,27 @@ export function SpecificSector() {
               </div>
 
               {/* Sub-grid with technical statistics */}
-              <div className="grid grid-cols-3 gap-4 border-t border-b border-outline-variant/15 py-6">
-                {sector.flagshipProject.stats.map((stat, idx) => (
-                  <div key={idx} className="flex flex-col justify-center">
-                    <div className="font-headline text-[20px] md:text-[24px] text-accent font-black leading-none mb-1">{stat.value}</div>
-                    <div className="font-label-caps text-[8px] text-white/40 uppercase tracking-[0.12em] font-bold">{stat.label}</div>
-                  </div>
-                ))}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-5 gap-x-0 border-t border-b border-outline-variant/15 py-6">
+                {sector.flagshipProject.stats.map((stat, idx) => {
+                  let cellClass = "flex flex-col justify-center ";
+                  if (idx === 0) {
+                    cellClass += "col-span-1 border-r border-white/10 pr-4 sm:pr-6";
+                  } else if (idx === 1) {
+                    cellClass += "col-span-1 pl-4 sm:pl-6 sm:border-r sm:border-white/10 sm:pr-6";
+                  } else if (idx === 2) {
+                    cellClass += "col-span-2 border-t border-white/10 pt-4 mt-1 sm:col-span-1 sm:border-t-0 sm:pt-0 sm:mt-0 sm:pl-6";
+                  }
+                  return (
+                    <div key={idx} className={cellClass}>
+                      <div className="font-headline text-[18px] sm:text-[20px] md:text-[24px] text-accent font-black leading-none mb-1 whitespace-nowrap">
+                        {stat.value}
+                      </div>
+                      <div className="font-label-caps text-[8px] text-white/40 uppercase tracking-[0.12em] font-bold">
+                        {stat.label}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
 
               {/* Progress gauge metrics */}
@@ -938,11 +962,13 @@ export function SpecificSector() {
             <p className="font-body text-[16px] leading-relaxed text-white/50 max-w-2xl mb-20">We design and construct reliable infrastructure with dedicated engineering support.</p>
 
             {/* Why Arihantaa Zero-Gap Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 border-t border-l border-white/10 gap-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border-t border-l border-white/10 gap-0">
               {sector.differentiators.map((diff, idx) => (
                 <div
                   key={idx}
-                  className="flex flex-col p-8 border-r border-b border-white/10 hover:bg-white/[0.02] transition-colors duration-300 group"
+                  className={`flex flex-col p-8 border-r border-b border-white/10 hover:bg-white/[0.02] transition-colors duration-300 group ${
+                    idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
+                  }`}
                 >
                   <div className="font-mono text-[14px] text-accent font-bold mb-4 select-none">{String(idx + 1).padStart(2, '0')}</div>
                   <h4 className="font-headline text-[14px] text-white font-bold tracking-tight mb-3 leading-snug uppercase group-hover:text-accent transition-colors">{diff.title}</h4>

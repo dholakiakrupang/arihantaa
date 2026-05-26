@@ -151,7 +151,7 @@ export function EngineeredProducts() {
       </div>
 
       {/* ── Industrial Smart Sticky Toolbar ────────────────────────────────────────── */}
-      <div className="max-w-[1440px] mx-auto px-8 md:px-16 sticky top-[80px] z-40 mb-14">
+      <div className="max-w-[1440px] mx-auto px-8 md:px-16 sticky top-[64px] md:top-[80px] z-40 mb-8 md:mb-14">
         
         {/* Invisible Click-Outside Detector (No blur or dimming) */}
         <AnimatePresence>
@@ -163,23 +163,24 @@ export function EngineeredProducts() {
           )}
         </AnimatePresence>
 
-        <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] relative z-10 flex flex-col md:flex-row items-stretch">
+        <div className="bg-surface-container-lowest/95 backdrop-blur-md border border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] relative z-10 flex flex-col lg:flex-row items-stretch">
           
           {/* Left: Breadcrumb context + count */}
-          <div className="flex items-center gap-2 text-[11px] font-medium text-secondary min-w-0 flex-grow px-4 md:px-6 py-3.5">
+          <div className="flex items-center gap-2 text-[11px] font-medium text-secondary min-w-0 flex-grow px-4 lg:px-6 py-3.5">
             <span className="material-symbols-outlined text-[18px] text-accent/60">folder_open</span>
             <span className="hidden sm:inline whitespace-nowrap">Products</span>
             <span className="material-symbols-outlined text-[14px] text-secondary/30 hidden sm:inline select-none">chevron_right</span>
-            <span className="font-semibold text-on-surface truncate">{categoryInfo.title}</span>
-            <span className="text-secondary/40 hidden md:inline">·</span>
-            <span className="text-accent font-bold hidden md:inline whitespace-nowrap">{filteredProducts.length} {filteredProducts.length === 1 ? 'match' : 'matches'}</span>
+            <span className="font-semibold text-on-surface truncate">
+              {categoryInfo.title}
+              <span className="text-accent font-bold ml-1.5 whitespace-nowrap">({filteredProducts.length})</span>
+            </span>
           </div>
 
           {/* Right: Action controls (Search, Filter, Sort) in segmented box structure */}
-          <div className="flex items-stretch flex-shrink-0 border-t md:border-t-0 md:border-l border-outline-variant/30 divide-x divide-outline-variant/30">
+          <div className="flex items-stretch flex-shrink-0 border-t lg:border-t-0 lg:border-l border-outline-variant/30 divide-x divide-outline-variant/30">
             
             {/* Box 1: Search Container */}
-            <div className="relative flex items-center bg-transparent px-3 focus-within:px-4 focus-within:bg-surface-container/20 transition-all duration-300 min-w-[110px] md:min-w-[220px] flex-grow md:flex-grow-0">
+            <div className="relative flex items-center bg-transparent px-3 focus-within:px-4 focus-within:bg-surface-container/20 transition-all duration-300 min-w-[110px] lg:min-w-[220px] flex-grow lg:flex-grow-0">
               <span className="material-symbols-outlined text-[18px] text-secondary/40 mr-2 flex-shrink-0">search</span>
               <input 
                 type="text" 
@@ -380,7 +381,7 @@ export function EngineeredProducts() {
         </div>
 
       {/* ── Cards Grid ──────────────────────────────────────────────────────── */}
-      <div className="max-w-[1440px] mx-auto px-8 md:px-16 py-20 space-y-16">
+      <div className="max-w-[1440px] mx-auto px-8 md:px-16 py-10 md:py-20 space-y-10 md:space-y-16">
         {filteredProducts.length > 0 ? (
           filteredProducts.slice(0, visibleCount).map((product, idx) => (
             <EngineeredSolutionCard key={product.id} index={idx} {...product} />
@@ -396,7 +397,7 @@ export function EngineeredProducts() {
 
       {/* ── Creative Load More Section ────────────────────────────────────────── */}
       {filteredProducts.length > 0 && (
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16 pb-32 flex flex-col items-center">
+        <div className="max-w-[1440px] mx-auto px-8 md:px-16 pb-16 md:pb-32 flex flex-col items-center">
           {/* Progress Indicator */}
           <div className="flex items-center gap-4 mb-4 text-secondary/60">
             <span className="font-label-caps text-[10px] tracking-[0.15em] uppercase">

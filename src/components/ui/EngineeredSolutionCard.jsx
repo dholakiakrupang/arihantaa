@@ -201,38 +201,38 @@ export function EngineeredSolutionCard({
           </div>
 
           {/* Footer Action Bar */}
-          <div className="border-t border-outline/20 bg-surface-container-lowest flex flex-col sm:flex-row justify-between items-stretch min-h-[52px]">
+          <div className="border-t border-outline/20 bg-surface-container-lowest flex justify-between items-stretch min-h-[48px] sm:min-h-[52px]">
             
             {/* Expand Models Button (Drawer Toggle) */}
             <button 
               onClick={() => setIsExpanded(!isExpanded)}
-              className="flex-grow sm:flex-grow-0 flex items-center justify-center gap-1.5 px-6 py-3.5 sm:py-0 border-b sm:border-b-0 sm:border-r border-outline/20 hover:bg-surface-container-low transition-colors group/exp"
+              className="flex-grow sm:flex-grow-0 flex items-center justify-center gap-1.5 px-3 sm:px-6 border-r border-outline/20 hover:bg-surface-container-low transition-colors group/exp"
             >
-              <span className="font-label-caps text-[9px] font-bold text-secondary tracking-[0.12em] group-hover/exp:text-accent transition-colors uppercase">
+              <span className="font-label-caps text-[8.5px] sm:text-[9px] font-bold text-secondary tracking-[0.08em] sm:tracking-[0.12em] group-hover/exp:text-accent transition-colors uppercase">
                 {type === 'service'
-                  ? (isExpanded ? 'Hide SLA Info' : 'Quick SLA Tiers')
-                  : (isExpanded ? 'Hide Specs' : 'Quick Tech Specs')}
+                  ? (isExpanded ? 'Hide SLA' : 'SLA Tiers')
+                  : (isExpanded ? 'Hide Specs' : 'Quick Specs')}
               </span>
               <motion.span 
                 animate={{ rotate: isExpanded ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
-                className="material-symbols-outlined text-[23px] text-secondary group-hover/exp:text-accent transition-colors"
+                className="material-symbols-outlined text-[18px] sm:text-[23px] text-secondary group-hover/exp:text-accent transition-colors"
               >
                 expand_more
               </motion.span>
             </button>
 
             {/* Actions Group (Brochure, Support, View Detail) */}
-            <div className="flex flex-col sm:flex-row items-stretch">
+            <div className="flex items-stretch divide-x divide-outline/20 border-l border-outline/20 sm:border-l-0">
               {/* BROCHURE — always visible icon, inline aligned */}
               <Link 
                 to={type === 'service' ? `${detailUrl}#inquiries` : `${detailUrl}#downloads`}
-                className="group/brochure relative flex items-center justify-center gap-2 border-0 border-b sm:border-b-0 sm:border-r border-outline/20 px-6 py-3.5 sm:py-0 min-h-[44px] transition-colors duration-300 bg-transparent text-secondary hover:text-accent"
+                className="group/brochure relative flex items-center justify-center gap-2 px-3.5 sm:px-6 transition-colors duration-300 bg-transparent text-secondary hover:text-accent"
               >
-                <span className="material-symbols-outlined text-[19px] text-accent">
+                <span className="material-symbols-outlined text-[18px] sm:text-[19px] text-accent">
                   download
                 </span>
-                <span className="font-label-caps text-[9.5px] tracking-[0.2em] font-semibold leading-none uppercase select-none">
+                <span className="font-label-caps text-[9px] sm:text-[9.5px] tracking-[0.12em] sm:tracking-[0.2em] font-semibold leading-none uppercase select-none hidden md:inline">
                   BROCHURE
                 </span>
               </Link>
@@ -240,12 +240,12 @@ export function EngineeredSolutionCard({
               {/* SUPPORT — always visible icon, inline aligned */}
               <Link 
                 to={`/contact?inquiry=support&item=${encodeURIComponent(title)}`}
-                className="group/support relative flex items-center justify-center gap-2 border-0 border-b sm:border-b-0 sm:border-r border-outline/20 px-6 py-3.5 sm:py-0 min-h-[44px] transition-colors duration-300 bg-transparent text-secondary hover:text-accent"
+                className="group/support relative flex items-center justify-center gap-2 px-3.5 sm:px-6 transition-colors duration-300 bg-transparent text-secondary hover:text-accent"
               >
-                <span className="material-symbols-outlined text-[19px] text-accent">
+                <span className="material-symbols-outlined text-[18px] sm:text-[19px] text-accent">
                   support_agent
                 </span>
-                <span className="font-label-caps text-[9.5px] tracking-[0.2em] font-semibold leading-none uppercase select-none">
+                <span className="font-label-caps text-[9px] sm:text-[9.5px] tracking-[0.12em] sm:tracking-[0.2em] font-semibold leading-none uppercase select-none hidden md:inline">
                   SUPPORT
                 </span>
               </Link>
@@ -258,7 +258,7 @@ export function EngineeredSolutionCard({
                 icon="arrow_forward"
                 iconPosition="right"
                 noTextAnimation={false}
-                className="rounded-none border-0 h-auto py-3.5 sm:py-0 px-8 text-[10px]"
+                className="rounded-none border-0 h-auto py-0 px-4 sm:px-8 text-[9px] sm:text-[10px] shrink-0"
               >
                 VIEW DETAIL
               </Button>
