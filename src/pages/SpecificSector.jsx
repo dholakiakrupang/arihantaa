@@ -388,8 +388,8 @@ export function SpecificSector() {
                         <span className="block group-hover:-translate-y-full transition-transform duration-300">VIEW PAST PROJECTS</span>
                         <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">VIEW PAST PROJECTS</span>
                       </span>
-                      <span className="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-x-1">
-                        arrow_forward
+                      <span className="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover:translate-y-1">
+                        arrow_downward
                       </span>
                     </button>
                   </motion.div>

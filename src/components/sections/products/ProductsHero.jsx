@@ -128,16 +128,18 @@ export function ProductsHero() {
                       GET A FREE CONSULTATION
                     </Button>
                   </Link>
-                  <Link
-                    to="#sectors"
+                  <button
+                    onClick={() => document.getElementById('sectors')?.scrollIntoView({ behavior: 'smooth' })}
                     className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
                   >
                     <span className="relative overflow-hidden inline-block">
                       <span className="block group-hover:-translate-y-full transition-transform duration-300">EXPLORE PRODUCTS</span>
                       <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">EXPLORE PRODUCTS</span>
                     </span>
-                    <span className="material-symbols-outlined text-[24px] group-hover:translate-x-1 transition-transform duration-300">arrow_forward</span>
-                  </Link>
+                    <span className="material-symbols-outlined text-[24px] group-hover:translate-y-1 transition-transform duration-300">
+                      arrow_downward
+                    </span>
+                  </button>
                 </motion.div>
 
               </div>
