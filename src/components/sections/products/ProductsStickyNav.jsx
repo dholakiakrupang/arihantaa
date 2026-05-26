@@ -204,16 +204,6 @@ export function ProductsStickyNav() {
                   isActive ? 'bg-accent' : 'bg-transparent group-hover:bg-white/20'
                 }`} />
 
-                {/* Corner bracket decorators */}
-                {isActive && (
-                  <>
-                    <span className="absolute top-1.5 left-1.5 font-mono text-[8px] text-accent/50 select-none">⌜</span>
-                    <span className="absolute top-1.5 right-1.5 font-mono text-[8px] text-accent/50 select-none">⌝</span>
-                    <span className="absolute bottom-1.5 left-1.5 font-mono text-[8px] text-accent/50 select-none">⌞</span>
-                    <span className="absolute bottom-1.5 right-1.5 font-mono text-[8px] text-accent/50 select-none">⌟</span>
-                  </>
-                )}
-
                 {/* Index number */}
                 <span className={`font-mono text-[10px] tracking-wider transition-colors duration-300 mr-2 ${
                   isActive ? 'text-accent' : 'text-surface-variant/40 group-hover:text-accent/70'
