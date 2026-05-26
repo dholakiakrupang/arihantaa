@@ -124,7 +124,9 @@ export function ServiceDetail() {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = -145;
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+      const yOffset = isMobile ? -120 : isTablet ? -136 : -140;
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
@@ -156,7 +158,7 @@ export function ServiceDetail() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 1 — Sticky Sub-Navigation Bar
           ═══════════════════════════════════════════════════════════════════════ */}
-      <div className="bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/30 sticky top-[79px] z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+      <div className="bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/30 sticky top-[64px] md:top-[80px] z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
         <div className="max-w-[1440px] mx-auto px-8 md:px-16">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 py-3.5">
 
@@ -319,7 +321,7 @@ export function ServiceDetail() {
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
             variants={fadeUp}
-            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 pt-12 md:pt-20 lg:pt-24 pb-0 px-0 bg-surface-container-low/10 flex items-center justify-center order-1 lg:order-2 relative"
+            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 pt-12 md:pt-20 lg:pt-24 pb-4 px-4 sm:px-6 lg:px-0 bg-surface-container-low/10 flex flex-col items-center justify-center order-1 lg:order-2 relative"
           >
             <ProductImageGallery
               images={service.images}
@@ -337,7 +339,7 @@ export function ServiceDetail() {
           SECTION 3 — Scope of Work & Responsibilities
           ═══════════════════════════════════════════════════════════════════════ */}
       <section id="scope" className="bg-surface-container border-y border-outline-variant/30 py-16 md:py-24">
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16">
 
           {/* Section Heading */}
           <motion.div
@@ -391,7 +393,7 @@ export function ServiceDetail() {
           SECTION 4 — SLA Tiers Comparison
           ═══════════════════════════════════════════════════════════════════════ */}
       <section id="sla" className="bg-surface-container-lowest py-16 md:py-24 border-b border-outline-variant/30">
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16">
 
           {/* Section Heading */}
           <motion.div
@@ -416,7 +418,7 @@ export function ServiceDetail() {
             className="border border-outline-variant/30 overflow-hidden bg-white shadow-none"
           >
             <div className="w-full overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[760px]">
+              <table className="w-full text-left border-collapse min-w-[650px] md:min-w-[720px] lg:min-w-[760px]">
                 <thead>
                   <tr className="bg-surface-container-high/45 border-b border-outline-variant/30 text-on-surface font-label-caps text-[9.5px] tracking-[0.15em] uppercase">
                     <th className="py-4 px-6 font-bold border-r border-outline-variant/20">Service Parameter</th>

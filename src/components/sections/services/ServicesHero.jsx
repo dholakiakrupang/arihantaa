@@ -5,12 +5,12 @@ import { Button } from '../../ui/Button';
 export function ServicesHero() {
   return (
     <section
-      className="relative w-full bg-[#080808] overflow-hidden flex flex-col"
+      className="relative w-full bg-[#080808] overflow-hidden flex flex-col lg:min-h-screen"
       style={{ minHeight: '100svh' }}
     >
       {/* ── Full-bleed right image panel */}
       <motion.div
-        className="hidden lg:block absolute top-0 right-0 w-[48%] h-full z-0 overflow-hidden"
+        className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[48%] overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
@@ -32,8 +32,7 @@ export function ServicesHero() {
 
         {/* Image label overlay */}
         <motion.div
-          className="absolute left-10 z-20"
-          style={{ bottom: 'calc(72px + 28px)' }}
+          className="absolute left-6 bottom-6 lg:left-10 lg:bottom-[100px] z-20 hidden lg:block"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}
@@ -52,12 +51,12 @@ export function ServicesHero() {
       <div aria-hidden className="hidden lg:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none" />
 
       {/* ── Left content */}
-      <div className="relative z-10 flex flex-col flex-1">
+      <div className="relative z-10 flex flex-col flex-grow order-1 lg:order-none">
         <div className="min-h-[88px] md:min-h-[96px] shrink-0" />
 
-        <div className="w-full flex flex-col flex-1">
-          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-1 px-8 md:px-16">
-            <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-1 lg:pr-16">
+        <div className="w-full flex flex-col flex-grow">
+          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-grow px-8 md:px-8 lg:px-16">
+            <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-grow lg:pr-16">
               <div className="flex flex-col gap-0">
 
                 {/* Breadcrumb */}

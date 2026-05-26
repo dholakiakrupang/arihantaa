@@ -16,16 +16,16 @@ export function ServiceDetail({
     <section id={id} className={`relative py-20 md:py-28 ${bgClass} overflow-hidden scroll-mt-20 border-b border-outline-variant/30`}>
 
       {/* Faint section number watermark */}
-      <span className="absolute top-8 right-8 font-headline text-[120px] md:text-[180px] font-black text-on-surface/[0.03] leading-none select-none pointer-events-none tracking-tighter">
+      <span className="absolute top-4 right-4 lg:top-8 lg:right-8 font-headline text-[80px] lg:text-[180px] font-black text-on-surface/[0.015] lg:text-on-surface/[0.03] leading-none select-none pointer-events-none tracking-tighter">
         {eyebrow.split('/')[0].trim()}
       </span>
 
-      <div className="max-w-[1440px] mx-auto px-8 md:px-16">
-        <div className={`flex flex-col md:flex-row gap-12 md:gap-20 items-stretch ${isReversed ? 'md:flex-row-reverse' : ''}`}>
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16">
+        <div className={`flex flex-col lg:flex-row gap-10 lg:gap-20 items-stretch ${isReversed ? 'lg:flex-row-reverse' : ''}`}>
 
           {/* ── Image side ────────────────────────────────────────────────── */}
           <motion.div
-            className="w-full md:w-[45%] relative flex-shrink-0"
+            className="w-full lg:w-[45%] relative flex-shrink-0"
             initial={{ opacity: 0, x: isReversed ? 40 : -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
@@ -46,7 +46,7 @@ export function ServiceDetail({
             </div>
 
             {/* Floating stat badge */}
-            <div className={`absolute -bottom-5 ${isReversed ? 'left-6' : 'right-6'} bg-accent text-on-primary px-5 py-3 shadow-xl`}>
+            <div className={`absolute bottom-4 lg:-bottom-5 ${isReversed ? 'left-4 lg:left-6' : 'right-4 lg:right-6'} bg-accent text-on-primary px-5 py-3 shadow-xl z-20`}>
               <span className="block font-headline text-[11px] tracking-[0.15em] uppercase opacity-80">Certified</span>
               <span className="block font-headline text-[18px] font-black leading-none">ISO 9001</span>
             </div>
@@ -54,7 +54,7 @@ export function ServiceDetail({
 
           {/* ── Content side ──────────────────────────────────────────────── */}
           <motion.div
-            className="w-full md:flex-1 flex flex-col justify-center pt-6 md:pt-0"
+            className="w-full lg:flex-1 flex flex-col justify-center pt-6 lg:pt-0"
             initial={{ opacity: 0, x: isReversed ? -40 : 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
@@ -67,7 +67,7 @@ export function ServiceDetail({
             </div>
 
             {/* Title */}
-            <h2 className="font-headline text-[32px] md:text-[46px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-5">
+            <h2 className="font-headline text-[26px] sm:text-[36px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-5">
               {title}
             </h2>
 

@@ -97,9 +97,13 @@ export function ServicesStickyNav() {
   useEffect(() => {
     const handleScroll = () => {
       let current = '';
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+      const threshold = isMobile ? 125 : isTablet ? 140 : 145;
+
       services.forEach(({ id }) => {
         const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 160) current = id;
+        if (el && window.scrollY >= el.offsetTop - threshold) current = id;
       });
       setActiveId(current);
     };
@@ -125,7 +129,17 @@ export function ServicesStickyNav() {
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
-      const offset = 120; // offset to account for header + sticky nav heights
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+      let offset = 140;
+      if (isMobile) {
+        offset = 120;
+      } else if (isTablet) {
+        offset = 136;
+      } else {
+        offset = 140;
+      }
+
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = el.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -142,26 +156,33 @@ export function ServicesStickyNav() {
   const doubled = [...services, ...services];
 
   return (
-    <nav className="sticky top-[79px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
-      <div className="flex items-stretch">
-
-        {/* Fixed label pill */}
-        <div className="flex-shrink-0 flex items-center gap-3 px-6 md:px-10 bg-accent border-r border-accent/40">
-          <span className="material-symbols-outlined text-on-primary text-[16px]">construction</span>
-          <span className="font-label-caps text-[10px] text-on-primary tracking-[0.22em] uppercase whitespace-nowrap">
+    <nav className="sticky top-[64px] md:top-[80px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
+      <div className="flex items-stretch h-[54px] md:h-[58px]">
+        {/* Fixed label pill — hidden below lg */}
+        <div className="hidden lg:flex flex-shrink-0 items-center gap-3 px-6 md:px-10 bg-accent border-r border-accent/40">
+          <span className="material-symbols-outlined text-on-primary text-[14px] lg:text-[16px] !font-normal">construction</span>
+          <span className="font-label-caps text-[9px] lg:text-[10px] text-on-primary tracking-[0.22em] uppercase whitespace-nowrap">
             Our Services
           </span>
         </div>
 
         {/* Scrollable clickable nav wrapper with gradient fades to gracefully mask scrolling edges */}
         <div className="relative flex items-stretch flex-grow overflow-hidden">
-          {/* Left edge fade */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-inverse-surface to-transparent pointer-events-none z-10 select-none" />
+          {/* Left edge fade — hidden below lg to prevent overlaying the orange mobile/tablet starting pill */}
+          <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-inverse-surface to-transparent pointer-events-none z-10 select-none" />
 
           <div
             ref={scrollContainerRef}
             className="flex overflow-x-auto scrollbar-hide flex-grow scroll-smooth"
           >
+            {/* Mobile-only label pill inside the scroll list */}
+            <div className="flex lg:hidden items-center gap-2 px-5 bg-accent border-r border-accent/40 flex-shrink-0 select-none">
+              <span className="material-symbols-outlined text-on-primary text-[14px] !font-normal">construction</span>
+              <span className="font-label-caps text-[9px] text-on-primary tracking-[0.22em] uppercase whitespace-nowrap">
+                Our Services
+              </span>
+            </div>
+
             {services.map((svc) => {
               const isActive = activeId === svc.id;
               return (
@@ -177,16 +198,6 @@ export function ServicesStickyNav() {
                   <div className={`absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300 ${
                     isActive ? 'bg-accent' : 'bg-transparent group-hover:bg-white/20'
                   }`} />
-
-                  {/* Corner bracket decorators */}
-                  {isActive && (
-                    <>
-                      <span className="absolute top-1.5 left-1.5 font-mono text-[8px] text-accent/50 select-none">⌜</span>
-                      <span className="absolute top-1.5 right-1.5 font-mono text-[8px] text-accent/50 select-none">⌝</span>
-                      <span className="absolute bottom-1.5 left-1.5 font-mono text-[8px] text-accent/50 select-none">⌞</span>
-                      <span className="absolute bottom-1.5 right-1.5 font-mono text-[8px] text-accent/50 select-none">⌟</span>
-                    </>
-                  )}
 
                   {/* Number */}
                   <span className={`font-mono text-[10px] tracking-wider transition-colors duration-300 mr-2 ${
