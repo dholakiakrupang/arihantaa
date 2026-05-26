@@ -83,7 +83,7 @@ export function Hero() {
           RIGHT IMAGE PANEL — Absolutely positioned,
           covers full section height from very top (behind header)
       ══════════════════════════════════════════════════ */}
-      <div className="relative w-full aspect-[16/10] mt-10 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[48%] lg:h-full lg:z-0 lg:mt-0 overflow-hidden">
+      <div className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[48%] overflow-hidden">
         {/* Slideshow images — crossfade */}
         <AnimatePresence mode="sync">
           <motion.img
@@ -121,24 +121,23 @@ export function Hero() {
           }}
         />
 
-        {/* ── Slide label — bottom left of image, clears stats bar */}
+        {/* ── Slide label — bottom left of image, clears stats bar on desktop */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPillar.id + '-label'}
-            className="hidden lg:block absolute left-10 z-20"
-            style={{ bottom: 'calc(72px + 28px)' }}
+            className="absolute left-6 bottom-6 lg:left-10 lg:bottom-[100px] z-20"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.55, ease: [0.25, 1, 0.5, 1] }}
           >
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-5 h-px bg-accent" />
-              <span className="font-label-caps text-[9px] text-accent tracking-[0.22em] uppercase font-bold">
+            <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
+              <div className="w-4 sm:w-5 h-px bg-accent" />
+              <span className="font-label-caps text-[8px] sm:text-[9px] text-accent tracking-[0.22em] uppercase font-bold">
                 {currentPillar.label}
               </span>
             </div>
-            <p className="font-headline text-[22px] font-black uppercase text-white leading-tight tracking-tight max-w-[280px]">
+            <p className="font-headline text-[16px] sm:text-[20px] lg:text-[22px] font-black uppercase text-white leading-tight tracking-tight max-w-[200px] sm:max-w-[280px]">
               {currentPillar.headline}
             </p>
           </motion.div>
