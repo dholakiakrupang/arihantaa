@@ -79,11 +79,11 @@ export function ProjectEditorial({ editorial }) {
   };
 
   return (
-    <div className="w-full bg-surface px-8 md:px-16 py-16 md:py-24 relative z-10 border-b border-outline-variant/30">
+    <div className="w-full bg-surface px-4 sm:px-8 md:px-16 py-16 md:py-24 relative z-10 border-b border-outline-variant/30">
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative">
         
         {/* ── Mobile Nav Pill Row (Sticky Below Header) ── */}
-        <div className="lg:hidden col-span-1 w-full overflow-x-auto no-scrollbar flex gap-4 border-b border-outline-variant/40 pb-4 sticky top-[64px] bg-surface/90 backdrop-blur-md z-45 -mx-8 px-8">
+        <div className="lg:hidden col-span-1 w-full overflow-x-auto no-scrollbar flex gap-4 border-b border-outline-variant/40 pb-4 sticky top-[64px] md:top-[80px] bg-surface/90 backdrop-blur-md z-45 -mx-4 px-4 sm:-mx-8 sm:px-8">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -177,7 +177,7 @@ export function ProjectEditorial({ editorial }) {
               className="relative mt-16 bg-inverse-surface text-white p-8 md:p-12 overflow-hidden"
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <div className="absolute right-0 bottom-0 text-[180px] font-black text-white/[0.02] select-none leading-none translate-y-1/3 translate-x-10 font-headline pointer-events-none">
+              <div className="absolute right-0 bottom-0 text-[100px] sm:text-[140px] md:text-[180px] font-black text-white/[0.02] select-none leading-none translate-y-1/3 translate-x-10 font-headline pointer-events-none">
                 {overview.watermark}
               </div>
               <span className="material-symbols-outlined text-accent text-5xl mb-6 select-none">format_quote</span>
@@ -227,7 +227,7 @@ export function ProjectEditorial({ editorial }) {
               {challenge.items.map((item, i) => (
                 <motion.div 
                   key={i}
-                  className="bg-surface-container-lowest border border-outline-variant/40 p-8 flex flex-col justify-between group hover:border-accent/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-500 relative"
+                  className="bg-surface-container-lowest border border-outline-variant/40 p-6 md:p-8 flex flex-col justify-between group hover:border-accent/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-500 relative"
                   initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <div>
@@ -273,7 +273,7 @@ export function ProjectEditorial({ editorial }) {
               {scope.blocks.map((block, i) => (
                 <motion.div 
                   key={i}
-                  className="bg-surface-container-lowest border border-outline-variant/30 p-8 md:p-12 group hover:border-accent/30 transition-all duration-500"
+                  className="bg-surface-container-lowest border border-outline-variant/30 p-6 sm:p-8 md:p-12 group hover:border-accent/30 transition-all duration-500"
                   initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
                 >
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">

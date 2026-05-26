@@ -37,7 +37,7 @@ export function NewsArticle() {
       
       {/* Reading Progress Bar */}
       <motion.div 
-        className="fixed top-20 left-0 right-0 h-1 bg-accent z-40 origin-left"
+        className="fixed top-[64px] md:top-[80px] left-0 right-0 h-1 bg-accent z-40 origin-left"
         style={{ scaleX }}
       />
 
@@ -70,7 +70,7 @@ export function NewsArticle() {
             />
           </div>
 
-          <div className="max-w-[1440px] mx-auto relative z-10 w-full px-8 md:px-16 flex flex-col gap-6">
+          <div className="max-w-[1440px] mx-auto relative z-10 w-full px-4 sm:px-8 md:px-16 flex flex-col gap-6">
             
             {/* Breadcrumb Navigation */}
             <motion.nav
@@ -109,7 +109,7 @@ export function NewsArticle() {
 
             {/* Headline */}
             <motion.h1 
-              className="font-headline text-[36px] md:text-[56px] lg:text-[68px] leading-[1.08] font-black tracking-tighter uppercase max-w-5xl"
+              className="font-headline text-[30px] sm:text-[36px] md:text-[56px] lg:text-[68px] leading-[1.08] font-black tracking-tighter uppercase max-w-5xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -150,7 +150,7 @@ export function NewsArticle() {
         </section>
 
         {/* ── Article Body Container ────────────────────────────────────── */}
-        <article className="max-w-[1440px] mx-auto px-8 md:px-16 pt-16 pb-24 relative z-10">
+        <article className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 pt-16 pb-24 relative z-10">
           
           {/* ── Featured Substation Image with B2B Border Ticks ──────────── */}
           <motion.div 
@@ -205,7 +205,7 @@ export function NewsArticle() {
 
               {/* Stat Callout Box in premium console look */}
               <motion.div 
-                className="my-16 p-8 bg-white/[0.02] border border-outline-variant/40 shadow-2xl flex flex-col md:flex-row gap-8 justify-around items-center relative overflow-hidden backdrop-blur-md"
+                className="my-8 md:my-16 p-6 sm:p-8 bg-white/[0.02] border border-outline-variant/40 shadow-2xl flex flex-col md:flex-row gap-8 justify-around items-center relative overflow-hidden backdrop-blur-md"
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               >
                 {/* L-shaped accents */}
@@ -246,10 +246,10 @@ export function NewsArticle() {
 
               {/* Pull Quote */}
               <motion.blockquote 
-                className="my-16 pl-6 md:pl-8 border-l-[3px] border-accent relative"
+                className="my-8 md:my-16 pl-6 md:pl-8 border-l-[3px] border-accent relative"
                 initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               >
-                <p className="font-headline text-[22px] md:text-[28px] text-on-surface font-medium italic leading-snug">
+                <p className="font-headline text-[18px] sm:text-[22px] md:text-[28px] text-on-surface font-medium italic leading-snug">
                   "{currentArticle.quote}"
                 </p>
                 <footer className="mt-4 font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase font-bold">
@@ -266,7 +266,7 @@ export function NewsArticle() {
 
               {/* Article Footer / Meta */}
               <motion.div 
-                className="mt-20 pt-8 border-t border-outline-variant/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6"
+                className="mt-10 md:mt-20 pt-8 border-t border-outline-variant/30 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6"
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               >
                 <div className="flex flex-wrap gap-2">
@@ -286,7 +286,7 @@ export function NewsArticle() {
               </motion.div>
 
               {/* Next / Prev Navigation */}
-              <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-outline-variant/30">
+              <div className="mt-8 md:mt-16 grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-outline-variant/30">
                 {prevArticle ? (
                   <Link to={`/news/${prevArticle.id}`} className="p-6 border border-outline-variant/40 hover:border-accent bg-surface-container-lowest shadow-sm hover:shadow-xl group transition-all duration-300 flex flex-col gap-3 relative">
                     <div className="absolute top-[-1px] left-[-1px] w-2 h-2 border-t border-l border-accent/0 group-hover:border-accent/40 pointer-events-none" />

@@ -38,7 +38,7 @@ export function ProjectDetailHero({ project }) {
       {/* Top spacer */}
       <div className="min-h-[88px] md:min-h-[96px]" />
 
-      <div className="flex flex-col lg:flex-row flex-1 items-center max-w-[1440px] mx-auto w-full px-8 md:px-16 pb-16 gap-12 lg:gap-16 relative z-10">
+      <div className="flex flex-col lg:flex-row flex-1 items-center max-w-[1440px] mx-auto w-full px-4 sm:px-8 md:px-16 pb-8 md:pb-16 gap-8 lg:gap-16 relative z-10">
         
         {/* Left Column (65%) */}
         <div className="w-full lg:w-[65%] flex flex-col gap-6 min-w-0">
@@ -98,7 +98,7 @@ export function ProjectDetailHero({ project }) {
 
         {/* Right Column (35%) */}
         <motion.div 
-          className="w-full lg:w-[35%] bg-white/[0.03] backdrop-blur-md border border-white/10 p-8 lg:p-10 flex flex-col justify-between relative shadow-[0_12px_40px_rgba(0,0,0,0.2)]"
+          className="w-full lg:w-[35%] bg-white/[0.03] backdrop-blur-md border border-white/10 p-6 sm:p-8 lg:p-10 flex flex-col justify-between relative shadow-[0_12px_40px_rgba(0,0,0,0.2)]"
           initial={{ opacity: 0, scale: 0.95 }} 
           animate={{ opacity: 1, scale: 1 }} 
           transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
