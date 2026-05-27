@@ -158,9 +158,9 @@ export function ServiceDetail() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 1 — Sticky Sub-Navigation Bar
           ═══════════════════════════════════════════════════════════════════════ */}
-      <div className="bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/30 sticky top-[64px] md:top-[80px] z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 py-3.5">
+      <div className="bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/30 sticky top-[56px] sm:top-[64px] md:top-[80px] z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 py-3">
 
             {/* Breadcrumb Trail */}
             <nav className="text-[11.5px] text-secondary flex flex-wrap items-center gap-1 font-medium leading-none" aria-label="Breadcrumb">
@@ -177,7 +177,7 @@ export function ServiceDetail() {
             </nav>
 
             {/* Anchor Navigation Tabs */}
-            <div className="flex overflow-x-auto w-full md:w-auto gap-1 pb-0.5 md:pb-0 hide-scrollbar select-none">
+            <div className="flex overflow-x-auto w-full lg:w-auto gap-1 pb-0.5 lg:pb-0 hide-scrollbar select-none">
               {NAV_ITEMS.map((item) => (
                 <button
                   key={item.id}

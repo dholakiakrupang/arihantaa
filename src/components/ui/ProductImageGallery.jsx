@@ -163,7 +163,7 @@ export function ProductImageGallery({
                   <img 
                     src={img.src} 
                     alt={img.alt || `Thumbnail ${idx + 1}`}
-                    className="w-full h-full object-contain p-1 mix-blend-multiply transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-500"
                     onError={() => handleImageError(idx)}
                     draggable={false}
                   />
@@ -203,30 +203,30 @@ export function ProductImageGallery({
                   <span className="material-symbols-outlined text-[24px]">close</span>
                 </button>
 
-                {/* Large Left Floating Arrow on Screen Edge (Dark High-Contrast) */}
-                {hasMultiple && (
-                  <button
-                    onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                    className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-none bg-black/5 border border-black/10 hover:border-accent text-secondary hover:text-white hover:bg-accent hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
-                    aria-label="Previous image"
-                  >
-                    <span className="material-symbols-outlined text-[28px]">chevron_left</span>
-                  </button>
-                )}
-
-                {/* Large Right Floating Arrow on Screen Edge (Dark High-Contrast) */}
-                {hasMultiple && (
-                  <button
-                    onClick={(e) => { e.stopPropagation(); goNext(); }}
-                    className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 w-14 h-14 rounded-none bg-black/5 border border-black/10 hover:border-accent text-secondary hover:text-white hover:bg-accent hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
-                    aria-label="Next image"
-                  >
-                    <span className="material-symbols-outlined text-[28px]">chevron_right</span>
-                  </button>
-                )}
-
                 {/* Enlarge Zoomed Image Display (Blends beautifully against white blur backdrop) */}
-                <div className="w-full max-w-4xl flex-1 flex items-center justify-center p-6 min-h-0">
+                <div className="relative w-full max-w-4xl flex-1 flex items-center justify-center p-6 min-h-0">
+                  {/* Large Left Floating Arrow on Image Edge (Responsive sizing & vertical alignment) */}
+                  {hasMultiple && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); goPrev(); }}
+                      className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-14 sm:h-14 rounded-none bg-black/5 border border-black/10 hover:border-accent text-secondary hover:text-white hover:bg-accent hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
+                      aria-label="Previous image"
+                    >
+                      <span className="material-symbols-outlined text-[24px] sm:text-[28px]">chevron_left</span>
+                    </button>
+                  )}
+
+                  {/* Large Right Floating Arrow on Image Edge (Responsive sizing & vertical alignment) */}
+                  {hasMultiple && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); goNext(); }}
+                      className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-14 sm:h-14 rounded-none bg-black/5 border border-black/10 hover:border-accent text-secondary hover:text-white hover:bg-accent hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
+                      aria-label="Next image"
+                    >
+                      <span className="material-symbols-outlined text-[24px] sm:text-[28px]">chevron_right</span>
+                    </button>
+                  )}
+
                   <img
                     src={currentImage.src}
                     alt={currentImage.alt || `Enlarged view`}
@@ -235,9 +235,9 @@ export function ProductImageGallery({
                   />
                 </div>
 
-                {/* Interactive Thumbnail Strip inside the Modal (Sharp-box zero-radius high contrast) */}
+                {/* Interactive Thumbnail Strip inside the Modal (Scrollable on small viewports, completely centered) */}
                 {hasMultiple && (
-                  <div className="w-full max-w-xl flex items-center justify-center gap-2.5 pb-6 md:pb-8 shrink-0">
+                  <div className="w-full max-w-xl flex items-center justify-start sm:justify-center gap-2.5 pb-6 md:pb-8 shrink-0 overflow-x-auto hide-scrollbar px-4">
                     {gallery.map((img, idx) => {
                       const isActive = idx === activeIndex;
                       const hasError = imageErrors[idx];
@@ -256,7 +256,7 @@ export function ProductImageGallery({
                             <img 
                               src={img.src} 
                               alt={img.alt || `Thumbnail ${idx + 1}`}
-                              className="w-full h-full object-contain p-2 mix-blend-multiply transition-transform duration-500"
+                              className="w-full h-full object-cover transition-transform duration-500"
                               onError={() => handleImageError(idx)}
                               draggable={false}
                             />
