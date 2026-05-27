@@ -358,7 +358,7 @@ export function ProjectsHero() {
           {/* ── LEFT: Text content */}
           <motion.div
             className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0"
-            style={{ y: textY }}
+            style={isMobile ? {} : { y: textY }}
           >
             {/* Breadcrumb */}
             <motion.nav
@@ -465,9 +465,9 @@ export function ProjectsHero() {
           <motion.div
             className="relative w-full lg:w-[48%] flex items-center justify-center lg:pl-12 xl:pl-20"
             style={{ 
-              y: svgY, 
-              opacity: svgOpacity, 
-              ...(isMobile ? {} : { rotateX: rotX, rotateY: rotY, transformPerspective: 1000 }) 
+              ...(isMobile 
+                ? {} 
+                : { y: svgY, opacity: svgOpacity, rotateX: rotX, rotateY: rotY, transformPerspective: 1000 }) 
             }}
           >
             {/* Outer glow frame */}

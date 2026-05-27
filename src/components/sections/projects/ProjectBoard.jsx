@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { projectCategories, projectBoardData } from '../../../data/projectsData';
 
-function ProjectCard({ project, index }) {
+function ProjectCard({ project, index, isMobile }) {
   const isCompleted = project.status === 'Completed';
 
   return (
     <motion.article
-      layout
+      layout={!isMobile}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
@@ -113,6 +113,15 @@ export function ProjectBoard() {
   const [filterOpen, setFilterOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Screen size detection for mobile performance optimization
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const sortOptions = [
     { id: 'value-desc', label: 'Value: High → Low' },
@@ -382,10 +391,10 @@ export function ProjectBoard() {
         </div>
 
         {/* Grid */}
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <motion.div layout={!isMobile} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <AnimatePresence mode="popLayout">
             {filtered.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
+              <ProjectCard key={project.id} project={project} index={i} isMobile={isMobile} />
             ))}
           </AnimatePresence>
         </motion.div>
