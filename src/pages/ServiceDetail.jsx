@@ -321,7 +321,7 @@ export function ServiceDetail() {
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
             variants={fadeUp}
-            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 pt-12 md:pt-20 lg:pt-24 pb-4 px-4 sm:px-6 lg:px-0 bg-surface-container-low/10 flex flex-col items-center justify-center order-1 lg:order-2 relative"
+            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 pt-12 md:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-0 px-4 sm:px-6 lg:px-0 bg-surface-container-low/10 flex flex-col items-center justify-center order-1 lg:order-2 relative"
           >
             <ProductImageGallery
               images={service.images}

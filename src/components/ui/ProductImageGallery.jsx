@@ -88,7 +88,7 @@ export function ProductImageGallery({
   const hasValidImage = currentImage && !imageErrors[activeIndex];
 
   return (
-    <div className="w-full flex flex-col gap-0 relative group/gallery select-none">
+    <div className="w-full flex flex-col gap-4 sm:gap-6 relative group/gallery select-none">
       
       {/* ── Main Display Container (No borders, no white card, transparent background) ── */}
       <div className="relative w-full overflow-hidden flex items-center justify-center min-h-[360px] md:min-h-[440px] bg-transparent">
@@ -123,7 +123,7 @@ export function ProductImageGallery({
               src={currentImage.src}
               alt={currentImage.alt || `Product view ${activeIndex + 1}`}
               onClick={() => setIsZoomed(true)}
-              className="w-full h-full max-h-[360px] md:max-h-[440px] object-contain select-none mix-blend-multiply cursor-zoom-in z-10 hover:scale-[1.015] transition-transform duration-300"
+              className="w-full h-full max-h-[360px] md:max-h-[440px] object-contain select-none mix-blend-multiply cursor-zoom-in z-10 hover:scale-[1.015] transition-transform duration-300 px-14 md:px-20 lg:px-0"
               onError={() => handleImageError(activeIndex)}
               draggable={false}
             />
@@ -144,7 +144,7 @@ export function ProductImageGallery({
 
       {/* ── Structured Thumbnail Strip (Clean, low-profile, completely transparent borderless buttons) ── */}
       {hasMultiple && (
-        <div className="flex w-full items-center gap-2 overflow-x-auto hide-scrollbar justify-start sm:justify-center">
+        <div className="flex w-full items-center gap-2 overflow-x-auto hide-scrollbar justify-center">
           {gallery.map((img, idx) => {
             const isActive = idx === activeIndex;
             const hasError = imageErrors[idx];
@@ -152,7 +152,7 @@ export function ProductImageGallery({
               <button
                 key={idx}
                 onClick={() => goTo(idx)}
-                className={`relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-none transition-all duration-300 overflow-hidden flex items-center justify-center bg-transparent border ${
+                className={`relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 rounded-none transition-all duration-300 overflow-hidden flex items-center justify-center bg-transparent border ${
                   isActive 
                     ? 'border-accent opacity-100' 
                     : 'border-transparent opacity-60 hover:opacity-100 hover:border-outline-variant/30'
@@ -217,8 +217,8 @@ export function ProductImageGallery({
                     </button>
                   )}
 
-                  {/* Centered Image viewport with horizontal padding to guarantee zero arrow overlapping */}
-                  <div className="w-full h-full flex items-center justify-center min-h-0 px-12 sm:px-16 md:px-20">
+                  {/* Centered Image viewport with minimal horizontal padding on mobile to maximize zoomed image size */}
+                  <div className="w-full h-full flex items-center justify-center min-h-0 px-4 sm:px-16 md:px-20">
                     <img
                       src={currentImage.src}
                       alt={currentImage.alt || `Enlarged view`}
