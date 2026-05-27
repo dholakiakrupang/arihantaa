@@ -36,6 +36,22 @@ export function ProjectEditorial({ editorial }) {
     }
   };
 
+  // Auto horizontal scroll to keep active tab centered in mobile/tablet view
+  useEffect(() => {
+    const container = document.getElementById('mobile-nav-container');
+    const activeBtn = container?.querySelector(`[data-id="${activeSection}"]`);
+    if (container && activeBtn) {
+      const containerWidth = container.clientWidth;
+      const btnOffsetLeft = activeBtn.offsetLeft;
+      const btnWidth = activeBtn.clientWidth;
+      
+      container.scrollTo({
+        left: btnOffsetLeft - (containerWidth / 2) + (btnWidth / 2),
+        behavior: 'smooth'
+      });
+    }
+  }, [activeSection]);
+
   const navItems = [
     { id: 'project-overview', label: 'Project Overview' },
     { id: 'the-challenge', label: 'The Challenge' },
@@ -79,31 +95,33 @@ export function ProjectEditorial({ editorial }) {
   };
 
   return (
-    <div className="w-full bg-surface px-4 sm:px-8 md:px-16 py-16 md:py-24 relative z-10 border-b border-outline-variant/30">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative">
+    <div className="w-full bg-surface relative z-10 border-b border-outline-variant/30">
+      
+      {/* ── Mobile Nav Pill Row (Sticky Below Header) ── */}
+      <div id="mobile-nav-container" className="lg:hidden w-full overflow-x-auto no-scrollbar flex gap-4 border-b border-outline-variant/40 py-4 sticky top-[64px] md:top-[80px] bg-surface/90 backdrop-blur-md z-50 px-4 sm:px-8 md:px-16">
+        {navItems.map((item) => (
+          <button
+            key={item.id}
+            data-id={item.id}
+            onClick={() => scrollToSection(item.id)}
+            className={`relative whitespace-nowrap font-label-caps text-[10px] tracking-[0.18em] uppercase transition-colors py-2 px-3 ${
+              activeSection === item.id ? 'text-accent font-bold' : 'text-secondary hover:text-on-surface'
+            }`}
+          >
+            {item.label}
+            {activeSection === item.id && (
+              <motion.div
+                layoutId="activeHorizontalLine"
+                className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
+                transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+              />
+            )}
+          </button>
+        ))}
+      </div>
+
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 px-4 sm:px-8 md:px-16 py-16 md:py-24 relative">
         
-        {/* ── Mobile Nav Pill Row (Sticky Below Header) ── */}
-        <div className="lg:hidden col-span-1 w-full overflow-x-auto no-scrollbar flex gap-4 border-b border-outline-variant/40 pb-4 sticky top-[64px] md:top-[80px] bg-surface/90 backdrop-blur-md z-45 -mx-4 px-4 sm:-mx-8 sm:px-8">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`relative whitespace-nowrap font-label-caps text-[10px] tracking-[0.18em] uppercase transition-colors py-2 px-3 ${
-                activeSection === item.id ? 'text-accent font-bold' : 'text-secondary hover:text-on-surface'
-              }`}
-            >
-              {item.label}
-              {activeSection === item.id && (
-                <motion.div
-                  layoutId="activeHorizontalLine"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
-                  transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                />
-              )}
-            </button>
-          ))}
-        </div>
- 
         {/* ── Desktop Sticky Left Sidebar (Asymmetric 3-Column) ── */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-[140px] h-fit self-start pl-2">
           <div className="relative border-l border-outline-variant/30 py-2">

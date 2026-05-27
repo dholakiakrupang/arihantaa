@@ -592,7 +592,7 @@ export function SpecificSector() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: idx * 0.06 }}
                 className={`p-6 md:p-8 border-r border-b border-outline-variant/30 flex flex-col justify-between hover:bg-accent/[0.015] transition-colors duration-300 group ${
-                  idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
+                  idx === 4 ? 'sm:col-span-full lg:col-span-1' : ''
                 }`}
               >
                 <div>
@@ -674,16 +674,16 @@ export function SpecificSector() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.08 }}
-                className={`border-r border-b border-white/10 p-8 hover:bg-white/[0.02] transition-colors duration-300 flex flex-col justify-between min-h-[280px] group relative ${
+                className={`border-r border-b border-white/10 p-6 md:p-8 hover:bg-white/[0.02] transition-colors duration-300 flex flex-col justify-start lg:justify-between min-h-[180px] sm:min-h-[200px] lg:min-h-[280px] group relative ${
                   idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
                 }`}
               >
                 <div>
-                  <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4 lg:mb-6">
                     <span className="font-mono text-[14px] text-accent/60 font-bold select-none">{String(idx + 1).padStart(2, '0')}</span>
                   </div>
-                  <h4 className="font-headline text-[15px] text-white font-bold tracking-tight mb-4 uppercase group-hover:text-accent transition-colors">{step.title}</h4>
-                  <ul className="space-y-2.5 pt-4 border-t border-white/5">
+                  <h4 className="font-headline text-[15px] text-white font-bold tracking-tight mb-3 lg:mb-4 uppercase group-hover:text-accent transition-colors">{step.title}</h4>
+                  <ul className="space-y-2.5 pt-3 lg:pt-4 border-t border-white/5">
                     {step.activities.map((act, aIdx) => (
                       <li key={aIdx} className="font-body text-[12px] text-white/50 leading-relaxed flex items-start gap-2 group-hover:text-white/70 transition-colors">
                         <span className="w-1 h-1 bg-accent mt-2 shrink-0" />
@@ -792,15 +792,15 @@ export function SpecificSector() {
               </div>
 
               {/* Sub-grid with technical statistics */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-5 gap-x-0 border-t border-b border-outline-variant/15 py-6">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-5 gap-x-0 border-t border-b border-outline-variant/15 py-6">
                 {sector.flagshipProject.stats.map((stat, idx) => {
                   let cellClass = "flex flex-col justify-center ";
                   if (idx === 0) {
-                    cellClass += "col-span-1 border-r border-white/10 pr-4 sm:pr-6";
+                    cellClass += "col-span-1 border-r border-white/10 pr-4 lg:pr-6";
                   } else if (idx === 1) {
-                    cellClass += "col-span-1 pl-4 sm:pl-6 sm:border-r sm:border-white/10 sm:pr-6";
+                    cellClass += "col-span-1 pl-4 lg:pl-6 lg:border-r lg:border-white/10 lg:pr-6";
                   } else if (idx === 2) {
-                    cellClass += "col-span-2 border-t border-white/10 pt-4 mt-1 sm:col-span-1 sm:border-t-0 sm:pt-0 sm:mt-0 sm:pl-6";
+                    cellClass += "col-span-2 border-t border-white/10 pt-4 mt-1 lg:col-span-1 lg:border-t-0 lg:pt-0 lg:mt-0 lg:pl-6";
                   }
                   return (
                     <div key={idx} className={cellClass}>
@@ -882,7 +882,7 @@ export function SpecificSector() {
                 </div>
 
                 {/* Card Middle: Rich Typography Metadata */}
-                <div className="p-6 flex flex-col flex-1 justify-between space-y-4">
+                <div className="p-6 flex flex-col flex-1 justify-start lg:justify-between space-y-4">
                   <div className="space-y-2">
                     {/* Mapped Location with icon pin */}
                     <div className="flex items-center gap-1.5 text-secondary/60">
