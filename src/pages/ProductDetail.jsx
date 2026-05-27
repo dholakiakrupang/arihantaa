@@ -68,32 +68,23 @@ const getFeatureIcon = (index) => {
 
 /* ── Framer Motion Variants ──────────────────────────────────────────────────── */
 
-const isMobileDevice = typeof window !== 'undefined' && window.innerWidth < 1024;
-
 const fadeUp = {
-  hidden: { opacity: 0, y: isMobileDevice ? 0 : 28 },
+  hidden: { opacity: 0, y: 28 },
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { 
-      duration: isMobileDevice ? 0.25 : 0.6, 
-      delay: isMobileDevice ? 0 : i * 0.08, 
-      ease: [0.22, 1, 0.36, 1] 
-    }
+    transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }
   })
 };
 
 const fadeIn = {
   hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1, 
-    transition: { duration: isMobileDevice ? 0.2 : 0.5, ease: 'easeOut' } 
-  }
+  visible: { opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }
 };
 
 const staggerContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: isMobileDevice ? 0 : 0.1 } }
+  visible: { transition: { staggerChildren: 0.1 } }
 };
 
 /* ── Nav Items ───────────────────────────────────────────────────────────────── */
