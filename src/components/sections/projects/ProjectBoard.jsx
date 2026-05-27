@@ -3,16 +3,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { projectCategories, projectBoardData } from '../../../data/projectsData';
 
-function ProjectCard({ project, index, isMobile }) {
+function getScreenClass() {
+  const w = window.innerWidth;
+  if (w < 768) return 'mobile';
+  if (w < 1024) return 'tablet';
+  return 'desktop';
+}
+
+function ProjectCard({ project, index, screenClass }) {
   const isCompleted = project.status === 'Completed';
+  const isMobile = screenClass === 'mobile';
+  const isReduced = screenClass !== 'desktop';
 
   return (
     <motion.article
-      layout={!isMobile}
-      initial={{ opacity: 0, y: 20 }}
+      layout={!isReduced}
+      initial={{ opacity: 0, y: isMobile ? 0 : 16 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+      exit={{ opacity: 0, scale: isMobile ? 1 : 0.97 }}
+      transition={{ duration: isReduced ? 0.25 : 0.4, ease: [0.25, 1, 0.5, 1] }}
       className="group flex flex-col bg-surface border border-outline-variant/30 transition-all duration-300 relative hover:border-accent/30"
     >
       <Link to={`/projects/${project.id}`} className="absolute inset-0 z-20" aria-label={`View details for ${project.title}`} />
@@ -81,8 +90,8 @@ function ProjectCard({ project, index, isMobile }) {
             <div className="w-full h-[3px] bg-outline-variant/20 relative overflow-hidden">
               <motion.div
                 className="absolute left-0 top-0 h-full bg-accent"
-                initial={{ width: isMobile ? `${project.progress}%` : 0 }}
-                whileInView={isMobile ? {} : { width: `${project.progress}%` }}
+                initial={{ width: isReduced ? `${project.progress}%` : 0 }}
+                whileInView={isReduced ? {} : { width: `${project.progress}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: 'easeOut', delay: 0.1 }}
               />
@@ -114,13 +123,18 @@ export function ProjectBoard() {
   const [sortOpen, setSortOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Screen size detection for mobile performance optimization
-  const [isMobile, setIsMobile] = useState(false);
+  // Screen class detection
+  const [screenClass, setScreenClass] = useState(() => {
+    if (typeof window === 'undefined') return 'desktop';
+    return getScreenClass();
+  });
+  const isMobile = screenClass === 'mobile';
+  const isReduced = screenClass !== 'desktop';
+
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const onResize = () => setScreenClass(getScreenClass());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
   const sortOptions = [
@@ -189,7 +203,7 @@ export function ProjectBoard() {
   const activeSortLabel = sortOptions.find(s => s.id === sortBy)?.label || 'Default';
 
   return (
-    <section id="project-board" className="bg-surface py-24 px-6 md:px-12 lg:px-20 border-t border-outline-variant/30 mt-[-1px] relative z-10">
+    <section id="project-board" className="bg-surface py-16 sm:py-20 lg:py-24 px-4 sm:px-6 md:px-12 lg:px-20 border-t border-outline-variant/30 mt-[-1px] relative z-10">
       <div className="max-w-[1440px] mx-auto">
 
         {/* Section header */}
@@ -205,8 +219,8 @@ export function ProjectBoard() {
           </div>
         </div>
 
-        {/* ── Sticky Toolbar — EngineeredSolutions-inspired ── */}
-        <div className="sticky top-[64px] md:top-[80px] z-40 mb-14">
+        {/* ── Sticky Toolbar ── */}
+        <div className="sticky top-[60px] sm:top-[64px] md:top-[80px] z-40 mb-8 sm:mb-10 lg:mb-14">
           
           {/* Invisible Click-Outside Detector (No blur or dimming) */}
           <AnimatePresence>
@@ -391,10 +405,10 @@ export function ProjectBoard() {
         </div>
 
         {/* Grid */}
-        <motion.div layout={!isMobile} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          <AnimatePresence mode="popLayout">
+        <motion.div layout={!isReduced} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+          <AnimatePresence mode={isReduced ? 'wait' : 'popLayout'}>
             {filtered.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} isMobile={isMobile} />
+              <ProjectCard key={project.id} project={project} index={i} screenClass={screenClass} />
             ))}
           </AnimatePresence>
         </motion.div>

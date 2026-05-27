@@ -10,6 +10,14 @@ import {
 } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
+// Detect screen class once so it never re-renders unnecessarily
+function getScreenClass() {
+  const w = window.innerWidth;
+  if (w < 768) return 'mobile';
+  if (w < 1024) return 'tablet';
+  return 'desktop';
+}
+
 /* ─── Marquee data ───────────────────────────────────────────────────────── */
 const MARQUEE = [
   'Haridwar Medical Campus · ₹97.53 Cr',
@@ -45,7 +53,11 @@ function Badge({ icon, label, value, delay, className }) {
 }
 
 /* ─── Animated SVG: Circuit / Schematic board ────────────────────────────── */
-function CircuitSVG({ isMobile }) {
+function CircuitSVG({ screenClass }) {
+  const isMobile = screenClass === 'mobile';
+  const isTablet = screenClass === 'tablet';
+  const isReduced = isMobile || isTablet; // Reduce animation on mobile+tablet
+
   return (
     <svg
       viewBox="0 0 600 520"
@@ -54,59 +66,53 @@ function CircuitSVG({ isMobile }) {
       className="w-full h-full"
       aria-hidden
     >
-      {/* ── Grid dots */}
+      {/* ── Grid dots — static on mobile/tablet, animated on desktop only */}
       {Array.from({ length: 10 }, (_, row) =>
-        Array.from({ length: 12 }, (_, col) => {
-          if (isMobile) {
-            return (
-              <circle
-                key={`dot-${row}-${col}`}
-                cx={col * 52 + 20}
-                cy={row * 52 + 20}
-                r={1.5}
-                fill="rgba(255,255,255,0.12)"
-              />
-            );
-          }
-          return (
-            <motion.circle
-              key={`dot-${row}-${col}`}
-              cx={col * 52 + 20}
-              cy={row * 52 + 20}
-              r={1.5}
-              fill="rgba(255,255,255,0.12)"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 0.6, 0.12] }}
-              transition={{ duration: 2, delay: (row + col) * 0.04, repeat: Infinity, repeatDelay: 4 }}
-            />
-          );
-        })
+        Array.from({ length: 12 }, (_, col) => (
+          <circle
+            key={`dot-${row}-${col}`}
+            cx={col * 52 + 20}
+            cy={row * 52 + 20}
+            r={1.5}
+            fill="rgba(255,255,255,0.12)"
+          />
+        ))
       )}
 
       {/* ── Horizontal trace lines */}
       {[80, 170, 260, 360, 450].map((y, i) => (
-        <motion.line
-          key={`hline-${i}`}
-          x1="20" y1={y} x2="580" y2={y}
-          stroke="rgba(255,255,255,0.06)"
-          strokeWidth="1"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.3 + i * 0.15 }}
-        />
+        isReduced ? (
+          <line key={`hline-${i}`} x1="20" y1={y} x2="580" y2={y}
+            stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+        ) : (
+          <motion.line
+            key={`hline-${i}`}
+            x1="20" y1={y} x2="580" y2={y}
+            stroke="rgba(255,255,255,0.06)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.3 + i * 0.15 }}
+          />
+        )
       ))}
 
       {/* ── Vertical trace lines */}
       {[100, 200, 310, 420, 520].map((x, i) => (
-        <motion.line
-          key={`vline-${i}`}
-          x1={x} y1="20" x2={x} y2="500"
-          stroke="rgba(255,255,255,0.06)"
-          strokeWidth="1"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 + i * 0.12 }}
-        />
+        isReduced ? (
+          <line key={`vline-${i}`} x1={x} y1="20" x2={x} y2="500"
+            stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+        ) : (
+          <motion.line
+            key={`vline-${i}`}
+            x1={x} y1="20" x2={x} y2="500"
+            stroke="rgba(255,255,255,0.06)"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 1.5, delay: 0.5 + i * 0.12 }}
+          />
+        )
       ))}
 
       {/* ── Main accent circuit path */}
@@ -118,11 +124,11 @@ function CircuitSVG({ isMobile }) {
         strokeDasharray="8 4"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 3, delay: 0.8, ease: 'easeInOut' }}
+        transition={{ duration: isReduced ? 1.5 : 3, delay: isReduced ? 0.3 : 0.8, ease: 'easeInOut' }}
       />
 
-      {/* ── Moving signal pulse on main path */}
-      {!isMobile && (
+      {/* ── Moving signal pulse — desktop only */}
+      {!isReduced && (
         <motion.circle
           cx={0} cy={0} r={4}
           fill="#E9652B"
@@ -142,16 +148,26 @@ function CircuitSVG({ isMobile }) {
         [520, 260], [420, 360], [310, 450], [200, 360],
         [100, 260], [310, 260],
       ].map(([cx, cy], i) => (
-        <motion.circle
-          key={`node-${i}`}
-          cx={cx} cy={cy} r={5}
-          stroke="rgba(233,101,43,0.7)"
-          strokeWidth="1.5"
-          fill="rgba(233,101,43,0.15)"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.2 + i * 0.1, type: 'spring' }}
-        />
+        isReduced ? (
+          <circle
+            key={`node-${i}`}
+            cx={cx} cy={cy} r={5}
+            stroke="rgba(233,101,43,0.7)"
+            strokeWidth="1.5"
+            fill="rgba(233,101,43,0.15)"
+          />
+        ) : (
+          <motion.circle
+            key={`node-${i}`}
+            cx={cx} cy={cy} r={5}
+            stroke="rgba(233,101,43,0.7)"
+            strokeWidth="1.5"
+            fill="rgba(233,101,43,0.15)"
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.2 + i * 0.1, type: 'spring' }}
+          />
+        )
       ))}
 
       {/* ── Center element — UPS / Transformer icon */}
@@ -162,7 +178,7 @@ function CircuitSVG({ isMobile }) {
         fill="rgba(233,101,43,0.08)"
         initial={{ opacity: 0, scale: 0.6 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1.8, type: 'spring' }}
+        transition={{ duration: 0.8, delay: isReduced ? 0.5 : 1.8, type: 'spring' }}
       />
       <motion.text
         x="310" y="267" textAnchor="middle" dominantBaseline="middle"
@@ -173,7 +189,7 @@ function CircuitSVG({ isMobile }) {
         letterSpacing="2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.2 }}
+        transition={{ delay: isReduced ? 0.7 : 2.2 }}
       >
         UPS
       </motion.text>
@@ -185,68 +201,66 @@ function CircuitSVG({ isMobile }) {
         letterSpacing="1"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.4 }}
+        transition={{ delay: isReduced ? 0.8 : 2.4 }}
       >
         CRITICAL PWR
       </motion.text>
 
-      {/* ── Mini sub-circuits branching off */}
-      {/* Top-left branch */}
-      <motion.path
-        d="M 100 170 H 50 V 120 H 20"
-        stroke="rgba(255,255,255,0.15)"
-        strokeWidth="1"
-        fill="none"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 1, delay: 1.6 }}
-      />
-      <motion.rect x="14" y="112" width="12" height="16" rx="0"
-        stroke="rgba(255,255,255,0.25)" strokeWidth="1" fill="none"
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}
-      />
+      {/* ── Mini sub-circuits branching off — desktop only */}
+      {!isMobile && (
+        <>
+          <motion.path
+            d="M 100 170 H 50 V 120 H 20"
+            stroke="rgba(255,255,255,0.15)"
+            strokeWidth="1"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1, delay: isTablet ? 0.5 : 1.6 }}
+          />
+          <motion.rect x="14" y="112" width="12" height="16" rx="0"
+            stroke="rgba(255,255,255,0.25)" strokeWidth="1" fill="none"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: isTablet ? 0.7 : 2 }}
+          />
+          <motion.path
+            d="M 420 170 H 470 V 120 H 540"
+            stroke="rgba(255,255,255,0.15)"
+            strokeWidth="1"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 1, delay: isTablet ? 0.6 : 1.7 }}
+          />
+          <motion.rect x="536" y="112" width="12" height="16" rx="0"
+            stroke="rgba(255,255,255,0.25)" strokeWidth="1" fill="none"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: isTablet ? 0.8 : 2.1 }}
+          />
+        </>
+      )}
 
-      {/* Top-right branch */}
-      <motion.path
-        d="M 420 170 H 470 V 120 H 540"
-        stroke="rgba(255,255,255,0.15)"
-        strokeWidth="1"
-        fill="none"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 1, delay: 1.7 }}
-      />
-      <motion.rect x="536" y="112" width="12" height="16" rx="0"
-        stroke="rgba(255,255,255,0.25)" strokeWidth="1" fill="none"
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.1 }}
-      />
-
-      {/* ── Blinking status indicators */}
+      {/* ── Blinking status indicators — static on mobile, animated on tablet/desktop */}
       {[[55, 80], [540, 80], [55, 430], [540, 430]].map(([cx, cy], i) => (
         <g key={`status-${i}`}>
           {isMobile ? (
-            <circle
-              cx={cx}
-              cy={cy}
-              r={4}
-              fill="rgba(233,101,43,0.8)"
-            />
+            <circle cx={cx} cy={cy} r={4} fill="rgba(233,101,43,0.8)" />
           ) : (
             <>
               <motion.circle
                 cx={cx} cy={cy} r={4}
                 fill="rgba(233,101,43,0.8)"
-                animate={{ opacity: [0.4, 1, 0.4], r: [4, 5.5, 4] }}
+                animate={{ opacity: [0.4, 1, 0.4] }}
                 transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
               />
-              <motion.circle
-                cx={cx} cy={cy} r={9}
-                stroke="rgba(233,101,43,0.3)"
-                strokeWidth="1"
-                fill="none"
-                animate={{ opacity: [0, 0.8, 0], r: [6, 14, 6] }}
-                transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
-              />
+              {!isTablet && (
+                <motion.circle
+                  cx={cx} cy={cy} r={9}
+                  stroke="rgba(233,101,43,0.3)"
+                  strokeWidth="1"
+                  fill="none"
+                  animate={{ opacity: [0, 0.8, 0], r: [6, 14, 6] }}
+                  transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
+                />
+              )}
             </>
           )}
         </g>
@@ -260,7 +274,7 @@ function CircuitSVG({ isMobile }) {
         fill="none"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 2, delay: 2.5 }}
+        transition={{ duration: isReduced ? 1 : 2, delay: isReduced ? 0.5 : 2.5 }}
       />
 
       {/* ── Glow filter */}
@@ -302,13 +316,18 @@ export function ProjectsHero() {
   const svgY    = useTransform(scrollYProgress, [0, 1], ['0%', '-6%']);
   const svgOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.3]);
 
-  // Screen size detection for mobile performance optimization
-  const [isMobile, setIsMobile] = useState(false);
+  // Screen class detection: 'mobile' | 'tablet' | 'desktop'
+  const [screenClass, setScreenClass] = useState(() => {
+    if (typeof window === 'undefined') return 'desktop';
+    return getScreenClass();
+  });
+  const isMobile = screenClass === 'mobile';
+  const isTabletOrMobile = screenClass !== 'desktop';
+
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const onResize = () => setScreenClass(getScreenClass());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
   // Mouse-tilt on SVG panel
@@ -318,14 +337,14 @@ export function ProjectsHero() {
   const rotY = useSpring(useTransform(mx, [-500, 500], [-5, 5]), { stiffness: 80, damping: 25 });
 
   useEffect(() => {
-    if (isMobile) return;
+    if (isTabletOrMobile) return;
     const move = (e) => {
       mx.set(e.clientX - window.innerWidth / 2);
       my.set(e.clientY - window.innerHeight / 2);
     };
     window.addEventListener('mousemove', move);
     return () => window.removeEventListener('mousemove', move);
-  }, [mx, my, isMobile]);
+  }, [mx, my, isTabletOrMobile]);
 
   return (
     <section
@@ -366,19 +385,19 @@ export function ProjectsHero() {
         {/* Top spacer */}
         <div className="min-h-[88px] md:min-h-[96px]" />
 
-        <div className="flex flex-col lg:flex-row flex-1 items-center max-w-[1440px] mx-auto w-full px-8 md:px-16 pb-16 gap-12 lg:gap-0">
+        <div className="flex flex-col lg:flex-row flex-1 items-start lg:items-center max-w-[1440px] mx-auto w-full px-5 sm:px-8 md:px-12 lg:px-16 pb-10 sm:pb-14 lg:pb-16 gap-8 sm:gap-10 lg:gap-0">
 
           {/* ── LEFT: Text content */}
           <motion.div
-            className="w-full lg:w-[52%] flex flex-col gap-8 min-w-0"
-            style={isMobile ? {} : { y: textY }}
+            className="w-full lg:w-[52%] flex flex-col gap-5 sm:gap-6 lg:gap-8 min-w-0"
+            style={isTabletOrMobile ? {} : { y: textY }}
           >
             {/* Breadcrumb */}
             <motion.nav
-              className="flex items-center gap-2 mb-8"
-              initial={{ opacity: 0, x: -16 }}
+              className="flex items-center gap-2 mb-4 sm:mb-6 lg:mb-8"
+              initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
             >
               <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
               <span className="material-symbols-outlined text-surface-variant text-[14px]">chevron_right</span>
@@ -398,21 +417,21 @@ export function ProjectsHero() {
               </span>
             </motion.div>
 
-            {/* Headline — staggered words like home hero */}
+            {/* Headline — staggered words */}
             <h1 className="font-headline font-black uppercase leading-[0.88] tracking-tighter">
               {['Engineering', 'Excellence', 'Delivered.'].map((word, i) => (
                 <div key={word} className="overflow-hidden block w-max max-w-full">
                   <motion.span
                     className={[
                       'block',
-                      'text-[clamp(28px,4.8vw,72px)]',
+                      'text-[clamp(26px,5.5vw,72px)]',
                       i === 1 ? 'text-accent' : 'text-white',
                     ].join(' ')}
-                    initial={{ y: '110%', opacity: 0 }}
+                    initial={{ y: isTabletOrMobile ? '60%' : '110%', opacity: 0 }}
                     animate={{ y: '0%', opacity: 1 }}
                     transition={{
-                      duration: 0.9,
-                      delay: 0.2 + i * 0.13,
+                      duration: isTabletOrMobile ? 0.5 : 0.9,
+                      delay: 0.1 + i * 0.1,
                       ease: [0.25, 1, 0.5, 1],
                     }}
                   >
@@ -460,10 +479,10 @@ export function ProjectsHero() {
 
             {/* Compact credential strip */}
             <motion.div
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-4 md:gap-x-6 pt-4 border-t border-white/8"
+              className="flex flex-wrap items-center justify-start gap-y-2 gap-x-4 md:gap-x-6 pt-4 border-t border-white/8"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.9 }}
+              transition={{ duration: 0.5, delay: isTabletOrMobile ? 0.4 : 0.9 }}
             >
               {['₹315 Cr+ Active', '22+ Live Projects', '9 States'].map((t, i) => (
                 <div key={t} className="flex items-center gap-4 md:gap-6">
@@ -477,14 +496,14 @@ export function ProjectsHero() {
           {/* ── RIGHT: Animated SVG schematic */}
           <motion.div
             className="relative w-full lg:w-[48%] flex items-center justify-center lg:pl-12 xl:pl-20"
-            style={{ 
-              ...(isMobile 
-                ? {} 
-                : { y: svgY, opacity: svgOpacity, rotateX: rotX, rotateY: rotY, transformPerspective: 1000 }) 
+            style={{
+              ...(isTabletOrMobile
+                ? {}
+                : { y: svgY, opacity: svgOpacity, rotateX: rotX, rotateY: rotY, transformPerspective: 1000 })
             }}
           >
             {/* Outer glow frame */}
-            <div className="relative w-full max-w-[560px] aspect-[6/5]">
+            <div className="relative w-full max-w-[420px] sm:max-w-[480px] md:max-w-[520px] lg:max-w-[560px] aspect-[6/5]">
               {/* Corner accent marks */}
               {['top-0 left-0', 'top-0 right-0 rotate-90', 'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'].map((pos, i) => (
                 <motion.div
@@ -511,29 +530,29 @@ export function ProjectsHero() {
               </motion.div>
 
               {/* SVG */}
-              <CircuitSVG isMobile={isMobile} />
+              <CircuitSVG screenClass={screenClass} />
 
-              {/* Floating badges */}
+              {/* Floating badges — hidden on mobile (too small), shown on tablet+ */}
               <Badge
                 icon="bolt"
                 label="Critical Power"
                 value="10 MVA UPS Systems"
-                delay={2.2}
-                className="top-[12%] left-3 sm:left-4 md:-left-4 lg:-left-12"
+                delay={isTabletOrMobile ? 0.5 : 2.2}
+                className="hidden sm:flex top-[8%] left-0 md:-left-4 lg:-left-12"
               />
               <Badge
                 icon="done_all"
                 label="Completed"
                 value="GMERS Sola — ₹69.19 Cr"
-                delay={2.5}
-                className="bottom-[18%] right-3 sm:right-4 md:-right-4 lg:-right-10"
+                delay={isTabletOrMobile ? 0.7 : 2.5}
+                className="hidden sm:flex bottom-[16%] right-0 md:-right-4 lg:-right-10"
               />
               <Badge
                 icon="construction"
                 label="In Progress"
                 value="22 Active Projects"
-                delay={2.8}
-                className="bottom-[2%] left-3 sm:left-[6%] md:left-[8%]"
+                delay={isTabletOrMobile ? 0.9 : 2.8}
+                className="hidden md:flex bottom-[0%] left-[6%]"
               />
             </div>
           </motion.div>

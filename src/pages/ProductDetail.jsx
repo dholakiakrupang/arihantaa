@@ -529,12 +529,12 @@ export function ProductDetail() {
                 {activeSpecTab.rows.map((row, idx) => (
                   <div
                     key={idx}
-                    className="border-r border-b border-outline-variant/20 p-6 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 hover:bg-accent/[0.015] transition-colors duration-200"
+                    className="border-r even:border-r-0 border-b last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0 border-outline-variant/20 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-baseline gap-1.5 sm:gap-6 hover:bg-accent/[0.015] transition-colors duration-200"
                   >
-                    <div className="font-headline text-[13.5px] font-bold text-on-surface uppercase tracking-tight sm:w-2/5 shrink-0">
+                    <div className="font-headline text-[12.5px] sm:text-[13.5px] font-bold text-on-surface uppercase tracking-tight sm:w-2/5 shrink-0">
                       {row[0]}
                     </div>
-                    <div className="font-body text-[13.5px] text-secondary leading-relaxed">
+                    <div className="font-body text-[13px] sm:text-[13.5px] text-secondary leading-relaxed">
                       {row[1]}
                     </div>
                   </div>
