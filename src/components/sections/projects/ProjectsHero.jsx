@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Button } from '../../ui/Button';
 import {
   motion,
@@ -45,7 +45,7 @@ function Badge({ icon, label, value, delay, className }) {
 }
 
 /* ─── Animated SVG: Circuit / Schematic board ────────────────────────────── */
-function CircuitSVG() {
+function CircuitSVG({ isMobile }) {
   return (
     <svg
       viewBox="0 0 600 520"
@@ -56,18 +56,31 @@ function CircuitSVG() {
     >
       {/* ── Grid dots */}
       {Array.from({ length: 10 }, (_, row) =>
-        Array.from({ length: 12 }, (_, col) => (
-          <motion.circle
-            key={`dot-${row}-${col}`}
-            cx={col * 52 + 20}
-            cy={row * 52 + 20}
-            r={1.5}
-            fill="rgba(255,255,255,0.12)"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0.6, 0.12] }}
-            transition={{ duration: 2, delay: (row + col) * 0.04, repeat: Infinity, repeatDelay: 4 }}
-          />
-        ))
+        Array.from({ length: 12 }, (_, col) => {
+          if (isMobile) {
+            return (
+              <circle
+                key={`dot-${row}-${col}`}
+                cx={col * 52 + 20}
+                cy={row * 52 + 20}
+                r={1.5}
+                fill="rgba(255,255,255,0.12)"
+              />
+            );
+          }
+          return (
+            <motion.circle
+              key={`dot-${row}-${col}`}
+              cx={col * 52 + 20}
+              cy={row * 52 + 20}
+              r={1.5}
+              fill="rgba(255,255,255,0.12)"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 0.6, 0.12] }}
+              transition={{ duration: 2, delay: (row + col) * 0.04, repeat: Infinity, repeatDelay: 4 }}
+            />
+          );
+        })
       )}
 
       {/* ── Horizontal trace lines */}
@@ -276,6 +289,15 @@ export function ProjectsHero() {
   const svgY    = useTransform(scrollYProgress, [0, 1], ['0%', '-6%']);
   const svgOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0.3]);
 
+  // Screen size detection for mobile performance optimization
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Mouse-tilt on SVG panel
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -283,13 +305,14 @@ export function ProjectsHero() {
   const rotY = useSpring(useTransform(mx, [-500, 500], [-5, 5]), { stiffness: 80, damping: 25 });
 
   useEffect(() => {
+    if (isMobile) return;
     const move = (e) => {
       mx.set(e.clientX - window.innerWidth / 2);
       my.set(e.clientY - window.innerHeight / 2);
     };
     window.addEventListener('mousemove', move);
     return () => window.removeEventListener('mousemove', move);
-  }, [mx, my]);
+  }, [mx, my, isMobile]);
 
   return (
     <section
@@ -441,7 +464,11 @@ export function ProjectsHero() {
           {/* ── RIGHT: Animated SVG schematic */}
           <motion.div
             className="relative w-full lg:w-[48%] flex items-center justify-center lg:pl-12 xl:pl-20"
-            style={{ y: svgY, opacity: svgOpacity, rotateX: rotX, rotateY: rotY, transformPerspective: 1000 }}
+            style={{ 
+              y: svgY, 
+              opacity: svgOpacity, 
+              ...(isMobile ? {} : { rotateX: rotX, rotateY: rotY, transformPerspective: 1000 }) 
+            }}
           >
             {/* Outer glow frame */}
             <div className="relative w-full max-w-[560px] aspect-[6/5]">
@@ -471,7 +498,7 @@ export function ProjectsHero() {
               </motion.div>
 
               {/* SVG */}
-              <CircuitSVG />
+              <CircuitSVG isMobile={isMobile} />
 
               {/* Floating badges */}
               <Badge

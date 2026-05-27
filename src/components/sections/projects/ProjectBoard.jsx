@@ -180,7 +180,7 @@ export function ProjectBoard() {
   const activeSortLabel = sortOptions.find(s => s.id === sortBy)?.label || 'Default';
 
   return (
-    <section id="project-board" className="bg-surface py-24 px-6 md:px-12 lg:px-20 border-t border-outline-variant/30">
+    <section id="project-board" className="bg-surface py-24 px-6 md:px-12 lg:px-20 border-t border-outline-variant/30 mt-[-1px] relative z-10">
       <div className="max-w-[1440px] mx-auto">
 
         {/* Section header */}

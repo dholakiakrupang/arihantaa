@@ -32,7 +32,7 @@ export function ServicesHero() {
 
         {/* Image label overlay */}
         <motion.div
-          className="absolute left-6 bottom-6 lg:left-10 lg:bottom-[100px] z-20 hidden lg:block"
+          className="absolute left-6 bottom-6 lg:left-10 lg:bottom-[100px] z-20"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}

@@ -31,9 +31,9 @@ export function ProcessSection() {
   ];
 
   return (
-    <section className="py-[140px] px-8 bg-inverse-surface text-white overflow-hidden">
+    <section className="py-16 md:py-24 lg:py-[140px] px-6 md:px-8 lg:px-16 bg-inverse-surface text-white overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-12 mb-20">
+        <div className="grid grid-cols-12 mb-10 md:mb-16 lg:mb-20">
           <div className="col-span-12">
             <Reveal>
               <span className="eyebrow text-primary mb-6 block">Our Methodology</span>
@@ -46,21 +46,21 @@ export function ProcessSection() {
           {steps.map((step, index) => (
             <motion.div 
               key={index} 
-              className="border-r border-b border-white/10 p-8 hover:bg-white/[0.02] transition-colors duration-300 flex flex-col justify-between group min-h-[250px] relative"
+              className={`border-r border-b border-white/10 p-6 md:p-8 hover:bg-white/[0.02] transition-colors duration-300 flex flex-col justify-start lg:justify-between group min-h-[150px] sm:min-h-[160px] lg:min-h-[250px] relative ${index === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 * index }}
             >
               <div>
-                <span className="block font-headline text-sm font-bold text-primary mb-6 group-hover:translate-x-1 transition-transform duration-300">
+                <span className="block font-headline text-sm font-bold text-primary mb-3 sm:mb-4 lg:mb-6 group-hover:translate-x-1 transition-transform duration-300">
                   {`0${step.number}`}
                 </span>
                 <h4 className="text-lg font-bold mb-3 text-white group-hover:text-primary transition-colors duration-300">
                   {step.title}
                 </h4>
               </div>
-              <p className="text-white/60 text-[13px] leading-relaxed mt-4">
+              <p className="text-white/60 text-[13px] leading-relaxed mt-2 lg:mt-4">
                 {step.desc}
               </p>
             </motion.div>
