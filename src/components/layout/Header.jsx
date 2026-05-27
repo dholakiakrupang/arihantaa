@@ -741,7 +741,7 @@ function SearchOverlay({ isOpen, onClose }) {
   // Focus + reset on open
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 80);
+      inputRef.current?.focus();
       setQuery('');
       setActiveIdx(-1);
     }
@@ -889,6 +889,7 @@ function SearchOverlay({ isOpen, onClose }) {
               <span className="material-symbols-outlined text-accent animate-pulse shrink-0 mr-2.5 md:mr-4" style={{ fontSize: '26px' }}>search</span>
               <input
                 ref={inputRef}
+                autoFocus
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
