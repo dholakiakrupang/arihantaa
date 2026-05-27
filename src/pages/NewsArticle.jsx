@@ -1,6 +1,6 @@
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { UnifiedCTA } from '../components/sections/UnifiedCTA';
 import { newsArticlesData } from '../data/newsArticlesData';
 
@@ -23,6 +23,47 @@ export function NewsArticle() {
   );
   const prevArticle = currentIndex > 0 ? newsArticlesData[currentIndex - 1] : null;
   const nextArticle = currentIndex < newsArticlesData.length - 1 ? newsArticlesData[currentIndex + 1] : null;
+
+  const [activePopup, setActivePopup] = useState(null); // 'link' | 'mail' | null
+  const [copied, setCopied] = useState(false);
+  const [recipientEmail, setRecipientEmail] = useState('');
+  const [shareUrl, setShareUrl] = useState('');
+
+  // Handle URL fetch in effect to prevent SSR mismatch
+  useEffect(() => {
+    setShareUrl(window.location.href);
+  }, [articleId]);
+
+  // Click outside to close active popup
+  useEffect(() => {
+    const handleDocumentClick = (e) => {
+      if (activePopup && !e.target.closest('.share-container')) {
+        setActivePopup(null);
+      }
+    };
+    document.addEventListener('mousedown', handleDocumentClick);
+    return () => {
+      document.removeEventListener('mousedown', handleDocumentClick);
+    };
+  }, [activePopup]);
+
+  const handleCopyLink = () => {
+    if (shareUrl) {
+      navigator.clipboard.writeText(shareUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const handleSendEmail = (e) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Arihantaa Insight: ${currentArticle.title}`);
+    const body = encodeURIComponent(`Check out this article: "${currentArticle.title}"\n\nRead more here: ${shareUrl}`);
+    const emailTo = recipientEmail ? encodeURIComponent(recipientEmail) : '';
+    window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+    setActivePopup(null);
+    setRecipientEmail('');
+  };
 
   // Reading progress bar setup
   const { scrollYProgress } = useScroll();
@@ -168,7 +209,7 @@ export function NewsArticle() {
 
               <img 
                 alt={currentArticle.title} 
-                className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-1000" 
+                className="w-full h-full object-cover brightness-95 transition-all duration-1000" 
                 src={currentArticle.img}
               />
             </div>
@@ -274,14 +315,263 @@ export function NewsArticle() {
                     <span key={hIdx} className="font-label-caps text-[9px] tracking-[0.15em] text-secondary bg-surface-container-low px-4 py-2 hover:bg-accent hover:text-white transition-colors cursor-pointer uppercase">{ht}</span>
                   ))}
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 share-container">
                   <span className="font-label-caps text-[10px] text-secondary uppercase tracking-[0.2em] font-bold">Share:</span>
-                  <button className="w-9 h-9 border border-outline-variant/50 rounded-none flex items-center justify-center text-secondary hover:border-accent hover:text-accent transition-colors">
-                    <span className="material-symbols-outlined text-[18px]">link</span>
-                  </button>
-                  <button className="w-9 h-9 border border-outline-variant/50 rounded-none flex items-center justify-center text-secondary hover:border-accent hover:text-accent transition-colors">
-                    <span className="material-symbols-outlined text-[18px]">mail</span>
-                  </button>
+                  
+                  {/* Share Link Button & Popup */}
+                  <div className="relative">
+                    <button 
+                      onClick={() => setActivePopup(activePopup === 'link' ? null : 'link')}
+                      className={`w-9 h-9 border rounded-none flex items-center justify-center transition-colors ${
+                        activePopup === 'link' 
+                          ? 'border-accent text-accent bg-accent/5' 
+                          : 'border-outline-variant/50 text-secondary hover:border-accent hover:text-accent'
+                      }`}
+                      aria-label="Copy share link"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">link</span>
+                    </button>
+
+                    <AnimatePresence>
+                      {activePopup === 'link' && (
+                        <>
+                          {/* Mobile View: Centered Modal with Blur Backdrop */}
+                          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 sm:hidden">
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.9 }}
+                              transition={{ duration: 0.2 }}
+                              className="w-full max-w-[320px] bg-white border border-outline-variant/60 shadow-2xl p-6 text-left text-neutral-900 relative"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              {/* Corner accents */}
+                              <div className="absolute top-[-1px] left-[-1px] w-2.5 h-2.5 border-t-2 border-l-2 border-accent pointer-events-none" />
+                              <div className="absolute top-[-1px] right-[-1px] w-2.5 h-2.5 border-t-2 border-r-2 border-accent pointer-events-none" />
+                              <div className="absolute bottom-[-1px] right-[-1px] w-2.5 h-2.5 border-b-2 border-r-2 border-accent pointer-events-none" />
+                              <div className="absolute bottom-[-1px] left-[-1px] w-2.5 h-2.5 border-b-2 border-l-2 border-accent pointer-events-none" />
+
+                              <div className="flex justify-between items-center mb-3">
+                                <span className="font-label-caps text-[10px] tracking-[0.2em] text-accent font-bold">SHARE LINK</span>
+                                <button 
+                                  onClick={() => setActivePopup(null)}
+                                  className="text-neutral-500 hover:text-neutral-900 transition-colors"
+                                >
+                                  <span className="material-symbols-outlined text-[20px]">close</span>
+                                </button>
+                              </div>
+                              
+                              <p className="font-body text-[13px] text-neutral-600 mb-4 font-light leading-snug">
+                                Copy this URL to share this insight with your team.
+                              </p>
+
+                              <div className="flex flex-col gap-3">
+                                <input 
+                                  type="text" 
+                                  readOnly 
+                                  value={shareUrl}
+                                  className="w-full bg-neutral-50 border border-neutral-200 px-3 py-2 text-[12px] text-neutral-800 font-mono focus:outline-none select-all"
+                                />
+                                <button 
+                                  onClick={handleCopyLink}
+                                  className="w-full bg-accent text-white font-label-caps text-[10px] tracking-[0.15em] font-bold py-2.5 hover:bg-accent/90 transition-colors flex items-center justify-center gap-2"
+                                >
+                                  {copied ? (
+                                    <>
+                                      <span className="material-symbols-outlined text-[16px]">check</span>
+                                      LINK COPIED
+                                    </>
+                                  ) : (
+                                    <>
+                                      <span className="material-symbols-outlined text-[16px]">content_copy</span>
+                                      COPY LINK
+                                    </>
+                                  )}
+                                </button>
+                              </div>
+                            </motion.div>
+                          </div>
+
+                          {/* Desktop/Tablet View: Right-aligned Popover */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                            transition={{ duration: 0.2, ease: [0.25, 1, 0.5, 1] }}
+                            className="hidden sm:block absolute bottom-full right-0 mb-3 w-[290px] bg-white border border-outline-variant/60 shadow-2xl z-50 p-5 text-left text-neutral-900"
+                          >
+                            {/* Corner accents */}
+                            <div className="absolute top-[-1px] left-[-1px] w-2.5 h-2.5 border-t border-l border-accent pointer-events-none z-10" />
+                            <div className="absolute top-[-1px] right-[-1px] w-2.5 h-2.5 border-t border-r border-accent pointer-events-none z-10" />
+                            <div className="absolute bottom-[-1px] right-[-1px] w-2.5 h-2.5 border-b border-r border-accent pointer-events-none z-10" />
+                            <div className="absolute bottom-[-1px] left-[-1px] w-2.5 h-2.5 border-b border-l border-accent pointer-events-none z-10" />
+
+                            {/* Downward indicator arrow pointing exactly to button */}
+                            <div className="absolute top-[calc(100%-6px)] right-[12px] w-3 h-3 bg-white border-r border-b border-outline-variant/60 rotate-45 z-0" />
+
+                            <div className="flex justify-between items-center mb-3 relative z-10">
+                              <span className="font-label-caps text-[9px] tracking-[0.2em] text-accent font-bold">SHARE LINK</span>
+                              <button 
+                                onClick={() => setActivePopup(null)}
+                                className="text-neutral-500 hover:text-neutral-900 transition-colors"
+                              >
+                                <span className="material-symbols-outlined text-[16px]">close</span>
+                              </button>
+                            </div>
+                            
+                            <p className="font-body text-[12px] text-neutral-600 mb-3 font-light leading-snug relative z-10">
+                              Copy this URL to share this insight with your team.
+                            </p>
+
+                            <div className="flex gap-2 relative z-10">
+                              <input 
+                                type="text" 
+                                readOnly 
+                                value={shareUrl}
+                                className="flex-1 bg-neutral-50 border border-neutral-200 px-3 py-1.5 text-[11px] text-neutral-800 font-mono focus:outline-none select-all"
+                              />
+                              <button 
+                                onClick={handleCopyLink}
+                                className="bg-accent text-white font-label-caps text-[9px] tracking-[0.15em] font-bold px-3 py-1.5 hover:bg-accent/90 transition-colors flex items-center gap-1"
+                              >
+                                {copied ? (
+                                  <>
+                                    <span className="material-symbols-outlined text-[13px]">check</span>
+                                    COPIED
+                                  </>
+                                ) : (
+                                  <>
+                                    <span className="material-symbols-outlined text-[13px]">content_copy</span>
+                                    COPY
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          </motion.div>
+                        </>
+                      )}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Share Email Button & Popup */}
+                  <div className="relative">
+                    <button 
+                      onClick={() => setActivePopup(activePopup === 'mail' ? null : 'mail')}
+                      className={`w-9 h-9 border rounded-none flex items-center justify-center transition-colors ${
+                        activePopup === 'mail' 
+                          ? 'border-accent text-accent bg-accent/5' 
+                          : 'border-outline-variant/50 text-secondary hover:border-accent hover:text-accent'
+                      }`}
+                      aria-label="Share via email"
+                    >
+                      <span className="material-symbols-outlined text-[18px]">mail</span>
+                    </button>
+
+                    <AnimatePresence>
+                      {activePopup === 'mail' && (
+                        <>
+                          {/* Mobile View: Centered Modal with Blur Backdrop */}
+                          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 sm:hidden">
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.9 }}
+                              transition={{ duration: 0.2 }}
+                              className="w-full max-w-[320px] bg-white border border-outline-variant/60 shadow-2xl p-6 text-left text-neutral-900 relative"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              {/* Corner accents */}
+                              <div className="absolute top-[-1px] left-[-1px] w-2.5 h-2.5 border-t-2 border-l-2 border-accent pointer-events-none" />
+                              <div className="absolute top-[-1px] right-[-1px] w-2.5 h-2.5 border-t-2 border-r-2 border-accent pointer-events-none" />
+                              <div className="absolute bottom-[-1px] right-[-1px] w-2.5 h-2.5 border-b-2 border-r-2 border-accent pointer-events-none" />
+                              <div className="absolute bottom-[-1px] left-[-1px] w-2.5 h-2.5 border-b-2 border-l-2 border-accent pointer-events-none" />
+
+                              <div className="flex justify-between items-center mb-3">
+                                <span className="font-label-caps text-[10px] tracking-[0.2em] text-accent font-bold">SHARE VIA EMAIL</span>
+                                <button 
+                                  onClick={() => setActivePopup(null)}
+                                  className="text-neutral-500 hover:text-neutral-900 transition-colors"
+                                >
+                                  <span className="material-symbols-outlined text-[20px]">close</span>
+                                </button>
+                              </div>
+                              
+                              <form onSubmit={handleSendEmail} className="space-y-4">
+                                <div>
+                                  <label className="block font-label-caps text-[9px] tracking-[0.15em] text-neutral-500 mb-1.5 uppercase font-bold">Recipient Email</label>
+                                  <input 
+                                    type="email" 
+                                    placeholder="name@example.com"
+                                    value={recipientEmail}
+                                    onChange={(e) => setRecipientEmail(e.target.value)}
+                                    className="w-full bg-neutral-50 border border-neutral-200 px-3 py-2 text-[12px] text-neutral-900 font-sans focus:outline-none focus:border-accent transition-colors rounded-none placeholder:text-neutral-400"
+                                    required
+                                  />
+                                </div>
+
+                                <button 
+                                  type="submit"
+                                  className="w-full bg-accent text-white font-label-caps text-[10px] tracking-[0.15em] font-bold py-2.5 hover:bg-accent/90 transition-colors flex items-center justify-center gap-2"
+                                >
+                                  <span className="material-symbols-outlined text-[16px]">send</span>
+                                  LAUNCH EMAIL CLIENT
+                                </button>
+                              </form>
+                            </motion.div>
+                          </div>
+
+                          {/* Desktop/Tablet View: Right-aligned Popover */}
+                          <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                            transition={{ duration: 0.2, ease: [0.25, 1, 0.5, 1] }}
+                            className="hidden sm:block absolute bottom-full right-0 mb-3 w-[290px] bg-white border border-outline-variant/60 shadow-2xl z-50 p-5 text-left text-neutral-900"
+                          >
+                            {/* Corner accents */}
+                            <div className="absolute top-[-1px] left-[-1px] w-2.5 h-2.5 border-t border-l border-accent pointer-events-none z-10" />
+                            <div className="absolute top-[-1px] right-[-1px] w-2.5 h-2.5 border-t border-r border-accent pointer-events-none z-10" />
+                            <div className="absolute bottom-[-1px] right-[-1px] w-2.5 h-2.5 border-b border-r border-accent pointer-events-none z-10" />
+                            <div className="absolute bottom-[-1px] left-[-1px] w-2.5 h-2.5 border-b border-l border-accent pointer-events-none z-10" />
+
+                            {/* Downward indicator arrow pointing exactly to button */}
+                            <div className="absolute top-[calc(100%-6px)] right-[12px] w-3 h-3 bg-white border-r border-b border-outline-variant/60 rotate-45 z-0" />
+
+                            <div className="flex justify-between items-center mb-3 relative z-10">
+                              <span className="font-label-caps text-[9px] tracking-[0.2em] text-accent font-bold">SHARE VIA EMAIL</span>
+                              <button 
+                                onClick={() => setActivePopup(null)}
+                                className="text-neutral-500 hover:text-neutral-900 transition-colors"
+                              >
+                                <span className="material-symbols-outlined text-[16px]">close</span>
+                              </button>
+                            </div>
+                            
+                            <form onSubmit={handleSendEmail} className="space-y-3 relative z-10">
+                              <div>
+                                <label className="block font-label-caps text-[8.5px] tracking-[0.15em] text-neutral-500 mb-1.5 uppercase font-bold">Recipient Email</label>
+                                <input 
+                                  type="email" 
+                                  placeholder="name@example.com"
+                                  value={recipientEmail}
+                                  onChange={(e) => setRecipientEmail(e.target.value)}
+                                  className="w-full bg-neutral-50 border border-neutral-200 px-3 py-2 text-[11px] text-neutral-900 font-sans focus:outline-none focus:border-accent transition-colors rounded-none placeholder:text-neutral-400"
+                                />
+                              </div>
+
+                              <button 
+                                type="submit"
+                                className="w-full bg-accent text-white font-label-caps text-[9px] tracking-[0.15em] font-bold py-2 hover:bg-accent/90 transition-colors flex items-center justify-center gap-1.5"
+                              >
+                                <span className="material-symbols-outlined text-[14px]">send</span>
+                                LAUNCH MAIL CLIENT
+                              </button>
+                            </form>
+                          </motion.div>
+                        </>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </div>
               </motion.div>
 
@@ -378,7 +668,7 @@ export function NewsArticle() {
                         <div className="absolute inset-0 border border-accent/0 group-hover:border-accent/40 transition-colors pointer-events-none z-10" />
                         <img 
                           alt="Substation thermal efficiency" 
-                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-550" 
+                          className="w-full h-full object-cover group-hover:scale-110 transition-all duration-550" 
                           src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXTaHZF2s9EkzujqLkbFGry7vOKPsNt08rADHH8cldx-PLWVBfX6u0hGiYUoZNcAzNC7Ehmw_-X_0QdDoUMyXBrLLW4L3pc4TwlDscR-6KnEo4MAuCKMiAUOkXHJK7_poGE5pNs4aOMu6CiUavm8gA9runwJkVJYn8vVZtdTud_VMyk0H3whG-zl4t0dvS1KnNhOUcLUA4dQzngEUerTrLQRsMQJ-ii3RggnHmSOMnNymRLZzcoxHoPn8v4HmkDrrCIGwITFcCyr4"
                         />
                       </div>
@@ -395,7 +685,7 @@ export function NewsArticle() {
                         <div className="absolute inset-0 border border-accent/0 group-hover:border-accent/40 transition-colors pointer-events-none z-10" />
                         <img 
                           alt="Hydro-electric stress testing" 
-                          className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-550" 
+                          className="w-full h-full object-cover group-hover:scale-110 transition-all duration-550" 
                           src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5FW8nf272gXSM_1xLQR9lKoi7xId3VLHIZFPFzZDDsZz-nkZBK2rLtsZtKJkruCgzVDafIT8sh-T2S4pquUpCFv5xVyBphjPjDfvrRtJhzcdElkAzpWf66KnClNbPqHBo7FDSKuqauWqmdmdjkPyWjklLYf1pyhqrHlKMFP7aTOT40qcirHI1QrKknjtv-vRFHkwL6Lqe96kLA6WOsS23v5Vqw3Ww0Ukxbs38PwDFBS-xum-nzeDdwKNE9LRjMiiG71SmAJODIrk"
                         />
                       </div>
