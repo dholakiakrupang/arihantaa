@@ -104,7 +104,7 @@ export function Services() {
         accent="Talk to our experts."
         subtitle="We respond to all technical support and custom SLA enquiries within 1 business day."
         primaryText="CONSULT AN EXPERT"
-        primaryTo="/contact?inquiry=support"
+        primaryTo="/contact?inquiry=support&item=Custom%20Service%20Requirement"
         outlineText="VIEW ALL SERVICES"
         outlineTo="/services"
       />

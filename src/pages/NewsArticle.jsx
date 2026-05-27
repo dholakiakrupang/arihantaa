@@ -740,7 +740,7 @@ export function NewsArticle() {
           accent="Get in touch."
           subtitle="Consult with our engineering division on upcoming substation and high-voltage grid projects."
           primaryText="CONNECT WITH US"
-          primaryTo="/contact?inquiry=sales"
+          primaryTo={`/contact?inquiry=sales&item=${encodeURIComponent(currentArticle.title)}`}
           outlineText="EXPLORE ALL NEWS"
           outlineTo="/news"
           uppercase={true}

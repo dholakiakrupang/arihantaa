@@ -35,7 +35,7 @@ export function CredentialsBar() {
         accent="Collaborate with our team."
         subtitle="We deliver turnkey industrial power, thermal systems, and PM lifecycle management."
         primaryText="CONTACT OUR TEAM"
-        primaryTo="/contact?inquiry=quote"
+        primaryTo="/contact?inquiry=quote&item=Complex%20Project%20Collaboration"
         outlineText="VIEW COMPANY PROFILE"
         outlineTo="/about"
       />

@@ -23,7 +23,7 @@ export function FeaturedNews({ activeCategory, setActiveCategory }) {
   const [filterOpen, setFilterOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [visibleCount, setVisibleCount] = useState(5);
 
   const categories = [
     { id: 'All', label: 'All Articles' },
@@ -62,7 +62,7 @@ export function FeaturedNews({ activeCategory, setActiveCategory }) {
   const handleApplyFilters = () => {
     setActiveCategory(tempCategory);
     setFilterOpen(false);
-    setVisibleCount(3);
+    setVisibleCount(5);
   };
 
   const handleResetFilters = () => {
@@ -168,11 +168,11 @@ export function FeaturedNews({ activeCategory, setActiveCategory }) {
                   type="text"
                   placeholder="SEARCH NEWS..."
                   value={searchQuery}
-                  onChange={(e) => { setSearchQuery(e.target.value); setVisibleCount(3); }}
+                  onChange={(e) => { setSearchQuery(e.target.value); setVisibleCount(5); }}
                   className="bg-transparent text-[10px] font-label-caps tracking-[0.05em] text-secondary placeholder:text-secondary/30 focus:outline-none w-full py-3.5"
                 />
                 {searchQuery && (
-                  <button onClick={() => { setSearchQuery(''); setVisibleCount(3); }} className="text-secondary/40 hover:text-accent transition-colors flex items-center justify-center ml-2">
+                  <button onClick={() => { setSearchQuery(''); setVisibleCount(5); }} className="text-secondary/40 hover:text-accent transition-colors flex items-center justify-center ml-2">
                     <span className="material-symbols-outlined text-[14px]">close</span>
                   </button>
                 )}
@@ -279,7 +279,7 @@ export function FeaturedNews({ activeCategory, setActiveCategory }) {
                         <span className="font-label-caps text-[9px] tracking-[0.2em] text-secondary/60">ORDER BY</span>
                         {sortBy !== 'default' && (
                           <button
-                            onClick={() => { setSortBy('default'); setSortOpen(false); setVisibleCount(3); }}
+                            onClick={() => { setSortBy('default'); setSortOpen(false); setVisibleCount(5); }}
                             className="font-label-caps text-[9px] tracking-[0.14em] text-accent hover:text-accent/80 transition-colors"
                           >
                             RESET
@@ -292,7 +292,7 @@ export function FeaturedNews({ activeCategory, setActiveCategory }) {
                           onClick={() => {
                             setSortBy(opt.id);
                             setSortOpen(false);
-                            setVisibleCount(3);
+                            setVisibleCount(5);
                           }}
                           className={`w-full h-[44px] px-5 text-left font-label-caps text-[10px] tracking-[0.14em] font-bold transition-all duration-200 flex items-center justify-between border-b border-outline-variant/10 last:border-b-0 ${
                             sortBy === opt.id
@@ -418,7 +418,7 @@ export function FeaturedNews({ activeCategory, setActiveCategory }) {
                 theme="light"
                 showArrow
                 icon="arrow_downward"
-                onClick={() => setVisibleCount(prev => prev + 3)}
+                onClick={() => setVisibleCount(prev => prev + 5)}
                 className="border-outline-variant/50 min-w-[200px]"
               >
                 LOAD MORE

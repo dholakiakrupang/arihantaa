@@ -483,7 +483,7 @@ export function ServiceDetail() {
           accent="Talk to our experts."
           subtitle="We compile customized SLA preventative maintenance plans and layout briefs for your facility."
           primaryText="CONSULT AN EXPERT"
-          primaryTo={`/contact?inquiry=consultation&item=${encodeURIComponent(service.title)}`}
+          primaryTo={`/contact?inquiry=sales&item=${encodeURIComponent(service.title)}`}
           outlineText="VIEW ALL SERVICES"
           outlineTo="/services"
           uppercase={true}
