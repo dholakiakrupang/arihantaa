@@ -227,6 +227,7 @@ export function ProductDetail() {
         ['Enclosure Protection Rating', specEnclosure],
         ['Cooling Architecture', specCooling],
         ['System Footprint & Frame', specFootprint],
+        ['Cable Access & Entry', 'Top and Bottom Cable Entry, Full Front Access'],
       ]
     },
     {
@@ -237,6 +238,7 @@ export function ProductDetail() {
         ['Operating Temperature Range', specTemp],
         ['Operating Altitude Limits', '< 1000m without derating'],
         ['Relative Humidity', '0% to 95% (Non-condensing)'],
+        ['Audible Noise Emission', '< 65 dBA at 1.5 meters (Standard)'],
       ]
     }
   ];
@@ -551,7 +553,7 @@ export function ProductDetail() {
             {/* Subheading with Metric/Imperial Toggle */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-6">
               <h3 className="font-headline text-[20px] text-on-surface font-bold uppercase tracking-tight flex items-center gap-3">
-                <span className="material-symbols-outlined text-accent text-[26px]">comparison</span>
+                <span className="material-symbols-outlined text-accent text-[26px] normal-case tracking-normal">comparison</span>
                 Model Configuration Options
               </h3>
 
