@@ -747,20 +747,18 @@ function SearchOverlay({ isOpen, onClose }) {
     }
   }, [isOpen]);
 
-  // Body + iOS scroll lock
+  // Body + iOS scroll lock (Lenis-aware)
   useEffect(() => {
     if (!isOpen) {
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.width = '';
+      window.lenis?.start();
       return;
     }
-    // Standard lock
-    const scrollY = window.scrollY;
+    // Standard lock using overflow: hidden
     document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
+    window.lenis?.stop();
     // iOS Safari: prevent touchmove on background
     const preventTouch = (e) => { if (!e.target.closest('[data-search-panel]')) e.preventDefault(); };
     document.addEventListener('touchmove', preventTouch, { passive: false });
@@ -768,8 +766,7 @@ function SearchOverlay({ isOpen, onClose }) {
       document.body.style.overflow = '';
       document.body.style.position = '';
       document.body.style.width = '';
-      document.body.style.top = '';
-      window.scrollTo(0, scrollY);
+      window.lenis?.start();
       document.removeEventListener('touchmove', preventTouch);
     };
   }, [isOpen]);
