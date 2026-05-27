@@ -88,10 +88,10 @@ export function ProductImageGallery({
   const hasValidImage = currentImage && !imageErrors[activeIndex];
 
   return (
-    <div className="w-full flex flex-col gap-4 sm:gap-6 relative group/gallery select-none">
+    <div className="w-full flex flex-col relative group/gallery select-none">
       
       {/* ── Main Display Container (No borders, no white card, transparent background) ── */}
-      <div className="relative w-full overflow-hidden flex items-center justify-center min-h-[360px] md:min-h-[440px] bg-transparent">
+      <div className="relative w-full overflow-hidden flex items-center justify-center min-h-[360px] md:min-h-[440px] bg-transparent pb-2 sm:pb-3">
         
         {hasValidImage ? (
           <div className="relative w-full h-full flex items-center justify-center">
@@ -100,7 +100,7 @@ export function ProductImageGallery({
             {hasMultiple && (
               <button 
                 onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-none flex items-center justify-center bg-white/80 hover:bg-accent border border-outline-variant/30 hover:border-accent text-secondary hover:text-white transition-all duration-300 shadow-sm opacity-100 lg:opacity-0 lg:group-hover/gallery:opacity-100"
+                className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-none flex items-center justify-center bg-white/90 hover:bg-accent border border-outline-variant/30 hover:border-accent text-secondary hover:text-white transition-all duration-300 shadow-sm opacity-100"
                 aria-label="Previous image"
               >
                 <span className="material-symbols-outlined text-[22px] select-none">chevron_left</span>
@@ -111,19 +111,19 @@ export function ProductImageGallery({
             {hasMultiple && (
               <button 
                 onClick={(e) => { e.stopPropagation(); goNext(); }}
-                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-none flex items-center justify-center bg-white/80 hover:bg-accent border border-outline-variant/30 hover:border-accent text-secondary hover:text-white transition-all duration-300 shadow-sm opacity-100 lg:opacity-0 lg:group-hover/gallery:opacity-100"
+                className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-none flex items-center justify-center bg-white/90 hover:bg-accent border border-outline-variant/30 hover:border-accent text-secondary hover:text-white transition-all duration-300 shadow-sm opacity-100"
                 aria-label="Next image"
               >
                 <span className="material-symbols-outlined text-[22px] select-none">chevron_right</span>
               </button>
             )}
 
-            {/* Main Image (Swaps Instantly - No slide animation wrapper) */}
+            {/* Main Image (Swaps Instantly - No slide animation wrapper, set to object-cover) */}
             <img
               src={currentImage.src}
               alt={currentImage.alt || `Product view ${activeIndex + 1}`}
               onClick={() => setIsZoomed(true)}
-              className="w-full h-full max-h-[360px] md:max-h-[440px] object-contain select-none mix-blend-multiply cursor-zoom-in z-10 hover:scale-[1.015] transition-transform duration-300 px-14 md:px-20 lg:px-0"
+              className="w-full h-full max-h-[360px] md:max-h-[440px] object-cover select-none cursor-zoom-in z-10 hover:scale-[1.015] transition-transform duration-300"
               onError={() => handleImageError(activeIndex)}
               draggable={false}
             />
@@ -144,7 +144,7 @@ export function ProductImageGallery({
 
       {/* ── Structured Thumbnail Strip (Clean, low-profile, completely transparent borderless buttons) ── */}
       {hasMultiple && (
-        <div className="flex w-full items-center gap-2 overflow-x-auto hide-scrollbar justify-center">
+        <div className="flex w-full items-center gap-2 overflow-x-auto hide-scrollbar justify-center pt-2 sm:pt-3">
           {gallery.map((img, idx) => {
             const isActive = idx === activeIndex;
             const hasError = imageErrors[idx];

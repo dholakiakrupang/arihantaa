@@ -246,7 +246,7 @@ export function ProductDetail() {
   const activeSpecTab = specTabs.find(t => t.key === activeTab) || specTabs[0];
 
   return (
-    <div className="bg-background text-on-background font-body min-h-screen selection:bg-primary-container selection:text-on-primary-container">
+    <div className="bg-background text-on-background font-body min-h-screen selection:bg-primary-container selection:text-on-primary-container pt-[56px] sm:pt-[64px] md:pt-[80px]">
 
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 1 — Sticky Sub-Navigation Bar
@@ -313,7 +313,7 @@ export function ProductDetail() {
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
             variants={staggerContainer}
-            className="col-span-12 lg:col-span-7 border-r border-b border-outline-variant/30 p-8 md:p-16 flex flex-col justify-center order-2 lg:order-1"
+            className="col-span-12 lg:col-span-7 border-r border-outline-variant/30 p-8 md:p-16 flex flex-col justify-center order-2 lg:order-1"
           >
             {/* Category Eyebrow */}
             <motion.span
@@ -398,7 +398,7 @@ export function ProductDetail() {
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
             variants={fadeUp}
-            className="col-span-12 lg:col-span-5 border-r border-b border-outline-variant/30 pt-12 md:pt-20 lg:pt-24 pb-8 sm:pb-12 lg:pb-0 px-4 sm:px-6 lg:px-0 bg-surface-container-low/10 flex items-center justify-center order-1 lg:order-2 relative"
+            className="col-span-12 lg:col-span-5 border-r border-b lg:border-b-0 border-outline-variant/30 pt-4 md:pt-6 lg:pt-0 pb-8 sm:pb-12 lg:pb-0 px-4 sm:px-6 lg:px-0 bg-surface-container-low/10 flex items-center justify-center order-1 lg:order-2 relative"
           >
             <ProductImageGallery
               images={product.images}
