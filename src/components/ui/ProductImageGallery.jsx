@@ -186,53 +186,57 @@ export function ProductImageGallery({
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               onClick={() => setIsZoomed(false)}
-              className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/80 backdrop-blur-2xl p-4 md:p-12 cursor-zoom-out select-none"
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/80 backdrop-blur-2xl p-2 sm:p-4 md:p-6 cursor-zoom-out select-none"
             >
               {/* Modal Canvas Container */}
               <div 
-                className="relative w-full h-full flex flex-col items-center justify-center"
+                className="relative w-full max-w-4xl h-full flex flex-col items-center justify-between"
                 onClick={(e) => e.stopPropagation()}
               >
-                
-                {/* Close Button (Sharp B2B Box with Dark High-Contrast styling) */}
-                <button
-                  onClick={() => setIsZoomed(false)}
-                  className="absolute top-4 right-4 md:top-8 md:right-8 z-50 w-12 h-12 rounded-none bg-black/5 border border-black/10 text-secondary hover:bg-accent hover:border-accent hover:text-white hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
-                  aria-label="Close zoomed view"
-                >
-                  <span className="material-symbols-outlined text-[24px]">close</span>
-                </button>
+                {/* Top Control Bar (Only contains Close Button, aligned to the right) */}
+                <div className="w-full flex justify-end pb-4 border-b border-black/5 shrink-0 select-none">
+                  <button
+                    onClick={() => setIsZoomed(false)}
+                    className="w-10 h-10 sm:w-11 sm:h-11 rounded-none bg-black/5 border border-black/10 text-secondary hover:bg-accent hover:border-accent hover:text-white hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
+                    aria-label="Close zoomed view"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">close</span>
+                  </button>
+                </div>
 
-                {/* Enlarge Zoomed Image Display (Blends beautifully against white blur backdrop) */}
-                <div className="relative w-full max-w-4xl flex-1 flex items-center justify-center p-6 min-h-0">
-                  {/* Large Left Floating Arrow on Image Edge (Responsive sizing & vertical alignment) */}
+                {/* Enlarge Zoomed Image Display (Absolute positioned navigation arrows to maximize image sizing) */}
+                <div className="w-full flex-1 flex items-center justify-center min-h-0 relative select-none">
+                  {/* Left Navigation Arrow */}
                   {hasMultiple && (
                     <button
                       onClick={(e) => { e.stopPropagation(); goPrev(); }}
-                      className="absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-14 sm:h-14 rounded-none bg-black/5 border border-black/10 hover:border-accent text-secondary hover:text-white hover:bg-accent hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
+                      className="absolute left-2 sm:left-4 z-40 w-10 h-10 sm:w-11 sm:h-11 rounded-none bg-black/5 border border-black/10 hover:border-accent text-secondary hover:text-white hover:bg-accent hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
                       aria-label="Previous image"
                     >
-                      <span className="material-symbols-outlined text-[24px] sm:text-[28px]">chevron_left</span>
+                      <span className="material-symbols-outlined text-[20px] sm:text-[22px]">chevron_left</span>
                     </button>
                   )}
 
-                  {/* Large Right Floating Arrow on Image Edge (Responsive sizing & vertical alignment) */}
+                  {/* Centered Image viewport with horizontal padding to guarantee zero arrow overlapping */}
+                  <div className="w-full h-full flex items-center justify-center min-h-0 px-12 sm:px-16 md:px-20">
+                    <img
+                      src={currentImage.src}
+                      alt={currentImage.alt || `Enlarged view`}
+                      className="max-h-[78vh] md:max-h-[84vh] max-w-full object-contain filter drop-shadow-[0_16px_36px_rgba(0,0,0,0.06)] mix-blend-multiply select-none"
+                      draggable={false}
+                    />
+                  </div>
+
+                  {/* Right Navigation Arrow */}
                   {hasMultiple && (
                     <button
                       onClick={(e) => { e.stopPropagation(); goNext(); }}
-                      className="absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-14 sm:h-14 rounded-none bg-black/5 border border-black/10 hover:border-accent text-secondary hover:text-white hover:bg-accent hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
+                      className="absolute right-2 sm:right-4 z-40 w-10 h-10 sm:w-11 sm:h-11 rounded-none bg-black/5 border border-black/10 hover:border-accent text-secondary hover:text-white hover:bg-accent hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center"
                       aria-label="Next image"
                     >
-                      <span className="material-symbols-outlined text-[24px] sm:text-[28px]">chevron_right</span>
+                      <span className="material-symbols-outlined text-[20px] sm:text-[22px]">chevron_right</span>
                     </button>
                   )}
-
-                  <img
-                    src={currentImage.src}
-                    alt={currentImage.alt || `Enlarged view`}
-                    className="max-h-[65vh] max-w-full object-contain filter drop-shadow-[0_16px_36px_rgba(0,0,0,0.06)] mix-blend-multiply select-none"
-                    draggable={false}
-                  />
                 </div>
 
                 {/* Interactive Thumbnail Strip inside the Modal (Scrollable on small viewports, completely centered) */}
@@ -245,7 +249,7 @@ export function ProductImageGallery({
                         <button
                           key={idx}
                           onClick={(e) => { e.stopPropagation(); goTo(idx); }}
-                          className={`relative shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-none transition-all duration-300 overflow-hidden flex items-center justify-center bg-black/5 border ${
+                          className={`relative shrink-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-none transition-all duration-300 overflow-hidden flex items-center justify-center bg-black/5 border ${
                             isActive 
                               ? 'border-accent opacity-100 bg-white ring-1 ring-accent/10' 
                               : 'border-transparent opacity-45 hover:opacity-100 hover:border-black/20 hover:bg-white/80'
