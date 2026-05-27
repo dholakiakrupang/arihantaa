@@ -203,7 +203,7 @@ export function Hero() {
           className="w-full flex flex-col flex-1"
           style={{ y: textY }}
         >
-          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-grow px-8 md:px-8 lg:px-16">
+          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-grow px-6 sm:px-8 lg:px-16">
             {/* Inner left column — 52% width, right padding creates gap before divider */}
             <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-grow lg:pr-16">
 
@@ -225,18 +225,18 @@ export function Hero() {
 
                 {/* H1 — 2 lines: "Powering Critical" + "Infrastructure." */}
                 <motion.h1
-                  className="font-headline font-black uppercase leading-[0.92] tracking-tighter mb-7"
+                  className="font-headline font-black uppercase leading-[1.0] sm:leading-[0.92] tracking-tighter mb-7 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px]"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
                 >
                   {/* Line 1: Powering + Critical on same line */}
-                  <span className="block" style={{ fontSize: 'clamp(36px, 4.2vw, 68px)' }}>
+                  <span className="block">
                     <span className="text-white">Powering </span>
                     <span className="text-accent">Critical</span>
                   </span>
                   {/* Line 2: Infrastructure. */}
-                  <span className="block text-white" style={{ fontSize: 'clamp(36px, 4.2vw, 68px)' }}>
+                  <span className="block text-white">
                     Infrastructure.
                   </span>
                 </motion.h1>

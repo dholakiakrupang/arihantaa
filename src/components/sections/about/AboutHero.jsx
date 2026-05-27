@@ -57,7 +57,7 @@ export function AboutHero() {
         <div className="min-h-[88px] md:min-h-[96px] shrink-0" />
 
         <motion.div className="w-full flex flex-col flex-1" style={{}}>
-          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-1 px-8 md:px-16">
+          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-1 px-6 sm:px-8 lg:px-16">
             <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-1 lg:pr-16">
               <div className="flex flex-col gap-0">
 
@@ -86,16 +86,16 @@ export function AboutHero() {
 
                 {/* H1 */}
                 <motion.h1
-                  className="font-headline font-black uppercase leading-[0.92] tracking-tighter mb-7"
+                  className="font-headline font-black uppercase leading-[1.0] sm:leading-[0.92] tracking-tighter mb-7 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px]"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
                 >
-                  <span className="block" style={{ fontSize: 'clamp(36px, 4.2vw, 68px)' }}>
+                  <span className="block">
                     <span className="text-white">Engineering </span>
                     <span className="text-accent">Global</span>
                   </span>
-                  <span className="block text-white" style={{ fontSize: 'clamp(36px, 4.2vw, 68px)' }}>Excellence.</span>
+                  <span className="block text-white">Excellence.</span>
                 </motion.h1>
 
                 {/* Description */}
