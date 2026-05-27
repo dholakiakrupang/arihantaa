@@ -234,32 +234,47 @@ function HamburgerButton({ isOpen, onClick }) {
 }
 
 // ─── Mobile Accordion Section ──────────────────────────────────────────────
-function MobileAccordion({ label, index, sections, cta, onNavigate, isActive }) {
+function MobileAccordion({ label, to, index, sections, cta, onNavigate, isActive }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
     <div className="border-b border-white/[0.12]">
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between py-5 min-h-[56px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-inset"
-        aria-expanded={isExpanded}
-      >
-        <div className="flex items-center gap-5">
+      <div className="flex items-center justify-between min-h-[56px]">
+
+        {/* LEFT: Tapping label navigates directly to /products or /services */}
+        <Link
+          to={to}
+          onClick={onNavigate}
+          className="flex items-center gap-5 py-5 flex-1 group/direct"
+        >
           <span className={`font-headline text-[11px] font-light tabular-nums w-5 ${isActive ? 'text-accent' : 'text-white/20'}`}>
             0{index + 1}
           </span>
-          <span className={`font-headline text-[18px] sm:text-[20px] font-semibold uppercase tracking-[0.02em] ${isActive ? 'text-accent' : 'text-white'}`}>
+          <span className={`font-headline text-[18px] sm:text-[20px] font-semibold uppercase tracking-[0.02em] ${isActive ? 'text-accent' : 'text-white group-hover/direct:text-accent/80'} transition-colors duration-200`}>
             {label}
           </span>
-        </div>
-        <motion.span
-          className="material-symbols-outlined text-white/25 text-[30px]"
-          animate={{ rotate: isExpanded ? 45 : 0 }}
-          transition={{ duration: 0.2, ease: EASE_OUT_QUART }}
+          {/* Subtle direct-nav hint arrow */}
+          <span className={`material-symbols-outlined text-[16px] transition-all duration-200 opacity-0 group-hover/direct:opacity-100 -translate-x-1 group-hover/direct:translate-x-0 ${isActive ? 'text-accent opacity-60' : 'text-white/30'}`}>
+            arrow_forward
+          </span>
+        </Link>
+
+        {/* RIGHT: Only the + toggle button expands/collapses sub-items */}
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="flex items-center justify-center w-12 h-[56px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 shrink-0"
+          aria-expanded={isExpanded}
+          aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${label} submenu`}
         >
-          add
-        </motion.span>
-      </button>
+          <motion.span
+            className="material-symbols-outlined text-white/25 text-[28px]"
+            animate={{ rotate: isExpanded ? 45 : 0 }}
+            transition={{ duration: 0.2, ease: EASE_OUT_QUART }}
+          >
+            add
+          </motion.span>
+        </button>
+      </div>
 
       <AnimatePresence initial={false}>
         {isExpanded && (
@@ -477,8 +492,9 @@ function MobileDrawer({ isOpen, onClose }) {
                           animate="visible"
                           exit="exit"
                         >
-                          <MobileAccordion
+                        <MobileAccordion
                             label={label}
+                            to={to}
                             index={i}
                             sections={menu.sections}
                             cta={menu.cta}

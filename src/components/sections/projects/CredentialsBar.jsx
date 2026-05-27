@@ -30,7 +30,7 @@ export function CredentialsBar() {
       </section>
 
       {/* Footer CTA */}
-      <UnifiedCTA 
+      <UnifiedCTA
         heading="Have a complex project?"
         accent="Collaborate with our team."
         subtitle="We deliver turnkey industrial power, thermal systems, and PM lifecycle management."

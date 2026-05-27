@@ -121,16 +121,16 @@ export function Footer() {
         </div>
         
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[12px] font-label-caps tracking-[0.1em] text-white/40 uppercase">
-          <div className="flex items-center gap-6">
-            <span className="text-white/60">© 2026 Arihantaa Powertech</span>
-            <span className="hidden sm:inline-block w-1 h-1 bg-white/20 rounded-full" />
-            <span>ISO 9001:2015 Certified</span>
+        <div className="pt-6 sm:pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-3 text-[10px] sm:text-[11px] font-label-caps tracking-[0.1em] text-white/40 uppercase">
+          <div className="flex items-center gap-3 sm:gap-5 flex-wrap justify-center sm:justify-start">
+            <span className="text-white/60 whitespace-nowrap">© 2026 Arihantaa Powertech</span>
+            <span className="inline-block w-1 h-1 bg-white/20 rounded-full shrink-0" />
+            <span className="whitespace-nowrap">ISO 9001:2015 Certified</span>
           </div>
-          <div className="flex flex-wrap justify-center gap-8">
-            <Link to="/contact?inquiry=privacy" className="hover:text-white transition-colors">Privacy Protocol</Link>
-            <Link to="/about" className="hover:text-white transition-colors">Safety Standards</Link>
-            <Link to="/contact?inquiry=legal" className="hover:text-white transition-colors">Terms</Link>
+          <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">
+            <Link to="/contact?inquiry=privacy" className="hover:text-white transition-colors whitespace-nowrap">Privacy Protocol</Link>
+            <Link to="/about" className="hover:text-white transition-colors whitespace-nowrap">Safety Standards</Link>
+            <Link to="/contact?inquiry=legal" className="hover:text-white transition-colors whitespace-nowrap">Terms</Link>
           </div>
         </div>
 
