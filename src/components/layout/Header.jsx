@@ -747,10 +747,31 @@ function SearchOverlay({ isOpen, onClose }) {
     }
   }, [isOpen]);
 
-  // Body lock
+  // Body + iOS scroll lock
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    if (!isOpen) {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      return;
+    }
+    // Standard lock
+    const scrollY = window.scrollY;
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+    // iOS Safari: prevent touchmove on background
+    const preventTouch = (e) => { if (!e.target.closest('[data-search-panel]')) e.preventDefault(); };
+    document.addEventListener('touchmove', preventTouch, { passive: false });
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      window.scrollTo(0, scrollY);
+      document.removeEventListener('touchmove', preventTouch);
+    };
   }, [isOpen]);
 
   // Text highlight helper
@@ -846,23 +867,21 @@ function SearchOverlay({ isOpen, onClose }) {
 
           {/* ── Spotlight Center-Aligned Command Palette ── */}
           <motion.div
-            className="fixed left-1/2 z-[151] flex flex-col pointer-events-auto rounded-none border border-white/20 overflow-hidden"
+            data-search-panel
+            className="fixed left-1/2 z-[151] flex flex-col pointer-events-auto border border-white/20 overflow-hidden"
             style={{
               x: '-50%',
+              top: '10dvh',
               width: '90dvw',
               maxWidth: '680px',
-              maxHeight: '70dvh',
+              maxHeight: '78dvh',
               background: '#0a0a0a',
-              boxShadow: 'none',
+              boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
             }}
-            initial={{ scale: 0.96, opacity: 0, y: '30vh' }}
-            animate={{ 
-              scale: 1, 
-              opacity: 1, 
-              y: q ? '12vh' : '28vh' // Slides up when typing to reveal results below
-            }}
-            exit={{ scale: 0.96, opacity: 0, y: '30vh' }}
-            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ scale: 0.96, opacity: 0, y: -12 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.96, opacity: 0, y: -8 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Top orange glow strip */}
@@ -894,105 +913,112 @@ function SearchOverlay({ isOpen, onClose }) {
               </div>
             </div>
 
-            {/* ── Results Dropdown Panel (Only visible when q is entered) ── */}
-            {q && (
-              <div 
-                ref={listRef} 
-                className="flex-grow overflow-y-auto border-t border-white/[0.06] bg-black/[0.15]" 
-                style={{ scrollbarWidth: 'none', maxHeight: 'calc(70dvh - 74px)' }}
-              >
-                {/* Case 1: No matches */}
-                {!hasResults && (
-                  <div className="flex flex-col items-center justify-center py-12 gap-2.5">
-                    <span className="material-symbols-outlined text-[56px] text-white/10">search_off</span>
-                    <p className="font-body text-[13px] text-white/30">No matches found for <span className="text-accent">"{query}"</span></p>
-                  </div>
-                )}
+            {/* ── Results Dropdown Panel — always mounted, animates in/out ── */}
+            <AnimatePresence mode="wait">
+              {q && (
+                <motion.div
+                  key="results"
+                  ref={listRef}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.18, ease: [0.25, 1, 0.5, 1] }}
+                  className="flex-grow overflow-y-auto border-t border-white/[0.06] bg-black/[0.15] overflow-hidden"
+                  style={{ scrollbarWidth: 'none', maxHeight: 'calc(78dvh - 74px)' }}
+                >
+                  {/* Case 1: No matches */}
+                  {!hasResults && (
+                    <div className="flex flex-col items-center justify-center py-12 gap-2.5">
+                      <span className="material-symbols-outlined text-[56px] text-white/10">search_off</span>
+                      <p className="font-body text-[13px] text-white/30">No matches found for <span className="text-accent">"{query}"</span></p>
+                    </div>
+                  )}
 
-                {/* Case 2: Structured Card Grid Results */}
-                {hasResults && (
-                  <div className="flex flex-col gap-6 p-5">
-                    
-                    {/* Products Group */}
-                    {grouped.product.length > 0 && (
-                      <div className="flex flex-col">
-                        <div className="flex items-center gap-3 mb-3 select-none">
-                          <span className="font-label-caps text-[10px] text-accent tracking-[0.25em] uppercase font-bold">Products</span>
-                          <span className="h-[1px] flex-grow bg-accent/10" />
-                          <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.product.length}</span>
+                  {/* Case 2: Structured Card Grid Results */}
+                  {hasResults && (
+                    <div className="flex flex-col gap-6 p-5">
+                      
+                      {/* Products Group */}
+                      {grouped.product.length > 0 && (
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-3 mb-3 select-none">
+                            <span className="font-label-caps text-[10px] text-accent tracking-[0.25em] uppercase font-bold">Products</span>
+                            <span className="h-[1px] flex-grow bg-accent/10" />
+                            <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.product.length}</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            {grouped.product.map((item) => (
+                              <ResultCard key={item.link + item.label} item={item} />
+                            ))}
+                          </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                          {grouped.product.map((item) => (
-                            <ResultCard key={item.link + item.label} item={item} />
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* Services Group */}
-                    {grouped.service.length > 0 && (
-                      <div className="flex flex-col">
-                        <div className="flex items-center gap-3 mb-3 select-none">
-                          <span className="font-label-caps text-[10px] text-blue-400 tracking-[0.25em] uppercase font-bold">Services</span>
-                          <span className="h-[1px] flex-grow bg-blue-500/10" />
-                          <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.service.length}</span>
+                      {/* Services Group */}
+                      {grouped.service.length > 0 && (
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-3 mb-3 select-none">
+                            <span className="font-label-caps text-[10px] text-blue-400 tracking-[0.25em] uppercase font-bold">Services</span>
+                            <span className="h-[1px] flex-grow bg-blue-500/10" />
+                            <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.service.length}</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            {grouped.service.map((item) => (
+                              <ResultCard key={item.link + item.label} item={item} />
+                            ))}
+                          </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                          {grouped.service.map((item) => (
-                            <ResultCard key={item.link + item.label} item={item} />
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* Sectors Group */}
-                    {grouped.sector.length > 0 && (
-                      <div className="flex flex-col">
-                        <div className="flex items-center gap-3 mb-3 select-none">
-                          <span className="font-label-caps text-[10px] text-emerald-400 tracking-[0.25em] uppercase font-bold">Sectors</span>
-                          <span className="h-[1px] flex-grow bg-emerald-500/10" />
-                          <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.sector.length}</span>
+                      {/* Sectors Group */}
+                      {grouped.sector.length > 0 && (
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-3 mb-3 select-none">
+                            <span className="font-label-caps text-[10px] text-emerald-400 tracking-[0.25em] uppercase font-bold">Sectors</span>
+                            <span className="h-[1px] flex-grow bg-emerald-500/10" />
+                            <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.sector.length}</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            {grouped.sector.map((item) => (
+                              <ResultCard key={item.link + item.label} item={item} />
+                            ))}
+                          </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                          {grouped.sector.map((item) => (
-                            <ResultCard key={item.link + item.label} item={item} />
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* Projects Group */}
-                    {grouped.project.length > 0 && (
-                      <div className="flex flex-col">
-                        <div className="flex items-center gap-3 mb-3 select-none">
-                          <span className="font-label-caps text-[10px] text-purple-400 tracking-[0.25em] uppercase font-bold">Projects</span>
-                          <span className="h-[1px] flex-grow bg-purple-500/10" />
-                          <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.project.length}</span>
+                      {/* Projects Group */}
+                      {grouped.project.length > 0 && (
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-3 mb-3 select-none">
+                            <span className="font-label-caps text-[10px] text-purple-400 tracking-[0.25em] uppercase font-bold">Projects</span>
+                            <span className="h-[1px] flex-grow bg-purple-500/10" />
+                            <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.project.length}</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                            {grouped.project.map((item) => (
+                              <ResultCard key={item.link + item.label} item={item} />
+                            ))}
+                          </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                          {grouped.project.map((item) => (
-                            <ResultCard key={item.link + item.label} item={item} />
-                          ))}
-                        </div>
-                      </div>
-                    )}
+                      )}
 
-                  </div>
-                )}
-                
-                {/* Result count strip at bottom */}
-                {hasResults && (
-                  <div className="px-5 py-2.5 bg-[#0d0d0d] border-t border-white/10 flex justify-between items-center select-none shrink-0">
-                    <span className="font-label-caps text-[8px] text-white/15 tracking-[0.15em] uppercase">
-                      Use <span className="border border-white/10 px-1 py-0.2 rounded-none">↑↓</span> to navigate • <span className="border border-white/10 px-1 py-0.2 rounded-none">↵</span> to open
-                    </span>
-                    <span className="font-label-caps text-[8px] text-white/25 tracking-[0.15em] uppercase">
-                      {flatResults.length} matches found
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
+                    </div>
+                  )}
+                  
+                  {/* Result count strip at bottom */}
+                  {hasResults && (
+                    <div className="px-5 py-2.5 bg-[#0d0d0d] border-t border-white/10 flex justify-between items-center select-none shrink-0">
+                      <span className="font-label-caps text-[8px] text-white/15 tracking-[0.15em] uppercase">
+                        Use <span className="border border-white/10 px-1 py-0.2">↑↓</span> to navigate • <span className="border border-white/10 px-1 py-0.2">↵</span> to open
+                      </span>
+                      <span className="font-label-caps text-[8px] text-white/25 tracking-[0.15em] uppercase">
+                        {flatResults.length} matches found
+                      </span>
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </>
       )}

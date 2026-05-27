@@ -20,9 +20,9 @@ export function OurStory() {
 
             <div className="overflow-hidden">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjIzFc35WCu9a88tEE6NLkBo11OsGpGHbr6K5VT8d8DeXEAKQGBfMNQrDG7kVDoaTQ-D48xScJE2PHRCICOYol5h5aJFlvh4c-t-bC40CdqPqun55bXrwS354qWaVhhYqtqH3PbzP5E7jKBPTKmzP9REmTy0LvACgZ15QhVpPK4c3c74GEWJoYmrBkmH5PkzQ-0zXGneDOdan2f8sqIklAMWzsTBe3aSbcogmtoABjWVtM4lPVd82cHHbEM5M9GDerTNmf2Io2WnY"
-                alt="Arihantaa team at work"
-                className="w-full h-[420px] md:h-[520px] object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                src="/images/project-industrial.png"
+                alt="Arihantaa engineering team at work"
+                className="w-full h-[420px] md:h-[520px] object-cover transition-all duration-700"
                 loading="lazy" decoding="async"
               />
             </div>
@@ -30,9 +30,9 @@ export function OurStory() {
             {/* Floating inset image */}
             <div className="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 w-36 sm:w-48 md:w-64 border-4 border-surface shadow-2xl overflow-hidden block">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg7rBZUOD8vyQzqX-9ckm2CxVg9Q_nUG_deLFiaHjcLnyt3EwgE-8o0oK63jpFs2mq1crW8BkQ8I1qXQ-ZaRe3V-SB2z-0V--RrTzOdmvmELjRUqfBYYtL107PQMEnxOk3qEHfHkddMpD7MBfu6ybtY4kfcJEkO93zilPC0YjI7J0-4F2N_RL15Pu7oT4s06r7rsWTgtmjiuy2bKANJSHH4Uu9C7sgCo0wgzEBAH0cLGyb1CwtTTe-t9stbkbL25vVwmEfdBjBBS0"
-                alt="Precision blueprints"
-                className="w-full h-24 sm:h-32 md:h-40 object-cover grayscale"
+                src="/images/project-data-center.png"
+                alt="Data centre infrastructure"
+                className="w-full h-24 sm:h-32 md:h-40 object-cover transition-all duration-700"
                 loading="lazy" decoding="async"
               />
             </div>
