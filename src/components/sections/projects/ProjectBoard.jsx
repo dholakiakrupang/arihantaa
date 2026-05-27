@@ -81,8 +81,8 @@ function ProjectCard({ project, index, isMobile }) {
             <div className="w-full h-[3px] bg-outline-variant/20 relative overflow-hidden">
               <motion.div
                 className="absolute left-0 top-0 h-full bg-accent"
-                initial={{ width: 0 }}
-                whileInView={{ width: `${project.progress}%` }}
+                initial={{ width: isMobile ? `${project.progress}%` : 0 }}
+                whileInView={isMobile ? {} : { width: `${project.progress}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: 'easeOut', delay: 0.1 }}
               />

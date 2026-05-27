@@ -122,17 +122,19 @@ function CircuitSVG({ isMobile }) {
       />
 
       {/* ── Moving signal pulse on main path */}
-      <motion.circle
-        cx={0} cy={0} r={4}
-        fill="#E9652B"
-        filter="url(#glow)"
-        animate={{
-          offsetDistance: ['0%', '100%'],
-          opacity: [0, 1, 1, 0],
-        }}
-        style={{ offsetPath: "path('M 20 260 H 100 V 170 H 200 V 80 H 310 V 170 H 420 V 260 H 520 V 360 H 420 V 450 H 310 V 360 H 200 V 450 H 100 V 360 H 20 Z')" }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'linear', delay: 2 }}
-      />
+      {!isMobile && (
+        <motion.circle
+          cx={0} cy={0} r={4}
+          fill="#E9652B"
+          filter="url(#glow)"
+          animate={{
+            offsetDistance: ['0%', '100%'],
+            opacity: [0, 1, 1, 0],
+          }}
+          style={{ offsetPath: "path('M 20 260 H 100 V 170 H 200 V 80 H 310 V 170 H 420 V 260 H 520 V 360 H 420 V 450 H 310 V 360 H 200 V 450 H 100 V 360 H 20 Z')" }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'linear', delay: 2 }}
+        />
+      )}
 
       {/* ── Node circles at intersections */}
       {[
@@ -222,20 +224,31 @@ function CircuitSVG({ isMobile }) {
       {/* ── Blinking status indicators */}
       {[[55, 80], [540, 80], [55, 430], [540, 430]].map(([cx, cy], i) => (
         <g key={`status-${i}`}>
-          <motion.circle
-            cx={cx} cy={cy} r={4}
-            fill="rgba(233,101,43,0.8)"
-            animate={{ opacity: [0.4, 1, 0.4], r: [4, 5.5, 4] }}
-            transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
-          />
-          <motion.circle
-            cx={cx} cy={cy} r={9}
-            stroke="rgba(233,101,43,0.3)"
-            strokeWidth="1"
-            fill="none"
-            animate={{ opacity: [0, 0.8, 0], r: [6, 14, 6] }}
-            transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
-          />
+          {isMobile ? (
+            <circle
+              cx={cx}
+              cy={cy}
+              r={4}
+              fill="rgba(233,101,43,0.8)"
+            />
+          ) : (
+            <>
+              <motion.circle
+                cx={cx} cy={cy} r={4}
+                fill="rgba(233,101,43,0.8)"
+                animate={{ opacity: [0.4, 1, 0.4], r: [4, 5.5, 4] }}
+                transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
+              />
+              <motion.circle
+                cx={cx} cy={cy} r={9}
+                stroke="rgba(233,101,43,0.3)"
+                strokeWidth="1"
+                fill="none"
+                animate={{ opacity: [0, 0.8, 0], r: [6, 14, 6] }}
+                transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
+              />
+            </>
+          )}
         </g>
       ))}
 
@@ -328,7 +341,7 @@ export function ProjectsHero() {
             background: 'radial-gradient(ellipse, rgba(233,101,43,0.12) 0%, transparent 70%)',
             filter: 'blur(60px)',
           }}
-          animate={{ scale: [1, 1.06, 1] }}
+          animate={isMobile ? {} : { scale: [1, 1.06, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
@@ -337,7 +350,7 @@ export function ProjectsHero() {
             background: 'radial-gradient(ellipse, rgba(163,56,0,0.08) 0%, transparent 70%)',
             filter: 'blur(80px)',
           }}
-          animate={{ scale: [1, 1.04, 1] }}
+          animate={isMobile ? {} : { scale: [1, 1.04, 1] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
         />
       </div>
