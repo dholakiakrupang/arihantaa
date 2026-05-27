@@ -94,8 +94,10 @@ export function EngineeredSolutionCard({
 
   return (
     <motion.article 
+      layout
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1], delay: index * 0.05 }}
       className="bg-white border border-outline/30 flex flex-col relative w-full shadow-md transition-all duration-500 overflow-hidden"

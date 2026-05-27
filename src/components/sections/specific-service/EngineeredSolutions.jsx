@@ -377,19 +377,27 @@ export function EngineeredSolutions() {
         </div>
 
       {/* ── Cards Grid ──────────────────────────────────────────────────────── */}
-      <div className="max-w-[1440px] mx-auto px-8 md:px-16 py-10 md:py-20 space-y-10 md:space-y-16">
-        {filteredSolutions.length > 0 ? (
-          filteredSolutions.slice(0, visibleCount).map((solution, idx) => (
-            <EngineeredSolutionCard key={solution.id} index={idx} type="service" {...solution} />
-          ))
-        ) : (
-          <div className="py-20 text-center border border-dashed border-outline/30 bg-surface-container/10">
-            <span className="material-symbols-outlined text-[48px] text-secondary/30 mb-4 block">search_off</span>
-            <p className="font-headline text-[18px] text-secondary tracking-wide uppercase">No Engineering Solutions Found</p>
-            <p className="font-body text-[13px] text-secondary/50 mt-2">Try adjusting your filters or search query to find compatible solutions.</p>
-          </div>
-        )}
-      </div>
+      <motion.div layout className="max-w-[1440px] mx-auto px-8 md:px-16 py-10 md:py-20 space-y-10 md:space-y-16">
+        <AnimatePresence mode="popLayout">
+          {filteredSolutions.length > 0 ? (
+            filteredSolutions.slice(0, visibleCount).map((solution, idx) => (
+              <EngineeredSolutionCard key={solution.id} index={idx} type="service" {...solution} />
+            ))
+          ) : (
+            <motion.div 
+              layout
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-20 text-center border border-dashed border-outline/30 bg-surface-container/10 w-full"
+            >
+              <span className="material-symbols-outlined text-[48px] text-secondary/30 mb-4 block">search_off</span>
+              <p className="font-headline text-[18px] text-secondary tracking-wide uppercase">No Engineering Solutions Found</p>
+              <p className="font-body text-[13px] text-secondary/50 mt-2">Try adjusting your filters or search query to find compatible solutions.</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
       {/* ── Creative Load More Section ────────────────────────────────────────── */}
       {filteredSolutions.length > 0 && (

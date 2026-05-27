@@ -12,16 +12,14 @@ function getScreenClass() {
 
 function ProjectCard({ project, index, screenClass }) {
   const isCompleted = project.status === 'Completed';
-  const isMobile = screenClass === 'mobile';
-  const isReduced = screenClass !== 'desktop';
 
   return (
     <motion.article
-      layout={!isReduced}
-      initial={{ opacity: 0, y: isMobile ? 0 : 16 }}
+      layout
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: isMobile ? 1 : 0.97 }}
-      transition={{ duration: isReduced ? 0.25 : 0.4, ease: [0.25, 1, 0.5, 1] }}
+      exit={{ opacity: 0, scale: 0.97 }}
+      transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
       className="group flex flex-col bg-surface border border-outline-variant/30 transition-all duration-300 relative hover:border-accent/30"
     >
       <Link to={`/projects/${project.id}`} className="absolute inset-0 z-20" aria-label={`View details for ${project.title}`} />
@@ -90,8 +88,8 @@ function ProjectCard({ project, index, screenClass }) {
             <div className="w-full h-[3px] bg-outline-variant/20 relative overflow-hidden">
               <motion.div
                 className="absolute left-0 top-0 h-full bg-accent"
-                initial={{ width: isReduced ? `${project.progress}%` : 0 }}
-                whileInView={isReduced ? {} : { width: `${project.progress}%` }}
+                initial={{ width: 0 }}
+                whileInView={{ width: `${project.progress}%` }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: 'easeOut', delay: 0.1 }}
               />
@@ -405,8 +403,8 @@ export function ProjectBoard() {
         </div>
 
         {/* Grid */}
-        <motion.div layout={!isReduced} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
-          <AnimatePresence mode={isReduced ? 'wait' : 'popLayout'}>
+        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+          <AnimatePresence mode="popLayout">
             {filtered.map((project, i) => (
               <ProjectCard key={project.id} project={project} index={i} screenClass={screenClass} />
             ))}
