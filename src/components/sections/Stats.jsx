@@ -32,7 +32,7 @@ export function Stats() {
           {STATS_DATA.map((stat, i) => (
             <div 
               key={i} 
-              className="border-r border-b md:border-b-0 last:border-b-0 md:last:border-b-0 border-outline-variant/30 last:border-r-0 md:last:border-r-0 flex flex-col justify-between p-8 md:p-12 hover:bg-accent/[0.01] transition-all duration-500 group"
+              className="border-r border-b md:border-b-0 last:border-b-0 md:last:border-b-0 border-outline-variant/30 last:border-r-0 md:last:border-r-0 flex flex-col justify-between p-7 md:p-8 lg:p-12 hover:bg-accent/[0.01] transition-all duration-500 group"
             >
               {/* Big Animated Value */}
               <div>
@@ -45,13 +45,13 @@ export function Stats() {
                 />
 
                 {/* Subtitle / Desc */}
-                <p className="font-body text-[13px] text-secondary/70 leading-relaxed mt-4 max-w-xs group-hover:text-on-surface transition-colors duration-300">
+                <p className="font-body text-[13px] text-secondary/70 leading-relaxed mt-3 md:mt-3 lg:mt-4 max-w-xs group-hover:text-on-surface transition-colors duration-300">
                   {stat.desc}
                 </p>
               </div>
 
               {/* Accent Line Indicator */}
-              <div className="w-full h-px bg-outline-variant/20 mt-8 overflow-hidden relative">
+              <div className="w-full h-px bg-outline-variant/20 mt-5 md:mt-5 lg:mt-8 overflow-hidden relative">
                 <div className="absolute left-0 top-0 h-full w-0 group-hover:w-full bg-accent transition-all duration-500 ease-out" />
               </div>
             </div>

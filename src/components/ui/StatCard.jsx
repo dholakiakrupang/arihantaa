@@ -73,7 +73,7 @@ export function StatCard({
       <div className="relative z-10 w-full">
         <div className={cn(
           "font-headline font-light text-on-surface group-hover:text-accent leading-none mb-3 transition-colors duration-500",
-          centered ? "text-[64px] md:text-[80px] lg:text-[96px] tracking-tighter" : "text-[28px] md:text-[32px]"
+          centered ? "text-[64px] md:text-[80px] lg:text-[96px] tracking-tighter" : "text-[28px] md:text-[28px] lg:text-[32px]"
         )}>
           <AnimatedValue value={value} />
         </div>
