@@ -662,10 +662,10 @@ const ALL_SEARCH_ITEMS = [
 ];
 
 const TYPE_META = {
-  product: { label: 'Product',  accent: 'bg-accent/20 text-accent',          icon: 'category' },
-  service: { label: 'Service',  accent: 'bg-blue-500/20 text-blue-300',      icon: 'build' },
-  sector:  { label: 'Sector',   accent: 'bg-emerald-500/20 text-emerald-300', icon: 'hub' },
-  project: { label: 'Project',  accent: 'bg-purple-500/20 text-purple-300',  icon: 'apartment' },
+  product: { label: 'Product',  accent: 'bg-accent/15 border-accent/30 text-accent', textColor: 'text-accent', icon: 'category' },
+  service: { label: 'Service',  accent: 'bg-accent/15 border-accent/30 text-accent', textColor: 'text-accent', icon: 'build' },
+  sector:  { label: 'Sector',   accent: 'bg-accent/15 border-accent/30 text-accent', textColor: 'text-accent', icon: 'hub' },
+  project: { label: 'Project',  accent: 'bg-accent/15 border-accent/30 text-accent', textColor: 'text-accent', icon: 'apartment' },
 };
 
 function SearchOverlay({ isOpen, onClose }) {
@@ -735,7 +735,7 @@ function SearchOverlay({ isOpen, onClose }) {
   useEffect(() => {
     if (activeIdx < 0 || !listRef.current) return;
     const el = listRef.current.querySelector(`[data-idx="${activeIdx}"]`);
-    el?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    el?.scrollIntoView({ block: 'nearest', behavior: 'auto' });
   }, [activeIdx]);
 
   // Focus + reset on open
@@ -798,50 +798,46 @@ function SearchOverlay({ isOpen, onClose }) {
         to={item.link}
         onClick={onClose}
         onMouseEnter={() => setActiveIdx(flatIndex)}
-        className={`flex items-center gap-4 p-4 rounded-none border transition-all duration-300 ${
+        className={`flex items-center gap-3.5 md:gap-4.5 p-3 md:p-3.5 border border-l-4 transition-all duration-200 ${
           isKeyActive 
-            ? 'bg-[#1a1e2f]/90 border-accent/80' 
-            : 'bg-[#121520]/75 border-white/[0.08] hover:bg-[#151928]/80 hover:border-white/20'
+            ? 'bg-white/[0.035] border-white/[0.12] border-l-accent' 
+            : 'bg-white/[0.01] border-white/[0.06] border-l-transparent hover:bg-white/[0.02] hover:border-l-white/20'
         }`}
       >
-        {/* Left Icon */}
-        <div className={`w-9 h-9 flex items-center justify-center shrink-0 border rounded-none transition-all duration-300 ${
-          isKeyActive
-            ? 'bg-accent/10 border-accent/30 text-accent'
-            : 'bg-white/[0.02] border-white/10 text-white/40'
+        {/* Left Icon - Open style (no background/borders) */}
+        <span className={`material-symbols-outlined shrink-0 text-[22px] md:text-[25px] transition-all duration-200 ${
+          isKeyActive ? 'text-accent' : 'text-white/40'
         }`}>
-          <span className="material-symbols-outlined text-[30px]">
-            {item.icon}
-          </span>
-        </div>
+          {item.icon}
+        </span>
 
         {/* Text Details */}
-        <div className="flex-grow min-w-0">
-          <div className="flex items-center justify-between gap-2 mb-0.5">
-            <h4 className={`font-headline text-[13px] font-bold tracking-tight truncate transition-colors duration-300 ${
-              isKeyActive ? 'text-accent' : 'text-white'
-            }`}>
-              {highlight(item.label)}
-            </h4>
-            <span className={`font-label-caps text-[8px] tracking-[0.15em] px-1.5 py-0.5 rounded-none shrink-0 border ${
-              isKeyActive 
-                ? 'bg-accent/10 border-accent/20 text-accent' 
-                : 'bg-white/[0.03] border-white/[0.06] text-white/30'
-            }`}>
-              {meta.label.toUpperCase()}
-            </span>
-          </div>
-          <p className="font-body text-[11px] text-white/35 leading-snug truncate">
+        <div className="flex-grow min-w-0 pr-2">
+          <h4 className={`font-headline text-[13px] md:text-[14px] font-bold tracking-tight truncate transition-colors duration-200 ${
+            isKeyActive ? 'text-accent' : 'text-white'
+          }`}>
+            {highlight(item.label)}
+          </h4>
+          <p className="font-body text-[10.5px] md:text-[12px] text-white/40 leading-snug mt-0.5 truncate">
             {item.desc}
           </p>
         </div>
 
-        {/* Right Arrow */}
-        <span className={`material-symbols-outlined text-[27px] shrink-0 transition-all duration-300 ${
-          isKeyActive ? 'text-accent translate-x-1' : 'text-white/20'
-        }`}>
-          arrow_forward
-        </span>
+        {/* Right Info: Badge + Arrow */}
+        <div className="flex items-center gap-3 md:gap-4 shrink-0">
+          <span className={`font-label-caps text-[7.5px] md:text-[8.5px] tracking-[0.15em] px-2 py-0.5 border transition-all duration-300 ${
+            isKeyActive 
+              ? 'bg-accent/15 border-accent/30 text-accent' 
+              : 'bg-white/[0.03] border-white/[0.08] text-white/35'
+          }`}>
+            {meta.label.toUpperCase()}
+          </span>
+          <span className={`material-symbols-outlined text-[20px] md:text-[24px] transition-all duration-300 ${
+            isKeyActive ? 'text-accent translate-x-1' : 'text-white/15'
+          }`}>
+            arrow_forward
+          </span>
+        </div>
       </Link>
     );
   };
@@ -868,13 +864,14 @@ function SearchOverlay({ isOpen, onClose }) {
           {/* ── Spotlight Center-Aligned Command Palette ── */}
           <motion.div
             data-search-panel
+            data-lenis-prevent
             className="fixed left-1/2 z-[151] flex flex-col pointer-events-auto border border-white/20 overflow-hidden"
             style={{
               x: '-50%',
-              top: '10dvh',
-              width: '90dvw',
+              top: 'clamp(8px, 6dvh, 80px)',
+              width: '94dvw',
               maxWidth: '680px',
-              maxHeight: '78dvh',
+              maxHeight: '88dvh',
               background: '#0a0a0a',
               boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
             }}
@@ -888,17 +885,20 @@ function SearchOverlay({ isOpen, onClose }) {
             <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-accent to-transparent shrink-0 opacity-80" />
 
             {/* ── Search Input Block ── */}
-            <div className="relative flex items-center h-[72px] px-5 bg-white/[0.01] border-b border-white/10">
-              <span className="material-symbols-outlined text-accent animate-pulse shrink-0 mr-4" style={{ fontSize: '34px' }}>search</span>
+            <div className="relative flex items-center h-[58px] md:h-[68px] px-3.5 md:px-5 bg-white/[0.01] border-b border-white/10">
+              <span className="material-symbols-outlined text-accent animate-pulse shrink-0 mr-2.5 md:mr-4" style={{ fontSize: '26px' }}>search</span>
               <input
                 ref={inputRef}
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Type to search products, services, cases..."
-                className="flex-1 h-full bg-transparent border-none text-white text-[16px] font-body placeholder:text-white/20 focus:outline-none focus:ring-0"
+                placeholder="Search products, services..."
+                className="flex-1 h-full bg-transparent border-none text-white text-[15px] md:text-[16px] font-body placeholder:text-white/20 focus:outline-none focus:ring-0"
                 style={{ caretColor: '#E9652B' }}
                 autoComplete="off"
+                autoCorrect="off"
+                autoCapitalize="off"
+                spellCheck="false"
               />
               <div className="flex items-center gap-3 shrink-0 ml-3">
                 {query && (
@@ -919,11 +919,12 @@ function SearchOverlay({ isOpen, onClose }) {
                 <motion.div
                   key="results"
                   ref={listRef}
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.18, ease: [0.25, 1, 0.5, 1] }}
-                  className="flex-grow overflow-y-auto border-t border-white/[0.06] bg-black/[0.15] overflow-hidden"
+                  data-lenis-prevent
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.15, ease: 'easeOut' }}
+                  className="flex-grow overflow-y-auto border-t border-white/[0.06] bg-black/[0.15]"
                   style={{ scrollbarWidth: 'none', maxHeight: 'calc(78dvh - 74px)' }}
                 >
                   {/* Case 1: No matches */}
@@ -934,74 +935,12 @@ function SearchOverlay({ isOpen, onClose }) {
                     </div>
                   )}
 
-                  {/* Case 2: Structured Card Grid Results */}
+                  {/* Case 2: Unified command-palette flat results list */}
                   {hasResults && (
-                    <div className="flex flex-col gap-6 p-5">
-                      
-                      {/* Products Group */}
-                      {grouped.product.length > 0 && (
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-3 mb-3 select-none">
-                            <span className="font-label-caps text-[10px] text-accent tracking-[0.25em] uppercase font-bold">Products</span>
-                            <span className="h-[1px] flex-grow bg-accent/10" />
-                            <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.product.length}</span>
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                            {grouped.product.map((item) => (
-                              <ResultCard key={item.link + item.label} item={item} />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Services Group */}
-                      {grouped.service.length > 0 && (
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-3 mb-3 select-none">
-                            <span className="font-label-caps text-[10px] text-blue-400 tracking-[0.25em] uppercase font-bold">Services</span>
-                            <span className="h-[1px] flex-grow bg-blue-500/10" />
-                            <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.service.length}</span>
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                            {grouped.service.map((item) => (
-                              <ResultCard key={item.link + item.label} item={item} />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Sectors Group */}
-                      {grouped.sector.length > 0 && (
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-3 mb-3 select-none">
-                            <span className="font-label-caps text-[10px] text-emerald-400 tracking-[0.25em] uppercase font-bold">Sectors</span>
-                            <span className="h-[1px] flex-grow bg-emerald-500/10" />
-                            <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.sector.length}</span>
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                            {grouped.sector.map((item) => (
-                              <ResultCard key={item.link + item.label} item={item} />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Projects Group */}
-                      {grouped.project.length > 0 && (
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-3 mb-3 select-none">
-                            <span className="font-label-caps text-[10px] text-purple-400 tracking-[0.25em] uppercase font-bold">Projects</span>
-                            <span className="h-[1px] flex-grow bg-purple-500/10" />
-                            <span className="font-label-caps text-[9px] text-white/30 tracking-[0.1em]">{grouped.project.length}</span>
-                          </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                            {grouped.project.map((item) => (
-                              <ResultCard key={item.link + item.label} item={item} />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
+                    <div className="flex flex-col gap-2 p-3.5 md:p-5">
+                      {flatResults.map((item) => (
+                        <ResultCard key={item.link + item.label} item={item} />
+                      ))}
                     </div>
                   )}
                   
