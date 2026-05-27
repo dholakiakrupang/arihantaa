@@ -298,7 +298,7 @@ export function Contact() {
         </motion.div>
         
         {/* Responsive Intake Centered Block Layout */}
-        <div className="max-w-[1440px] mx-auto relative z-10 w-full px-8 md:px-16">
+        <div className="max-w-[1440px] mx-auto relative z-10 w-full px-4 sm:px-8 md:px-16">
           <div className="max-w-4xl space-y-8">
             {/* Standard Breadcrumb Navigation */}
             <motion.nav
@@ -357,7 +357,7 @@ export function Contact() {
           />
         </div>
 
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 relative z-10">
           
           <motion.div 
             className="mb-16 border-l-2 border-accent pl-5 font-headline"
@@ -370,11 +370,11 @@ export function Contact() {
             <p className="font-body text-[15px] text-secondary/60 mt-3 max-w-xl">Select the appropriate path to connect with the right specialists instantly.</p>
           </motion.div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Path 1 */}
             <motion.div 
               onClick={() => handleMatrixClick(['Critical Power (UPS)', 'Thermal Management'], 'sales', 'Mission-Critical Power & Thermal System')}
-              className="backdrop-blur-md bg-white/40 p-8 border border-outline-variant/30 flex flex-col justify-between h-[340px] group relative overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-accent/40 cursor-pointer shadow-sm"
+              className="backdrop-blur-md bg-white/40 p-6 sm:p-8 border border-outline-variant/30 flex flex-col justify-between min-h-[300px] sm:h-[340px] group relative overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-accent/40 cursor-pointer shadow-sm"
               initial={{ opacity: 0, y: 30 }} 
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
@@ -402,7 +402,7 @@ export function Contact() {
             {/* Path 2 */}
             <motion.div 
               onClick={() => handleMatrixClick(['Monitoring & Management'], 'support', 'Custom Maintenance SLA & Remote Monitoring')}
-              className="backdrop-blur-md bg-white/40 p-8 border border-outline-variant/30 flex flex-col justify-between h-[340px] group relative overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-accent/40 cursor-pointer shadow-sm"
+              className="backdrop-blur-md bg-white/40 p-6 sm:p-8 border border-outline-variant/30 flex flex-col justify-between min-h-[300px] sm:h-[340px] group relative overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-accent/40 cursor-pointer shadow-sm"
               initial={{ opacity: 0, y: 30 }} 
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
@@ -430,7 +430,7 @@ export function Contact() {
             {/* Path 3 */}
             <motion.div 
               onClick={() => handleMatrixClick(['Racks & Enclosures'], 'portal', 'Enterprise Cabinet & IT Infrastructure Distribution')}
-              className="backdrop-blur-md bg-white/40 p-8 border border-outline-variant/30 flex flex-col justify-between h-[340px] group relative overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-accent/40 cursor-pointer shadow-sm"
+              className="backdrop-blur-md bg-white/40 p-6 sm:p-8 border border-outline-variant/30 flex flex-col justify-between min-h-[300px] sm:h-auto sm:min-h-[220px] lg:h-[340px] sm:col-span-2 lg:col-span-1 group relative overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-accent/40 cursor-pointer shadow-sm"
               initial={{ opacity: 0, y: 30 }} 
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
@@ -449,7 +449,7 @@ export function Contact() {
                   Connect with registered distributors and resellers for enterprise server racks, micro data centers, and standardized IT enclosures.
                 </p>
               </div>
-              <span className="relative z-10 inline-flex items-center font-label-caps text-[10px] uppercase tracking-[0.2em] font-bold text-accent group-hover:text-secondary transition-colors mt-auto">
+              <span className="relative z-10 inline-flex items-center font-label-caps text-[10px] uppercase tracking-[0.2em] font-bold text-accent group-hover:text-secondary transition-colors mt-auto pt-6 sm:pt-8 lg:pt-0">
                 Find Partner 
                 <span className="material-symbols-outlined ml-3 text-[18px] group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
               </span>
@@ -460,7 +460,7 @@ export function Contact() {
 
       {/* ── Smart Form Section ────────────────────────────────────────── */}
       <section className="py-24 bg-background border-t border-outline-variant/30" id="quote-form">
-        <div className="max-w-[1440px] mx-auto px-8 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           
           {/* Form Context */}
           <div className="lg:col-span-4 space-y-8">
@@ -507,7 +507,7 @@ export function Contact() {
           </div>
           
           {/* Form Canvas */}
-          <div className="lg:col-span-8 bg-white p-8 md:p-12 border border-outline-variant/30 shadow-sm relative">
+          <div className="lg:col-span-8 bg-white p-4 sm:p-8 md:p-12 border border-outline-variant/30 shadow-sm relative">
             
             {/* Elegant Prefilled Context Notification Banner */}
             <AnimatePresence>
@@ -517,35 +517,25 @@ export function Contact() {
                   animate={{ opacity: 1, y: 0, height: 'auto' }}
                   exit={{ opacity: 0, y: -20, height: 0 }}
                   transition={{ duration: 0.4, ease: 'easeOut' }}
-                  className="bg-accent/[0.04] border border-accent/25 p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-accent relative overflow-hidden backdrop-blur-md"
+                  className="bg-accent/[0.03] border border-accent/20 border-l-4 border-l-accent p-3 sm:p-4 mb-8 sm:mb-10"
                 >
-                  <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-accent z-20" />
-                  
-                  {/* Subtle animated light sweep across banner */}
-                  <motion.div 
-                    className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-accent/[0.05] to-transparent pointer-events-none"
-                    animate={{ x: ['-100%', '100%'] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-                  />
-                  
-                  <div className="flex items-center gap-3 relative z-10">
-                    <span className="material-symbols-outlined text-[24px] text-accent animate-pulse shrink-0">bolt</span>
-                    <div className="flex flex-col gap-0.5 text-left">
-                      <span className="font-label-caps text-[9px] tracking-[0.15em] text-secondary/60 font-semibold uppercase">Live Brief Generator</span>
-                      <span className="font-headline text-[13px] font-black uppercase tracking-wide text-secondary leading-none">
-                        Prefilled for: <span className="text-accent underline font-black decoration-accent/40 decoration-2 underline-offset-2">{decodeURIComponent(item)}</span> <span className="text-secondary/50 font-normal">({inquiry})</span>
+                  <div className="flex items-center justify-between gap-3 flex-wrap">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="material-symbols-outlined text-[18px] text-accent shrink-0">bolt</span>
+                      <span className="font-headline text-[11px] sm:text-[13px] font-bold uppercase tracking-wide text-secondary leading-snug">
+                        Prefilled for: <span className="text-accent font-black">{decodeURIComponent(item)}</span> <span className="text-secondary/40 font-normal">({inquiry})</span>
                       </span>
                     </div>
+                    <button 
+                      type="button" 
+                      onClick={() => {
+                        setSearchParams({});
+                      }}
+                      className="font-label-caps text-[9px] font-bold uppercase tracking-wider text-secondary hover:text-accent transition-colors border border-outline/35 px-3 py-1.5 bg-white shrink-0 hover:bg-accent/5 hover:border-accent/40 rounded-none"
+                    >
+                      Reset
+                    </button>
                   </div>
-                  <button 
-                    type="button" 
-                    onClick={() => {
-                      setSearchParams({});
-                    }}
-                    className="font-label-caps text-[9px] font-bold uppercase tracking-wider text-secondary hover:text-accent transition-colors border border-outline/35 px-4 py-2 bg-white shrink-0 hover:bg-accent/5 hover:border-accent/40 shadow-sm relative z-10 rounded-none"
-                  >
-                    Reset Form
-                  </button>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -728,7 +718,7 @@ export function Contact() {
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
                   className={cn(
-                    "border-2 border-dashed p-10 flex flex-col items-center justify-center bg-white transition-all duration-500 relative group cursor-pointer rounded-none",
+                    "border-2 border-dashed p-6 sm:p-10 flex flex-col items-center justify-center bg-white transition-all duration-500 relative group cursor-pointer rounded-none",
                     isDragging ? "border-accent bg-accent/[0.03] scale-[1.01]" : "border-outline-variant/30 hover:border-accent/40 hover:bg-surface-container-lowest",
                     selectedFile ? (isVerifyingFile ? "border-accent/40 bg-accent/[0.01]" : "border-[#16a34a]/30 bg-[#16a34a]/[0.01]") : ""
                   )}
@@ -810,7 +800,7 @@ export function Contact() {
                       >
                         <span className="material-symbols-outlined text-[54px] duration-300">cloud_upload</span>
                       </motion.div>
-                      <p className="font-headline text-[18px] font-bold text-on-background text-center mb-1 uppercase tracking-wide">
+                      <p className="font-headline text-[16px] sm:text-[18px] font-bold text-on-background text-center mb-1 uppercase tracking-wide">
                         Drag & drop specifications here
                       </p>
                       <p className="font-body text-[14px] text-secondary/60 text-center mb-6">
@@ -826,11 +816,11 @@ export function Contact() {
 
               {/* Actions & Submit */}
               <div className="pt-8 border-t border-outline-variant/20 flex flex-col sm:flex-row items-center justify-between gap-6">
-                <label className="flex items-center cursor-pointer select-none group">
+                <label className="flex items-start cursor-pointer select-none group">
                   <input type="checkbox" required className="sr-only" />
                   
                   {/* Custom Checkbox */}
-                  <div className="w-5 h-5 border border-outline-variant/65 flex items-center justify-center mr-3 shrink-0 group-hover:border-accent transition-colors duration-300">
+                  <div className="w-5 h-5 border border-outline-variant/65 flex items-center justify-center mr-3 mt-0.5 shrink-0 group-hover:border-accent transition-colors duration-300">
                     <span className="material-symbols-outlined text-[14px] text-white bg-accent w-full h-full flex items-center justify-center opacity-0 group-hover:opacity-10 scale-90 group-hover:scale-100 transition-all duration-300">check</span>
                   </div>
                   
