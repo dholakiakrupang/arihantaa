@@ -104,7 +104,7 @@ export function ProductsHero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  Precision-engineered products designed to ensure absolute reliability in the most demanding industrial environments globally.
+                  Precision-engineered products designed to ensure absolute reliability in the most demanding industrial environments across India.
                 </motion.p>
 
                 {/* Separator */}

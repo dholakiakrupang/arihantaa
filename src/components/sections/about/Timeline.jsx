@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 
 const milestones = [
   { year: "'95", label: 'Founding',      desc: 'Establishment of Arihantaa with a focus on local power distribution and HV systems.',    active: false },
-  { year: "'05", label: 'Expansion',     desc: 'Ventured into industrial turnkey projects, high-voltage systems, and MEPF works.',          active: false },
+  { year: "'05", label: 'Expansion',     desc: 'Ventured into industrial engineering projects, high-voltage systems, and MEPF works.',          active: false },
   { year: "'15", label: 'Innovation',    desc: 'Implemented digital delivery, smart-grid integration, and BIM-driven design solutions.',    active: false },
   { year: "'20", label: 'Sustainability',desc: 'Launched renewable energy division, carbon management, and green infrastructure practice.', active: false },
-  { year: "'25", label: 'Future Ready',  desc: 'Global consultancy expansion with AI-driven engineering and predictive infrastructure.',    active: true  },
+  { year: "'25", label: 'Future Ready',  desc: 'Pan-India expansion with MEPF consultancy, strategic JV partnerships, and integrated powertech services.',    active: true  },
 ];
 
 export function Timeline() {
@@ -25,7 +25,7 @@ export function Timeline() {
             </h2>
           </div>
           <p className="font-body text-[15px] text-secondary max-w-xs">
-            30 years of milestones that shaped our journey from local expertise to global engineering authority.
+            30 years of milestones that shaped our journey from local expertise to a trusted pan-India engineering authority.
           </p>
         </div>
 

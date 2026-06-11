@@ -59,7 +59,7 @@ export function Footer() {
               />
             </Link>
             <p className="font-body text-[15px] leading-relaxed text-white/60 max-w-sm">
-              Engineering solutions for a mission-critical world. From grid-scale deployment to high-density thermal management, we shape the future of global energy systems.
+              Engineering solutions for a mission-critical world. From grid-scale deployment to high-density thermal management, we shape the future of India's energy systems.
             </p>
           </div>
           
@@ -85,10 +85,10 @@ export function Footer() {
                 Expertise
               </h4>
               <ul className="flex flex-col gap-5 flex-1">
-                <li><Link to="/services" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Turnkey Projects</Link></li>
-                <li><Link to="/services" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">MEPF Solutions</Link></li>
-                <li><Link to="/products" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Critical Power</Link></li>
-                <li><Link to="/products" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Thermal Management</Link></li>
+                <li><Link to="/services#epc-contracting" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">EPC Contracting</Link></li>
+                <li><Link to="/services#mepf-consultancy" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">MEPF Solutions</Link></li>
+                <li><Link to="/products#critical-power" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Critical Power</Link></li>
+                <li><Link to="/products#thermal-management" className="font-body text-[15px] text-white/60 hover:text-white hover:translate-x-2 transition-all duration-300 inline-block">Thermal Management</Link></li>
               </ul>
             </div>
             
@@ -100,7 +100,7 @@ export function Footer() {
               <ul className="flex flex-col gap-6 flex-1">
                 <li className="flex gap-4 items-center group">
                   <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors text-[30px] shrink-0">call</span>
-                  <a href="tel:+917434999919" className="font-body text-[14px] text-white/60 group-hover:text-white transition-colors">+91 7434999919</a>
+                  <a href="tel:+917434999919" className="font-body text-[14px] text-white/60 group-hover:text-white transition-colors">+91 XXXXX XXXXX</a>
                 </li>
                 <li className="flex gap-4 items-center group">
                   <span className="material-symbols-outlined text-accent/50 group-hover:text-accent transition-colors text-[30px] shrink-0">mail</span>

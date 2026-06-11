@@ -5,7 +5,7 @@ const STATS_DATA = [
   {
     value: "30+",
     label: "YEARS OF RIGOR",
-    desc: "Active M&E consulting and turnkey systems delivery since 1995.",
+    desc: "Active M&E consulting and engineering systems delivery since 1995.",
     indicator: "EST. 1995 | BASE"
   },
   {
@@ -15,10 +15,10 @@ const STATS_DATA = [
     indicator: "OPS | DEPLOYED"
   },
   {
-    value: "12",
-    label: "GLOBAL COUNTRIES",
-    desc: "International supply chain operations and multi-state compliance.",
-    indicator: "GEOGRAPHIC | SPAN"
+    value: "Pan-India",
+    label: "PROJECT REACH",
+    desc: "Delivering electrical infrastructure and MEPF consultancy across India.",
+    indicator: "NATIONAL | COVERAGE"
   }
 ];
 

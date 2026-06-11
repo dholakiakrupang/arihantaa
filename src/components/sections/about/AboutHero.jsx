@@ -81,7 +81,7 @@ export function AboutHero() {
                   transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
                 >
                   <div className="w-8 h-px bg-accent" />
-                  <span className="font-label-caps text-[10px] text-accent tracking-[0.28em] uppercase font-bold">Our Identity — EST. 1995</span>
+                  <span className="font-label-caps text-[10px] text-accent tracking-[0.28em] uppercase font-bold">From Grid to Greatness</span>
                 </motion.div>
 
                 {/* H1 */}
@@ -92,10 +92,13 @@ export function AboutHero() {
                   transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
                 >
                   <span className="block">
-                    <span className="text-white">Engineering </span>
-                    <span className="text-accent">Global</span>
+                    <span className="text-white">Engineering India's</span>
                   </span>
-                  <span className="block text-white">Excellence.</span>
+                  <span className="block">
+                    <span className="text-white">Power </span>
+                    <span className="text-accent">Infrastructure</span>
+                  </span>
+                  <span className="block text-white/60 text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-bold mt-2">With Precision & Purpose</span>
                 </motion.h1>
 
                 {/* Description */}
@@ -105,33 +108,9 @@ export function AboutHero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  Three decades of precision-engineered solutions powering infrastructure, energy, and high-voltage systems across India and globally.
+                  Arihantaa Powertech is an Ahmedabad-based electrical infrastructure and MEPF consultancy company, delivering end-to-end engineering solutions for government, industrial, commercial, healthcare, and smart city projects across India.
                 </motion.p>
 
-                {/* Separator */}
-                <motion.div
-                  className="w-full h-px bg-white/8 mb-9"
-                  initial={{ scaleX: 0, originX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.7, delay: 0.5 }}
-                />
-
-                {/* Credential strip */}
-                <motion.div
-                  className="grid grid-cols-2 gap-6"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.65 }}
-                >
-                  <div>
-                    <span className="block font-label-caps text-[9px] text-white/35 tracking-[0.18em] uppercase mb-1">Sector Focus</span>
-                    <p className="font-body text-[13px] text-white/70 font-medium">Infrastructure, Energy &amp; High-Voltage Systems</p>
-                  </div>
-                  <div>
-                    <span className="block font-label-caps text-[9px] text-white/35 tracking-[0.18em] uppercase mb-1">Commitment</span>
-                    <p className="font-body text-[13px] text-white/70 font-medium">Sustainability-driven engineering for a resilient future</p>
-                  </div>
-                </motion.div>
 
               </div>
             </div>

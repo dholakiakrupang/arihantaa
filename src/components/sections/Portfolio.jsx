@@ -45,7 +45,7 @@ export function Portfolio() {
             >
               <div className="h-px w-6 bg-accent" />
               <span className="font-label-caps text-[10px] text-accent tracking-[0.25em] uppercase font-bold">
-                LANDMARKS | GLOBAL SCALE
+                LANDMARKS | PAN-INDIA SCALE
               </span>
             </motion.div>
             

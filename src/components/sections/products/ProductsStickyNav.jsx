@@ -14,44 +14,44 @@ const telemetryData = {
   'critical-power': {
     status: 'ACTIVE',
     readout: 'SYS_LOAD: 100% NOMINAL // STABILITY: 99.999%',
-    ticker: '◆ SYS_LOAD: 100% NOMINAL ◆ GRID_VOLTAGE: 415V AC ◆ FREQ: 50.00Hz ◆ BYPASS: STANDBY ◆ THD: <1.5% ◆ BATTERY: CHARGING (100%) ◆ UPS_TEMP: 32°C ◆ DC_BUS: 540V ◆ COPIES ACTIVE: 3 ◆ EMERGENCY_STOP: READY ◆'
+    ticker: '■ SYS_LOAD: 100% NOMINAL ■ GRID_VOLTAGE: 415V AC ■ FREQ: 50.00Hz ■ BYPASS: STANDBY ■ THD: <1.5% ■ BATTERY: CHARGING (100%) ■ UPS_TEMP: 32°C ■ DC_BUS: 540V ■ COPIES ACTIVE: 3 ■ EMERGENCY_STOP: READY ■'
   },
   'thermal-management': {
     status: 'COMPLIANT',
     readout: 'THERMO_LOAD: COMPLIANT // COOLING PUE: 1.12',
-    ticker: '◆ THERMO_LOAD: OPTIMAL ◆ PUE: 1.12 ◆ FAN_SPEED: 82% ◆ COMPRESSOR: STAGE_2 ◆ HUMIDITY: 45.2% ◆ CHILLER_TEMP: 7.2°C ◆ AIRFLOW: 1450 CFM ◆ COOLANT_PRESS: 3.2 BAR ◆ LEAK_DETECTION: NEGATIVE ◆'
+    ticker: '■ THERMO_LOAD: OPTIMAL ■ PUE: 1.12 ■ FAN_SPEED: 82% ■ COMPRESSOR: STAGE_2 ■ HUMIDITY: 45.2% ■ CHILLER_TEMP: 7.2°C ■ AIRFLOW: 1450 CFM ■ COOLANT_PRESS: 3.2 BAR ■ LEAK_DETECTION: NEGATIVE ■'
   },
   'racks-enclosures': {
     status: 'SECURE',
     readout: 'ENCLOSURE: IP66 RATED // STRUCT_INTEGRITY: 100%',
-    ticker: '◆ ACCESS: ENGAGED ◆ IP_CLASS: IP66 ◆ STRUCTURAL_LOAD: 1250KG/1500KG ◆ DOOR_SENSORS: SECURED ◆ THERMOSTAT_1: 22.4°C ◆ THERMOSTAT_2: 24.1°C ◆ GROUNDING_RES: <0.1Ω ◆ VIBRATION: NONE ◆'
+    ticker: '■ ACCESS: ENGAGED ■ IP_CLASS: IP66 ■ STRUCTURAL_LOAD: 1250KG/1500KG ■ DOOR_SENSORS: SECURED ■ THERMOSTAT_1: 22.4°C ■ THERMOSTAT_2: 24.1°C ■ GROUNDING_RES: <0.1Ω ■ VIBRATION: NONE ■'
   },
   'monitoring-management': {
     status: 'SYNCED',
     readout: 'TELEMETRY: LINK ACTIVE // DATA SYNC: 100%',
-    ticker: '◆ TELEMETRY: CONNECTED ◆ PING: 1.2ms ◆ CPU_UTIL: 14.2% ◆ RAM: 4.2GB/16GB ◆ DATA_SYNC: 100% ◆ NETWORK_BW: 10Gbps ◆ DB_LATENCY: 2ms ◆ API_CALLS: 240/sec ◆ PACKET_LOSS: 0.00% ◆'
+    ticker: '■ TELEMETRY: CONNECTED ■ PING: 1.2ms ■ CPU_UTIL: 14.2% ■ RAM: 4.2GB/16GB ■ DATA_SYNC: 100% ■ NETWORK_BW: 10Gbps ■ DB_LATENCY: 2ms ■ API_CALLS: 240/sec ■ PACKET_LOSS: 0.00% ■'
   }
 };
 
 const defaultTelemetry = {
   status: 'ONLINE',
   readout: 'ARIHANTAA CORE SYSTEM // CONNECTING TO GRID...',
-  ticker: '◆ ARIHANTAA DIGITAL CONSOLE v2.10 ◆ READY TO ESTABLISH LINK ◆ CRITICAL POWER ◆ THERMAL MANAGEMENT ◆ RACKS & ENCLOSURES ◆ MONITORING & MANAGEMENT ◆ SELECT UNIT TO INSPECT'
+  ticker: '■ ARIHANTAA DIGITAL CONSOLE v2.10 ■ READY TO ESTABLISH LINK ■ CRITICAL POWER ■ THERMAL MANAGEMENT ■ RACKS & ENCLOSURES ■ MONITORING & MANAGEMENT ■ SELECT UNIT TO INSPECT'
 };
 
 const renderTickerText = (tickerText) => {
-  const parts = tickerText.split('◆').map(p => p.trim()).filter(Boolean);
+  const parts = tickerText.split('■').map(p => p.trim()).filter(Boolean);
   return (
     <>
       {parts.map((part, index) => (
         <span key={index} className="inline-flex items-center gap-3">
-          <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse">◆</span>
+          <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse">■</span>
           <span className="text-white font-mono text-[10.5px] md:text-[12px] tracking-[0.18em] uppercase font-semibold">
             {part}
           </span>
         </span>
       ))}
-      <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse ml-3">◆</span>
+      <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse ml-3">■</span>
     </>
   );
 };
@@ -211,8 +211,8 @@ export function ProductsStickyNav() {
                   {sec.num}
                 </span>
 
-                {/* Divider dot */}
-                <span className={`w-1 h-1 rounded-full flex-shrink-0 transition-colors duration-300 mr-2 ${
+                {/* Divider square */}
+                <span className={`w-1 h-1 rounded-none flex-shrink-0 transition-colors duration-300 mr-2 ${
                   isActive ? 'bg-accent/70' : 'bg-surface-variant/20'
                 }`}></span>
 
@@ -247,7 +247,7 @@ export function ProductsStickyNav() {
               >
                 {sec.num} — {sec.label}
               </button>
-              <span className="text-accent/30 text-[10px] select-none">◆</span>
+              <span className="text-accent/30 text-[10px] select-none">■</span>
             </span>
           ))}
         </div>

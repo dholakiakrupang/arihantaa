@@ -5,28 +5,28 @@ export function ProcessSection() {
   const steps = [
     {
       number: "1",
-      title: "Requirement Analysis",
-      desc: "Detailed technical assessment of project parameters and client objectives."
+      title: "Understand",
+      desc: "Assess project scope, site conditions, and compliance requirements."
     },
     {
       number: "2",
-      title: "Design & Engineering",
-      desc: "Custom engineering solutions using advanced BIM and CAD modeling."
+      title: "Design",
+      desc: "BIM-ready, code-compliant technical designs across all disciplines."
     },
     {
       number: "3",
-      title: "Approval & Planning",
-      desc: "Securing certifications and meticulous resource scheduling."
+      title: "Supply",
+      desc: "Source and supply products via verified brand partnerships and JV alliances."
     },
     {
       number: "4",
-      title: "Execution",
-      desc: "On-site implementation led by certified industrial engineers."
+      title: "Execute",
+      desc: "On-site supervision, installation coordination, and quality checks."
     },
     {
       number: "5",
-      title: "Commissioning",
-      desc: "Final testing, certification, and project handover to client."
+      title: "Commission",
+      desc: "Full system testing, sign-off documentation, and handover support."
     }
   ];
 
@@ -37,7 +37,7 @@ export function ProcessSection() {
           <div className="col-span-12">
             <Reveal>
               <span className="eyebrow text-primary mb-6 block">Our Methodology</span>
-              <h2 className="font-headline text-4xl md:text-6xl font-bold tracking-tighter">From Brief to Handover</h2>
+              <h2 className="font-headline text-4xl md:text-6xl font-bold tracking-tighter">How We Work</h2>
             </Reveal>
           </div>
         </div>

@@ -625,5 +625,106 @@ export const engineeredProductsData = [
         weight: "0 kg" 
       }
     ]
+  },
+  // ─── L&T BRAND TTA PANEL ──────────────────────────────────────────────────
+  {
+    id: "lt-tta-panel",
+    categoryId: "power-distribution",
+    tag: "CRITICAL POWER",
+    title: "L&T Brand Type Tested Assembly (TTA) Panel",
+    scoreLabel: "COMPLIANCE SCORE",
+    scorePercentage: 100,
+    description: "High-performance Type Tested Assemblies (TTA) manufactured under strategic JV with Synchro Electricals. Certified to IS/IEC standards, offering modular, fully compliant low-voltage power distribution with intelligent control.",
+    features: [
+      "Fully Type Tested Assemblies (TTA) as per IS/IEC standards",
+      "Triple source changeover capability with mechanical & electrical interlocks",
+      "Microprocessor-based automatic source selection & power management",
+      "Configurable current range from 63A up to 4000A capacity",
+      "Flexible ingress protection options: IP42 / IP54 solutions",
+      "Integrated Auto Mains Failure (AMF) control systems"
+    ],
+    stats: [
+      { label: "CURRENT RANGE", value: "63A – 4000A" },
+      { label: "JV ALLIANCE", value: "Synchro Electricals" },
+      { label: "STANDARDS", value: "IS/IEC Compliant" },
+      { label: "INGRESS PROTECTION", value: "IP42 / IP54" }
+    ],
+    imageSrc: "/images/products/switchgear.png",
+    imageAlt: "L&T TTA Panel Switchgear",
+    images: [
+      { src: "/images/products/switchgear.png", alt: "L&T TTA Panel — Front View" }
+    ],
+    models: [
+      { name: "TTA-630", capacity: "630 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.5%", height: 2000, width: 800, depth: 800, weight: "450 kg" },
+      { name: "TTA-1600", capacity: "1600 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.6%", height: 2200, width: 1000, depth: 1000, weight: "850 kg" },
+      { name: "TTA-4000", capacity: "4000 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.7%", height: 2200, width: 2400, depth: 1200, weight: "2100 kg" }
+    ]
+  },
+  // ─── LUCY BRAND RMU ───────────────────────────────────────────────────────
+  {
+    id: "lucy-rmu",
+    categoryId: "power-distribution",
+    tag: "CRITICAL POWER",
+    title: "Lucy Brand Ring Main Unit (RMU)",
+    scoreLabel: "RELIABILITY INDEX",
+    scorePercentage: 99,
+    description: "Premium Lucy Electric medium-voltage Ring Main Units (RMU) for smart distribution grids. Designed for 11kV and 33kV networks, utilizing SF6 or vacuum technology in a sealed, maintenance-free enclosure.",
+    features: [
+      "Medium voltage ratings: 11kV and 33kV distribution options",
+      "Advanced SF6 gas or eco-friendly vacuum insulation technology",
+      "Highly configurable configurations: 2-way, 3-way, or multi-way panels",
+      "Sealed-for-life tank design for maintenance-free operations",
+      "Full compliance with IEC 62271-200 international standard specifications",
+      "Integrated smart grid automation & remote terminal unit (RTU) ready"
+    ],
+    stats: [
+      { label: "VOLTAGE RANGE", value: "11kV – 33kV" },
+      { label: "INSULATION TYPE", value: "SF6 / Vacuum" },
+      { label: "COMPLIANCE", value: "IEC 62271-200" },
+      { label: "DESIGN", value: "Sealed Maintenance-Free" }
+    ],
+    imageSrc: "/images/products/switchgear.png",
+    imageAlt: "Lucy Electric Ring Main Unit (RMU)",
+    images: [
+      { src: "/images/products/switchgear.png", alt: "Lucy RMU — Front View" }
+    ],
+    models: [
+      { name: "Sabre VRN2a", capacity: "11 kV / 630A", inputVoltage: "11 kV", outputVoltage: "11 kV", efficiency: "99.8%", height: 1450, width: 1050, depth: 850, weight: "420 kg" },
+      { name: "Aegis 36", capacity: "33 kV / 630A", inputVoltage: "33 kV", outputVoltage: "33 kV", efficiency: "99.8%", height: 1800, width: 1200, depth: 950, weight: "780 kg" }
+    ]
+  },
+  // ─── LUCY BRAND CSS ───────────────────────────────────────────────────────
+  {
+    id: "lucy-css",
+    categoryId: "power-distribution",
+    tag: "CRITICAL POWER",
+    title: "Lucy Brand Compact Substation (CSS)",
+    scoreLabel: "INTEGRATION INDEX",
+    scorePercentage: 98,
+    description: "Fully integrated, type-tested Lucy Electric Compact Substations (CSS) designed for distribution networks. Houses medium voltage switchgear, distribution transformer, and low voltage boards in a robust, weatherproof enclosure.",
+    features: [
+      "Factory assembled, fully integrated MV + Transformer + LV system",
+      "Standard voltage range: 11kV incoming / 415V distribution outgoing",
+      "Scalable power ratings from 100kVA up to 2500kVA capacity",
+      "Robust, weatherproof & walk-in / non-walk-in style metal enclosure",
+      "Completely factory tested to ensure safety and quick commissioning",
+      "Optimal cooling design for extreme ambient tropical conditions"
+    ],
+    stats: [
+      { label: "CAPACITY RANGE", value: "100kVA – 2500kVA" },
+      { label: "VOLTAGE STEP", value: "11kV / 415V" },
+      { label: "INTEGRATION", value: "MV + TX + LV" },
+      { label: "ENCLOSURE", value: "Weatherproof IP23D/IP54" }
+    ],
+    imageSrc: "/images/products/switchgear.png",
+    imageAlt: "Lucy Electric Compact Substation (CSS)",
+    images: [
+      { src: "/images/products/switchgear.png", alt: "Lucy CSS — Full Enclosure" }
+    ],
+    models: [
+      { name: "CSS-500", capacity: "500 kVA", inputVoltage: "11 kV", outputVoltage: "415 V", efficiency: "98.5%", height: 2200, width: 2800, depth: 2200, weight: "4200 kg" },
+      { name: "CSS-1000", capacity: "1000 kVA", inputVoltage: "11 kV", outputVoltage: "415 V", efficiency: "98.7%", height: 2400, width: 3400, depth: 2400, weight: "6800 kg" },
+      { name: "CSS-2500", capacity: "2500 kVA", inputVoltage: "11 kV", outputVoltage: "415 V", efficiency: "98.9%", height: 2600, width: 4200, depth: 2600, weight: "12500 kg" }
+    ]
   }
 ];

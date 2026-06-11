@@ -8,7 +8,7 @@ export function Certifications() {
         
         <Reveal>
           <h3 className="font-headline text-3xl md:text-5xl font-bold text-white max-w-xl">
-            Certified Excellence in Global Engineering.
+            Certified Excellence in Engineering.
           </h3>
         </Reveal>
         

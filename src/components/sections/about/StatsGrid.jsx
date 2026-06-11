@@ -1,50 +1,68 @@
 import { motion } from 'framer-motion';
 
 const stats = [
-  { value: '30+', label: 'Years Experience', icon: 'history' },
-  { value: '500+', label: 'Projects Delivered', icon: 'engineering' },
-  { value: '₹80Cr+', label: 'Annual Turnover', icon: 'trending_up' },
-  { value: '100+', label: 'Elite Professionals', icon: 'groups' },
+  { value: 'Pan-India', label: 'Project Reach', icon: 'public' },
+  { value: '8', label: 'Sectors Served', icon: 'category' },
+  { value: '2', label: 'Strategic JV Partners', icon: 'handshake' },
+  { value: 'MEPF', label: 'Full Consultancy', icon: 'architecture' },
 ];
 
 export function StatsGrid() {
   return (
-    <section className="bg-inverse-surface py-16 md:py-24 border-y border-white/5">
-      <div className="max-w-[1440px] mx-auto px-8 md:px-16">
+    <section className="bg-[#080808] py-20 md:py-28 border-y border-white/5 relative overflow-hidden">
+      {/* Subtle blueprint grid pattern in background for engineering theme */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none" />
 
-        {/* Section label */}
-        <div className="flex items-center gap-4 mb-12">
-          <div className="h-px w-10 bg-accent" />
-          <span className="font-label-caps text-[11px] text-accent tracking-[0.25em] uppercase">By The Numbers</span>
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-16 relative z-10">
+
+        {/* Section Label */}
+        <div className="flex items-center gap-3 mb-10">
+          <div className="h-[2px] w-8 bg-accent" />
+          <span className="font-label-caps text-[11px] text-accent tracking-[0.25em] uppercase font-bold">By The Numbers</span>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-white/10 gap-0">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              className="bg-inverse-surface p-5 sm:p-6 md:p-5 lg:p-10 border-r border-b border-white/10 flex flex-col gap-4 group hover:bg-white/5 transition-colors duration-300 rounded-none"
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, delay: i * 0.1, ease: [0.25, 1, 0.5, 1] }}
-            >
-              <div className="flex items-center justify-between">
-                <span className="material-symbols-outlined text-accent text-[36px] group-hover:scale-110 transition-transform duration-300">
-                  {stat.icon}
-                </span>
-              </div>
-              <div>
-                <p className="font-headline text-[32px] sm:text-[36px] md:text-[34px] lg:text-[64px] font-black text-accent leading-none tracking-tighter">
-                  {stat.value}
-                </p>
-                <p className="font-label-caps text-[11px] text-surface-variant tracking-[0.18em] uppercase mt-2">
-                  {stat.label}
-                </p>
-              </div>
-              {/* Animated bottom border */}
-              <div className="h-[2px] w-0 bg-accent group-hover:w-full transition-all duration-500" />
-            </motion.div>
-          ))}
+        {/* 1/2/4 Grid with single-pixel border treatment */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-white/10 gap-0">
+          {stats.map((stat, i) => {
+            const isLongVal = stat.value.length > 3;
+            return (
+              <motion.div
+                key={stat.label}
+                className="relative bg-[#080808] p-8 md:p-10 border-r border-b border-white/10 flex flex-col justify-between min-h-[220px] group hover:bg-white/[0.02] transition-colors duration-300 rounded-none overflow-hidden"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.55, delay: i * 0.08, ease: [0.25, 1, 0.5, 1] }}
+              >
+                {/* Icon wrapper */}
+                <div className="mb-6">
+                  <span 
+                    className="material-symbols-outlined text-accent !text-[28px] group-hover:scale-110 transition-transform duration-300 block w-fit" 
+                    style={{ fontSize: '28px' }}
+                  >
+                    {stat.icon}
+                  </span>
+                </div>
+
+                {/* Values & Labels */}
+                <div className="mt-auto">
+                  <h3 className={`font-headline font-black text-accent leading-none tracking-tighter whitespace-nowrap mb-2 ${
+                    isLongVal 
+                      ? 'text-[22px] sm:text-[26px] md:text-[24px] lg:text-[36px] xl:text-[44px]' 
+                      : 'text-[36px] sm:text-[44px] md:text-[38px] lg:text-[60px] xl:text-[68px]'
+                  }`}>
+                    {stat.value}
+                  </h3>
+                  <p className="font-label-caps text-[9.5px] sm:text-[10px] text-white/45 tracking-[0.2em] uppercase">
+                    {stat.label}
+                  </p>
+                </div>
+
+                {/* Absolutely positioned animated bottom accent line */}
+                <div className="absolute bottom-0 left-0 right-0 h-[3px] w-0 bg-accent group-hover:w-full transition-all duration-500 ease-out" />
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

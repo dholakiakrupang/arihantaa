@@ -119,6 +119,9 @@ const MEGA_MENUS = {
           { label: 'Uninterruptible Power Supplies (UPS)', link: '/products/ups' },
           { label: 'DC Power Systems', link: '/products/dc-power' },
           { label: 'Power Transfer Switches', link: '/products/power-distribution' },
+          { label: 'L&T TTA Panel', link: '/products/power-distribution/lt-tta-panel' },
+          { label: 'Lucy RMU', link: '/products/power-distribution/lucy-rmu' },
+          { label: 'Lucy CSS', link: '/products/power-distribution/lucy-css' },
         ],
       },
       {
@@ -160,36 +163,47 @@ const MEGA_MENUS = {
   Services: {
     sections: [
       {
-        id: 'maintenance',
-        title: 'Maintenance',
-        Icon: IconWrench,
-        link: '/services/spare-parts',
+        id: 'electrical-infra',
+        title: 'Electrical Supply',
+        Icon: IconBolt,
+        link: '/services#electrical-infra',
         items: [
-          { label: 'Spare Parts & Parts Management', link: '/services/spare-parts' },
-          { label: 'Preventive Maintenance', link: '/services/preventive-maint' },
-          { label: 'UPS & Battery Services', link: '/services/ups-battery' },
-          { label: 'Preventive Maint. for Industrial', link: '/services/industrial-maint' },
+          { label: 'L&T TTA Panels', link: '/services#electrical-infra' },
+          { label: 'Lucy Brand RMU', link: '/services#electrical-infra' },
+          { label: 'Lucy Brand CSS', link: '/services#electrical-infra' },
         ],
       },
       {
-        id: 'project',
-        title: 'Project Services',
+        id: 'mepf-consultancy',
+        title: 'MEPF Consultancy',
+        Icon: IconThermo,
+        link: '/services#mepf-consultancy',
+        items: [
+          { label: 'Mechanical HVAC Systems', link: '/services#mepf-consultancy' },
+          { label: 'Electrical & Lighting Design', link: '/services#mepf-consultancy' },
+          { label: 'Plumbing & Fire Protection', link: '/services#mepf-consultancy' },
+        ],
+      },
+      {
+        id: 'epc-contracting',
+        title: 'EPC Contracting',
         Icon: IconConstruction,
-        link: '/services/project-commission',
+        link: '/services#epc-contracting',
         items: [
-          { label: 'Project & Commissioning Services', link: '/services/project-commission' },
-          { label: 'Performance Optimization', link: '/services/performance-opt' },
-          { label: 'Generator & Switchgear Services', link: '/services/generator' },
+          { label: 'Government Execution', link: '/services#epc-contracting' },
+          { label: 'Institutional Projects', link: '/services#epc-contracting' },
+          { label: 'Class A licensed Erection', link: '/services#epc-contracting' },
         ],
       },
       {
-        id: 'remote',
-        title: 'Remote & Specialised',
-        Icon: IconGlobe,
-        link: '/services/remote-services',
+        id: 'project-supervision',
+        title: 'Supervision & SITC',
+        Icon: IconMonitor,
+        link: '/services#project-supervision',
         items: [
-          { label: 'Remote Services (24/7 NOC)', link: '/services/remote-services' },
-          { label: 'Liquid Cooling Services', link: '/services/liquid-cooling' },
+          { label: 'On-site Tech Supervision', link: '/services#project-supervision' },
+          { label: 'Testing & Commissioning', link: '/services#project-supervision' },
+          { label: 'SLA & Handover Support', link: '/services#project-supervision' },
         ],
       },
     ],
@@ -198,12 +212,12 @@ const MEGA_MENUS = {
 };
 
 const NAV_LINKS = [
-  { label: 'Home',     to: '/' },
-  { label: 'Products', to: '/products', hasMega: true },
-  { label: 'Services', to: '/services', hasMega: true },
-  { label: 'Projects', to: '/projects' },
-  { label: 'News',     to: '/news' },
-  { label: 'About',    to: '/about' },
+  { label: 'Home',         to: '/' },
+  { label: 'Products',     to: '/products', hasMega: true },
+  { label: 'Services',     to: '/services', hasMega: true },
+  { label: 'Projects',     to: '/projects' },
+  { label: 'News',         to: '/news' },
+  { label: 'About',        to: '/about' },
 ];
 
 // ─── Animated Hamburger Icon (premium 2-line → X morph) ───────────────────
@@ -337,8 +351,13 @@ function MobileDrawer({ isOpen, onClose }) {
   const drawerRef = useRef(null);
   const location = useLocation();
 
-  const isActive = (to) =>
-    to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
+  const isActive = (to) => {
+    if (to.includes('#')) {
+      const [path, hash] = to.split('#');
+      return location.pathname === path && location.hash === '#' + hash;
+    }
+    return to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
+  };
 
   // Body scroll lock
   useEffect(() => {
@@ -616,7 +635,7 @@ function MegaSection({ section, onClick, index }) {
                 onClick={onClick}
                 className="flex items-center gap-2.5 font-body text-[13px] text-secondary hover:text-on-surface py-1 pl-1 group/item hover:pl-2.5 transition-all duration-200"
               >
-                <span className="w-[4px] h-[4px] rounded-full bg-outline-variant group-hover/item:bg-accent transition-colors shrink-0" />
+                <span className="w-[4px] h-[4px] rounded-none bg-outline-variant group-hover/item:bg-accent transition-colors shrink-0" />
                 {item.label}
               </Link>
             </li>
@@ -988,8 +1007,13 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const isActive = (to) =>
-    to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
+  const isActive = (to) => {
+    if (to.includes('#')) {
+      const [path, hash] = to.split('#');
+      return location.pathname === path && location.hash === '#' + hash;
+    }
+    return to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
+  };
 
   const handleEnter = (label) => {
     clearTimeout(closeTimer.current);
@@ -1135,11 +1159,7 @@ export function Header() {
               </div>
 
               {/* Section columns */}
-              <div className={`grid border-t border-l border-outline-variant/30 ${
-                open === 'Products'
-                  ? 'grid-cols-2 md:grid-cols-4'
-                  : 'grid-cols-1 md:grid-cols-3'
-              }`}>
+              <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-outline-variant/30">
                 {menu.sections.map((section, i) => (
                   <MegaSection
                     key={section.id}

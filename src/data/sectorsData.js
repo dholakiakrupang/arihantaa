@@ -311,6 +311,5 @@ export const sectorsData = {
 };
 
 export const sectorExperts = [
-  { name: 'Kaushik D. Jariwala', role: 'Managing Partner', avatar: 'KJ' },
-  { name: 'Lilam K. Lalka', role: 'Technical Partner', avatar: 'LL' }
+  { name: 'Anish Shah', role: 'Founder & CEO', avatar: 'AS' }
 ];

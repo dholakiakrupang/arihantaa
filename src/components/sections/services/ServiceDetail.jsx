@@ -11,6 +11,7 @@ export function ServiceDetail({
   imageAlt,
   isReversed,
   bgClass = 'bg-surface',
+  tags = [],
 }) {
   return (
     <section id={id} className={`relative py-20 md:py-28 ${bgClass} overflow-hidden scroll-mt-20 border-b border-outline-variant/30`}>
@@ -110,6 +111,25 @@ export function ServiceDetail({
                 </motion.div>
               ))}
             </div>
+
+            {/* Sectors Served Tags (Optional) */}
+            {tags && tags.length > 0 && (
+              <div className="mb-10">
+                <span className="block font-label-caps text-[9px] text-accent tracking-[0.18em] uppercase mb-4 font-bold">
+                  Sectors Served
+                </span>
+                <div className="flex flex-wrap gap-2.5">
+                  {tags.map((tag, tIdx) => (
+                    <span 
+                      key={tIdx} 
+                      className="font-label-caps text-[8.5px] border border-outline-variant/30 bg-surface-container-low text-secondary px-3.5 py-1.5 uppercase font-bold tracking-wider transition-all duration-300 hover:border-accent/40 hover:text-accent select-none"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* CTA */}
             <Link

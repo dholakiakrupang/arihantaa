@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion';
 
 const values = [
-  { icon: 'bolt',                   title: 'Technical Integrity',   desc: 'Uncompromising standards in engineering design and meticulous project execution.', span: 'col-span-1' },
-  { icon: 'shield_with_heart',      title: 'Unwavering Safety',     desc: 'Placing the well-being of our people and communities at the forefront of every action.', span: 'col-span-1' },
-  { icon: 'eco',                    title: 'Global Sustainability',  desc: 'Engineering solutions that respect the environment and preserve future resources for generations.', span: 'col-span-1 lg:col-span-2' },
-  { icon: 'precision_manufacturing',title: 'Innovation Led',         desc: 'Applying the latest technological breakthroughs to solve infrastructure challenges at scale.', span: 'col-span-1 lg:col-span-2' },
-  { icon: 'group',                  title: 'Collaborative Growth',  desc: 'Building enduring partnerships through transparency and mutual excellence.', span: 'col-span-1' },
-  { icon: 'verified',               title: 'Delivering Quality',    desc: 'A relentless pursuit of perfection in every detail, from grid to greatness.', span: 'col-span-1' },
+  { icon: 'bolt',                   title: 'Engineering Integrity',   desc: 'We never compromise on technical quality, code compliance, or project safety.', span: 'col-span-1' },
+  { icon: 'handshake',              title: 'Trusted Partnerships',    desc: 'Every JV and brand alliance we form is built on mutual trust and shared accountability.', span: 'col-span-1' },
+  { icon: 'groups',                 title: 'Client-First Delivery',   desc: 'We align our timelines, expertise, and resources entirely around client success.', span: 'col-span-1 lg:col-span-2' },
+  { icon: 'eco',                    title: 'Sustainable Solutions',   desc: 'Energy efficiency, green building standards, and long-term performance guide every design.', span: 'col-span-1 sm:col-span-2 lg:col-span-4' },
 ];
 
 export function ValuesBento() {

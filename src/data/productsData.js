@@ -9,7 +9,7 @@ export const productsData = [
     title: "Critical Power",
     alignment: "left",
     description:
-      "Robust power protection and distribution solutions engineered for mission-critical infrastructure, ensuring uninterrupted operations in the most demanding global environments.",
+      "Robust power protection and distribution solutions engineered for mission-critical infrastructure, ensuring uninterrupted operations in the most demanding environments.",
     cards: [
       {
         id: "cp-1",
@@ -44,6 +44,39 @@ export const productsData = [
           "https://lh3.googleusercontent.com/aida-public/AB6AXuCql5ltt4iUhUcf_P7ygD2dki1zAGnM0k1u1USqY4leFks2EmvlcnmICFeolzlX9dI9I3qVAdueIf8SjSD6dh-ALiW5C43_5n-Ui42RbErZn0J2Uye7FAxgeqCQZKKkL4WizAk3HNgvDTJCpAZdyoH9uaAWed1wvPJ28x3dg-5m2IyVCCW2LZPK_5F0rAEuQ2qn9t6rUb5WoOBtUFXXPmatKtArpHpbkl6Qad_RGrJr2OhUl4UFapov4OAFVBlcw7qYAiAoCN8G0nQ",
         imageAlt: "High-voltage transfer switchboard",
       },
+      {
+        id: "lt-tta-panel",
+        categoryId: "power-distribution",
+        category: "Distribution (JV)",
+        title: "L&T Brand TTA Panel",
+        description:
+          "Type Tested Assemblies manufactured in strategic JV alliance with Synchro Electricals, rated from 63A to 4000A.",
+        imageSrc:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuCql5ltt4iUhUcf_P7ygD2dki1zAGnM0k1u1USqY4leFks2EmvlcnmICFeolzlX9dI9I3qVAdueIf8SjSD6dh-ALiW5C43_5n-Ui42RbErZn0J2Uye7FAxgeqCQZKKkL4WizAk3HNgvDTJCpAZdyoH9uaAWed1wvPJ28x3dg-5m2IyVCCW2LZPK_5F0rAEuQ2qn9t6rUb5WoOBtUFXXPmatKtArpHpbkl6Qad_RGrJr2OhUl4UFapov4OAFVBlcw7qYAiAoCN8G0nQ",
+        imageAlt: "L&T Brand TTA Panel",
+      },
+      {
+        id: "lucy-rmu",
+        categoryId: "power-distribution",
+        category: "Switchgear",
+        title: "Lucy Brand RMU",
+        description:
+          "Medium-voltage (11kV/33kV) Ring Main Units using SF6 or vacuum technology, sealed maintenance-free design.",
+        imageSrc:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuB_fzaE_1xaS6HiKy6_VQtAJuhg2xWOhgmQLfZ_VbwxJiV-Q5AI-k0qKPKhETM9Bny-A7WgLl8h-21Zi09FskaVDOJDj3CErWkCOxSUvp26RH6ptNORRj1PHFO9t7ANFIU89PdvEol9uqcl7tu2Kgu9Dys1mPhnajUT5dOvRsP3gpyqHWrnrerX5_qydr5cxR87uFlhiyWQBFEFvjpRExOtepJGPpq5fThaNjnn6A-ic8hQ6wOnppPXjKeWlksYiZCTLKHeg94n2iY",
+        imageAlt: "Lucy Brand RMU",
+      },
+      {
+        id: "lucy-css",
+        categoryId: "power-distribution",
+        category: "Substation",
+        title: "Lucy Brand CSS",
+        description:
+          "Integrated factory-assembled weatherproof Compact Substations combining MV switchgear, transformer, and LV board.",
+        imageSrc:
+          "https://lh3.googleusercontent.com/aida-public/AB6AXuCql5ltt4iUhUcf_P7ygD2dki1zAGnM0k1u1USqY4leFks2EmvlcnmICFeolzlX9dI9I3qVAdueIf8SjSD6dh-ALiW5C43_5n-Ui42RbErZn0J2Uye7FAxgeqCQZKKkL4WizAk3HNgvDTJCpAZdyoH9uaAWed1wvPJ28x3dg-5m2IyVCCW2LZPK_5F0rAEuQ2qn9t6rUb5WoOBtUFXXPmatKtArpHpbkl6Qad_RGrJr2OhUl4UFapov4OAFVBlcw7qYAiAoCN8G0nQ",
+        imageAlt: "Lucy Brand CSS",
+      },
     ],
   },
   {
@@ -53,7 +86,7 @@ export const productsData = [
     title: "Thermal Management",
     alignment: "right",
     description:
-      "Advanced cooling systems engineered to optimise energy efficiency and maintain precise thermal conditions for high-density computational environments globally.",
+      "Advanced cooling systems engineered to optimise energy efficiency and maintain precise thermal conditions for high-density computational environments.",
     cards: [
       {
         id: "tm-1",
@@ -183,7 +216,7 @@ export const productsData = [
 export const trustStats = [
   { value: "500+", label: "Products" },
   { value: "98.9%", label: "Uptime Reliability" },
-  { value: "12+", label: "Countries Served" },
+  { value: "Pan-India", label: "Project Reach" },
 ];
 
 export const industries = [

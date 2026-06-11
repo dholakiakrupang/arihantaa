@@ -2,16 +2,57 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const services = [
-  { id: 'spare-parts',        num: '01', label: 'Spare Parts & Parts Management' },
-  { id: 'preventive-maint',   num: '02', label: 'Preventive Maintenance' },
-  { id: 'performance-opt',    num: '03', label: 'Performance Optimization' },
-  { id: 'remote-services',    num: '04', label: 'Remote Services' },
-  { id: 'project-commission', num: '05', label: 'Project & Commissioning' },
-  { id: 'industrial-maint',   num: '06', label: 'Industrial Maintenance' },
-  { id: 'ups-battery',        num: '07', label: 'UPS & Battery Services' },
-  { id: 'generator',          num: '08', label: 'Generator & Switchgear' },
-  { id: 'liquid-cooling',     num: '09', label: 'Liquid Cooling Services' },
+  { id: 'electrical-infra',    num: '01', label: 'Electrical Infrastructure' },
+  { id: 'mepf-consultancy',    num: '02', label: 'MEPF Consultancy' },
+  { id: 'epc-contracting',     num: '03', label: 'EPC Contracting' },
+  { id: 'project-supervision',  num: '04', label: 'Project Supervision' },
 ];
+
+const telemetryData = {
+  'electrical-infra': {
+    status: 'ACTIVE',
+    readout: 'GRID_INT: 100% NOMINAL // COMPLIANCE: ISO 9001',
+    ticker: '■ L&T TTA PANEL: CERTIFIED ■ LUCY RMU: 11kV/33kV SF6 ■ LUCY CSS: WEATHERPROOF ■ ERECTION: ONGOING ■ WARRANTY: 5 YRS ■ BANK SOLVENCY: 7 CR ■'
+  },
+  'mepf-consultancy': {
+    status: 'COMPLIANT',
+    readout: 'BIM_READY: ACTIVE // STANDARDS: NBC & LEED',
+    ticker: '■ HVAC FLOW: OPTIMAL ■ LIGHTING: LED SPEC ■ PLUMBING: DRAINAGE STAGE 2 ■ FIRE SPRINKLERS: PRESSURE OK ■ NBC 2016: VALIDATED ■ LEED GOLD: ALIGNED ■'
+  },
+  'epc-contracting': {
+    status: 'LIVE',
+    readout: 'CLASS A LICENSED JV // CONTRACT: ACTIVE',
+    ticker: '■ PROJECT CAPEX: SECURED ■ PROCUREMENT: 88% COMPLETE ■ CREW: DEPLOYED ■ OVERHEAD LINES: LIVE ■ TRANSFORMER FEED: COMMISSIONED ■ SITE SAFETY: 100% ■'
+  },
+  'project-supervision': {
+    status: 'STABLE',
+    readout: 'SUPERVISION: ACTIVE // QA PROTOCOL: ENGAGED',
+    ticker: '■ FAT TEST: SIGNED OFF ■ SAT TEST: COMPLETION ■ RELAY CALIBRATION: STABLE ■ HANDOVER DOCS: GENERATED ■ AS-BUILT DRAWINGS: VERIFIED ■ SLA: 24/7 SUPPORT ■'
+  }
+};
+
+const defaultTelemetry = {
+  status: 'ONLINE',
+  readout: 'ARIHANTAA SERVICES CONSOLE // DISCIPLINES ACTIVE...',
+  ticker: '■ ELECTRICAL INFRASTRUCTURE ■ MEPF CONSULTANCY ■ EPC CONTRACTING ■ PROJECT SUPERVISION ■ SYSTEM HANDOVER ■'
+};
+
+const renderTickerText = (tickerText) => {
+  const parts = tickerText.split('■').map(p => p.trim()).filter(Boolean);
+  return (
+    <>
+      {parts.map((part, index) => (
+        <span key={index} className="inline-flex items-center gap-3">
+          <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse">■</span>
+          <span className="text-white font-mono text-[10.5px] md:text-[12px] tracking-[0.18em] uppercase font-semibold">
+            {part}
+          </span>
+        </span>
+      ))}
+      <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse ml-3">■</span>
+    </>
+  );
+};
 
 function ServiceSVG({ id, isActive }) {
   const containerClasses = `transition-all duration-300 ease-out flex items-center justify-center w-[18px] mr-2 ${
@@ -23,67 +64,31 @@ function ServiceSVG({ id, isActive }) {
   return (
     <div className={containerClasses}>
       <div className="w-[18px] h-[18px] flex items-center justify-center flex-shrink-0">
-        {id === 'spare-parts' && (
+        {id === 'electrical-infra' && (
           <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2L3 7l9 5 9-5-9-5z" />
-            <path d="M3 7v10l9 5V12L3 7z" />
-            <path d="M21 7v10l-9 5" />
-            <circle cx="17" cy="4.5" r="1.5" className="animate-pulse" />
+            <rect x="3" y="6" width="16" height="12" rx="2" />
+            <path d="M21 10v4M7 12h6M10 9v6" />
           </svg>
         )}
-        {id === 'preventive-maint' && (
+        {id === 'mepf-consultancy' && (
           <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
-            <path d="M7 12l3 3 7-7" />
+            <path d="M3 21h18M9 21V9l3-3 3 3v12" />
+            <path d="M5 21V13l2-2 2 2v8" />
+            <path d="M19 21V13l-2-2-2 2v8" />
           </svg>
         )}
-        {id === 'performance-opt' && (
-          <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3.58 17.58A8 8 0 1 1 20.42 17.58" />
-            <path d="M12 14l5-5" />
-            <circle cx="12" cy="14" r="1.5" />
-            <path d="M19 8h-4V4" />
-            <path d="M20 3l-6 6" />
-          </svg>
-        )}
-        {id === 'remote-services' && (
-          <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="18" r="1" />
-            <path d="M12 17V8" />
-            <path d="M17 12a5 5 0 0 0-10 0" />
-            <path d="M20 9a9 9 0 0 0-16 0" />
-          </svg>
-        )}
-        {id === 'project-commission' && (
-          <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <circle cx="12" cy="12" r="3" />
-            <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-          </svg>
-        )}
-        {id === 'industrial-maint' && (
+        {id === 'epc-contracting' && (
           <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 21h18M5 21V10l7 3V8l7 3v10" />
             <path d="M9 21v-4h6v4" />
             <path d="M7 6h2M15 4h2" />
           </svg>
         )}
-        {id === 'ups-battery' && (
+        {id === 'project-supervision' && (
           <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="6" width="16" height="12" rx="2" />
-            <path d="M21 10v4M7 12h6M10 9v6" />
-          </svg>
-        )}
-        {id === 'generator' && (
-          <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M13 8l-3 4h4l-3 4" />
-          </svg>
-        )}
-        {id === 'liquid-cooling' && (
-          <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
-            <path d="M8 15h8M9 18h6" />
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="3" />
+            <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
           </svg>
         )}
       </div>
@@ -152,8 +157,7 @@ export function ServicesStickyNav() {
     }
   };
 
-  // Duplicate for seamless infinite marquee (only shown when nothing is active)
-  const doubled = [...services, ...services];
+  const doubled = [...services, ...services, ...services, ...services];
 
   return (
     <nav className="sticky top-[64px] md:top-[80px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
@@ -173,7 +177,7 @@ export function ServicesStickyNav() {
 
           <div
             ref={scrollContainerRef}
-            className="flex overflow-x-auto scrollbar-hide flex-grow scroll-smooth"
+            className="flex lg:grid lg:grid-cols-4 flex-grow overflow-x-auto scrollbar-hide scroll-smooth"
           >
             {/* Mobile-only label pill inside the scroll list */}
             <div className="flex lg:hidden items-center gap-2 px-5 bg-accent border-r border-accent/40 flex-shrink-0 select-none">
@@ -190,7 +194,7 @@ export function ServicesStickyNav() {
                   key={svc.id}
                   id={`nav-item-${svc.id}`}
                   onClick={(e) => handleNavClick(e, svc.id)}
-                  className={`group relative flex items-center justify-start px-5 py-4 flex-shrink-0 border-r border-white/10 transition-all duration-300 outline-none ${
+                  className={`group relative flex items-center justify-start lg:justify-center px-4 lg:px-6 py-4 flex-shrink-0 border-r border-white/10 transition-all duration-300 outline-none ${
                     isActive ? 'bg-black/30' : 'hover:bg-white/5'
                   }`}
                 >
@@ -206,8 +210,8 @@ export function ServicesStickyNav() {
                     {svc.num}
                   </span>
 
-                  {/* Divider dot */}
-                  <span className={`w-1 h-1 rounded-full flex-shrink-0 transition-colors duration-300 mr-2 ${
+                  {/* Divider square */}
+                  <span className={`w-1 h-1 rounded-none flex-shrink-0 transition-colors duration-300 mr-2 ${
                     isActive ? 'bg-accent/70' : 'bg-surface-variant/20'
                   }`} />
 
@@ -246,7 +250,7 @@ export function ServicesStickyNav() {
               >
                 {svc.num} — {svc.label}
               </button>
-              <span className="text-accent/30 text-[10px] select-none">◆</span>
+              <span className="text-accent/30 text-[10px] select-none">■</span>
             </span>
           ))}
         </div>

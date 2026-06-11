@@ -52,7 +52,7 @@ export function OurStory() {
             </div>
 
             <h2 className="font-headline text-[34px] md:text-[50px] leading-[1.05] font-black tracking-tighter text-on-surface mb-5">
-              Three Decades of Precision Engineering
+              Who We Are
             </h2>
 
             <motion.div className="h-[3px] w-16 bg-accent mb-7"
@@ -62,16 +62,19 @@ export function OurStory() {
 
             <div className="space-y-5 mb-10">
               <p className="font-body text-[16px] leading-relaxed text-secondary">
-                Founded in 1995, Arihantaa Powertech began as a vision to revolutionize the electrical engineering landscape. For nearly 30 years, we have scaled complex challenges, delivering over 500 projects that form the backbone of modern infrastructure.
+                Founded and headquartered in Ahmedabad, Gujarat, Arihantaa Powertech was built on a singular belief — that India's infrastructure deserves engineering partners who combine technical depth with execution integrity.
               </p>
               <p className="font-body text-[15px] leading-relaxed text-secondary/80">
-                Our journey from a local consultancy to a global engineering authority is built on the unwavering principles of technical integrity. We don't just build systems — we engineer legacies that sustain communities and power progress.
+                From complex power distribution systems to integrated building services, we bring together the right brands, the right partnerships, and the right expertise to deliver projects that stand the test of time. We are not just a supplier or a consultant — we are a full-spectrum powertech company, bridging the gap between quality electrical infrastructure products and smart, sustainable building engineering services.
+              </p>
+              <p className="font-body text-[15px] leading-relaxed text-secondary/80 italic">
+                Our philosophy is simple: every grid we strengthen, every building we service, and every project we deliver is a step from Grid to Greatness.
               </p>
             </div>
 
             {/* Key pillars */}
             <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-outline-variant/30 gap-0">
-              {['Technical Integrity', 'Global Expertise', 'Certified Excellence', 'Sustainability First'].map((pillar, i) => (
+              {['Technical Integrity', 'Pan-India Expertise', 'Certified Excellence', 'Sustainability First'].map((pillar, i) => (
                 <motion.div key={pillar}
                   className="border-r border-b border-outline-variant/30 p-3.5 flex items-center gap-3.5 hover:bg-accent/[0.015] transition-all duration-300 group"
                   initial={{ opacity: 0 }}

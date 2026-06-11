@@ -4,7 +4,7 @@ import { LiveStatsBar } from '../components/sections/projects/LiveStatsBar';
 import { ProjectBoard } from '../components/sections/projects/ProjectBoard';
 import { CurrentPipeline } from '../components/sections/projects/CurrentPipeline';
 import { SectorSummaryStrip } from '../components/sections/projects/SectorSummaryStrip';
-import { AnnualTurnoverChart } from '../components/sections/projects/AnnualTurnoverChart';
+
 import { CredentialsBar } from '../components/sections/projects/CredentialsBar';
 
 export function Projects() {
@@ -19,7 +19,7 @@ export function Projects() {
         <ProjectBoard />
         <CurrentPipeline />
         <SectorSummaryStrip />
-        <AnnualTurnoverChart />
+
         <CredentialsBar />
       </main>
     </>

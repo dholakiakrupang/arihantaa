@@ -619,5 +619,37 @@ export const engineeredServicesData = [
         gold: "Immediate Dispatch (< 1 Hour)"
       }
     ]
+  },
+  // ─── MEPF CONSULTANCY SERVICES ─────────────────────────────────────────────
+  {
+    id: "mepf-consultancy-services",
+    categoryId: "mepf",
+    tag: "MEPF CONSULTANCY",
+    title: "MEPF Consultancy Services",
+    scoreLabel: "CONSULTANCY RATING",
+    scorePercentage: 99,
+    description: "Integrated Mechanical, Electrical, Plumbing, and Fire Protection (MEPF) consultancy services for complex facility environments. We coordinate designs from schematic drawings to active construction supervision, ensuring efficiency, statutory compliance, and safety.",
+    features: [
+      "Mechanical HVAC design: high-efficiency air conditioning, ventilation, and chiller loops",
+      "Electrical system design: substation layout, transformer sizing, panels, HT/LT cable routing",
+      "Plumbing systems: sanitary, storm water, water supply, treatment, and distribution",
+      "Fire Protection: sprinkler layouts, hydrant systems, smoke detection, and alarm integration",
+      "Building Management Systems (BMS) & automation controls design",
+      "Green building compliance, energy modeling, and sustainability audits"
+    ],
+    stats: [
+      { label: "SERVICES COVERED", value: "Mechanical, Electrical, Plumbing, Fire" },
+      { label: "SECTORS SERVED", value: "8 Key Sectors" },
+      { label: "DELIVERY BASE", value: "BIM / CAD Integrated" },
+      { label: "COMPLIANCE", value: "NBC / NEC Compliant" }
+    ],
+    imageSrc: "/images/products/switchgear.png",
+    imageAlt: "MEPF Engineering Services",
+    images: [
+      { src: "/images/products/switchgear.png", alt: "MEPF Engineering — System Integration" }
+    ],
+    slaPlans: [
+      { parameter: "Consultancy Scope", bronze: "Concept Design Only", silver: "Detailed Engineering + GFC Drawings", gold: "Full Design + Site Supervision & Commissioning" }
+    ]
   }
 ];

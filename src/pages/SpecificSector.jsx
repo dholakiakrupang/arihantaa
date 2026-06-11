@@ -992,11 +992,11 @@ export function SpecificSector() {
               className="lg:w-1/2 p-8 md:p-14 border-r border-b border-outline-variant/30 bg-surface-container-lowest flex flex-col justify-between"
             >
               <div>
-                <span className="block font-label-caps text-[9px] text-accent uppercase tracking-[0.22em] font-bold mb-4">Speak to the Partners Directly</span>
+                <span className="block font-label-caps text-[9px] text-accent uppercase tracking-[0.22em] font-bold mb-4">Speak to the Founder Directly</span>
                 <h2 className="font-headline text-[26px] md:text-[32px] text-on-surface font-black tracking-tight leading-[1.1] mb-4 uppercase">
                   Direct accountability.<br />No sales desks.
                 </h2>
-                <p className="font-body text-[15px] leading-relaxed text-secondary mb-10 max-w-md">Both partners personally review project enquiries and technical scoping. Contact them directly for estimates, site visits, or bid submissions.</p>
+                <p className="font-body text-[15px] leading-relaxed text-secondary mb-10 max-w-md">Our Founder & CEO personally reviews project enquiries and technical scoping. Contact directly for estimates, site visits, or bid submissions.</p>
 
                 <div className="space-y-4">
                   {sectorExperts.map((exp, idx) => (
@@ -1006,8 +1006,8 @@ export function SpecificSector() {
                         <h4 className="font-body text-[15px] text-on-surface font-bold tracking-tight">{exp.name}</h4>
                         <div className="font-label-caps text-[9px] text-secondary uppercase tracking-widest mb-2 font-bold">{exp.role}</div>
                         <div className="flex gap-4 font-body text-[12px] text-on-surface font-medium">
-                          <a href="tel:+91" className="flex items-center gap-1.5 hover:text-accent transition-colors"><span className="material-symbols-outlined text-[16px] text-accent">phone</span> Phone</a>
-                          <a href="mailto:info@" className="flex items-center gap-1.5 hover:text-accent transition-colors"><span className="material-symbols-outlined text-[16px] text-accent">mail</span> Email</a>
+                          <a href="tel:+917434999919" className="flex items-center gap-1.5 hover:text-accent transition-colors"><span className="material-symbols-outlined text-[16px] text-accent">phone</span> Phone</a>
+                          <a href="mailto:info@arihantaa.com" className="flex items-center gap-1.5 hover:text-accent transition-colors"><span className="material-symbols-outlined text-[16px] text-accent">mail</span> Email</a>
                         </div>
                       </div>
                     </div>

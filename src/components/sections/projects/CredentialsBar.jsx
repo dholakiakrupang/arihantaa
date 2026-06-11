@@ -33,7 +33,7 @@ export function CredentialsBar() {
       <UnifiedCTA
         heading="Have a complex project?"
         accent="Collaborate with our team."
-        subtitle="We deliver turnkey industrial power, thermal systems, and PM lifecycle management."
+        subtitle="We deliver integrated industrial power, thermal systems, and PM lifecycle management."
         primaryText="CONTACT OUR TEAM"
         primaryTo="/contact?inquiry=quote&item=Complex%20Project%20Collaboration"
         outlineText="VIEW COMPANY PROFILE"

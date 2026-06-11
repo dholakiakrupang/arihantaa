@@ -16,8 +16,8 @@ export function ServicesHero() {
         transition={{ duration: 1, delay: 0.2 }}
       >
         <motion.img
-          src="/images/project-data-center.png"
-          alt="Industrial engineering facility"
+          src="/images/project-industrial.png"
+          alt="Engineering facility"
           className="absolute inset-0 w-full h-full object-cover object-center"
           initial={{ scale: 1.06 }}
           animate={{ scale: 1.02 }}
@@ -42,7 +42,7 @@ export function ServicesHero() {
             <span className="font-label-caps text-[9px] text-accent tracking-[0.22em] uppercase font-bold">SERVICE PORTFOLIO</span>
           </div>
           <p className="font-headline text-[20px] font-black uppercase text-white leading-tight tracking-tight max-w-[260px]">
-            Turnkey Engineering Delivery
+            Engineering & MEPF Delivery
           </p>
         </motion.div>
       </motion.div>
@@ -84,26 +84,22 @@ export function ServicesHero() {
 
                 {/* H1 */}
                 <motion.h1
-                  className="font-headline font-black uppercase leading-[1.0] sm:leading-[0.92] tracking-tighter mb-7 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px]"
+                  className="font-headline font-black uppercase leading-[1.0] sm:leading-[0.92] tracking-tighter mb-7 text-[28px] sm:text-[36px] md:text-[44px] lg:text-[54px]"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
                 >
-                  <span className="block">
-                    <span className="text-white">Turnkey </span>
-                    <span className="text-accent">Engineering</span>
-                  </span>
-                  <span className="block text-white">Services.</span>
+                  <span className="block text-white text-[24px] sm:text-[34px] md:text-[44px] lg:text-[50px] leading-tight mb-2">End-to-End Engineering Services</span>
+                  <span className="block text-accent text-[14px] sm:text-[20px] md:text-[24px] lg:text-[28px] font-bold tracking-normal lowercase font-body">products, consultancy & project execution</span>
                 </motion.h1>
 
-                {/* Description */}
                 <motion.p
                   className="font-body text-base md:text-lg text-white/50 leading-relaxed font-light w-full mb-9"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  From high-tension electrical systems to data centre precision cooling — integrated, certified, and delivered turnkey for global excellence.
+                  Arihantaa Powertech delivers integrated electrical infrastructure solutions and MEPF consultancy services for government, industrial, commercial, healthcare, and smart city projects across India.
                 </motion.p>
 
                 {/* Separator */}

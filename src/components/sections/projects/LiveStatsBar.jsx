@@ -2,7 +2,6 @@ import { StatCard } from '../../ui/StatCard';
 
 const STATS = [
   { value: '₹315 Cr+', label: 'Active Work in Hand', icon: 'trending_up' },
-  { value: '₹80.18 Cr', label: 'Peak Annual Turnover', icon: 'bar_chart' },
   { value: '1995', label: 'Year Established', icon: 'history' },
   { value: '22+', label: 'Active Projects', icon: 'construction' },
   { value: '10,000+', label: 'Installations Delivered', icon: 'bolt' },
@@ -13,7 +12,7 @@ export function LiveStatsBar() {
   return (
     <section className="bg-surface overflow-hidden">
       <div className="max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 border-t border-l border-outline-variant/30 gap-0">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 border-t border-l border-outline-variant/30 gap-0">
           {STATS.map((stat, i) => (
             <StatCard
               key={i}
