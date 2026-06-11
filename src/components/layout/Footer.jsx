@@ -130,7 +130,7 @@ export function Footer() {
             <Link to="/about" className="hover:text-white transition-colors whitespace-nowrap">Safety Standards</Link>
             <Link to="/contact?inquiry=legal" className="hover:text-white transition-colors whitespace-nowrap">Terms</Link>
           </div>
-          <div></div>
+          
         </div>
 
       </div>
