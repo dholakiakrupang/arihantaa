@@ -1,7 +1,11 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '../ui/Button';
+import { engineeredProductsData } from '../../data/engineeredProductsData';
+import { engineeredServicesData } from '../../data/engineeredServicesData';
+import { PRODUCT_CATEGORIES, SERVICE_CATEGORIES, SECTORS } from '../../data/dataSchema';
+import { featuredProjects, projectBoardData } from '../../data/projectsData';
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1];
@@ -131,7 +135,7 @@ const MEGA_MENUS = {
         link: '/sectors/thermal-management',
         items: [
           { label: 'Perimeter Cooling Systems', link: '/products/enclosure-cooling' },
-          { label: 'In-Row Cooling Units', link: '/products/enclosure-cooling' },
+          { label: 'In-Row Cooling Units', link: '/products/liquid-cooling' },
           { label: 'Direct Liquid Cooling', link: '/products/liquid-cooling' },
         ],
       },
@@ -163,47 +167,47 @@ const MEGA_MENUS = {
   Services: {
     sections: [
       {
-        id: 'electrical-infra',
-        title: 'Electrical Supply',
-        Icon: IconBolt,
-        link: '/services#electrical-infra',
+        id: 'spare-parts-maintenance',
+        title: 'Spare Parts & Maintenance',
+        Icon: IconWrench,
+        link: '/services/spare-parts',
         items: [
-          { label: 'L&T TTA Panels', link: '/services#electrical-infra' },
-          { label: 'Lucy Brand RMU', link: '/services#electrical-infra' },
-          { label: 'Lucy Brand CSS', link: '/services#electrical-infra' },
+          { label: 'Spare Parts & Management', link: '/services/spare-parts' },
+          { label: 'Preventive Maintenance', link: '/services/preventive-maint' },
+          { label: 'UPS & Battery Services', link: '/services/ups-battery' },
         ],
       },
       {
         id: 'mepf-consultancy',
         title: 'MEPF Consultancy',
         Icon: IconThermo,
-        link: '/services#mepf-consultancy',
+        link: '/services/mepf',
         items: [
-          { label: 'Mechanical HVAC Systems', link: '/services#mepf-consultancy' },
-          { label: 'Electrical & Lighting Design', link: '/services#mepf-consultancy' },
-          { label: 'Plumbing & Fire Protection', link: '/services#mepf-consultancy' },
+          { label: 'MEPF Engineering Services', link: '/services/mepf/mepf-consultancy-services' },
+          { label: 'Performance Optimization', link: '/services/performance-opt' },
+          { label: 'Remote Services (24/7 NOC)', link: '/services/remote-services' },
         ],
       },
       {
         id: 'epc-contracting',
-        title: 'EPC Contracting',
+        title: 'EPC & Commissioning',
         Icon: IconConstruction,
-        link: '/services#epc-contracting',
+        link: '/services/project-commission',
         items: [
-          { label: 'Government Execution', link: '/services#epc-contracting' },
-          { label: 'Institutional Projects', link: '/services#epc-contracting' },
-          { label: 'Class A licensed Erection', link: '/services#epc-contracting' },
+          { label: 'Project & Commissioning', link: '/services/project-commission' },
+          { label: 'Industrial Maintenance', link: '/services/industrial-maint' },
+          { label: 'Generator & Switchgear', link: '/services/generator' },
         ],
       },
       {
-        id: 'project-supervision',
-        title: 'Supervision & SITC',
+        id: 'cooling-services',
+        title: 'Cooling Services',
         Icon: IconMonitor,
-        link: '/services#project-supervision',
+        link: '/services/liquid-cooling',
         items: [
-          { label: 'On-site Tech Supervision', link: '/services#project-supervision' },
-          { label: 'Testing & Commissioning', link: '/services#project-supervision' },
-          { label: 'SLA & Handover Support', link: '/services#project-supervision' },
+          { label: 'Liquid Cooling Services', link: '/services/liquid-cooling' },
+          { label: 'Remote Services (24/7 NOC)', link: '/services/remote-services' },
+          { label: 'Performance Optimization', link: '/services/performance-opt' },
         ],
       },
     ],
@@ -646,39 +650,127 @@ function MegaSection({ section, onClick, index }) {
   );
 }
 
-// ─── Search Data ──────────────────────────────────────────────────────────
-// All items are flat — each has a `type` tag and a `link` to the real route.
-const ALL_SEARCH_ITEMS = [
-  // ── Products ──────────────────────────────────────────────────────────
-  { type: 'product', icon: 'bolt',            label: 'Uninterruptible Power Supplies (UPS)', desc: 'Double-conversion enterprise backup power for mission-critical infrastructure',  link: '/products/ups' },
-  { type: 'product', icon: 'power',           label: 'DC Power Systems',                    desc: 'Highly reliable DC power for telecom & industrial continuity',                   link: '/products/dc-power' },
-  { type: 'product', icon: 'electric_bolt',   label: 'Power Distribution',                  desc: 'Optimise power delivery to your critical IT equipment',                          link: '/products/power-distribution' },
-  { type: 'product', icon: 'factory',         label: 'Industrial AC & DC Systems',          desc: 'Robust power systems engineered for harsh industrial environments',               link: '/products/industrial-ac-dc' },
-  { type: 'product', icon: 'water_drop',      label: 'Liquid Cooling Solutions',            desc: 'Next-gen direct liquid cooling for ultra-high-density GPU & AI clusters',        link: '/products/liquid-cooling' },
-  { type: 'product', icon: 'thermostat',      label: 'Enclosure Cooling',                   desc: 'Precision thermal management for electrical enclosures & cabinets',              link: '/products/enclosure-cooling' },
-  { type: 'product', icon: 'dns',             label: 'Integrated Solutions',                desc: 'Fully integrated rack, power & cooling turnkey infrastructure',                  link: '/products/integrated-solutions' },
-  { type: 'product', icon: 'monitor_heart',   label: 'Digital Infrastructure Solutions',   desc: 'Complete DCIM monitoring & management platforms',                               link: '/products/digital-infrastructure' },
-  // ── Services ──────────────────────────────────────────────────────────
-  { type: 'service', icon: 'inventory_2',     label: 'Spare Parts & Management',            desc: 'Genuine OEM and high-compatibility parts sourced globally',                      link: '/services/spare-parts' },
-  { type: 'service', icon: 'build_circle',    label: 'Preventive Maintenance',              desc: 'Structured scheduled maintenance programmes to resolve potential failures',       link: '/services/preventive-maint' },
-  { type: 'service', icon: 'speed',           label: 'Performance Optimization',            desc: 'Data-driven performance tuning that extracts maximum efficiency',               link: '/services/performance-opt' },
-  { type: 'service', icon: 'router',          label: 'Remote Services (24/7 NOC)',          desc: '24/7 remote monitoring and instant incident response',                          link: '/services/remote-services' },
-  { type: 'service', icon: 'engineering',     label: 'Project & Commissioning',             desc: 'End-to-end project management from design to handover',                         link: '/services/project-commission' },
-  { type: 'service', icon: 'precision_manufacturing', label: 'Industrial Maintenance',      desc: 'Specialised maintenance for heavy industrial environments',                      link: '/services/industrial-maint' },
-  { type: 'service', icon: 'battery_full',    label: 'UPS & Battery Services',              desc: 'Comprehensive lifecycle management for UPS systems and battery banks',           link: '/services/ups-battery' },
-  { type: 'service', icon: 'settings',        label: 'Generator & Switchgear',              desc: 'Full-spectrum generator and switchgear servicing for reliable power',            link: '/services/generator' },
-  { type: 'service', icon: 'water',           label: 'Liquid Cooling Services',             desc: 'Advanced liquid cooling installation, commissioning & maintenance',              link: '/services/liquid-cooling' },
-  // ── Sectors ───────────────────────────────────────────────────────────
-  { type: 'sector',  icon: 'bolt',            label: 'Critical Power',                      desc: 'UPS, DC systems & power transfer for uptime-critical environments',              link: '/sectors/critical-power' },
-  { type: 'sector',  icon: 'thermostat',      label: 'Thermal Management',                  desc: 'In-row cooling, liquid cooling & perimeter climate control',                     link: '/sectors/thermal-management' },
-  { type: 'sector',  icon: 'dns',             label: 'Racks & Enclosures',                  desc: 'Server racks, IP-rated cabinets & micro data centre pods',                       link: '/sectors/racks-enclosures' },
-  { type: 'sector',  icon: 'monitor_heart',   label: 'Monitoring & DCIM',                   desc: 'Intelligent PDUs, DCIM platforms & BMS integration',                            link: '/sectors/monitoring-management' },
-  // ── Projects ──────────────────────────────────────────────────────────
-  { type: 'project', icon: 'local_hospital',  label: 'Haridwar Medical College',            desc: 'Complete HT/LT Installation',                                                   link: '/projects' },
-  { type: 'project', icon: 'engineering',     label: 'GMERS Sola',                          desc: 'Maintenance & Support Services',                                                link: '/projects' },
-  { type: 'project', icon: 'local_airport',   label: 'Rajkot Airport',                      desc: 'Aviation Infrastructure Backbone',                                              link: '/projects' },
-  { type: 'project', icon: 'subway',          label: 'Surat Metro',                         desc: 'Ongoing Power Grid Project',                                                    link: '/projects' },
-];
+// ─── Search Data — Auto-Generated from Data Sources ───────────────────────
+// Built programmatically from engineeredProductsData, engineeredServicesData,
+// sectorsData, and projectsData. When WP backend is integrated, this same
+// index will be built from WP REST API responses.
+// ──────────────────────────────────────────────────────────────────────────
+
+const PRODUCT_ICON_MAP = {
+  'ups': 'bolt',
+  'dc-power': 'power',
+  'power-distribution': 'electric_bolt',
+  'industrial-ac-dc': 'factory',
+  'liquid-cooling': 'water_drop',
+  'enclosure-cooling': 'thermostat',
+  'integrated-solutions': 'dns',
+  'digital-infrastructure': 'monitor_heart',
+};
+
+const SERVICE_ICON_MAP = {
+  'spare-parts': 'inventory_2',
+  'preventive-maint': 'build_circle',
+  'performance-opt': 'speed',
+  'remote-services': 'router',
+  'project-commission': 'engineering',
+  'industrial-maint': 'precision_manufacturing',
+  'ups-battery': 'battery_full',
+  'generator': 'settings',
+  'liquid-cooling': 'water',
+  'mepf': 'architecture',
+};
+
+const PROJECT_ICON_MAP = {
+  'healthcare': 'local_hospital',
+  'aviation': 'local_airport',
+  'transport': 'subway',
+  'data-center': 'dns',
+  'industrial': 'factory',
+};
+
+function buildSearchIndex() {
+  const items = [];
+
+  // ── Individual Engineered Products (searchable by specific product name) ──
+  engineeredProductsData.forEach((product) => {
+    items.push({
+      type: 'product',
+      icon: PRODUCT_ICON_MAP[product.categoryId] || 'category',
+      label: product.title,
+      desc: product.description?.slice(0, 100) + '…',
+      link: `/products/${product.categoryId}/${product.id}`,
+    });
+  });
+
+  // ── Product Categories (searchable by category name) ──
+  Object.entries(PRODUCT_CATEGORIES).forEach(([id, cat]) => {
+    // Avoid duplicating if a product with exact same label exists
+    const alreadyHas = items.some(i => i.label === cat.name && i.type === 'product');
+    if (!alreadyHas) {
+      items.push({
+        type: 'product',
+        icon: PRODUCT_ICON_MAP[id] || 'category',
+        label: cat.name,
+        desc: `Browse all ${cat.name.toLowerCase()} products`,
+        link: `/products/${id}`,
+      });
+    }
+  });
+
+  // ── Individual Engineered Services (searchable by specific service name) ──
+  engineeredServicesData.forEach((service) => {
+    items.push({
+      type: 'service',
+      icon: SERVICE_ICON_MAP[service.categoryId] || 'build',
+      label: service.title,
+      desc: service.description?.slice(0, 100) + '…',
+      link: `/services/${service.categoryId}/${service.id}`,
+    });
+  });
+
+  // ── Service Categories (searchable by category name) ──
+  Object.entries(SERVICE_CATEGORIES).forEach(([id, cat]) => {
+    const alreadyHas = items.some(i => i.label === cat.name && i.type === 'service');
+    if (!alreadyHas) {
+      items.push({
+        type: 'service',
+        icon: SERVICE_ICON_MAP[id] || 'build',
+        label: cat.name,
+        desc: `Browse all ${cat.name.toLowerCase()} services`,
+        link: `/services/${id}`,
+      });
+    }
+  });
+
+  // ── Sectors ──
+  Object.entries(SECTORS).forEach(([id, sector]) => {
+    items.push({
+      type: 'sector',
+      icon: sector.icon,
+      label: sector.name,
+      desc: `Explore ${sector.name.toLowerCase()} infrastructure solutions`,
+      link: `/sectors/${id}`,
+    });
+  });
+
+  // ── Projects (from featuredProjects + projectBoardData, deduplicated) ──
+  const seenProjectTitles = new Set();
+  [...featuredProjects, ...projectBoardData].forEach((project) => {
+    if (seenProjectTitles.has(project.title)) return;
+    seenProjectTitles.add(project.title);
+    items.push({
+      type: 'project',
+      icon: PROJECT_ICON_MAP[project.category] || 'apartment',
+      label: project.title,
+      desc: `${project.categoryLabel} · ${project.location}`,
+      link: `/projects/${project.id}`,
+    });
+  });
+
+  return items;
+}
+
+const ALL_SEARCH_ITEMS = buildSearchIndex();
 
 const TYPE_META = {
   product: { label: 'Product',  accent: 'bg-accent/15 border-accent/30 text-accent', textColor: 'text-accent', icon: 'category' },

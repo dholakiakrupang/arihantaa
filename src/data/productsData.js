@@ -12,7 +12,7 @@ export const productsData = [
       "Robust power protection and distribution solutions engineered for mission-critical infrastructure, ensuring uninterrupted operations in the most demanding environments.",
     cards: [
       {
-        id: "cp-1",
+        id: "ups-systems",
         categoryId: "ups",
         category: "Power Protection",
         title: "Uninterruptible Power Supplies (UPS)",
@@ -23,7 +23,7 @@ export const productsData = [
         imageAlt: "Industrial UPS unit in server room",
       },
       {
-        id: "cp-2",
+        id: "dc-power-systems",
         categoryId: "dc-power",
         category: "Distribution",
         title: "DC Power Systems",
@@ -34,7 +34,7 @@ export const productsData = [
         imageAlt: "DC power distribution panel",
       },
       {
-        id: "cp-3",
+        id: "power-transfer-switches",
         categoryId: "power-distribution",
         category: "Switchgear",
         title: "Power Transfer Switches",
@@ -89,7 +89,7 @@ export const productsData = [
       "Advanced cooling systems engineered to optimise energy efficiency and maintain precise thermal conditions for high-density computational environments.",
     cards: [
       {
-        id: "tm-1",
+        id: "perimeter-cooling",
         categoryId: "enclosure-cooling",
         category: "Room Cooling",
         title: "Perimeter Cooling Systems",
@@ -100,7 +100,7 @@ export const productsData = [
         imageAlt: "Industrial cooling unit for data centres",
       },
       {
-        id: "tm-2",
+        id: "in-row-cooling",
         categoryId: "liquid-cooling",
         category: "Row Cooling",
         title: "In-Row Cooling Units",
@@ -111,7 +111,7 @@ export const productsData = [
         imageAlt: "In-row cooling manifolds between server racks",
       },
       {
-        id: "tm-3",
+        id: "direct-liquid-cooling",
         categoryId: "liquid-cooling",
         category: "Liquid Cooling",
         title: "Direct Liquid Cooling",
@@ -133,7 +133,7 @@ export const productsData = [
       "Precision-engineered physical infrastructure that provides the structural foundation for mission-critical deployments — from open-frame server racks to high-security, climate-controlled enclosures.",
     cards: [
       {
-        id: "re-1",
+        id: "server-racks",
         categoryId: "integrated-solutions",
         category: "Server Infrastructure",
         title: "Open-Frame Server Racks",
@@ -144,7 +144,7 @@ export const productsData = [
         imageAlt: "Open-frame server racks in data centre",
       },
       {
-        id: "re-2",
+        id: "ip-rated-cabinets",
         categoryId: "integrated-solutions",
         category: "Secure Enclosures",
         title: "IP-Rated Industrial Cabinets",
@@ -155,7 +155,7 @@ export const productsData = [
         imageAlt: "IP-rated industrial cabinets",
       },
       {
-        id: "re-3",
+        id: "micro-data-centre",
         categoryId: "integrated-solutions",
         category: "Edge Computing",
         title: "Micro-Data Centre Pods",
@@ -177,7 +177,7 @@ export const productsData = [
       "Intelligent software and hardware platforms that provide real-time visibility, predictive analytics, and centralised control over your entire critical infrastructure portfolio.",
     cards: [
       {
-        id: "mm-1",
+        id: "dcim-platform",
         categoryId: "digital-infrastructure",
         category: "DCIM",
         title: "Data Centre Infrastructure Management",
@@ -188,7 +188,7 @@ export const productsData = [
         imageAlt: "DCIM dashboard monitoring infrastructure",
       },
       {
-        id: "mm-2",
+        id: "intelligent-pdus",
         categoryId: "digital-infrastructure",
         category: "Remote Monitoring",
         title: "Intelligent PDUs & Smart Sensors",
@@ -199,7 +199,7 @@ export const productsData = [
         imageAlt: "Intelligent PDU and smart sensors",
       },
       {
-        id: "mm-3",
+        id: "bms-systems",
         categoryId: "digital-infrastructure",
         category: "Network Management",
         title: "Building Management Systems",

@@ -16,7 +16,8 @@ const categoryMap = {
   'industrial-maint': 'Industrial Maintenance',
   'ups-battery': 'UPS & Battery Services',
   'generator': 'Generator & Switchgear',
-  'liquid-cooling': 'Liquid Cooling Services'
+  'liquid-cooling': 'Liquid Cooling Services',
+  'mepf': 'MEPF Consultancy'
 };
 
 const categoryIcons = {
@@ -28,7 +29,8 @@ const categoryIcons = {
   'industrial-maint': 'build',
   'ups-battery': 'battery_charging_full',
   'generator': 'bolt',
-  'liquid-cooling': 'ac_unit'
+  'liquid-cooling': 'ac_unit',
+  'mepf': 'architecture'
 };
 
 /* ─── Utility Icon Resolvers ────────────────────────────────────────────────── */
