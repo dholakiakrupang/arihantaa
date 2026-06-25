@@ -6,12 +6,12 @@ import { trustStats } from '../../../data/productsData';
 export function ProductsHero() {
   return (
     <section
-      className="relative w-full bg-[#080808] overflow-hidden flex flex-col lg:min-h-screen"
-      style={{ minHeight: '100svh' }}
+      className="relative w-full bg-[#080808] overflow-hidden"
     >
+      <div className="relative max-w-[1440px] mx-auto w-full flex flex-col px-6 sm:px-8 lg:px-16">
       {/* ── Full-bleed right image panel */}
       <motion.div
-        className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[48%] overflow-hidden"
+        className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-16 lg:w-[48%] overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
@@ -55,96 +55,93 @@ export function ProductsHero() {
       <div className="relative z-10 flex flex-col flex-grow order-1 lg:order-none">
         <div className="min-h-[88px] md:min-h-[96px] shrink-0" />
 
-        <div className="w-full flex flex-col flex-grow">
-          <div className="max-w-[1440px] mx-auto w-full flex flex-col flex-grow px-6 sm:px-8 lg:px-16">
-            <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-grow lg:pr-16">
-              <div className="flex flex-col gap-0">
+        <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-grow lg:pr-16">
+          <div className="flex flex-col gap-0">
 
-                {/* Breadcrumb */}
-                <motion.nav
-                  className="flex items-center gap-2 mb-6"
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
-                  <span className="material-symbols-outlined text-white/35 text-[14px]">chevron_right</span>
-                  <span className="font-label-caps text-[10px] text-white/35 tracking-[0.2em] uppercase">Products</span>
-                </motion.nav>
+            {/* Breadcrumb */}
+            <motion.nav
+              className="flex items-center gap-2 mb-6"
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Link to="/" className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity">Home</Link>
+              <span className="material-symbols-outlined text-white/35 text-[14px]">chevron_right</span>
+              <span className="font-label-caps text-[10px] text-white/35 tracking-[0.2em] uppercase">Products</span>
+            </motion.nav>
 
-                {/* Eyebrow */}
-                <motion.div
-                  className="flex items-center gap-3 mb-5"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
-                >
-                  <div className="w-8 h-px bg-accent" />
-                  <span className="font-label-caps text-[10px] text-accent tracking-[0.28em] uppercase font-bold">Our Solutions</span>
-                </motion.div>
+            {/* Eyebrow */}
+            <motion.div
+              className="flex items-center gap-3 mb-5"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
+            >
+              <div className="w-8 h-px bg-accent" />
+              <span className="font-label-caps text-[10px] text-accent tracking-[0.28em] uppercase font-bold">Our Solutions</span>
+            </motion.div>
 
-                {/* H1 */}
-                <motion.h1
-                  className="font-headline font-black uppercase leading-[1.0] sm:leading-[0.92] tracking-tighter mb-7 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px]"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
-                >
-                  <span className="block">
-                    <span className="text-white">Engineering </span>
-                    <span className="text-accent">Future</span>
-                  </span>
-                  <span className="block text-white">Infrastructure.</span>
-                </motion.h1>
+            {/* H1 */}
+            <motion.h1
+              className="font-headline font-black uppercase leading-[1.0] sm:leading-[0.92] tracking-tighter mb-7 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px]"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.25, 1, 0.5, 1], delay: 0.15 }}
+            >
+              <span className="block">
+                <span className="text-white">All Capital </span>
+                <span className="text-accent">Goods</span>
+              </span>
+              <span className="block text-white">One Roof.</span>
+            </motion.h1>
 
-                {/* Description */}
-                <motion.p
-                  className="font-body text-base md:text-lg text-white/50 leading-relaxed font-light w-full mb-9"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  Precision-engineered products designed to ensure absolute reliability in the most demanding industrial environments across India.
-                </motion.p>
+            {/* Description */}
+            <motion.p
+              className="font-body text-base md:text-lg text-white/50 leading-relaxed font-light w-full mb-9"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Why approach six different vendors for one project? Arihantaa Powertech eliminates the coordination cost of working with multiple vendors — saving your procurement team time, reducing risk, and delivering a consistent quality standard across every product on your project.
+            </motion.p>
 
-                {/* Separator */}
-                <motion.div
-                  className="w-full h-px bg-white/8 mb-9"
-                  initial={{ scaleX: 0, originX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.7, delay: 0.5 }}
-                />
+            {/* Separator */}
+            <motion.div
+              className="w-full h-px bg-white/8 mb-9"
+              initial={{ scaleX: 0, originX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.7, delay: 0.5 }}
+            />
 
-                {/* CTA */}
-                <motion.div
-                  className="flex flex-wrap items-center gap-5"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.65 }}
-                >
-                  <Link to="/contact">
-                    <Button variant="primary" theme="dark" size="lg" className="rounded-none shadow-sm text-[10px] tracking-[0.2em] font-bold">
-                      GET A FREE CONSULTATION
-                    </Button>
-                  </Link>
-                  <button
-                    onClick={() => document.getElementById('sectors')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
-                  >
-                    <span className="relative overflow-hidden inline-block">
-                      <span className="block group-hover:-translate-y-full transition-transform duration-300">EXPLORE PRODUCTS</span>
-                      <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">EXPLORE PRODUCTS</span>
-                    </span>
-                    <span className="material-symbols-outlined text-[24px] group-hover:translate-y-1 transition-transform duration-300">
-                      arrow_downward
-                    </span>
-                  </button>
-                </motion.div>
+            {/* CTA */}
+            <motion.div
+              className="flex flex-wrap items-center gap-5"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.65 }}
+            >
+              <Link to="/contact?inquiry=quote&item=Consolidated%20Capital%20Goods">
+                <Button variant="primary" theme="dark" size="lg" className="rounded-none shadow-sm text-[10px] tracking-[0.2em] font-bold">
+                  GET A CONSOLIDATED QUOTE
+                </Button>
+              </Link>
+              <button
+                onClick={() => document.getElementById('sectors')?.scrollIntoView({ behavior: 'smooth' })}
+                className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
+              >
+                <span className="relative overflow-hidden inline-block">
+                  <span className="block group-hover:-translate-y-full transition-transform duration-300">EXPLORE SECTORS</span>
+                  <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">EXPLORE SECTORS</span>
+                </span>
+                <span className="material-symbols-outlined text-[24px] group-hover:translate-y-1 transition-transform duration-300">
+                  arrow_downward
+                </span>
+              </button>
+            </motion.div>
 
-              </div>
-            </div>
           </div>
         </div>
+      </div>
       </div>
 
       {/* ── Bottom Stats Bar */}

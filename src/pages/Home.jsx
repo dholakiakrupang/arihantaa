@@ -2,9 +2,9 @@ import { Hero } from '../components/sections/Hero';
 import { Stats } from '../components/sections/Stats';
 import { Philosophy } from '../components/sections/Philosophy';
 import { Services } from '../components/sections/Services';
-import { Portfolio } from '../components/sections/Portfolio';
+import { ProductsShowcase } from '../components/sections/products/ProductsShowcase';
 import { Partnerships } from '../components/sections/about/Partnerships';
-import { NewsSnippet } from '../components/sections/news/NewsSnippet';
+import { PartnershipShowcase } from '../components/sections/about/PartnershipShowcase';
 import { UnifiedCTA } from '../components/sections/UnifiedCTA';
 
 export function Home() {
@@ -14,9 +14,9 @@ export function Home() {
       <Stats />
       <Philosophy />
       <Services />
-      <Portfolio />
+      <ProductsShowcase />
       <Partnerships isHome={true} />
-      <NewsSnippet />
+      <PartnershipShowcase />
       <UnifiedCTA 
         heading="Ready to initiate your infrastructure brief?"
         accent="Partner with us."
@@ -29,4 +29,5 @@ export function Home() {
     </>
   );
 }
+
 

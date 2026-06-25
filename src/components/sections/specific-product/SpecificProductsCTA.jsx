@@ -8,29 +8,23 @@ const ctaContent = {
     desc: 'Our engineers will help you calculate system loads, capacity, and battery backup configurations.',
     item: 'UPS System Sizing'
   },
-  'dc-power': {
-    heading: 'Planning a high-reliability DC power setup?',
+  'lt-tta-panel': {
+    heading: 'Need a Triple Throw Automatic Transfer Switch?',
+    accent: 'Request a quote.',
+    desc: 'Get L&T TTA Panels from 63A to 4000A — supplied through our Virtual JV with Synchro Electricals.',
+    item: 'L&T TTA Panel Quote'
+  },
+  'lucy-rmu': {
+    heading: 'Looking for compact medium voltage switchgear?',
     accent: 'Enquire today.',
-    desc: 'Get specialized support for telecom NOCs, rectifiers, and industrial batteries.',
-    item: 'DC Power Systems'
+    desc: 'Lucy Electric Ring Main Units — sealed, maintenance-free, IEC 62271-200 compliant.',
+    item: 'Lucy RMU Enquiry'
   },
-  'power-distribution': {
-    heading: 'Need optimal power delivery configurations?',
-    accent: 'Consult our team.',
-    desc: 'Get smart PDU layout plans, busway calculations, and switchgear integrations.',
-    item: 'Power Distribution Layout'
-  },
-  'industrial-ac-dc': {
-    heading: 'Engineering for a harsh industrial facility?',
-    accent: 'Talk to experts.',
-    desc: 'We build rugged AC/DC systems compliant with complex utility resilience standards.',
-    item: 'Industrial AC/DC Systems'
-  },
-  'liquid-cooling': {
-    heading: 'Deploying high-density compute clusters?',
-    accent: 'Adopt liquid cooling.',
-    desc: 'We assist with CDUs, rear-door heat exchangers, and secondary loop design configurations.',
-    item: 'Liquid Cooling CDUs'
+  'lucy-css': {
+    heading: 'Need a factory-assembled compact substation?',
+    accent: 'Talk to our team.',
+    desc: 'Lucy Electric CSS integrating MV switchgear, transformer, and LV distribution in one enclosure.',
+    item: 'Lucy CSS Enquiry'
   },
   'enclosure-cooling': {
     heading: 'Need precision climate control for panels?',

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export function Partnerships({ isHome = false }) {
   const partners = [
@@ -7,58 +7,67 @@ export function Partnerships({ isHome = false }) {
       subtitle: "Parent Company Alliance",
       badge: "Virtual JV Alliance",
       icon: "verified_user",
-      desc: "An exclusive strategic partnership granting Arihantaa Powertech the capability to execute high-voltage government and institutional electrical infrastructure projects. This alliance ensures seamless statutory compliance, Class A certifications, and premium execution capacity.",
+      desc: "Arihantaa Powertech has entered into a strategic Virtual Joint Venture with a Class A Government-Licensed Electrical Contractor — our parent company partnership. This alliance enables us to undertake large-scale government and institutional electrical infrastructure projects, ensuring full statutory compliance, financial credibility, and execution capability at every scale.",
       stats: [
         { label: "Compliance", value: "Class 'A'" },
         { label: "Operations", value: "Pan-India" },
-        { label: "Voltage class", value: "Up to 66kV" }
+        { label: "Voltage class", value: "Up to 66kV" },
       ],
-      link: null
+      link: null,
     },
     {
       title: "Synchro Electricals Pvt. Ltd.",
       subtitle: "TTA Panel Manufacturing & Supply",
       badge: "Virtual JV Alliance",
       icon: "handshake",
-      desc: "Our strategic collaboration with Synchro Electricals enables the design, assembly, and supply of premium-grade electrical distribution systems, including L&T (Larsen & Toubro) brand Type Tested Assemblies (TTA Panels).",
+      desc: "Arihantaa Powertech has a Virtual Joint Venture with Synchro Electricals Pvt. Ltd. — one of India's trusted electrical panel manufacturers with 30+ premium products and 500+ delivered projects powering 5GW+ solar capacity across India. Through this alliance, we offer L&T Brand TTA Panels backed by Synchro's ISO-standard manufacturing and technical support.",
       stats: [
         { label: "Premium Products", value: "30+" },
         { label: "Delivered Projects", value: "500+" },
-        { label: "Solar Capacity", value: "5GW+" }
+        { label: "Solar Capacity", value: "5GW+" },
       ],
-      link: "https://synchroelectricals.com"
-    }
+      link: "https://synchroelectricals.com",
+    },
   ];
 
   if (isHome) {
     // Creative homepage design: Asymmetric layout, ambient dark lighting, premium interactive hover glow.
     return (
-      <section id="partnerships" className="py-24 md:py-32 bg-inverse-surface text-white relative overflow-hidden">
+      <section
+        id="partnerships"
+        className="py-24 md:py-32 bg-inverse-surface text-white relative overflow-hidden"
+      >
         {/* Ambient Glow */}
-        <div className="absolute top-1/4 right-0 w-[40%] h-[40%] rounded-full bg-accent/10 blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-1/4 left-0 w-[40%] h-[40%] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/4 right-0 w-[40%] h-[40%] max-w-[768px] max-h-[768px] rounded-full bg-accent/10 blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-1/4 left-0 w-[40%] h-[40%] max-w-[768px] max-h-[768px] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
 
         <div className="max-w-[1440px] mx-auto px-8 md:px-16 relative z-10">
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16 md:mb-24">
             <div className="max-w-2xl">
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-[2px] w-8 bg-accent" />
-                <span className="font-label-caps text-[11px] text-accent tracking-[0.22em] uppercase font-bold">Strategic Synergy</span>
+                <span className="font-label-caps text-[11px] text-accent tracking-[0.22em] uppercase font-bold">
+                  Strategic Synergy
+                </span>
               </div>
               <h2 className="font-headline text-[38px] sm:text-[48px] lg:text-[60px] leading-[1.0] font-black tracking-tighter uppercase">
-                Strategic <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">Partnerships.</span>
+                Strategic <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">
+                  Partnerships.
+                </span>
               </h2>
             </div>
             <p className="font-body text-[15px] text-white/60 max-w-sm leading-relaxed">
-              Amplifying our capabilities through key joint ventures and alliances to deliver scale, speed, and technical compliance across India.
+              Amplifying our capabilities through key joint ventures and
+              alliances to deliver scale, speed, and technical compliance across
+              India.
             </p>
           </div>
 
           {/* Creative Grid layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {partners.map((partner, idx) => {
-              const CardTag = partner.link ? 'a' : 'div';
+              const CardTag = partner.link ? "a" : "div";
               return (
                 <motion.div
                   key={idx}
@@ -66,21 +75,28 @@ export function Partnerships({ isHome = false }) {
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.65, delay: idx * 0.15, ease: [0.25, 1, 0.5, 1] }}
+                  transition={{
+                    duration: 0.65,
+                    delay: idx * 0.15,
+                    ease: [0.25, 1, 0.5, 1],
+                  }}
                 >
                   <CardTag
                     href={partner.link || undefined}
                     target={partner.link ? "_blank" : undefined}
                     rel={partner.link ? "noopener noreferrer" : undefined}
-                    className={`group p-8 md:p-12 flex flex-col justify-between h-full w-full ${partner.link ? 'cursor-pointer' : 'cursor-default'}`}
+                    className={`group p-8 md:p-12 flex flex-col justify-between h-full w-full ${partner.link ? "cursor-pointer" : "cursor-default"}`}
                   >
                     {/* Top-right arrow badge — appears on hover if link exists */}
                     {partner.link && (
                       <div
                         className="absolute top-0 right-0 w-14 h-14 bg-accent z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                        style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}
+                        style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
                       >
-                        <span className="material-symbols-outlined text-on-primary absolute top-2 right-2 !text-[16px]" style={{ fontSize: '16px' }}>
+                        <span
+                          className="material-symbols-outlined text-on-primary absolute top-2 right-2 !text-[16px]"
+                          style={{ fontSize: "16px" }}
+                        >
                           arrow_outward
                         </span>
                       </div>
@@ -89,7 +105,9 @@ export function Partnerships({ isHome = false }) {
                     <div>
                       <div className="flex items-center justify-between mb-8">
                         <div className="flex items-center gap-3">
-                          <span className="material-symbols-outlined text-accent text-[32px]">{partner.icon}</span>
+                          <span className="material-symbols-outlined text-accent text-[32px]">
+                            {partner.icon}
+                          </span>
                           <span className="font-label-caps text-[9px] bg-accent/10 border border-accent/20 text-accent px-2.5 py-1 uppercase tracking-wider font-bold">
                             {partner.badge}
                           </span>
@@ -99,8 +117,10 @@ export function Partnerships({ isHome = false }) {
                       <h3 className="font-headline text-2xl md:text-3xl font-black text-white mb-2 group-hover:text-accent transition-colors duration-300 uppercase">
                         {partner.title}
                       </h3>
-                      <p className="font-label-caps text-[10px] text-white/40 tracking-widest uppercase mb-6 font-bold">{partner.subtitle}</p>
-                      
+                      <p className="font-label-caps text-[10px] text-white/40 tracking-widest uppercase mb-6 font-bold">
+                        {partner.subtitle}
+                      </p>
+
                       <p className="font-body text-[14px] text-white/60 leading-relaxed mb-10 group-hover:text-white/80 transition-colors duration-300">
                         {partner.desc}
                       </p>
@@ -109,8 +129,8 @@ export function Partnerships({ isHome = false }) {
                     {/* Specs Table inside the card */}
                     <div className="grid grid-cols-3 border border-white/10 mt-auto bg-black/20">
                       {partner.stats.map((stat, sIdx) => (
-                        <div 
-                          key={sIdx} 
+                        <div
+                          key={sIdx}
                           className="p-4 flex flex-col justify-between border-r border-white/10 last:border-0 hover:bg-accent/[0.02] transition-colors duration-300"
                         >
                           <span className="font-label-caps text-[8px] text-white/40 tracking-wider uppercase mb-1.5 font-bold">
@@ -134,13 +154,20 @@ export function Partnerships({ isHome = false }) {
 
   // Standard clean About page version
   return (
-    <section id="partnerships" className="py-16 md:py-24 bg-surface border-t border-outline-variant/30">
+    <section
+      id="partnerships"
+      className="py-16 md:py-24 bg-surface border-t border-outline-variant/30"
+    >
       <div className="max-w-[1440px] mx-auto px-8 md:px-16">
         <div className="flex items-center gap-3 mb-5">
           <div className="h-[2px] w-8 bg-accent" />
-          <span className="font-label-caps text-[11px] text-accent tracking-[0.22em] uppercase font-bold">Alliances</span>
+          <span className="font-label-caps text-[11px] text-accent tracking-[0.22em] uppercase font-bold">
+            Alliances
+          </span>
         </div>
-        <h2 className="font-headline text-4xl md:text-6xl font-bold mb-16 uppercase tracking-tight">Strategic Partnerships</h2>
+        <h2 className="font-headline text-4xl md:text-6xl font-bold mb-16 uppercase tracking-tight">
+          Strategic Partnerships
+        </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 border-t border-l border-outline-variant/30 gap-0">
           {partners.map((partner, idx) => (
@@ -155,20 +182,26 @@ export function Partnerships({ isHome = false }) {
               <div>
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-3">
-                    <span className="material-symbols-outlined text-accent text-[30px]">{partner.icon}</span>
+                    <span className="material-symbols-outlined text-accent text-[30px]">
+                      {partner.icon}
+                    </span>
                     <span className="font-label-caps text-[9px] bg-accent/5 border border-accent/15 text-accent px-2.5 py-1 uppercase tracking-wider font-bold">
                       {partner.badge}
                     </span>
                   </div>
                   {partner.link && (
-                    <a 
+                    <a
                       href={partner.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-secondary/50 hover:text-accent transition-colors duration-300 flex items-center gap-1.5"
                     >
-                      <span className="font-label-caps text-[9px] tracking-wider uppercase font-bold">Website</span>
-                      <span className="material-symbols-outlined text-sm">open_in_new</span>
+                      <span className="font-label-caps text-[9px] tracking-wider uppercase font-bold">
+                        Website
+                      </span>
+                      <span className="material-symbols-outlined text-sm">
+                        open_in_new
+                      </span>
                     </a>
                   )}
                 </div>
@@ -176,7 +209,9 @@ export function Partnerships({ isHome = false }) {
                 <h3 className="font-headline text-[22px] md:text-[28px] font-black text-on-surface mb-1 uppercase tracking-tight">
                   {partner.title}
                 </h3>
-                <p className="font-label-caps text-[10px] text-secondary/60 tracking-widest uppercase mb-5 font-bold">{partner.subtitle}</p>
+                <p className="font-label-caps text-[10px] text-secondary/60 tracking-widest uppercase mb-5 font-bold">
+                  {partner.subtitle}
+                </p>
                 <p className="font-body text-[14px] text-secondary leading-relaxed mb-8">
                   {partner.desc}
                 </p>
@@ -185,7 +220,10 @@ export function Partnerships({ isHome = false }) {
               {/* Stats row */}
               <div className="grid grid-cols-3 border border-outline-variant/20 bg-surface-container-low/50">
                 {partner.stats.map((stat, sIdx) => (
-                  <div key={sIdx} className="p-4 border-r border-outline-variant/20 last:border-0">
+                  <div
+                    key={sIdx}
+                    className="p-4 border-r border-outline-variant/20 last:border-0"
+                  >
                     <span className="font-label-caps text-[8px] text-secondary/50 tracking-wider uppercase mb-1.5 block font-bold">
                       {stat.label}
                     </span>

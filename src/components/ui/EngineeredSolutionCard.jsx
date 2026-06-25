@@ -26,8 +26,14 @@ export function EngineeredSolutionCard({
   const [isExpanded, setIsExpanded] = useState(false);
   const [unitSystem, setUnitSystem] = useState('metric'); // 'metric' | 'imperial'
 
+  const categoryLinks = {
+    'vertiv-partner': '/partners/vertiv',
+    'capital-goods': '/solutions/capital-goods',
+    'epc-mepf': '/solutions/epc-mepf'
+  };
+
   const detailUrl = type === 'service' 
-    ? `/services/${categoryId || 'spare-parts'}/${id}` 
+    ? (categoryLinks[categoryId] || '/services')
     : `/products/${categoryId || 'ups'}/${id}`;
 
   const convertWeight = (weightStr, system) => {

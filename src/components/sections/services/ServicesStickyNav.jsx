@@ -1,94 +1,139 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 const services = [
-  { id: 'electrical-infra',    num: '01', label: 'Electrical Infrastructure' },
-  { id: 'mepf-consultancy',    num: '02', label: 'MEPF Consultancy' },
-  { id: 'epc-contracting',     num: '03', label: 'EPC Contracting' },
-  { id: 'project-supervision',  num: '04', label: 'Project Supervision' },
+  { id: "mepf-consultancy", num: "01", label: "MEPF Consultancy" },
+  { id: "epc-project-solutions", num: "02", label: "EPC Project Solutions" },
+  { id: "vertiv-partner", num: "03", label: "Vertiv Partner" },
+  { id: "capital-goods-supply", num: "04", label: "Capital Goods Supply" },
 ];
 
 const telemetryData = {
-  'electrical-infra': {
-    status: 'ACTIVE',
-    readout: 'GRID_INT: 100% NOMINAL // COMPLIANCE: ISO 9001',
-    ticker: '■ L&T TTA PANEL: CERTIFIED ■ LUCY RMU: 11kV/33kV SF6 ■ LUCY CSS: WEATHERPROOF ■ ERECTION: ONGOING ■ WARRANTY: 5 YRS ■ BANK SOLVENCY: 7 CR ■'
+  "mepf-consultancy": {
+    status: "ONLINE",
+    readout: "MEPF: BIM LEVEL 2 // COORDINATION: ACTIVE",
+    ticker:
+      "■ MECHANICAL HVAC: DESIGNED ■ ELECTRICAL LOAD: PROFILED ■ PLUMBING PHE: MAPPED ■ FIRE PROTECTION: NBC COMPLIANT ■ BIM: COORDINATED ■",
   },
-  'mepf-consultancy': {
-    status: 'COMPLIANT',
-    readout: 'BIM_READY: ACTIVE // STANDARDS: NBC & LEED',
-    ticker: '■ HVAC FLOW: OPTIMAL ■ LIGHTING: LED SPEC ■ PLUMBING: DRAINAGE STAGE 2 ■ FIRE SPRINKLERS: PRESSURE OK ■ NBC 2016: VALIDATED ■ LEED GOLD: ALIGNED ■'
+  "epc-project-solutions": {
+    status: "LIVE",
+    readout: "EXECUTION LICENSE: CLASS A // SITE STATUS: ACTIVE",
+    ticker:
+      "■ HT/LT SUBSTATIONS: UP TO 66KV ■ CLASS A LICENSE: ACTIVE ■ BUILDING ELECTRIFICATION: PROGRESS ■ DG INSTALLATION: SYNCHRONIZED ■ PSU PROJECTS: ENGAGED ■",
   },
-  'epc-contracting': {
-    status: 'LIVE',
-    readout: 'CLASS A LICENSED JV // CONTRACT: ACTIVE',
-    ticker: '■ PROJECT CAPEX: SECURED ■ PROCUREMENT: 88% COMPLETE ■ CREW: DEPLOYED ■ OVERHEAD LINES: LIVE ■ TRANSFORMER FEED: COMMISSIONED ■ SITE SAFETY: 100% ■'
+  "vertiv-partner": {
+    status: "ONLINE",
+    readout: "VERTIV ALIGNMENT: CHANNEL PARTNER // SYSTEMS: ACTIVE",
+    ticker:
+      "■ LIEBERT UPS: VERIFIED ■ DC POWER SYSTEMS: MODULAR ■ ENCLOSURE COOLING: COMPLIANT ■ DIRECT LIQUID COOLING: COMPATIBLE ■",
   },
-  'project-supervision': {
-    status: 'STABLE',
-    readout: 'SUPERVISION: ACTIVE // QA PROTOCOL: ENGAGED',
-    ticker: '■ FAT TEST: SIGNED OFF ■ SAT TEST: COMPLETION ■ RELAY CALIBRATION: STABLE ■ HANDOVER DOCS: GENERATED ■ AS-BUILT DRAWINGS: VERIFIED ■ SLA: 24/7 SUPPORT ■'
-  }
+  "capital-goods-supply": {
+    status: "ACTIVE",
+    readout: "PROCUREMENT: CONSOLIDATED // OEM: AUTHORISED",
+    ticker:
+      "■ VERTIV UPS: ACTIVE ■ L&T TTA PANELS: TYPE-TESTED ■ LUCY RMU & CSS: COMMISSIONED ■ SINGLE PO: ACTIVE ■ AUTHORIZATION: OEM VALIDATED ■",
+  },
 };
 
 const defaultTelemetry = {
-  status: 'ONLINE',
-  readout: 'ARIHANTAA SERVICES CONSOLE // DISCIPLINES ACTIVE...',
-  ticker: '■ ELECTRICAL INFRASTRUCTURE ■ MEPF CONSULTANCY ■ EPC CONTRACTING ■ PROJECT SUPERVISION ■ SYSTEM HANDOVER ■'
+  status: "ONLINE",
+  readout: "ARIHANTAA SERVICES CONSOLE // DISCIPLINES ACTIVE...",
+  ticker:
+    "■ MEPF CONSULTANCY ■ EPC PROJECT SOLUTIONS ■ VERTIV PARTNER ■ CAPITAL GOODS SUPPLY ■",
 };
 
 const renderTickerText = (tickerText) => {
-  const parts = tickerText.split('■').map(p => p.trim()).filter(Boolean);
+  const parts = tickerText
+    .split("■")
+    .map((p) => p.trim())
+    .filter(Boolean);
   return (
     <>
       {parts.map((part, index) => (
         <span key={index} className="inline-flex items-center gap-3">
-          <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse">■</span>
+          <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse">
+            ■
+          </span>
           <span className="text-white font-mono text-[10.5px] md:text-[12px] tracking-[0.18em] uppercase font-semibold">
             {part}
           </span>
         </span>
       ))}
-      <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse ml-3">■</span>
+      <span className="text-accent text-[11px] md:text-[13px] select-none animate-pulse ml-3">
+        ■
+      </span>
     </>
   );
 };
 
 function ServiceSVG({ id, isActive }) {
   const containerClasses = `transition-all duration-300 ease-out flex items-center justify-center w-[18px] mr-2 ${
-    isActive 
-      ? 'opacity-100 scale-100 text-accent' 
-      : 'opacity-0 scale-75 text-surface-variant/50 group-hover:opacity-100 group-hover:scale-100 group-hover:text-surface-variant'
+    isActive
+      ? "opacity-100 scale-100 text-accent"
+      : "opacity-0 scale-75 text-surface-variant/50 group-hover:opacity-100 group-hover:scale-100 group-hover:text-surface-variant"
   }`;
 
   return (
     <div className={containerClasses}>
       <div className="w-[18px] h-[18px] flex items-center justify-center flex-shrink-0">
-        {id === 'electrical-infra' && (
-          <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="6" width="16" height="12" rx="2" />
-            <path d="M21 10v4M7 12h6M10 9v6" />
-          </svg>
-        )}
-        {id === 'mepf-consultancy' && (
-          <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        {id === "mepf-consultancy" && (
+          <svg
+            className="w-[16px] h-[16px] stroke-current fill-none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="M3 21h18M9 21V9l3-3 3 3v12" />
             <path d="M5 21V13l2-2 2 2v8" />
             <path d="M19 21V13l-2-2-2 2v8" />
           </svg>
         )}
-        {id === 'epc-contracting' && (
-          <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        {id === "epc-project-solutions" && (
+          <svg
+            className="w-[16px] h-[16px] stroke-current fill-none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="M3 21h18M5 21V10l7 3V8l7 3v10" />
             <path d="M9 21v-4h6v4" />
             <path d="M7 6h2M15 4h2" />
           </svg>
         )}
-        {id === 'project-supervision' && (
-          <svg className="w-[16px] h-[16px] stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        {id === "vertiv-partner" && (
+          <svg
+            className="w-[16px] h-[16px] stroke-current fill-none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <rect x="3" y="6" width="16" height="12" rx="2" />
+            <path d="M21 10v4M7 12h6M10 9v6" />
+          </svg>
+        )}
+        {id === "capital-goods-supply" && (
+          <svg
+            className="w-[16px] h-[16px] stroke-current fill-none animate-[spin_8s_linear_infinite]"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <circle cx="12" cy="12" r="10" />
-            <circle cx="12" cy="12" r="3" />
-            <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+            <circle cx="12" cy="12" r="2" />
+            <path
+              d="M12 9c2-2 4-1 4-1s-1 3-3 3M12 15c-2 2-4 1-4 1s1-3 3-3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M15 12c2 2 1 4 1 4s-3-1-3-3M9 12c-2-2-1-4-1-4s3 1 3 3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
         )}
       </div>
@@ -97,11 +142,11 @@ function ServiceSVG({ id, isActive }) {
 }
 
 export function ServicesStickyNav() {
-  const [activeId, setActiveId] = useState('');
+  const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
-      let current = '';
+      let current = "";
       const isMobile = window.innerWidth < 768;
       const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
       const threshold = isMobile ? 125 : isTablet ? 140 : 145;
@@ -112,10 +157,10 @@ export function ServicesStickyNav() {
       });
       setActiveId(current);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
     // Initial check
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollContainerRef = useRef(null);
@@ -125,7 +170,11 @@ export function ServicesStickyNav() {
     if (activeId && scrollContainerRef.current) {
       const activeEl = document.getElementById(`nav-item-${activeId}`);
       if (activeEl) {
-        activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        activeEl.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "center",
+        });
       }
     }
   }, [activeId]);
@@ -152,7 +201,7 @@ export function ServicesStickyNav() {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -164,7 +213,9 @@ export function ServicesStickyNav() {
       <div className="flex items-stretch h-[54px] md:h-[58px]">
         {/* Fixed label pill — hidden below lg */}
         <div className="hidden lg:flex flex-shrink-0 items-center gap-3 px-6 md:px-10 bg-accent border-r border-accent/40">
-          <span className="material-symbols-outlined text-on-primary text-[14px] lg:text-[16px] !font-normal">construction</span>
+          <span className="material-symbols-outlined text-on-primary text-[14px] lg:text-[16px] !font-normal">
+            construction
+          </span>
           <span className="font-label-caps text-[9px] lg:text-[10px] text-on-primary tracking-[0.22em] uppercase whitespace-nowrap">
             Our Services
           </span>
@@ -181,7 +232,9 @@ export function ServicesStickyNav() {
           >
             {/* Mobile-only label pill inside the scroll list */}
             <div className="flex lg:hidden items-center gap-2 px-5 bg-accent border-r border-accent/40 flex-shrink-0 select-none">
-              <span className="material-symbols-outlined text-on-primary text-[14px] !font-normal">construction</span>
+              <span className="material-symbols-outlined text-on-primary text-[14px] !font-normal">
+                construction
+              </span>
               <span className="font-label-caps text-[9px] text-on-primary tracking-[0.22em] uppercase whitespace-nowrap">
                 Our Services
               </span>
@@ -195,33 +248,47 @@ export function ServicesStickyNav() {
                   id={`nav-item-${svc.id}`}
                   onClick={(e) => handleNavClick(e, svc.id)}
                   className={`group relative flex items-center justify-start lg:justify-center px-4 lg:px-6 py-4 flex-shrink-0 border-r border-white/10 transition-all duration-300 outline-none ${
-                    isActive ? 'bg-black/30' : 'hover:bg-white/5'
+                    isActive ? "bg-black/30" : "hover:bg-white/5"
                   }`}
                 >
                   {/* Active indicator bar */}
-                  <div className={`absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300 ${
-                    isActive ? 'bg-accent' : 'bg-transparent group-hover:bg-white/20'
-                  }`} />
+                  <div
+                    className={`absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300 ${
+                      isActive
+                        ? "bg-accent"
+                        : "bg-transparent group-hover:bg-white/20"
+                    }`}
+                  />
 
                   {/* Number */}
-                  <span className={`font-mono text-[10px] tracking-wider transition-colors duration-300 mr-2 ${
-                    isActive ? 'text-accent' : 'text-surface-variant/40 group-hover:text-accent/70'
-                  }`}>
+                  <span
+                    className={`font-mono text-[10px] tracking-wider transition-colors duration-300 mr-2 ${
+                      isActive
+                        ? "text-accent"
+                        : "text-surface-variant/40 group-hover:text-accent/70"
+                    }`}
+                  >
                     {svc.num}
                   </span>
 
                   {/* Divider square */}
-                  <span className={`w-1 h-1 rounded-none flex-shrink-0 transition-colors duration-300 mr-2 ${
-                    isActive ? 'bg-accent/70' : 'bg-surface-variant/20'
-                  }`} />
+                  <span
+                    className={`w-1 h-1 rounded-none flex-shrink-0 transition-colors duration-300 mr-2 ${
+                      isActive ? "bg-accent/70" : "bg-surface-variant/20"
+                    }`}
+                  />
 
                   {/* Service Icon SVG */}
                   <ServiceSVG id={svc.id} isActive={isActive} />
 
                   {/* Label */}
-                  <span className={`font-label-caps text-[10px] tracking-[0.18em] uppercase whitespace-nowrap transition-colors duration-300 ${
-                    isActive ? 'text-inverse-on-surface' : 'text-surface-variant/70 group-hover:text-inverse-on-surface'
-                  }`}>
+                  <span
+                    className={`font-label-caps text-[10px] tracking-[0.18em] uppercase whitespace-nowrap transition-colors duration-300 ${
+                      isActive
+                        ? "text-inverse-on-surface"
+                        : "text-surface-variant/70 group-hover:text-inverse-on-surface"
+                    }`}
+                  >
                     {svc.label}
                   </span>
                 </button>
@@ -238,14 +305,16 @@ export function ServicesStickyNav() {
       <div className="overflow-hidden border-t border-white/5 py-1.5 bg-inverse-surface/80">
         <div
           className="flex gap-8 items-center whitespace-nowrap w-max"
-          style={{ animation: 'servicesMarquee 35s linear infinite' }}
+          style={{ animation: "servicesMarquee 35s linear infinite" }}
         >
           {doubled.map((svc, i) => (
             <span key={i} className="flex items-center gap-8">
               <button
                 onClick={(e) => handleNavClick(e, svc.id)}
                 className={`font-label-caps text-[10px] tracking-[0.18em] uppercase transition-colors duration-200 outline-none ${
-                  activeId === svc.id ? 'text-accent' : 'text-surface-variant/50 hover:text-accent'
+                  activeId === svc.id
+                    ? "text-accent"
+                    : "text-surface-variant/50 hover:text-accent"
                 }`}
               >
                 {svc.num} — {svc.label}
@@ -272,4 +341,3 @@ export function ServicesStickyNav() {
     </nav>
   );
 }
-

@@ -1,27 +1,26 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '../ui/Button';
-import { engineeredProductsData } from '../../data/engineeredProductsData';
-import { engineeredServicesData } from '../../data/engineeredServicesData';
-import { PRODUCT_CATEGORIES, SERVICE_CATEGORIES, SECTORS } from '../../data/dataSchema';
-import { featuredProjects, projectBoardData } from '../../data/projectsData';
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "../ui/Button";
+import { engineeredProductsData } from "../../data/engineeredProductsData";
+import { engineeredServicesData } from "../../data/engineeredServicesData";
+import { PRODUCT_CATEGORIES, SERVICE_CATEGORIES } from "../../data/dataSchema";
+import { featuredProjects, projectBoardData } from "../../data/projectsData";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 const EASE_OUT_EXPO = [0.16, 1, 0.3, 1];
 const EASE_OUT_QUART = [0.25, 1, 0.5, 1];
 const EASE_IN_OUT_EXPO = [0.87, 0, 0.13, 1];
 
-// ─── Senior Level Animated Quote Button ──────────────────────────────────────
-function AnimatedQuoteButton({ onClick, className = '' }) {
+function AnimatedQuoteButton({ onClick, className = "", isActive = false }) {
   return (
     <Button
       to="/contact"
       onClick={onClick}
-      variant="nav"
+      variant={isActive ? "primary" : "nav"}
       className={`w-auto min-w-[160px] rounded-none ${className}`}
     >
-      GET A QUOTE
+      CONTACT US
     </Button>
   );
 }
@@ -29,7 +28,16 @@ function AnimatedQuoteButton({ onClick, className = '' }) {
 // ─── Animated SVG Icons ────────────────────────────────────────────────────
 function IconBolt({ active }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <motion.path
         d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
         animate={active ? { pathLength: [0, 1] } : { pathLength: 1 }}
@@ -40,8 +48,18 @@ function IconBolt({ active }) {
 }
 function IconThermo({ active }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <motion.path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <motion.path
+        d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"
         animate={active ? { scale: [1, 1.1, 1] } : { scale: 1 }}
         transition={{ duration: 0.4 }}
       />
@@ -50,25 +68,56 @@ function IconThermo({ active }) {
 }
 function IconServer({ active }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
       <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
-      <motion.line x1="6" y1="6" x2="6.01" y2="6"
+      <motion.line
+        x1="6"
+        y1="6"
+        x2="6.01"
+        y2="6"
         animate={active ? { opacity: [1, 0, 1] } : { opacity: 1 }}
         transition={{ duration: 0.6, repeat: active ? Infinity : 0 }}
       />
-      <motion.line x1="6" y1="18" x2="6.01" y2="18"
+      <motion.line
+        x1="6"
+        y1="18"
+        x2="6.01"
+        y2="18"
         animate={active ? { opacity: [1, 0, 1] } : { opacity: 1 }}
-        transition={{ duration: 0.6, repeat: active ? Infinity : 0, delay: 0.3 }}
+        transition={{
+          duration: 0.6,
+          repeat: active ? Infinity : 0,
+          delay: 0.3,
+        }}
       />
     </svg>
   );
 }
 function IconMonitor({ active }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <rect x="2" y="3" width="20" height="14" rx="2" />
-      <motion.path d="M8 21h8M12 17v4"
+      <motion.path
+        d="M8 21h8M12 17v4"
         animate={active ? { opacity: [0, 1] } : { opacity: 1 }}
         transition={{ duration: 0.3 }}
       />
@@ -77,7 +126,16 @@ function IconMonitor({ active }) {
 }
 function IconWrench({ active }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <motion.path
         d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
         animate={active ? { rotate: [0, 15, -15, 0] } : { rotate: 0 }}
@@ -88,140 +146,191 @@ function IconWrench({ active }) {
 }
 function IconConstruction({ active }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <motion.path d="M2 20h20M17 20V8M12 20V4M7 20v-8"
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <motion.path
+        d="M2 20h20M17 20V8M12 20V4M7 20v-8"
         animate={active ? { scaleY: [0, 1] } : { scaleY: 1 }}
         transition={{ duration: 0.5 }}
-        style={{ transformOrigin: 'bottom' }}
+        style={{ transformOrigin: "bottom" }}
       />
     </svg>
   );
 }
 function IconGlobe({ active }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <circle cx="12" cy="12" r="10" />
-      <motion.path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+      <motion.path
+        d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
         animate={active ? { rotate: 360 } : { rotate: 0 }}
-        transition={{ duration: 2, ease: 'linear', repeat: active ? Infinity : 0 }}
-        style={{ transformOrigin: 'center' }}
+        transition={{
+          duration: 2,
+          ease: "linear",
+          repeat: active ? Infinity : 0,
+        }}
+        style={{ transformOrigin: "center" }}
       />
     </svg>
   );
 }
+
+// ─── Mega menu data helpers ──────────────────────────────────────────────────
+const getFeaturedProducts = (categoryId, limit = 3) => {
+  return engineeredProductsData
+    .filter((p) => p.categoryId === categoryId && p.featured)
+    .slice(0, limit)
+    .map((p) => ({
+      label: p.title,
+      link: `/products/${p.categoryId}/${p.id}`,
+    }));
+};
 
 // ─── Mega menu data ────────────────────────────────────────────────────────
 const MEGA_MENUS = {
   Products: {
     sections: [
       {
-        id: 'critical-power',
-        title: 'Critical Power',
+        id: "lt-tta-panel",
+        title: "L&T TTA Panel",
         Icon: IconBolt,
-        link: '/sectors/critical-power',
-        items: [
-          { label: 'Uninterruptible Power Supplies (UPS)', link: '/products/ups' },
-          { label: 'DC Power Systems', link: '/products/dc-power' },
-          { label: 'Power Transfer Switches', link: '/products/power-distribution' },
-          { label: 'L&T TTA Panel', link: '/products/power-distribution/lt-tta-panel' },
-          { label: 'Lucy RMU', link: '/products/power-distribution/lucy-rmu' },
-          { label: 'Lucy CSS', link: '/products/power-distribution/lucy-css' },
-        ],
+        link: "/products/lt-tta-panel",
+        items: getFeaturedProducts("lt-tta-panel"),
       },
       {
-        id: 'thermal',
-        title: 'Thermal Management',
-        Icon: IconThermo,
-        link: '/sectors/thermal-management',
-        items: [
-          { label: 'Perimeter Cooling Systems', link: '/products/enclosure-cooling' },
-          { label: 'In-Row Cooling Units', link: '/products/liquid-cooling' },
-          { label: 'Direct Liquid Cooling', link: '/products/liquid-cooling' },
-        ],
-      },
-      {
-        id: 'racks',
-        title: 'Racks & Enclosures',
+        id: "lucy-rmu",
+        title: "Lucy RMU",
         Icon: IconServer,
-        link: '/sectors/racks-enclosures',
-        items: [
-          { label: 'Open-Frame Server Racks', link: '/products/integrated-solutions' },
-          { label: 'IP-Rated Industrial Cabinets', link: '/products/integrated-solutions' },
-          { label: 'Micro-Data Centre Pods', link: '/products/integrated-solutions' },
-        ],
+        link: "/products/lucy-rmu",
+        items: getFeaturedProducts("lucy-rmu"),
       },
       {
-        id: 'monitoring',
-        title: 'Monitoring & Management',
+        id: "lucy-css",
+        title: "Lucy CSS",
+        Icon: IconConstruction,
+        link: "/products/lucy-css",
+        items: getFeaturedProducts("lucy-css"),
+      },
+      {
+        id: "vertiv-ups",
+        title: "Vertiv UPS",
+        Icon: IconBolt,
+        link: "/products/ups",
+        items: getFeaturedProducts("ups"),
+      },
+      {
+        id: "all-capital-goods",
+        title: "All Capital Goods",
         Icon: IconMonitor,
-        link: '/sectors/monitoring-management',
+        link: "/products/capital-goods",
         items: [
-          { label: 'Data Centre Infrastructure Mgmt', link: '/products/digital-infrastructure' },
-          { label: 'Intelligent PDUs & Smart Sensors', link: '/products/digital-infrastructure' },
-          { label: 'Building Management Systems', link: '/products/digital-infrastructure' },
+          {
+            label: "Thermal & Cooling Systems",
+            link: "/products/enclosure-cooling",
+          },
+          {
+            label: "Racks & IT Enclosures",
+            link: "/products/integrated-solutions",
+          },
+          {
+            label: "Monitoring & DCIM Platforms",
+            link: "/products/digital-infrastructure",
+          },
+          {
+            label: "Consolidated Capital Goods",
+            link: "/solutions/capital-goods",
+          },
         ],
       },
     ],
-    cta: { label: 'View All Products', link: '/products' },
+    cta: { label: "View All Products", link: "/products" },
   },
   Services: {
     sections: [
       {
-        id: 'spare-parts-maintenance',
-        title: 'Spare Parts & Maintenance',
-        Icon: IconWrench,
-        link: '/services/spare-parts',
-        items: [
-          { label: 'Spare Parts & Management', link: '/services/spare-parts' },
-          { label: 'Preventive Maintenance', link: '/services/preventive-maint' },
-          { label: 'UPS & Battery Services', link: '/services/ups-battery' },
-        ],
-      },
-      {
-        id: 'mepf-consultancy',
-        title: 'MEPF Consultancy',
+        id: "mepf-consultancy",
+        title: "MEPF Consultancy",
         Icon: IconThermo,
-        link: '/services/mepf',
+        link: "/solutions/epc-mepf",
         items: [
-          { label: 'MEPF Engineering Services', link: '/services/mepf/mepf-consultancy-services' },
-          { label: 'Performance Optimization', link: '/services/performance-opt' },
-          { label: 'Remote Services (24/7 NOC)', link: '/services/remote-services' },
+          { label: "Mechanical & HVAC Systems", link: "/solutions/epc-mepf" },
+          { label: "Electrical Design & BMS", link: "/solutions/epc-mepf" },
+          { label: "Plumbing & Fire Protection", link: "/solutions/epc-mepf" },
         ],
       },
       {
-        id: 'epc-contracting',
-        title: 'EPC & Commissioning',
+        id: "epc-project-solutions",
+        title: "EPC Project Solutions",
         Icon: IconConstruction,
-        link: '/services/project-commission',
+        link: "/solutions/epc-mepf",
         items: [
-          { label: 'Project & Commissioning', link: '/services/project-commission' },
-          { label: 'Industrial Maintenance', link: '/services/industrial-maint' },
-          { label: 'Generator & Switchgear', link: '/services/generator' },
+          { label: "Turnkey Electrical Projects", link: "/solutions/epc-mepf" },
+          { label: "HT/LT Work & Substations", link: "/solutions/epc-mepf" },
+          {
+            label: "Class A Licensed JV Projects",
+            link: "/solutions/epc-mepf",
+          },
         ],
       },
       {
-        id: 'cooling-services',
-        title: 'Cooling Services',
-        Icon: IconMonitor,
-        link: '/services/liquid-cooling',
+        id: "vertiv-partner",
+        title: "Vertiv Partner",
+        Icon: IconBolt,
+        link: "/partners/vertiv",
         items: [
-          { label: 'Liquid Cooling Services', link: '/services/liquid-cooling' },
-          { label: 'Remote Services (24/7 NOC)', link: '/services/remote-services' },
-          { label: 'Performance Optimization', link: '/services/performance-opt' },
+          { label: "Liebert UPS Systems (All Models)", link: "/products/ups" },
+          {
+            label: "Thermal & Precision Cooling",
+            link: "/products/enclosure-cooling",
+          },
+          {
+            label: "DCIM & Remote Monitoring",
+            link: "/products/digital-infrastructure",
+          },
+        ],
+      },
+      {
+        id: "capital-goods-supply",
+        title: "Capital Goods Supply",
+        Icon: IconMonitor,
+        link: "/solutions/capital-goods",
+        items: [
+          {
+            label: "L&T TTA Switchgear Panels",
+            link: "/products/lt-tta-panel",
+          },
+          { label: "Lucy RMU Switchgears", link: "/products/lucy-rmu" },
+          { label: "Lucy CSS Substations", link: "/products/lucy-css" },
         ],
       },
     ],
-    cta: { label: 'View All Services', link: '/services' },
+    cta: { label: "View All Services", link: "/services" },
   },
 };
 
 const NAV_LINKS = [
-  { label: 'Home',         to: '/' },
-  { label: 'Products',     to: '/products', hasMega: true },
-  { label: 'Services',     to: '/services', hasMega: true },
-  { label: 'Projects',     to: '/projects' },
-  { label: 'News',         to: '/news' },
-  { label: 'About',        to: '/about' },
+  { label: "Home", to: "/" },
+  { label: "About Us", to: "/about" },
+  { label: "Services", to: "/services", hasMega: true },
+  { label: "Products", to: "/products", hasMega: true },
+  { label: "Partnerships", to: "/about#partnerships" },
 ];
 
 // ─── Animated Hamburger Icon (premium 2-line → X morph) ───────────────────
@@ -230,20 +339,24 @@ function HamburgerButton({ isOpen, onClick }) {
     <button
       onClick={onClick}
       className="relative flex items-center justify-center w-11 h-11 lg:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-      aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+      aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
       aria-expanded={isOpen}
     >
       <span className="relative w-[22px] h-[14px] block">
         {/* Top line */}
         <span
           className={`block absolute left-0 h-[1.5px] bg-on-surface transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-            isOpen ? 'w-[22px] top-1/2 -translate-y-1/2 rotate-45' : 'w-[22px] top-0'
+            isOpen
+              ? "w-[22px] top-1/2 -translate-y-1/2 rotate-45"
+              : "w-[22px] top-0"
           }`}
         />
         {/* Bottom line — shorter by default, same length on X */}
         <span
           className={`block absolute left-0 h-[1.5px] bg-on-surface transition-all duration-300 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-            isOpen ? 'w-[22px] top-1/2 -translate-y-1/2 -rotate-45' : 'w-[14px] bottom-0'
+            isOpen
+              ? "w-[22px] top-1/2 -translate-y-1/2 -rotate-45"
+              : "w-[14px] bottom-0"
           }`}
         />
       </span>
@@ -252,37 +365,50 @@ function HamburgerButton({ isOpen, onClick }) {
 }
 
 // ─── Mobile Accordion Section ──────────────────────────────────────────────
-function MobileAccordion({ label, to, index, sections, cta, onNavigate, isActive }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
+function MobileAccordion({
+  label,
+  to,
+  index,
+  sections,
+  cta,
+  onNavigate,
+  isActive,
+  isExpanded,
+  onToggle,
+}) {
   return (
     <div className="border-b border-white/[0.12]">
       <div className="flex items-center justify-between min-h-[56px]">
-
         {/* LEFT: Tapping label navigates directly to /products or /services */}
         <Link
           to={to}
           onClick={onNavigate}
           className="flex items-center gap-5 py-5 flex-1 group/direct"
         >
-          <span className={`font-headline text-[11px] font-light tabular-nums w-5 ${isActive ? 'text-accent' : 'text-white/20'}`}>
+          <span
+            className={`font-headline text-[11px] font-light tabular-nums w-5 ${isActive ? "text-accent" : "text-white/20"}`}
+          >
             0{index + 1}
           </span>
-          <span className={`font-headline text-[18px] sm:text-[20px] font-semibold uppercase tracking-[0.02em] ${isActive ? 'text-accent' : 'text-white group-hover/direct:text-accent/80'} transition-colors duration-200`}>
+          <span
+            className={`font-headline text-[18px] sm:text-[20px] font-semibold uppercase tracking-[0.02em] ${isActive ? "text-accent" : "text-white group-hover/direct:text-accent/80"} transition-colors duration-200`}
+          >
             {label}
           </span>
           {/* Subtle direct-nav hint arrow */}
-          <span className={`material-symbols-outlined text-[16px] transition-all duration-200 opacity-0 group-hover/direct:opacity-100 -translate-x-1 group-hover/direct:translate-x-0 ${isActive ? 'text-accent opacity-60' : 'text-white/30'}`}>
+          <span
+            className={`material-symbols-outlined text-[16px] transition-all duration-200 opacity-0 group-hover/direct:opacity-100 -translate-x-1 group-hover/direct:translate-x-0 ${isActive ? "text-accent opacity-60" : "text-white/30"}`}
+          >
             arrow_forward
           </span>
         </Link>
 
         {/* RIGHT: Only the + toggle button expands/collapses sub-items */}
         <button
-          onClick={() => setIsExpanded(!isExpanded)}
+          onClick={onToggle}
           className="flex items-center justify-center w-12 h-[56px] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 shrink-0"
           aria-expanded={isExpanded}
-          aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${label} submenu`}
+          aria-label={`${isExpanded ? "Collapse" : "Expand"} ${label} submenu`}
         >
           <motion.span
             className="material-symbols-outlined text-white/25 text-[28px]"
@@ -298,7 +424,7 @@ function MobileAccordion({ label, to, index, sections, cta, onNavigate, isActive
         {isExpanded && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
+            animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: EASE_OUT_QUART }}
             className="overflow-hidden"
@@ -340,7 +466,9 @@ function MobileAccordion({ label, to, index, sections, cta, onNavigate, isActive
                 className="inline-flex items-center gap-1.5 font-label-caps text-[9px] tracking-[0.2em] uppercase text-accent/70 hover:text-accent transition-colors pl-7"
               >
                 {cta.label}
-                <span className="material-symbols-outlined text-[22px]">arrow_forward</span>
+                <span className="material-symbols-outlined text-[22px]">
+                  arrow_forward
+                </span>
               </Link>
             </div>
           </motion.div>
@@ -354,33 +482,60 @@ function MobileAccordion({ label, to, index, sections, cta, onNavigate, isActive
 function MobileDrawer({ isOpen, onClose }) {
   const drawerRef = useRef(null);
   const location = useLocation();
+  const [expandedSection, setExpandedSection] = useState(null);
 
   const isActive = (to) => {
-    if (to.includes('#')) {
-      const [path, hash] = to.split('#');
-      return location.pathname === path && location.hash === '#' + hash;
+    if (to.includes("#")) {
+      const [path, hash] = to.split("#");
+      return location.pathname === path && location.hash === "#" + hash;
     }
-    return to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
+    if (to === "/services") {
+      return (
+        location.pathname.startsWith("/services") ||
+        location.pathname === "/solutions/epc-mepf" ||
+        location.pathname === "/solutions/capital-goods" ||
+        location.pathname.startsWith("/partners") ||
+        location.pathname.startsWith("/partnerships")
+      );
+    }
+    if (to === "/products") {
+      return location.pathname.startsWith("/products");
+    }
+    if (to === "/about") {
+      return location.pathname === "/about";
+    }
+    return to === "/"
+      ? location.pathname === "/"
+      : location.pathname.startsWith(to);
   };
+
+  // Reset expanded section on close
+  useEffect(() => {
+    if (!isOpen) {
+      setExpandedSection(null);
+    }
+  }, [isOpen]);
 
   // Body scroll lock
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   // Escape key handler
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
 
   // Focus trap
@@ -388,12 +543,12 @@ function MobileDrawer({ isOpen, onClose }) {
     if (!isOpen || !drawerRef.current) return;
     const drawer = drawerRef.current;
     const focusable = drawer.querySelectorAll(
-      'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+      'a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])',
     );
     if (focusable.length > 0) focusable[0].focus();
 
     const handleTab = (e) => {
-      if (e.key !== 'Tab') return;
+      if (e.key !== "Tab") return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       if (e.shiftKey) {
@@ -408,8 +563,8 @@ function MobileDrawer({ isOpen, onClose }) {
         }
       }
     };
-    document.addEventListener('keydown', handleTab);
-    return () => document.removeEventListener('keydown', handleTab);
+    document.addEventListener("keydown", handleTab);
+    return () => document.removeEventListener("keydown", handleTab);
   }, [isOpen]);
 
   const linkVariants = {
@@ -445,26 +600,42 @@ function MobileDrawer({ isOpen, onClose }) {
           <motion.div
             ref={drawerRef}
             className="fixed top-0 right-0 bottom-0 z-[96] w-full max-w-[380px] bg-[#080808] lg:hidden flex flex-col overflow-hidden"
-            initial={{ x: '100%' }}
+            initial={{ x: "100%" }}
             animate={{ x: 0 }}
-            exit={{ x: '100%' }}
+            exit={{ x: "100%" }}
             transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
           >
             {/* Ambient glow */}
-            <div className="absolute top-0 right-0 w-[50%] h-[25%] pointer-events-none z-0" style={{
-              background: 'radial-gradient(ellipse at top right, rgba(233,101,43,0.06) 0%, transparent 70%)',
-              filter: 'blur(40px)',
-            }} />
+            <div
+              className="absolute top-0 right-0 w-[50%] h-[25%] pointer-events-none z-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse at top right, rgba(233,101,43,0.06) 0%, transparent 70%)",
+                filter: "blur(40px)",
+              }}
+            />
 
             {/* Corner marks */}
             <div className="absolute top-3 right-3 w-4 h-4 pointer-events-none z-[1]">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M0 16 L0 0 L16 0" stroke="rgba(233,101,43,0.3)" strokeWidth="1" /></svg>
+              <svg viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M0 16 L0 0 L16 0"
+                  stroke="rgba(233,101,43,0.3)"
+                  strokeWidth="1"
+                />
+              </svg>
             </div>
             <div className="absolute bottom-3 left-3 w-4 h-4 pointer-events-none z-[1] rotate-180">
-              <svg viewBox="0 0 16 16" fill="none"><path d="M0 16 L0 0 L16 0" stroke="rgba(233,101,43,0.3)" strokeWidth="1" /></svg>
+              <svg viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M0 16 L0 0 L16 0"
+                  stroke="rgba(233,101,43,0.3)"
+                  strokeWidth="1"
+                />
+              </svg>
             </div>
 
             {/* ── Header ── */}
@@ -481,7 +652,9 @@ function MobileDrawer({ isOpen, onClose }) {
                 className="flex items-center justify-center w-10 h-10 border border-white/[0.08] text-white/40 hover:text-white hover:border-white/20 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 aria-label="Close navigation menu"
               >
-                <span className="material-symbols-outlined text-[30px]">close</span>
+                <span className="material-symbols-outlined text-[30px]">
+                  close
+                </span>
               </button>
             </div>
 
@@ -499,7 +672,9 @@ function MobileDrawer({ isOpen, onClose }) {
                   transition={{ delay: 0.12, duration: 0.3 }}
                 >
                   <div className="w-3 h-px bg-accent/40" />
-                  <span className="font-label-caps text-[8px] text-white/20 tracking-[0.3em] uppercase">Menu</span>
+                  <span className="font-label-caps text-[8px] text-white/20 tracking-[0.3em] uppercase">
+                    Menu
+                  </span>
                 </motion.div>
 
                 <ul>
@@ -515,7 +690,7 @@ function MobileDrawer({ isOpen, onClose }) {
                           animate="visible"
                           exit="exit"
                         >
-                        <MobileAccordion
+                          <MobileAccordion
                             label={label}
                             to={to}
                             index={i}
@@ -523,6 +698,12 @@ function MobileDrawer({ isOpen, onClose }) {
                             cta={menu.cta}
                             onNavigate={onClose}
                             isActive={isActive(to)}
+                            isExpanded={expandedSection === label}
+                            onToggle={() =>
+                              setExpandedSection(
+                                expandedSection === label ? null : label,
+                              )
+                            }
                           />
                         </motion.li>
                       );
@@ -543,15 +724,21 @@ function MobileDrawer({ isOpen, onClose }) {
                           className="flex items-center justify-between py-5 min-h-[56px]"
                         >
                           <div className="flex items-center gap-5">
-                            <span className={`font-headline text-[11px] font-light tabular-nums w-5 ${isActive(to) ? 'text-accent' : 'text-white/20'}`}>
+                            <span
+                              className={`font-headline text-[11px] font-light tabular-nums w-5 ${isActive(to) ? "text-accent" : "text-white/20"}`}
+                            >
                               0{i + 1}
                             </span>
-                            <span className={`font-headline text-[18px] sm:text-[20px] font-semibold uppercase tracking-[0.02em] ${isActive(to) ? 'text-accent' : 'text-white'}`}>
+                            <span
+                              className={`font-headline text-[18px] sm:text-[20px] font-semibold uppercase tracking-[0.02em] ${isActive(to) ? "text-accent" : "text-white"}`}
+                            >
                               {label}
                             </span>
                           </div>
                           {isActive(to) && (
-                            <span className="material-symbols-outlined text-accent/30 text-[26px]">arrow_forward</span>
+                            <span className="material-symbols-outlined text-accent/30 text-[26px]">
+                              arrow_forward
+                            </span>
                           )}
                         </Link>
                       </motion.li>
@@ -566,7 +753,7 @@ function MobileDrawer({ isOpen, onClose }) {
               className="relative z-10 shrink-0 border-t border-white/[0.06] bg-[#060606]"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.35, ease: EASE_OUT_EXPO }}
+              transition={{ delay: 0.3, duration: 0.35, ease: EASE_OUT_QUART }}
             >
               <Button
                 to="/contact"
@@ -576,20 +763,8 @@ function MobileDrawer({ isOpen, onClose }) {
                 size="lg"
                 className="w-full rounded-none"
               >
-                Get a Quote
+                CONTACT US
               </Button>
-
-              <div className="flex items-center justify-between px-5 py-2.5 bg-[#050505]">
-                <span className="font-label-caps text-[7px] text-white/15 tracking-[0.25em] uppercase">Arihantaa Powertech</span>
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=22.6708056,71.5723889"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-label-caps text-[7px] text-white/15 hover:text-accent/40 tracking-[0.15em] transition-colors"
-                >
-                  22°40′N 71°34′E
-                </a>
-              </div>
             </motion.div>
           </motion.div>
         </>
@@ -608,7 +783,11 @@ function MegaSection({ section, onClick, index }) {
       className="group border-r border-b border-outline-variant/30 p-8 hover:bg-accent/[0.015] transition-colors duration-300 flex flex-col justify-between"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.28, delay: 0.04 + index * 0.05, ease: EASE_OUT_QUART }}
+      transition={{
+        duration: 0.28,
+        delay: 0.04 + index * 0.05,
+        ease: EASE_OUT_QUART,
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -619,7 +798,9 @@ function MegaSection({ section, onClick, index }) {
           onClick={onClick}
           className="flex items-center gap-3 mb-6 group/header"
         >
-          <span className={`transition-colors duration-200 ${hovered ? 'text-accent' : 'text-on-surface/40'}`}>
+          <span
+            className={`transition-colors duration-200 ${hovered ? "text-accent" : "text-on-surface/40"}`}
+          >
             <Icon active={hovered} />
           </span>
           <span className="font-label-caps text-[11px] font-bold tracking-[0.22em] uppercase text-on-surface group-hover/header:text-accent transition-colors duration-200">
@@ -657,35 +838,28 @@ function MegaSection({ section, onClick, index }) {
 // ──────────────────────────────────────────────────────────────────────────
 
 const PRODUCT_ICON_MAP = {
-  'ups': 'bolt',
-  'dc-power': 'power',
-  'power-distribution': 'electric_bolt',
-  'industrial-ac-dc': 'factory',
-  'liquid-cooling': 'water_drop',
-  'enclosure-cooling': 'thermostat',
-  'integrated-solutions': 'dns',
-  'digital-infrastructure': 'monitor_heart',
+  ups: "bolt",
+  "lt-tta-panel": "electric_bolt",
+  "lucy-rmu": "hub",
+  "lucy-css": "domain",
+  "enclosure-cooling": "thermostat",
+  "integrated-solutions": "dns",
+  "digital-infrastructure": "monitor_heart",
+  "capital-goods": "settings",
 };
 
 const SERVICE_ICON_MAP = {
-  'spare-parts': 'inventory_2',
-  'preventive-maint': 'build_circle',
-  'performance-opt': 'speed',
-  'remote-services': 'router',
-  'project-commission': 'engineering',
-  'industrial-maint': 'precision_manufacturing',
-  'ups-battery': 'battery_full',
-  'generator': 'settings',
-  'liquid-cooling': 'water',
-  'mepf': 'architecture',
+  "vertiv-partner": "verified",
+  "capital-goods": "settings",
+  "epc-mepf": "engineering",
 };
 
 const PROJECT_ICON_MAP = {
-  'healthcare': 'local_hospital',
-  'aviation': 'local_airport',
-  'transport': 'subway',
-  'data-center': 'dns',
-  'industrial': 'factory',
+  healthcare: "local_hospital",
+  aviation: "local_airport",
+  transport: "subway",
+  "data-center": "dns",
+  industrial: "factory",
 };
 
 function buildSearchIndex() {
@@ -694,10 +868,10 @@ function buildSearchIndex() {
   // ── Individual Engineered Products (searchable by specific product name) ──
   engineeredProductsData.forEach((product) => {
     items.push({
-      type: 'product',
-      icon: PRODUCT_ICON_MAP[product.categoryId] || 'category',
+      type: "product",
+      icon: PRODUCT_ICON_MAP[product.categoryId] || "category",
       label: product.title,
-      desc: product.description?.slice(0, 100) + '…',
+      desc: product.description?.slice(0, 100) + "…",
       link: `/products/${product.categoryId}/${product.id}`,
     });
   });
@@ -705,11 +879,13 @@ function buildSearchIndex() {
   // ── Product Categories (searchable by category name) ──
   Object.entries(PRODUCT_CATEGORIES).forEach(([id, cat]) => {
     // Avoid duplicating if a product with exact same label exists
-    const alreadyHas = items.some(i => i.label === cat.name && i.type === 'product');
+    const alreadyHas = items.some(
+      (i) => i.label === cat.name && i.type === "product",
+    );
     if (!alreadyHas) {
       items.push({
-        type: 'product',
-        icon: PRODUCT_ICON_MAP[id] || 'category',
+        type: "product",
+        icon: PRODUCT_ICON_MAP[id] || "category",
         label: cat.name,
         desc: `Browse all ${cat.name.toLowerCase()} products`,
         link: `/products/${id}`,
@@ -717,40 +893,37 @@ function buildSearchIndex() {
     }
   });
 
+  const categoryLinks = {
+    "vertiv-partner": "/partners/vertiv",
+    "capital-goods": "/solutions/capital-goods",
+    "epc-mepf": "/solutions/epc-mepf",
+  };
+
   // ── Individual Engineered Services (searchable by specific service name) ──
   engineeredServicesData.forEach((service) => {
     items.push({
-      type: 'service',
-      icon: SERVICE_ICON_MAP[service.categoryId] || 'build',
+      type: "service",
+      icon: SERVICE_ICON_MAP[service.categoryId] || "build",
       label: service.title,
-      desc: service.description?.slice(0, 100) + '…',
-      link: `/services/${service.categoryId}/${service.id}`,
+      desc: service.description?.slice(0, 100) + "…",
+      link: categoryLinks[service.categoryId] || "/services",
     });
   });
 
   // ── Service Categories (searchable by category name) ──
   Object.entries(SERVICE_CATEGORIES).forEach(([id, cat]) => {
-    const alreadyHas = items.some(i => i.label === cat.name && i.type === 'service');
+    const alreadyHas = items.some(
+      (i) => i.label === cat.name && i.type === "service",
+    );
     if (!alreadyHas) {
       items.push({
-        type: 'service',
-        icon: SERVICE_ICON_MAP[id] || 'build',
+        type: "service",
+        icon: SERVICE_ICON_MAP[id] || "build",
         label: cat.name,
         desc: `Browse all ${cat.name.toLowerCase()} services`,
-        link: `/services/${id}`,
+        link: categoryLinks[id] || "/services",
       });
     }
-  });
-
-  // ── Sectors ──
-  Object.entries(SECTORS).forEach(([id, sector]) => {
-    items.push({
-      type: 'sector',
-      icon: sector.icon,
-      label: sector.name,
-      desc: `Explore ${sector.name.toLowerCase()} infrastructure solutions`,
-      link: `/sectors/${id}`,
-    });
   });
 
   // ── Projects (from featuredProjects + projectBoardData, deduplicated) ──
@@ -759,11 +932,11 @@ function buildSearchIndex() {
     if (seenProjectTitles.has(project.title)) return;
     seenProjectTitles.add(project.title);
     items.push({
-      type: 'project',
-      icon: PROJECT_ICON_MAP[project.category] || 'apartment',
+      type: "project",
+      icon: PROJECT_ICON_MAP[project.category] || "apartment",
       label: project.title,
       desc: `${project.categoryLabel} · ${project.location}`,
-      link: `/projects/${project.id}`,
+      link: `/contact?inquiry=sales&item=${encodeURIComponent(project.title + " Project (" + project.location + ")")}`,
     });
   });
 
@@ -773,36 +946,51 @@ function buildSearchIndex() {
 const ALL_SEARCH_ITEMS = buildSearchIndex();
 
 const TYPE_META = {
-  product: { label: 'Product',  accent: 'bg-accent/15 border-accent/30 text-accent', textColor: 'text-accent', icon: 'category' },
-  service: { label: 'Service',  accent: 'bg-accent/15 border-accent/30 text-accent', textColor: 'text-accent', icon: 'build' },
-  sector:  { label: 'Sector',   accent: 'bg-accent/15 border-accent/30 text-accent', textColor: 'text-accent', icon: 'hub' },
-  project: { label: 'Project',  accent: 'bg-accent/15 border-accent/30 text-accent', textColor: 'text-accent', icon: 'apartment' },
+  product: {
+    label: "Product",
+    accent: "bg-accent/15 border-accent/30 text-accent",
+    textColor: "text-accent",
+    icon: "category",
+  },
+  service: {
+    label: "Service",
+    accent: "bg-accent/15 border-accent/30 text-accent",
+    textColor: "text-accent",
+    icon: "build",
+  },
+  project: {
+    label: "Project",
+    accent: "bg-accent/15 border-accent/30 text-accent",
+    textColor: "text-accent",
+    icon: "apartment",
+  },
 };
 
 function SearchOverlay({ isOpen, onClose }) {
-  const [query, setQuery]     = useState('');
+  const [query, setQuery] = useState("");
   const [activeIdx, setActiveIdx] = useState(-1);
-  const inputRef  = useRef(null);
-  const listRef   = useRef(null);
-  const navigate  = useNavigate();
+  const inputRef = useRef(null);
+  const listRef = useRef(null);
+  const navigate = useNavigate();
 
   const q = query.toLowerCase().trim();
 
   // Filter items matching query
   const filtered = q
-    ? ALL_SEARCH_ITEMS.filter(i =>
-        i.label.toLowerCase().includes(q) ||
-        i.desc.toLowerCase().includes(q)  ||
-        i.type.toLowerCase().includes(q)
+    ? ALL_SEARCH_ITEMS.filter(
+        (i) =>
+          i.label.toLowerCase().includes(q) ||
+          i.desc.toLowerCase().includes(q) ||
+          i.type.toLowerCase().includes(q),
       )
     : [];
 
   // Group results
   const grouped = {
-    product: filtered.filter(i => i.type === 'product'),
-    service: filtered.filter(i => i.type === 'service'),
-    sector:  filtered.filter(i => i.type === 'sector'),
-    project: filtered.filter(i => i.type === 'project'),
+    product: filtered.filter((i) => i.type === "product"),
+    service: filtered.filter((i) => i.type === "service"),
+    sector: filtered.filter((i) => i.type === "sector"),
+    project: filtered.filter((i) => i.type === "project"),
   };
 
   // Flattened results for unified keyboard navigation matching actual displayed order
@@ -810,50 +998,55 @@ function SearchOverlay({ isOpen, onClose }) {
     ...grouped.product,
     ...grouped.service,
     ...grouped.sector,
-    ...grouped.project
+    ...grouped.project,
   ];
 
   const hasResults = flatResults.length > 0;
 
   // Reset active on query change
-  useEffect(() => { setActiveIdx(-1); }, [query]);
+  useEffect(() => {
+    setActiveIdx(-1);
+  }, [query]);
 
   // ESC + keyboard nav
   useEffect(() => {
     if (!isOpen) return;
     const handler = (e) => {
-      if (e.key === 'Escape') { onClose(); return; }
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
       if (!q) return; // Disable keyboard nav on empty state
 
-      if (e.key === 'ArrowDown') {
+      if (e.key === "ArrowDown") {
         e.preventDefault();
-        setActiveIdx(prev => Math.min(prev + 1, flatResults.length - 1));
+        setActiveIdx((prev) => Math.min(prev + 1, flatResults.length - 1));
       }
-      if (e.key === 'ArrowUp') {
+      if (e.key === "ArrowUp") {
         e.preventDefault();
-        setActiveIdx(prev => Math.max(prev - 1, -1));
+        setActiveIdx((prev) => Math.max(prev - 1, -1));
       }
-      if (e.key === 'Enter' && activeIdx >= 0 && flatResults[activeIdx]) {
+      if (e.key === "Enter" && activeIdx >= 0 && flatResults[activeIdx]) {
         navigate(flatResults[activeIdx].link);
         onClose();
       }
     };
-    document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
   }, [isOpen, onClose, flatResults, activeIdx, navigate, q]);
 
   // Auto-scroll active item into view
   useEffect(() => {
     if (activeIdx < 0 || !listRef.current) return;
     const el = listRef.current.querySelector(`[data-idx="${activeIdx}"]`);
-    el?.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+    el?.scrollIntoView({ block: "nearest", behavior: "auto" });
   }, [activeIdx]);
 
   // Focus + reset on open
   useEffect(() => {
     if (isOpen) {
       inputRef.current?.focus();
-      setQuery('');
+      setQuery("");
       setActiveIdx(-1);
     }
   }, [isOpen]);
@@ -861,24 +1054,26 @@ function SearchOverlay({ isOpen, onClose }) {
   // Body + iOS scroll lock (Lenis-aware)
   useEffect(() => {
     if (!isOpen) {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
       window.lenis?.start();
       return;
     }
     // Standard lock using overflow: hidden
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     window.lenis?.stop();
     // iOS Safari: prevent touchmove on background
-    const preventTouch = (e) => { if (!e.target.closest('[data-search-panel]')) e.preventDefault(); };
-    document.addEventListener('touchmove', preventTouch, { passive: false });
+    const preventTouch = (e) => {
+      if (!e.target.closest("[data-search-panel]")) e.preventDefault();
+    };
+    document.addEventListener("touchmove", preventTouch, { passive: false });
     return () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
       window.lenis?.start();
-      document.removeEventListener('touchmove', preventTouch);
+      document.removeEventListener("touchmove", preventTouch);
     };
   }, [isOpen]);
 
@@ -890,14 +1085,18 @@ function SearchOverlay({ isOpen, onClose }) {
     return (
       <>
         {text.slice(0, idx)}
-        <span className="text-accent font-bold">{text.slice(idx, idx + q.length)}</span>
+        <span className="text-accent font-bold">
+          {text.slice(idx, idx + q.length)}
+        </span>
         {text.slice(idx + q.length)}
       </>
     );
   };
 
   const ResultCard = ({ item }) => {
-    const flatIndex = flatResults.findIndex(r => r.link === item.link && r.label === item.label);
+    const flatIndex = flatResults.findIndex(
+      (r) => r.link === item.link && r.label === item.label,
+    );
     const isKeyActive = flatIndex === activeIdx;
     const meta = TYPE_META[item.type];
     return (
@@ -907,23 +1106,27 @@ function SearchOverlay({ isOpen, onClose }) {
         onClick={onClose}
         onMouseEnter={() => setActiveIdx(flatIndex)}
         className={`flex items-center gap-3.5 md:gap-4.5 p-3 md:p-3.5 border border-l-4 transition-all duration-200 ${
-          isKeyActive 
-            ? 'bg-white/[0.035] border-white/[0.12] border-l-accent' 
-            : 'bg-white/[0.01] border-white/[0.06] border-l-transparent hover:bg-white/[0.02] hover:border-l-white/20'
+          isKeyActive
+            ? "bg-white/[0.035] border-white/[0.12] border-l-accent"
+            : "bg-white/[0.01] border-white/[0.06] border-l-transparent hover:bg-white/[0.02] hover:border-l-white/20"
         }`}
       >
         {/* Left Icon - Open style (no background/borders) */}
-        <span className={`material-symbols-outlined shrink-0 text-[22px] md:text-[25px] transition-all duration-200 ${
-          isKeyActive ? 'text-accent' : 'text-white/40'
-        }`}>
+        <span
+          className={`material-symbols-outlined shrink-0 text-[22px] md:text-[25px] transition-all duration-200 ${
+            isKeyActive ? "text-accent" : "text-white/40"
+          }`}
+        >
           {item.icon}
         </span>
 
         {/* Text Details */}
         <div className="flex-grow min-w-0 pr-2">
-          <h4 className={`font-headline text-[13px] md:text-[14px] font-bold tracking-tight truncate transition-colors duration-200 ${
-            isKeyActive ? 'text-accent' : 'text-white'
-          }`}>
+          <h4
+            className={`font-headline text-[13px] md:text-[14px] font-bold tracking-tight truncate transition-colors duration-200 ${
+              isKeyActive ? "text-accent" : "text-white"
+            }`}
+          >
             {highlight(item.label)}
           </h4>
           <p className="font-body text-[10.5px] md:text-[12px] text-white/40 leading-snug mt-0.5 truncate">
@@ -933,16 +1136,20 @@ function SearchOverlay({ isOpen, onClose }) {
 
         {/* Right Info: Badge + Arrow */}
         <div className="flex items-center gap-3 md:gap-4 shrink-0">
-          <span className={`font-label-caps text-[7.5px] md:text-[8.5px] tracking-[0.15em] px-2 py-0.5 border transition-all duration-300 ${
-            isKeyActive 
-              ? 'bg-accent/15 border-accent/30 text-accent' 
-              : 'bg-white/[0.03] border-white/[0.08] text-white/35'
-          }`}>
+          <span
+            className={`font-label-caps text-[7.5px] md:text-[8.5px] tracking-[0.15em] px-2 py-0.5 border transition-all duration-300 ${
+              isKeyActive
+                ? "bg-accent/15 border-accent/30 text-accent"
+                : "bg-white/[0.03] border-white/[0.08] text-white/35"
+            }`}
+          >
             {meta.label.toUpperCase()}
           </span>
-          <span className={`material-symbols-outlined text-[20px] md:text-[24px] transition-all duration-300 ${
-            isKeyActive ? 'text-accent translate-x-1' : 'text-white/15'
-          }`}>
+          <span
+            className={`material-symbols-outlined text-[20px] md:text-[24px] transition-all duration-300 ${
+              isKeyActive ? "text-accent translate-x-1" : "text-white/15"
+            }`}
+          >
             arrow_forward
           </span>
         </div>
@@ -958,9 +1165,9 @@ function SearchOverlay({ isOpen, onClose }) {
           <motion.div
             className="fixed inset-0 z-[150] pointer-events-auto"
             style={{
-              backdropFilter: 'blur(16px) saturate(0.6) brightness(0.4)',
-              WebkitBackdropFilter: 'blur(16px) saturate(0.6) brightness(0.4)',
-              background: 'rgba(6, 8, 12, 0.7)',
+              backdropFilter: "blur(16px) saturate(0.6) brightness(0.4)",
+              WebkitBackdropFilter: "blur(16px) saturate(0.6) brightness(0.4)",
+              background: "rgba(6, 8, 12, 0.7)",
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -975,13 +1182,13 @@ function SearchOverlay({ isOpen, onClose }) {
             data-lenis-prevent
             className="fixed left-1/2 z-[151] flex flex-col pointer-events-auto border border-white/20 overflow-hidden"
             style={{
-              x: '-50%',
-              top: 'clamp(8px, 6dvh, 80px)',
-              width: '94dvw',
-              maxWidth: '680px',
-              maxHeight: '88dvh',
-              background: '#0a0a0a',
-              boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
+              x: "-50%",
+              top: "clamp(8px, 6dvh, 80px)",
+              width: "94dvw",
+              maxWidth: "680px",
+              maxHeight: "88dvh",
+              background: "#0a0a0a",
+              boxShadow: "0 32px 80px rgba(0,0,0,0.6)",
             }}
             initial={{ scale: 0.96, opacity: 0, y: -12 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -994,7 +1201,12 @@ function SearchOverlay({ isOpen, onClose }) {
 
             {/* ── Search Input Block ── */}
             <div className="relative flex items-center h-[58px] md:h-[68px] px-3.5 md:px-5 bg-white/[0.01] border-b border-white/10">
-              <span className="material-symbols-outlined text-accent animate-pulse shrink-0 mr-2.5 md:mr-4" style={{ fontSize: '26px' }}>search</span>
+              <span
+                className="material-symbols-outlined text-accent animate-pulse shrink-0 mr-2.5 md:mr-4"
+                style={{ fontSize: "26px" }}
+              >
+                search
+              </span>
               <input
                 ref={inputRef}
                 autoFocus
@@ -1003,7 +1215,7 @@ function SearchOverlay({ isOpen, onClose }) {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search products, services..."
                 className="flex-1 h-full bg-transparent border-none text-white text-[15px] md:text-[16px] font-body placeholder:text-white/20 focus:outline-none focus:ring-0"
-                style={{ caretColor: '#E9652B' }}
+                style={{ caretColor: "#E9652B" }}
                 autoComplete="off"
                 autoCorrect="off"
                 autoCapitalize="off"
@@ -1011,14 +1223,21 @@ function SearchOverlay({ isOpen, onClose }) {
               />
               <div className="flex items-center gap-3 shrink-0 ml-3">
                 {query && (
-                  <button 
-                    onClick={() => { setQuery(''); inputRef.current?.focus(); }} 
+                  <button
+                    onClick={() => {
+                      setQuery("");
+                      inputRef.current?.focus();
+                    }}
                     className="p-1 rounded-none text-white/30 hover:text-white/70 hover:bg-white/[0.05] transition-all"
                   >
-                    <span className="material-symbols-outlined text-[29px]">close</span>
+                    <span className="material-symbols-outlined text-[29px]">
+                      close
+                    </span>
                   </button>
                 )}
-                <span className="font-label-caps text-[8px] text-white/25 border border-white/15 px-1.5 py-0.5 rounded-none tracking-wider select-none uppercase">ESC</span>
+                <span className="font-label-caps text-[8px] text-white/25 border border-white/15 px-1.5 py-0.5 rounded-none tracking-wider select-none uppercase">
+                  ESC
+                </span>
               </div>
             </div>
 
@@ -1032,15 +1251,23 @@ function SearchOverlay({ isOpen, onClose }) {
                   initial={{ opacity: 0, y: -6 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
-                  transition={{ duration: 0.15, ease: 'easeOut' }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
                   className="flex-grow overflow-y-auto border-t border-white/[0.06] bg-black/[0.15]"
-                  style={{ scrollbarWidth: 'none', maxHeight: 'calc(78dvh - 74px)' }}
+                  style={{
+                    scrollbarWidth: "none",
+                    maxHeight: "calc(78dvh - 74px)",
+                  }}
                 >
                   {/* Case 1: No matches */}
                   {!hasResults && (
                     <div className="flex flex-col items-center justify-center py-12 gap-2.5">
-                      <span className="material-symbols-outlined text-[56px] text-white/10">search_off</span>
-                      <p className="font-body text-[13px] text-white/30">No matches found for <span className="text-accent">"{query}"</span></p>
+                      <span className="material-symbols-outlined text-[56px] text-white/10">
+                        search_off
+                      </span>
+                      <p className="font-body text-[13px] text-white/30">
+                        No matches found for{" "}
+                        <span className="text-accent">"{query}"</span>
+                      </p>
                     </div>
                   )}
 
@@ -1052,12 +1279,20 @@ function SearchOverlay({ isOpen, onClose }) {
                       ))}
                     </div>
                   )}
-                  
+
                   {/* Result count strip at bottom */}
                   {hasResults && (
                     <div className="px-5 py-2.5 bg-[#0d0d0d] border-t border-white/10 flex justify-between items-center select-none shrink-0">
                       <span className="font-label-caps text-[8px] text-white/15 tracking-[0.15em] uppercase">
-                        Use <span className="border border-white/10 px-1 py-0.2">↑↓</span> to navigate • <span className="border border-white/10 px-1 py-0.2">↵</span> to open
+                        Use{" "}
+                        <span className="border border-white/10 px-1 py-0.2">
+                          ↑↓
+                        </span>{" "}
+                        to navigate •{" "}
+                        <span className="border border-white/10 px-1 py-0.2">
+                          ↵
+                        </span>{" "}
+                        to open
                       </span>
                       <span className="font-label-caps text-[8px] text-white/25 tracking-[0.15em] uppercase">
                         {flatResults.length} matches found
@@ -1072,19 +1307,18 @@ function SearchOverlay({ isOpen, onClose }) {
       )}
     </AnimatePresence>
   );
-
 }
-
 
 // ─── Header ────────────────────────────────────────────────────────────────
 export function Header() {
-  const location   = useLocation();
-  const [open, setOpen] = useState(null);        // desktop mega menu
+  const location = useLocation();
+  const [open, setOpen] = useState(null); // desktop mega menu
   const [mobileOpen, setMobileOpen] = useState(false); // mobile drawer
-  const [searchOpen, setSearchOpen] = useState(false);  // search overlay
+  const [searchOpen, setSearchOpen] = useState(false); // search overlay
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredLabel, setHoveredLabel] = useState(null); // track hovered navbar link
   const closeTimer = useRef(null);
-  const headerRef  = useRef(null);
+  const headerRef = useRef(null);
 
   // Close mobile drawer on route change
   useEffect(() => {
@@ -1095,16 +1329,48 @@ export function Header() {
   // Track scroll for border/shadow on header
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const isActive = (to) => {
-    if (to.includes('#')) {
-      const [path, hash] = to.split('#');
-      return location.pathname === path && location.hash === '#' + hash;
+    if (to.includes("#")) {
+      const [path, hash] = to.split("#");
+      return location.pathname === path && location.hash === "#" + hash;
     }
-    return to === '/' ? location.pathname === '/' : location.pathname.startsWith(to);
+    if (to === "/services") {
+      return (
+        location.pathname.startsWith("/services") ||
+        location.pathname === "/solutions/epc-mepf" ||
+        location.pathname === "/solutions/capital-goods" ||
+        location.pathname.startsWith("/partners") ||
+        location.pathname.startsWith("/partnerships")
+      );
+    }
+    if (to === "/products") {
+      return location.pathname.startsWith("/products");
+    }
+    if (to === "/about") {
+      return location.pathname === "/about";
+    }
+    return to === "/"
+      ? location.pathname === "/"
+      : location.pathname.startsWith(to);
+  };
+
+  const showLine = (label, to) => {
+    if (open) {
+      return open === label;
+    }
+    if (hoveredLabel) {
+      return hoveredLabel === label;
+    }
+    // Hide the underline from the parent 'About Us' when on the child 'Partnerships' page/section
+    if (isActive("/about#partnerships")) {
+      if (label === "About Us") return false;
+      return label === "Partnerships";
+    }
+    return isActive(to);
   };
 
   const handleEnter = (label) => {
@@ -1117,7 +1383,11 @@ export function Header() {
   const close = useCallback(() => setOpen(null), []);
   const closeMobile = useCallback(() => setMobileOpen(false), []);
   const toggleMobile = useCallback(() => setMobileOpen((prev) => !prev), []);
-  const openSearch  = useCallback(() => { setOpen(null); setMobileOpen(false); setSearchOpen(true); }, []);
+  const openSearch = useCallback(() => {
+    setOpen(null);
+    setMobileOpen(false);
+    setSearchOpen(true);
+  }, []);
   const closeSearch = useCallback(() => setSearchOpen(false), []);
 
   const menu = open ? MEGA_MENUS[open] : null;
@@ -1129,18 +1399,20 @@ export function Header() {
         ref={headerRef}
         className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           scrolled
-            ? 'bg-surface/95 backdrop-blur-xl border-b border-outline-variant/40 shadow-sm'
-            : 'bg-surface border-b border-outline-variant/30'
+            ? "bg-surface/95 backdrop-blur-xl border-b border-outline-variant/40 shadow-sm"
+            : "bg-surface border-b border-outline-variant/30"
         }`}
       >
         {/* Responsive padding aligned to standard B2B grid lines, adapting to 44px content height */}
         <nav className="flex justify-between items-center w-full px-8 md:px-16 py-[10px] md:py-[18px] max-w-[1440px] mx-auto">
-
-          {/* Logo — aligned to GET A QUOTE button height (44px) */}
+          {/* Logo — aligned to CONTACT US button height (44px) */}
           <Link
             to="/"
             className="flex items-center flex-shrink-0 h-[44px]"
-            onClick={() => { close(); closeMobile(); }}
+            onClick={() => {
+              close();
+              closeMobile();
+            }}
           >
             <img
               src="/arihantaa-vertical-logo.png"
@@ -1151,57 +1423,84 @@ export function Header() {
 
           {/* ── Desktop Nav links (hidden below lg) ── */}
           <div className="hidden lg:flex gap-1 items-center">
-            {NAV_LINKS.map(({ label, to, hasMega }) => (
-              <div
-                key={label}
-                className="relative"
-                onMouseEnter={() => hasMega && handleEnter(label)}
-                onMouseLeave={() => hasMega && handleLeave()}
-              >
-                <Link
-                  to={to}
-                  onClick={close}
-                  className={[
-                    'font-label-caps text-label-caps px-3 lg:px-4 py-2.5 flex items-center gap-1 transition-colors duration-200 relative group min-h-[44px]',
-                    isActive(to)
-                      ? 'text-accent'
-                      : 'text-secondary hover:text-on-surface',
-                  ].join(' ')}
-                  aria-expanded={hasMega ? open === label : undefined}
-                  aria-haspopup={hasMega ? 'true' : undefined}
+            {NAV_LINKS.map(({ label, to, hasMega }) => {
+              const textActive = hoveredLabel
+                ? hoveredLabel === label
+                : open
+                  ? open === label
+                  : isActive(to);
+              return (
+                <div
+                  key={label}
+                  className="relative"
+                  onMouseEnter={() => {
+                    setHoveredLabel(label);
+                    if (hasMega) handleEnter(label);
+                  }}
+                  onMouseLeave={() => {
+                    setHoveredLabel(null);
+                    if (hasMega) handleLeave();
+                  }}
                 >
-                  {/* Active/hover underline */}
-                  <span className={`absolute bottom-0 left-3 right-3 lg:left-4 lg:right-4 h-[2px] bg-accent transition-transform duration-200 origin-left ${
-                    isActive(to) ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  }`} />
-                  {label}
-                  {hasMega && (
-                    <motion.span
-                      className="inline-flex items-center justify-center w-4 h-4 text-[20px] font-light leading-none"
-                      animate={{ rotate: open === label ? 45 : 0 }}
-                      transition={{ duration: 0.22, ease: EASE_OUT_QUART }}
-                    >
-                      +
-                    </motion.span>
-                  )}
-                </Link>
-              </div>
-            ))}
+                  <Link
+                    to={to}
+                    onClick={close}
+                    className={[
+                      "font-label-caps text-label-caps px-3 lg:px-4 py-2.5 flex items-center gap-1 transition-colors duration-200 relative group min-h-[44px]",
+                      textActive
+                        ? "text-accent"
+                        : "text-secondary hover:text-on-surface",
+                    ].join(" ")}
+                    aria-expanded={hasMega ? open === label : undefined}
+                    aria-haspopup={hasMega ? "true" : undefined}
+                  >
+                    {/* Active/hover underline */}
+                    {showLine(label, to) && (
+                      <motion.span
+                        layoutId="activeNavUnderline"
+                        className="absolute bottom-0 left-3 right-3 lg:left-4 lg:right-4 h-[2px] bg-accent"
+                        transition={{
+                          type: "spring",
+                          stiffness: 380,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                    {label}
+                    {hasMega && (
+                      <motion.span
+                        className="inline-flex items-center justify-center w-4 h-4 text-[20px] font-light leading-none"
+                        animate={{ rotate: open === label ? 45 : 0 }}
+                        transition={{ duration: 0.22, ease: EASE_OUT_QUART }}
+                      >
+                        +
+                      </motion.span>
+                    )}
+                  </Link>
+                </div>
+              );
+            })}
           </div>
 
           {/* ── Right actions ── */}
           <div className="flex items-center gap-3 sm:gap-4 md:gap-5">
-            {/* Search trigger — unified 44px square, matching GET A QUOTE button */}
+            {/* Search trigger — unified 44px square, matching CONTACT US button */}
             <button
               onClick={openSearch}
               aria-label="Open search"
               className="relative flex items-center justify-center w-[44px] h-[44px] border border-outline-variant/40 text-secondary hover:text-accent hover:border-accent/50 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent group"
             >
-              <span className="material-symbols-outlined transition-transform duration-200 group-hover:scale-110 text-[18px]">search</span>
+              <span className="material-symbols-outlined transition-transform duration-200 group-hover:scale-110 text-[18px]">
+                search
+              </span>
             </button>
 
-            {/* Desktop CTA — hidden on mobile */}
-            <AnimatedQuoteButton onClick={close} className="hidden sm:flex" />
+            {/* Desktop CTA — hidden on mobile/tablet */}
+            <AnimatedQuoteButton
+              onClick={close}
+              className="hidden lg:flex"
+              isActive={location.pathname === "/contact"}
+            />
 
             {/* Hamburger — visible only on mobile */}
             <HamburgerButton isOpen={mobileOpen} onClick={toggleMobile} />
@@ -1221,9 +1520,9 @@ export function Header() {
             style={{ top: headerH }}
             onMouseEnter={() => handleEnter(open)}
             onMouseLeave={handleLeave}
-            initial={{ opacity: 0, y: -10, clipPath: 'inset(0 0 100% 0)' }}
-            animate={{ opacity: 1, y: 0, clipPath: 'inset(0 0 0% 0)' }}
-            exit={{ opacity: 0, y: -10, clipPath: 'inset(0 0 100% 0)' }}
+            initial={{ opacity: 0, y: -10, clipPath: "inset(0 0 100% 0)" }}
+            animate={{ opacity: 1, y: 0, clipPath: "inset(0 0 0% 0)" }}
+            exit={{ opacity: 0, y: -10, clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.3, ease: EASE_OUT_QUART }}
           >
             {/* Accent top border */}
@@ -1235,7 +1534,9 @@ export function Header() {
                 <div className="flex items-center gap-3">
                   <div className="w-1 h-5 bg-accent" />
                   <span className="font-label-caps text-[10px] text-accent tracking-[0.3em] uppercase">
-                    {open === 'Products' ? 'Product Categories' : 'Service Categories'}
+                    {open === "Products"
+                      ? "Product Categories"
+                      : "Service Categories"}
                   </span>
                 </div>
                 <Link
@@ -1251,7 +1552,9 @@ export function Header() {
               </div>
 
               {/* Section columns */}
-              <div className="grid grid-cols-2 md:grid-cols-4 border-t border-l border-outline-variant/30">
+              <div
+                className={`grid grid-cols-2 ${menu.sections.length === 5 ? "md:grid-cols-5" : "md:grid-cols-4"} border-t border-l border-outline-variant/30`}
+              >
                 {menu.sections.map((section, i) => (
                   <MegaSection
                     key={section.id}
@@ -1265,9 +1568,9 @@ export function Header() {
               {/* Bottom strip */}
               <div className="mt-8 pt-6 border-t border-outline-variant/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <p className="font-body text-[13px] text-secondary">
-                  {open === 'Products'
-                    ? 'Looking for a specific solution? Our engineers can help you choose.'
-                    : 'Need a custom service plan? We tailor every engagement to your needs.'}
+                  {open === "Products"
+                    ? "Looking for a specific solution? Our engineers can help you choose."
+                    : "Need a custom service plan? We tailor every engagement to your needs."}
                 </p>
                 <Button
                   to="/contact"

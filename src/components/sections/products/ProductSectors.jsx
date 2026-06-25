@@ -6,7 +6,8 @@ import { ProductCard } from '../../ui/ProductCard';
 /**
  * SectorRow — creative sector header design:
  * - Chapter number is in its own clearly separated column/row
- * - Title and description never overlap the number
+ * - Title is clickable → navigates to product family page (like mega menu routing)
+ * - Hover shows an arrow icon on the title
  * - Cards sit fully below the header, no clip issues
  */
 function SectorRow({ sector, index }) {
@@ -59,23 +60,26 @@ function SectorRow({ sector, index }) {
 
         {/* Title + description — separate column, no overlap */}
         <div className={`flex-1 pt-1 ${isEven ? 'md:text-right md:flex md:flex-col md:items-end' : ''}`}>
-          <motion.h2
-            className="font-headline text-[30px] sm:text-[42px] md:text-[56px] lg:text-[64px] leading-tight md:leading-[1.0] font-black text-on-surface uppercase tracking-tighter mb-4"
+          {/* ── Clickable title with hover arrow ── */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.65, delay: 0.08, ease: [0.25, 1, 0.5, 1] }}
           >
-            <Link 
-              to={`/sectors/${slug}`} 
-              className={`group/sec-link inline-flex items-center gap-4 hover:text-accent transition-colors duration-300 ${isEven ? 'flex-row-reverse' : ''}`}
+            <Link
+              to={sector.familyLink}
+              className="group/title inline-flex items-center gap-3 md:gap-5 mb-4 transition-colors duration-300 hover:text-accent"
             >
-              <span>{sector.title}</span>
-              <span className="material-symbols-outlined text-[20px] sm:text-[28px] md:text-[34px] text-accent opacity-0 -translate-x-3 group-hover/sec-link:opacity-100 group-hover/sec-link:translate-x-0 transition-all duration-300 select-none">
+              <h2 className="font-headline text-[30px] sm:text-[42px] md:text-[56px] lg:text-[64px] leading-tight md:leading-[1.0] font-black text-on-surface uppercase tracking-tighter group-hover/title:text-accent transition-colors duration-300">
+                {sector.title}
+              </h2>
+              {/* Arrow — hidden by default, appears on hover */}
+              <span className="material-symbols-outlined text-[28px] md:text-[40px] text-accent opacity-0 -translate-x-3 group-hover/title:opacity-100 group-hover/title:translate-x-0 transition-all duration-300 flex-shrink-0">
                 arrow_forward
               </span>
             </Link>
-          </motion.h2>
+          </motion.div>
 
           <motion.div
             className={`flex items-center gap-3 mb-4 ${isEven ? 'md:flex-row-reverse' : ''}`}

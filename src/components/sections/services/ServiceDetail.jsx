@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 export function ServiceDetail({
   id,
@@ -10,31 +10,39 @@ export function ServiceDetail({
   imageSrc,
   imageAlt,
   isReversed,
-  bgClass = 'bg-surface',
+  bgClass = "bg-surface",
   tags = [],
+  serviceTo,
 }) {
   return (
-    <section id={id} className={`relative py-20 md:py-28 ${bgClass} overflow-hidden scroll-mt-20 border-b border-outline-variant/30`}>
-
+    <section
+      id={id}
+      className={`relative py-20 md:py-28 ${bgClass} overflow-hidden scroll-mt-20 border-b border-outline-variant/30`}
+    >
       {/* Faint section number watermark */}
       <span className="absolute top-4 right-4 lg:top-8 lg:right-8 font-headline text-[80px] lg:text-[180px] font-black text-on-surface/[0.015] lg:text-on-surface/[0.03] leading-none select-none pointer-events-none tracking-tighter">
-        {eyebrow.split('/')[0].trim()}
+        {eyebrow.split("/")[0].trim()}
       </span>
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-16">
-        <div className={`flex flex-col lg:flex-row gap-10 lg:gap-20 items-stretch ${isReversed ? 'lg:flex-row-reverse' : ''}`}>
-
+        <div
+          className={`flex flex-col lg:flex-row gap-10 lg:gap-20 items-stretch ${isReversed ? "lg:flex-row-reverse" : ""}`}
+        >
           {/* ── Image side ────────────────────────────────────────────────── */}
           <motion.div
             className="w-full lg:w-[45%] relative flex-shrink-0"
             initial={{ opacity: 0, x: isReversed ? 40 : -40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
           >
             {/* Accent corner bracket top-left */}
-            <div className={`absolute -top-3 ${isReversed ? '-right-3' : '-left-3'} w-8 h-8 border-t-[3px] border-accent ${isReversed ? 'border-r-[3px]' : 'border-l-[3px]'} z-10`} />
-            <div className={`absolute -bottom-3 ${isReversed ? '-left-3' : '-right-3'} w-8 h-8 border-b-[3px] border-accent ${isReversed ? 'border-l-[3px]' : 'border-r-[3px]'} z-10`} />
+            <div
+              className={`absolute -top-3 ${isReversed ? "-right-3" : "-left-3"} w-8 h-8 border-t-[3px] border-accent ${isReversed ? "border-r-[3px]" : "border-l-[3px]"} z-10`}
+            />
+            <div
+              className={`absolute -bottom-3 ${isReversed ? "-left-3" : "-right-3"} w-8 h-8 border-b-[3px] border-accent ${isReversed ? "border-l-[3px]" : "border-r-[3px]"} z-10`}
+            />
 
             <div className="overflow-hidden">
               <img
@@ -47,9 +55,15 @@ export function ServiceDetail({
             </div>
 
             {/* Floating stat badge */}
-            <div className={`absolute bottom-4 lg:-bottom-5 ${isReversed ? 'left-4 lg:left-6' : 'right-4 lg:right-6'} bg-accent text-on-primary px-5 py-3 shadow-xl z-20`}>
-              <span className="block font-headline text-[11px] tracking-[0.15em] uppercase opacity-80">Certified</span>
-              <span className="block font-headline text-[18px] font-black leading-none">ISO 9001</span>
+            <div
+              className={`absolute bottom-4 lg:-bottom-5 ${isReversed ? "left-4 lg:left-6" : "right-4 lg:right-6"} bg-accent text-on-primary px-5 py-3 shadow-xl z-20`}
+            >
+              <span className="block font-headline text-[11px] tracking-[0.15em] uppercase opacity-80">
+                Certified
+              </span>
+              <span className="block font-headline text-[18px] font-black leading-none">
+                ISO 9001
+              </span>
             </div>
           </motion.div>
 
@@ -58,19 +72,35 @@ export function ServiceDetail({
             className="w-full lg:flex-1 flex flex-col justify-center pt-6 lg:pt-0"
             initial={{ opacity: 0, x: isReversed ? -40 : 40 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
           >
             {/* Eyebrow */}
             <div className="flex items-center gap-3 mb-5">
               <div className="h-[2px] w-8 bg-accent" />
-              <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase">{eyebrow}</span>
+              <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase">
+                {eyebrow}
+              </span>
             </div>
 
-            {/* Title */}
-            <h2 className="font-headline text-[26px] sm:text-[36px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-5">
-              {title}
-            </h2>
+            {/* Title — clickable with hover arrow, navigates to service page */}
+            {serviceTo ? (
+              <Link
+                to={serviceTo}
+                className="group/title inline-flex items-center gap-3 mb-5 transition-colors duration-300"
+              >
+                <h2 className="font-headline text-[26px] sm:text-[36px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface group-hover/title:text-accent transition-colors duration-300">
+                  {title}
+                </h2>
+                <span className="material-symbols-outlined text-[24px] md:text-[36px] text-accent opacity-0 -translate-x-3 group-hover/title:opacity-100 group-hover/title:translate-x-0 transition-all duration-300 flex-shrink-0">
+                  arrow_forward
+                </span>
+              </Link>
+            ) : (
+              <h2 className="font-headline text-[26px] sm:text-[36px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-5">
+                {title}
+              </h2>
+            )}
 
             {/* Animated underline */}
             <motion.div
@@ -85,7 +115,10 @@ export function ServiceDetail({
             {/* Description */}
             <div className="space-y-4 mb-8">
               {description.map((para, i) => (
-                <p key={i} className="font-body text-[15px] md:text-[16px] leading-relaxed text-secondary">
+                <p
+                  key={i}
+                  className="font-body text-[15px] md:text-[16px] leading-relaxed text-secondary"
+                >
                   {para}
                 </p>
               ))}
@@ -107,7 +140,9 @@ export function ServiceDetail({
                       check
                     </span>
                   </div>
-                  <span className="font-body text-[13px] font-semibold text-on-surface/80">{feature}</span>
+                  <span className="font-body text-[13px] font-semibold text-on-surface/80">
+                    {feature}
+                  </span>
                 </motion.div>
               ))}
             </div>
@@ -120,8 +155,8 @@ export function ServiceDetail({
                 </span>
                 <div className="flex flex-wrap gap-2.5">
                   {tags.map((tag, tIdx) => (
-                    <span 
-                      key={tIdx} 
+                    <span
+                      key={tIdx}
                       className="font-label-caps text-[8.5px] border border-outline-variant/30 bg-surface-container-low text-secondary px-3.5 py-1.5 uppercase font-bold tracking-wider transition-all duration-300 hover:border-accent/40 hover:text-accent select-none"
                     >
                       {tag}
@@ -133,10 +168,15 @@ export function ServiceDetail({
 
             {/* CTA */}
             <Link
-              to={`/contact?inquiry=quote&item=${encodeURIComponent(title)}`}
+              to={
+                serviceTo ||
+                `/contact?inquiry=quote&item=${encodeURIComponent(title)}`
+              }
               className="inline-flex items-center gap-2 font-label-caps text-[11px] tracking-[0.15em] uppercase text-accent border-b border-accent pb-0.5 hover:gap-4 transition-all duration-300 w-fit group"
             >
-              Request a Service Quote
+              {serviceTo
+                ? "Explore Solution Details"
+                : "Request a Service Quote"}
               <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform duration-300">
                 arrow_forward
               </span>

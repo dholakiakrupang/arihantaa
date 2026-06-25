@@ -2,8 +2,8 @@ import { motion } from 'framer-motion';
 
 const stats = [
   { value: 'Pan-India', label: 'Project Reach', icon: 'public' },
-  { value: '8', label: 'Sectors Served', icon: 'category' },
-  { value: '2', label: 'Strategic JV Partners', icon: 'handshake' },
+  { value: '6+', label: 'Sectors Served', icon: 'category' },
+  { value: '3', label: 'Strategic JV Partners', icon: 'handshake' },
   { value: 'MEPF', label: 'Full Consultancy', icon: 'architecture' },
 ];
 

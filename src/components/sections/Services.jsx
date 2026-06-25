@@ -3,39 +3,55 @@ import { Link } from 'react-router-dom';
 
 const SERVICES = [
   {
-    id: 'power-distribution',
-    title: 'Power Systems',
-    desc: 'Design and optimization for high-density power grids and double-conversion distribution networks.',
-    icon: 'bolt',
-    image: '/project_datacenter.png',
+    id: 'mepf-consultancy',
+    title: 'MEPF Consultancy',
+    desc: 'Integrated Mechanical, Electrical, Plumbing, and Fire Protection consultancy under BIM Level 2 coordination.',
+    icon: 'architecture',
+    image: '/images/service-mepf-consultancy.png',
+    link: '/solutions/epc-mepf',
     specs: [
-      { label: 'DELIVERY', value: 'HT/LT Substations & Switchgear' },
-      { label: 'STANDARDS', value: 'IEEE / IEC / NEC Compliant' },
-      { label: 'REDUNDANCY', value: 'N+1 & 2N Design Capability' }
+      { label: 'DISCIPLINE', value: 'M + E + P + F' },
+      { label: 'FRAMEWORK', value: 'BIM Level 2' },
+      { label: 'COMPLIANCE', value: 'NBC & IGBC' }
     ]
   },
   {
-    id: 'industrial-maint',
-    title: 'M&E Design',
-    desc: 'Seamless integration of complex mechanical ventilation, thermal control, and electrical loads.',
-    icon: 'settings',
-    image: '/project_industrial.png',
+    id: 'epc-project-solutions',
+    title: 'EPC Project Solutions',
+    desc: 'Turnkey design-build electrical EPC with Class A License for government, PSU, and private projects.',
+    icon: 'engineering',
+    image: '/images/service-epc-solutions.png',
+    link: '/solutions/epc-mepf',
     specs: [
-      { label: 'DYNAMICS', value: 'HVAC & Fluid Flow Modeling' },
-      { label: 'COORDINATION', value: 'BIM Level 2 Integrated' },
-      { label: 'COMPLIANCE', value: 'NBC & local fire norms' }
+      { label: 'LICENSE', value: 'Class A Electrical' },
+      { label: 'CAPACITY', value: 'Up to 66kV Substations' },
+      { label: 'EXECUTION', value: 'Turnkey Design-Build' }
     ]
   },
   {
-    id: 'performance-opt',
-    title: 'Sustainability',
-    desc: 'Engineering solutions targeting lower PUE with solar integration and heat recovery techniques.',
-    icon: 'energy_savings_leaf',
-    image: '/project_hospital.png',
+    id: 'vertiv-partner',
+    title: 'Vertiv Partner',
+    desc: 'Authorised Vertiv Channel Partner supplying Liebert online UPS, DC systems, and thermal management units.',
+    icon: 'verified',
+    image: '/images/service-vertiv-partner.png',
+    link: '/partners/vertiv',
     specs: [
-      { label: 'PUE TARGET', value: 'Sub-1.2 Operating Profile' },
-      { label: 'INTEGRATION', value: 'BESS & Renewable Sync' },
-      { label: 'METRICS', value: 'ASHRAE thermal guidelines' }
+      { label: 'PARTNERSHIP', value: 'Authorised Channel' },
+      { label: 'SYSTEMS', value: 'UPS, DC, Thermal' },
+      { label: 'ALIGNMENT', value: 'Engineering Supply' }
+    ]
+  },
+  {
+    id: 'capital-goods-supply',
+    title: 'Capital Goods Supply',
+    desc: 'Procurement & supply of switchgears, RMUs, CSS substations, cables, and transformers under consolidated PO.',
+    icon: 'local_shipping',
+    image: '/images/service-capital-goods.png',
+    link: '/solutions/capital-goods',
+    specs: [
+      { label: 'BRANDS', value: 'Vertiv, L&T, Lucy Electric' },
+      { label: 'CONSOLIDATION', value: 'Single PO Billing' },
+      { label: 'OEM SUPPORT', value: 'Direct Factory Supply' }
     ]
   }
 ];
@@ -74,7 +90,7 @@ export function Services() {
         </div>
         
         {/* Services 3-Column Single-Pixel Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-0 lg:border-t lg:border-l border-outline-variant/30">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:border-t lg:border-l border-outline-variant/30">
           {SERVICES.map((srv, idx) => (
             <motion.div
               key={srv.id}
@@ -85,7 +101,7 @@ export function Services() {
               className="border lg:border-0 lg:border-r lg:border-b border-outline-variant/30 bg-surface flex flex-col justify-between group overflow-hidden relative"
             >
               {/* Overlay Link */}
-              <Link to={`/services`} className="absolute inset-0 z-20" aria-label={`Explore ${srv.title}`} />
+              <Link to={srv.link} className="absolute inset-0 z-20" aria-label={`Explore ${srv.title}`} />
               
               <div className="p-6 sm:p-8 lg:p-10 flex flex-col gap-6">
                 

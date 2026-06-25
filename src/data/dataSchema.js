@@ -7,27 +7,19 @@
 // ─── Product Categories ─────────────────────────────────────────────────────
 export const PRODUCT_CATEGORIES = {
   'ups':                    { name: 'Uninterruptible Power Supplies (UPS)', icon: 'battery_charging_full', sector: 'Critical Power' },
-  'dc-power':               { name: 'DC Power Systems',                    icon: 'bolt',                  sector: 'Critical Power' },
-  'power-distribution':     { name: 'Power Distribution',                  icon: 'grid_view',             sector: 'Critical Power' },
-  'industrial-ac-dc':       { name: 'Industrial AC & DC Systems',          icon: 'electrical_services',   sector: 'Critical Power' },
+  'lt-tta-panel':           { name: 'L&T TTA Panel',                       icon: 'electric_bolt',         sector: 'Critical Power' },
+  'lucy-rmu':               { name: 'Lucy Electric RMU',                   icon: 'hub',                   sector: 'Critical Power' },
+  'lucy-css':               { name: 'Lucy Electric CSS',                   icon: 'domain',                sector: 'Critical Power' },
   'enclosure-cooling':      { name: 'Enclosure Cooling',                   icon: 'mode_cool',             sector: 'Thermal Management' },
-  'liquid-cooling':         { name: 'Liquid Cooling Solutions',            icon: 'ac_unit',               sector: 'Thermal Management' },
   'integrated-solutions':   { name: 'Integrated Solutions',                icon: 'developer_board',       sector: 'Racks & Enclosures' },
   'digital-infrastructure': { name: 'Digital Infrastructure Solutions',    icon: 'monitoring',            sector: 'Monitoring & Management' },
+  'capital-goods':          { name: 'Capital Goods & Solutions',           icon: 'settings',              sector: 'Capital Goods' },
 };
 
-// ─── Service Categories ─────────────────────────────────────────────────────
 export const SERVICE_CATEGORIES = {
-  'spare-parts':       { name: 'Spare Parts & Management',    icon: 'settings' },
-  'preventive-maint':  { name: 'Preventive Maintenance',      icon: 'verified_user' },
-  'performance-opt':   { name: 'Performance Optimization',    icon: 'speed' },
-  'remote-services':   { name: 'Remote Services',             icon: 'support_agent' },
-  'project-commission':{ name: 'Project & Commissioning',     icon: 'engineering' },
-  'industrial-maint':  { name: 'Industrial Maintenance',      icon: 'build' },
-  'ups-battery':       { name: 'UPS & Battery Services',      icon: 'battery_charging_full' },
-  'generator':         { name: 'Generator & Switchgear',      icon: 'bolt' },
-  'liquid-cooling':    { name: 'Liquid Cooling Services',     icon: 'ac_unit' },
-  'mepf':              { name: 'MEPF Consultancy',            icon: 'architecture' },
+  'vertiv-partner':    { name: 'Vertiv Channel Partner',      icon: 'verified' },
+  'capital-goods':     { name: 'Capital Goods Supply',        icon: 'settings' },
+  'epc-mepf':          { name: 'EPC & MEPF Solutions',        icon: 'engineering' },
 };
 
 // ─── Sector Definitions ─────────────────────────────────────────────────────

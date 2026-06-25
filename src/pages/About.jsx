@@ -20,13 +20,12 @@ export function About() {
       <ValuesBento />
       <Certifications />
       <UnifiedCTA 
-        heading="Ready to partner with our engineers?"
-        accent="Connect with us."
-        subtitle="Learn how our technical expertise and engineering capabilities can secure your mission-critical facilities."
+        heading="Ready to power your next project?"
+        subtitle="Talk to our team about electrical infrastructure, MEPF consultancy, or project partnerships."
         primaryText="GET IN TOUCH"
         primaryTo="/contact?inquiry=sales&item=Partnership%20Consultation"
-        outlineText="EXPLORE PROJECTS"
-        outlineTo="/projects"
+        outlineText="EXPLORE SOLUTIONS"
+        outlineTo="/services"
         uppercase={true}
       />
     </>

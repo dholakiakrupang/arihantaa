@@ -35,7 +35,7 @@ export function Leadership() {
               <h4 className="font-headline text-2xl md:text-3xl font-bold mb-1 text-on-surface">Anish Shah</h4>
               <p className="font-label-caps text-[11px] text-accent tracking-[0.15em] uppercase mb-5">Founder & CEO, Arihantaa Powertech</p>
               <p className="text-sm md:text-[15px] text-secondary leading-relaxed mb-6">
-                Anish Shah is the Founder & CEO of Arihantaa Powertech. With a strong foundation in electrical infrastructure and a vision for integrated engineering solutions, Anish established Arihantaa Powertech to address the growing demand for reliable, end-to-end powertech services in India. He leads the company's strategic alliances, project delivery, and expansion across MEPF consultancy and power distribution sectors — anchored by the ethos of engineering excellence and trusted partnerships.
+                Anish Shah is the Founder & CEO of Arihantaa Powertech. With a strong foundation in electrical infrastructure and a vision for integrated engineering solutions, Anish established Arihantaa Powertech to address the growing demand for reliable, end-to-end powertech services in India. He leads the company's strategic alliances, project delivery, and expansion across MEPF consultancy, capital goods supply, and EPC project execution — anchored by the ethos of engineering excellence and trusted partnerships.
               </p>
               <div className="flex items-center gap-3">
                 <div className="h-[2px] w-6 bg-accent" />

@@ -8,14 +8,14 @@ import { engineeredProductsData as productsData } from '../../../data/engineered
 import { SpecificProductsCTA } from './SpecificProductsCTA';
 
 const categoryMap = {
-  'ups': { title: 'Uninterruptible Power Supplies (UPS)', desc: 'Deliver secure power while providing first-class load protection.' },
-  'dc-power': { title: 'DC Power Systems', desc: 'Highly reliable DC power solutions for telecommunications and industrial applications.' },
-  'power-distribution': { title: 'Power Distribution', desc: 'Optimize power delivery to your critical IT equipment.' },
-  'industrial-ac-dc': { title: 'Industrial AC and DC Systems', desc: 'Robust power systems for harsh industrial environments.' },
-  'liquid-cooling': { title: 'Liquid Cooling Solutions', desc: 'Advanced liquid cooling for ultra-high-density compute.' },
+  'ups': { title: 'UPS Systems — Vertiv Brand', desc: 'Deliver secure power while providing first-class load protection.' },
+  'lt-tta-panel': { title: 'L&T TTA Panel — Triple Throw Automatic Transfer Switch', desc: 'Reliable Triple Throw Automatic Transfer Switch Panels from L&T, supplied through Virtual JV with Synchro Electricals.' },
+  'lucy-rmu': { title: 'Lucy Electric RMU — Ring Main Unit', desc: 'Compact, sealed, maintenance-free medium voltage switchgear for urban and industrial distribution networks.' },
+  'lucy-css': { title: 'Lucy Electric CSS — Compact Secondary Substation', desc: 'Factory-assembled Compact Secondary Substations integrating MV switchgear, transformer, and LV distribution.' },
   'enclosure-cooling': { title: 'Enclosure Cooling', desc: 'Precision cooling for electrical enclosures and cabinets.' },
   'integrated-solutions': { title: 'Integrated Solutions', desc: 'Fully integrated rack, power, and cooling solutions.' },
-  'digital-infrastructure': { title: 'Digital Infrastructure Solutions', desc: 'Complete monitoring and management for your infrastructure.' }
+  'digital-infrastructure': { title: 'Digital Infrastructure Solutions', desc: 'Complete monitoring and management for your infrastructure.' },
+  'capital-goods': { title: 'Capital Goods & Solutions', desc: 'A comprehensive portfolio of secondary capital goods and support infrastructure including thermal cooling, integrated rack systems, and DCIM monitoring platforms.' }
 };
 
 export function EngineeredProducts() {
@@ -31,9 +31,28 @@ export function EngineeredProducts() {
   const [tempCategory, setTempCategory] = useState(null);
   const [tempCooling, setTempCooling] = useState(null);
   const [sortBy, setSortBy] = useState('POPULARITY'); // 'POPULARITY' | 'AZ'
-  const [visibleCount, setVisibleCount] = useState(3);
+  const [visibleCount, setVisibleCount] = useState(9);
 
-  const categoryInfo = categoryMap[categoryId] || { title: 'Product Catalog', desc: 'Explore our comprehensive range of industrial-grade infrastructure products, engineered for resilience and efficiency.' };
+  const isValidCategory = categoryId in categoryMap;
+
+  if (!isValidCategory) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-surface">
+        <div className="text-center py-20">
+          <span className="material-symbols-outlined text-[64px] text-secondary/30 mb-6 block">search_off</span>
+          <h2 className="font-headline text-2xl font-bold text-on-surface mb-3">Category Not Found</h2>
+          <p className="text-secondary mb-8 text-[15px]">The requested product category could not be located.</p>
+          <Link to="/products">
+            <Button variant="primary" theme="light" icon="arrow_forward" iconPosition="right">
+              RETURN TO PRODUCTS
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const categoryInfo = categoryMap[categoryId];
 
   const handleToggleFilterDropdown = () => {
     if (!isFilterOpen) {
@@ -56,19 +75,26 @@ export function EngineeredProducts() {
     setAppliedCategory(tempCategory);
     setAppliedCooling(tempCooling);
     setIsFilterOpen(false);
-    setVisibleCount(3);
+    setVisibleCount(9);
   };
 
   const handleResetFilters = () => {
     setTempCategory(null);
     setTempCooling(null);
-    setVisibleCount(3);
+    setVisibleCount(9);
   };
 
   const filteredProducts = productsData
     .filter(item => {
       // 0. Filter by active URL parameter categoryId
-      if (categoryId && item.categoryId !== categoryId) {
+      if (categoryId === 'capital-goods') {
+        const isCapitalGoodProduct = item.categoryId === 'enclosure-cooling' || 
+                                     item.categoryId === 'integrated-solutions' || 
+                                     item.categoryId === 'digital-infrastructure';
+        if (!isCapitalGoodProduct) {
+          return false;
+        }
+      } else if (categoryId && item.categoryId !== categoryId) {
         return false;
       }
 
@@ -115,7 +141,7 @@ export function EngineeredProducts() {
     });
 
   return (
-    <section className="bg-surface min-h-screen">
+    <section className="bg-surface">
       
       {/* ── Compact Category Strip (Gridless) ────────────────────────────────────────── */}
       <div className="relative pt-8 pb-8 bg-inverse-surface border-b border-outline/30 z-10">
@@ -137,12 +163,18 @@ export function EngineeredProducts() {
             </motion.nav>
 
             <motion.h1 
-              className="font-headline text-[28px] md:text-[36px] lg:text-[40px] leading-[1.05] font-black tracking-tight text-inverse-on-surface uppercase"
+              className="font-headline text-[28px] md:text-[36px] lg:text-[40px] leading-[1.05] font-black tracking-tight text-inverse-on-surface uppercase flex flex-col items-start gap-1"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              {categoryInfo.title}
+              <span>{categoryInfo.title}</span>
+              {categoryId === 'ups' && (
+                <div className="inline-flex items-center gap-2 mt-2 px-3 py-1 border border-accent/30 bg-accent/10 select-none rounded-none">
+                  <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                  <span className="font-label-caps text-[8.5px] text-accent tracking-widest uppercase font-bold">Vertiv Authorised Channel Partner</span>
+                </div>
+              )}
             </motion.h1>
           </div>
 
@@ -186,11 +218,11 @@ export function EngineeredProducts() {
                 type="text" 
                 placeholder="SEARCH CATALOG..." 
                 value={searchQuery}
-                onChange={(e) => { setSearchQuery(e.target.value); setVisibleCount(3); }}
+                onChange={(e) => { setSearchQuery(e.target.value); setVisibleCount(9); }}
                 className="bg-transparent text-[10px] font-label-caps tracking-[0.05em] text-secondary placeholder:text-secondary/30 focus:outline-none w-full py-3.5"
               />
               {searchQuery && (
-                <button onClick={() => { setSearchQuery(''); setVisibleCount(3); }} className="text-secondary/40 hover:text-accent transition-colors flex items-center justify-center ml-2">
+                <button onClick={() => { setSearchQuery(''); setVisibleCount(9); }} className="text-secondary/40 hover:text-accent transition-colors flex items-center justify-center ml-2">
                   <span className="material-symbols-outlined text-[14px]">close</span>
                 </button>
               )}
@@ -330,7 +362,7 @@ export function EngineeredProducts() {
                         <span className="font-label-caps text-[9px] tracking-[0.2em] text-secondary/60">ORDER BY</span>
                         {sortBy !== 'POPULARITY' && (
                           <button 
-                            onClick={() => { setSortBy('POPULARITY'); setIsSortOpen(false); setVisibleCount(3); }}
+                            onClick={() => { setSortBy('POPULARITY'); setIsSortOpen(false); setVisibleCount(9); }}
                             className="font-label-caps text-[9px] tracking-[0.14em] text-accent hover:text-accent/80 transition-colors"
                           >
                             RESET
@@ -341,7 +373,7 @@ export function EngineeredProducts() {
                         onClick={() => {
                           setSortBy('POPULARITY');
                           setIsSortOpen(false);
-                          setVisibleCount(3);
+                          setVisibleCount(9);
                         }}
                         className={`w-full h-[44px] px-5 text-left font-label-caps text-[10px] tracking-[0.14em] font-bold transition-all duration-200 flex items-center justify-between border-b border-outline-variant/10 last:border-b-0 ${
                           sortBy === 'POPULARITY'
@@ -358,7 +390,7 @@ export function EngineeredProducts() {
                         onClick={() => {
                           setSortBy('AZ');
                           setIsSortOpen(false);
-                          setVisibleCount(3);
+                          setVisibleCount(9);
                         }}
                         className={`w-full h-[44px] px-5 text-left font-label-caps text-[10px] tracking-[0.14em] font-bold transition-all duration-200 flex items-center justify-between border-b border-outline-variant/10 last:border-b-0 ${
                           sortBy === 'AZ'
@@ -430,7 +462,7 @@ export function EngineeredProducts() {
               theme="light"
               showArrow
               icon="arrow_downward"
-              onClick={() => setVisibleCount(prev => prev + 3)}
+              onClick={() => setVisibleCount(prev => prev + 9)}
               className="border-outline-variant/50 min-w-[200px]"
             >
               LOAD MORE

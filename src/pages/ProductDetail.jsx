@@ -10,10 +10,9 @@ import { UnifiedCTA } from '../components/sections/UnifiedCTA';
 
 const categoryMap = {
   'ups': 'Uninterruptible Power Supplies (UPS)',
-  'dc-power': 'DC Power Systems',
-  'power-distribution': 'Power Distribution',
-  'industrial-ac-dc': 'Industrial AC & DC Systems',
-  'liquid-cooling': 'Liquid Cooling Solutions',
+  'lt-tta-panel': 'L&T TTA Panel',
+  'lucy-rmu': 'Lucy Electric RMU',
+  'lucy-css': 'Lucy Electric CSS',
   'enclosure-cooling': 'Enclosure Cooling',
   'integrated-solutions': 'Integrated Solutions',
   'digital-infrastructure': 'Digital Infrastructure Solutions'
@@ -21,10 +20,9 @@ const categoryMap = {
 
 const categoryIcons = {
   'ups': 'battery_charging_full',
-  'dc-power': 'bolt',
-  'power-distribution': 'grid_view',
-  'industrial-ac-dc': 'electrical_services',
-  'liquid-cooling': 'ac_unit',
+  'lt-tta-panel': 'electric_bolt',
+  'lucy-rmu': 'hub',
+  'lucy-css': 'domain',
   'enclosure-cooling': 'mode_cool',
   'integrated-solutions': 'developer_board',
   'digital-infrastructure': 'monitoring'
@@ -64,6 +62,26 @@ const getFeatureIcon = (index) => {
     'precision_manufacturing', 'bolt', 'verified', 'tune'
   ];
   return icons[index % icons.length];
+};
+
+const getApplicationIcon = (app) => {
+  const a = app.toLowerCase().trim();
+  if (a.includes('hospital')) return 'local_hospital';
+  if (a.includes('data centre') || a.includes('data center')) return 'dns';
+  if (a.includes('industrial plant')) return 'precision_manufacturing';
+  if (a.includes('commercial building')) return 'corporate_fare';
+  if (a.includes('infrastructure')) return 'engineering';
+  if (a.includes('urban distribution')) return 'grid_view';
+  if (a.includes('substation')) return 'bolt';
+  if (a.includes('renewable') || a.includes('solar') || a.includes('wind')) return 'solar_power';
+  if (a.includes('underground')) return 'settings_input_composite';
+  if (a.includes('township') || a.includes('residential')) return 'location_city';
+  if (a.includes('smart city') || a.includes('smart cities')) return 'emoji_transportation';
+  if (a.includes('estate') || a.includes('factory')) return 'factory';
+  if (a.includes('park') || a.includes('sunny')) return 'wb_sunny';
+  if (a.includes('metro') || a.includes('rail')) return 'train';
+  if (a.includes('network') || a.includes('grid')) return 'hub';
+  return 'business_center';
 };
 
 /* ── Framer Motion Variants ──────────────────────────────────────────────────── */
@@ -152,9 +170,9 @@ export function ProductDetail() {
   };
 
   // Find product
-  const product = engineeredProductsData.find(item => item.id === productId) || engineeredProductsData[0];
-  const categoryTitle = categoryMap[categoryId] || categoryMap[product.categoryId] || 'Products';
-  const categoryIcon = categoryIcons[product.categoryId] || 'settings_input_component';
+  const product = engineeredProductsData.find(item => item.id === productId);
+  const categoryTitle = product ? (categoryMap[categoryId] || categoryMap[product.categoryId] || 'Products') : 'Products';
+  const categoryIcon = product ? (categoryIcons[product.categoryId] || 'settings_input_component') : 'settings_input_component';
 
   if (!product) {
     return (
@@ -197,12 +215,8 @@ export function ProductDetail() {
   const specInputVoltage = product.models?.[0]?.inputVoltage || '400V (3-Phase) / 230V (1-Phase)';
   const specOutputVoltage = product.models?.[0]?.outputVoltage || '400V ± 1% (Static)';
   const specEfficiency = product.stats?.find(s => s.label.includes('EFFICIENCY'))?.value || 'Up to 97% in Eco Mode';
-  const specCooling = product.categoryId === 'liquid-cooling'
-    ? 'Liquid-to-Air / Liquid-to-Water direct exchange'
-    : 'Redundant Forced Air Cooling';
-  const specEnclosure = product.categoryId === 'liquid-cooling'
-    ? 'IP54 Standard'
-    : 'IP42 Standard (IP54 Optional)';
+  const specCooling = 'Redundant Forced Air Cooling';
+  const specEnclosure = 'IP42 Standard (IP54 Optional)';
   const specFootprint = product.stats?.find(s => s.label.includes('FOOTPRINT'))?.value || 'Highly optimized space-saving footprint';
   const specTemp = product.stats?.find(s => s.label.includes('TEMP'))?.value || '-10°C to +50°C';
 
@@ -246,7 +260,7 @@ export function ProductDetail() {
   const activeSpecTab = specTabs.find(t => t.key === activeTab) || specTabs[0];
 
   return (
-    <div className="bg-background text-on-background font-body min-h-screen selection:bg-primary-container selection:text-on-primary-container pt-[56px] sm:pt-[64px] md:pt-[80px]">
+    <div className="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container pt-[56px] sm:pt-[64px] md:pt-[80px]">
 
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 1 — Sticky Sub-Navigation Bar
@@ -338,10 +352,33 @@ export function ProductDetail() {
             <motion.p
               variants={fadeUp}
               custom={2}
-              className="text-secondary text-[15px] md:text-[16px] leading-[1.7] mb-8 max-w-[540px]"
+              className="text-secondary text-[15px] md:text-[16px] leading-[1.7] mb-6 max-w-[540px]"
             >
               {product.description}
             </motion.p>
+
+            {/* Brand & JV Alignment */}
+            {(product.brand || product.jvSupply) && (
+              <motion.div variants={fadeUp} custom={2.2} className="flex flex-wrap items-center gap-3 mb-6">
+                {product.brand && (
+                  <span className="px-3 py-1.5 border border-outline-variant/30 bg-surface-container-high/30 text-on-surface font-label-caps text-[9.5px] tracking-wider uppercase font-bold">
+                    Brand: <span className="text-secondary font-semibold">{product.brand}</span>
+                  </span>
+                )}
+                {product.jvSupply && (
+                  <span className="px-3 py-1.5 border border-accent/25 bg-accent/[0.03] text-accent font-label-caps text-[9.5px] tracking-wider uppercase font-bold">
+                    JV / Supply: {product.jvLink ? (
+                      <a href={product.jvLink} target="_blank" rel="noopener noreferrer" className="hover:underline text-accent font-black inline-flex items-center gap-1">
+                        {product.jvSupply}
+                        <span className="material-symbols-outlined text-[12px] font-bold">open_in_new</span>
+                      </a>
+                    ) : (
+                      <span className="text-accent font-black">{product.jvSupply}</span>
+                    )}
+                  </span>
+                )}
+              </motion.div>
+            )}
 
             {/* Stat Badges Grid */}
             <motion.div
@@ -411,6 +448,65 @@ export function ProductDetail() {
 
         </div>
       </section>
+
+      {/* ── Target Applications Section ────────────────────────────────────────── */}
+      {product.applications && (
+        <section className="bg-surface py-16 md:py-24 border-b border-outline-variant/30 relative overflow-hidden">
+          {/* Subtle background decoration */}
+          <div className="absolute top-16 right-16 pointer-events-none select-none z-0">
+            <span className="text-[120px] md:text-[200px] font-headline font-black text-outline-variant/10 leading-none tracking-tighter uppercase whitespace-nowrap">
+              SECTORS
+            </span>
+          </div>
+
+          <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
+            
+            {/* Section Heading */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-80px' }}
+              variants={fadeUp}
+              className="mb-12"
+            >
+              <h2 className="font-headline text-[24px] md:text-[28px] text-on-surface flex items-center gap-4 font-bold uppercase tracking-tight">
+                <span className="w-8 h-[3px] bg-accent block shrink-0" />
+                Target Applications & Sectors
+              </h2>
+              <p className="text-secondary text-[14px] mt-3 ml-12 max-w-[520px]">
+                Engineered for maximum reliability and seamless integration across these specific operational verticals.
+              </p>
+            </motion.div>
+
+            {/* Grid of Boxes */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-t border-l border-outline-variant/30 bg-white gap-0 shadow-md">
+              {product.applications.split('|').map((app, idx) => {
+                const appName = app.trim();
+                const iconName = getApplicationIcon(appName);
+                return (
+                  <motion.div
+                    key={idx}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: '-40px' }}
+                    variants={fadeUp}
+                    custom={idx}
+                    className="p-8 border-r border-b border-outline-variant/30 hover:bg-accent/[0.01] transition-all duration-300 flex flex-col items-center text-center justify-center min-h-[160px] group relative"
+                  >
+                    <span className="material-symbols-outlined text-[36px] text-accent/80 group-hover:text-accent group-hover:scale-110 transition-all duration-300 mb-4 block">
+                      {iconName}
+                    </span>
+                    <span className="font-headline text-[13.5px] font-extrabold text-on-surface uppercase tracking-tight group-hover:text-accent transition-colors duration-300 leading-snug">
+                      {appName}
+                    </span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+          </div>
+        </section>
+      )}
 
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 3 — Core Features & Advantages

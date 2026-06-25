@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 
 const values = [
-  { icon: 'bolt',                   title: 'Engineering Integrity',   desc: 'We never compromise on technical quality, code compliance, or project safety.', span: 'col-span-1' },
-  { icon: 'handshake',              title: 'Trusted Partnerships',    desc: 'Every JV and brand alliance we form is built on mutual trust and shared accountability.', span: 'col-span-1' },
-  { icon: 'groups',                 title: 'Client-First Delivery',   desc: 'We align our timelines, expertise, and resources entirely around client success.', span: 'col-span-1 lg:col-span-2' },
-  { icon: 'eco',                    title: 'Sustainable Solutions',   desc: 'Energy efficiency, green building standards, and long-term performance guide every design.', span: 'col-span-1 sm:col-span-2 lg:col-span-4' },
+  { icon: 'bolt',                   title: 'Engineering Integrity',   desc: 'We never compromise on technical quality, code compliance, or project safety.' },
+  { icon: 'handshake',              title: 'Trusted Partnerships',    desc: 'Every JV and brand alliance we form is built on mutual trust and shared accountability.' },
+  { icon: 'groups',                 title: 'Client-First Delivery',   desc: 'We align our timelines, expertise, and resources entirely around client success.' },
+  { icon: 'eco',                    title: 'Sustainable Solutions',   desc: 'Energy efficiency, green building standards, and long-term performance guide every design.' },
 ];
 
 export function ValuesBento() {
@@ -26,7 +26,7 @@ export function ValuesBento() {
           {values.map((v, i) => (
             <motion.div
               key={v.title}
-              className={`${v.span} group p-8 md:p-10 border-r border-b border-outline-variant/30 bg-surface hover:bg-accent/[0.015] transition-all duration-400 cursor-default rounded-none`}
+              className="group p-8 md:p-10 border-r border-b border-outline-variant/30 bg-surface hover:bg-accent/[0.015] transition-all duration-400 cursor-default rounded-none"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}

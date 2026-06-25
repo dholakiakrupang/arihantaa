@@ -1,68 +1,63 @@
 import { ServicesHero } from '../components/sections/services/ServicesHero';
 import { ServicesStickyNav } from '../components/sections/services/ServicesStickyNav';
 import { ServiceDetail } from '../components/sections/services/ServiceDetail';
+import { EpcLifecycleSection } from '../components/sections/services/EpcLifecycleSection';
 import { ProcessSection } from '../components/sections/services/ProcessSection';
 import { UnifiedCTA } from '../components/sections/UnifiedCTA';
 
 export function Services() {
   const servicesData = [
     {
-      id: "electrical-infra",
-      eyebrow: "01 / Supply & SITC",
-      title: "Electrical Infrastructure & Supply",
-      description: [
-        "Supply, commissioning and support of critical electrical components through trusted joint-venture and brand partnerships.",
-        "We deliver L&T TTA Panels, Lucy RMU, and Lucy CSS assemblies with full technical alignment, ensuring high compliance and lifetime backup."
-      ],
-      features: ["L&T Brand TTA Panels", "Lucy Brand RMU (11kV/33kV)", "Lucy Brand CSS Substations", "Brand Supply & Erection", "Joint-Venture Partnerships", "Technical SITC Operations"],
-      imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuCXTaHZF2s9EkzujqLkbFGry7vOKPsNt08rADHH8cldx-PLWVBfX6u0hGiYUoZNcAzNC7Ehmw_-X_0QdDoUMyXBrLLW4L3pc4TwlDscR-6KnEo4MAuCKMiAUOkXHJK7_poGE5pNs4aOMu6CiUavm8gA9runwJkVJYn8vVZtdTud_VMyk0H3whG-zl4t0dvS1KnNhOUcLUA4dQzngEUerTrLQRsMQJ-ii3RggnHmSOMnNymRLZzcoxHoPn8v4HmkDrrCIGwITFcCyr4",
-      imageAlt: "Electrical infrastructure distribution panel", isReversed: false, bgClass: "bg-surface"
-    },
-    {
       id: "mepf-consultancy",
-      eyebrow: "02 / Design & Consulting",
+      eyebrow: "01 / SERVICE",
       title: "MEPF Consultancy",
       description: [
-        "Integrated Mechanical, Electrical, Plumbing, and Fire Protection engineering designs tailored for complex projects.",
-        "Our engineering team delivers code-compliant, BIM-ready models from concept layout to final commissioning, strictly adhering to NBC and LEED standards."
+        "Integrated Mechanical, Electrical, Plumbing, and Fire Protection consultancy services for government, industrial, commercial, healthcare, and smart city projects across India.",
+        "From precision HVAC load modelling and electrical load profiling to plumbing network design and NBC-compliant fire protection — all coordinated under BIM Level 2 frameworks."
       ],
-      features: ["Mechanical HVAC Systems", "HT/LT Electrical Distribution", "Plumbing & Drainage Design", "Fire Protection & Suppression", "NBC Code Compliance", "LEED & GRIHA Green Building"],
-      tags: [
-        "Residential & Housing",
-        "Commercial & IT Parks",
-        "Hospitals & Healthcare",
-        "Hotels & Hospitality",
-        "Industrial Facilities",
-        "Educational Institutions",
-        "Data Centres",
-        "Infrastructure Projects"
+      features: ["Mechanical & HVAC System Design", "Electrical Load Profiling & Optimization", "Plumbing & PHE Infrastructure", "Fire Protection (NBC & TAC Compliant)", "BIM Level 2 Coordination", "LEED & IGBC Energy Modeling"],
+      imageSrc: "/images/philosophy-rigor.png",
+      imageAlt: "MEPF consultancy services", isReversed: false, bgClass: "bg-surface",
+      serviceTo: "/solutions/epc-mepf"
+    },
+    {
+      id: "epc-project-solutions",
+      eyebrow: "02 / SERVICE",
+      title: "EPC Project Solutions",
+      description: [
+        "Turnkey design-build electrical EPC contracting with Class A Electrical Execution License for government, PSU, and private sector infrastructure projects.",
+        "From HT/LT substation erection up to 66kV to building electrification — complete site execution supervised by certified engineers under strict safety and quality standards."
       ],
+      features: ["Class A Electrical Execution License", "HT/LT Substations up to 66kV", "Turnkey Electrical Infrastructure", "DG Installation & Commissioning", "Government & PSU Projects", "Building Electrification Works"],
+      imageSrc: "/images/project-industrial.png",
+      imageAlt: "EPC contracting execution", isReversed: true, bgClass: "bg-surface-container-low",
+      serviceTo: "/solutions/epc-mepf"
+    },
+    {
+      id: "vertiv-partner",
+      eyebrow: "03 / SERVICE",
+      title: "Vertiv Partner",
+      description: [
+        "Authorised Vertiv Channel Partner supplying enterprise-grade Liebert online double-conversion UPS networks, modular DC systems, and high-density precision thermal coolers.",
+        "Engineering alignment, certified deployment support, and preventive AMC contract operations directly synchronized with Vertiv's official global standards."
+      ],
+      features: ["Authorised Vertiv Channel Partner", "Liebert Online Double-Conversion UPS", "Modular Telecom DC Power Systems", "Precision Cooling & Thermal Management", "Factory Acceptance Testing Support", "Preventive Maintenance AMC Contracts"],
+      imageSrc: "/images/project-data-center.png",
+      imageAlt: "Vertiv Authorised Partner", isReversed: false, bgClass: "bg-surface",
+      serviceTo: "/partners/vertiv"
+    },
+    {
+      id: "capital-goods-supply",
+      eyebrow: "04 / SERVICE",
+      title: "Capital Goods Supply",
+      description: [
+        "Consolidated capital goods procurement covering high-voltage switchgear panel boards, ring main units, compact substations, power transformers, and custom structural enclosures.",
+        "Direct OEM supply channels and Virtual JV arrangements (including L&T panels with Synchro Electricals) designed to reduce project lead times and billing overheads."
+      ],
+      features: ["L&T Switchgear Panels (Virtual JV)", "Lucy Electric RMU Switchgear Boards", "Lucy Electric CSS Compact Substations", "HT/LT Distribution Transformers", "IP-Rated Custom Enclosure Frames", "Consolidated Purchase Order Billing"],
       imageSrc: "/images/project-hospital.png",
-      imageAlt: "MEP engineering design dashboard", isReversed: true, bgClass: "bg-surface-container-low"
-    },
-    {
-      id: "epc-contracting",
-      eyebrow: "03 / Execution",
-      title: "EPC Contracting",
-      description: [
-        "Large-scale government and institutional project execution delivered via a virtual joint venture with a Class A Licensed Contractor.",
-        "We manage full-scope procurement, site deployment, and installation with single-point accountability and strict compliance guidelines."
-      ],
-      features: ["Government Tender Execution", "Institutional Project Delivery", "Virtual JV Synergy", "Class A Licensed Partnering", "Full-Scope Procurement", "Grid Integration Erection"],
-      imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuCWkM0313qH3jG3iM4OsZ2M-4GN1J7fRO0UJ14K2Q8XtcL-BJkvnDzsHuDmkTlvQ7wJvlRMCi5sG7QfE7O4oD8GnQP1KN8oQKFARjj_bGo59BlFAh9XVMMB9YZ01EjyV8JwgEEy9s224FQplLl56xyOPwCN6bucutiTWLo4Ouqxu1RQvNY6ukTThfapNJyVuB-OF7zjkVeR5IbbE-W3iSB9Uk-w3OiuJA2T0mSvBp4XTAdm7mZXGJqIVpuMcBTF2YyvDeXCPpZV_rw",
-      imageAlt: "EPC project execution site", isReversed: false, bgClass: "bg-surface"
-    },
-    {
-      id: "project-supervision",
-      eyebrow: "04 / On-Site Supervision",
-      title: "Project Supervision & Commissioning",
-      description: [
-        "On-site technical supervision, testing, commissioning support, and comprehensive handover documentation.",
-        "Our certified engineers conduct factory acceptance tests (FAT), site acceptance tests (SAT), and relay calibration to guarantee system integrity."
-      ],
-      features: ["On-Site Technical Supervision", "FAT & SAT Testing Support", "Relay Calibration & Setting", "Handover Documentation", "As-Built Drawing Verification", "SLA & DLP Maintenance Support"],
-      imageSrc: "https://lh3.googleusercontent.com/aida-public/AB6AXuC5FW8nf272gXSM_1xLQR9lKoi7xId3VLHIZFPFzZDDsZz-nkZBK2rLtsZtKJkruCgzVDafIT8sh-T2S4pquUpCFv5xVyBphjPjDfvrRtJhzcdElkAzpWf66KnClNbPqHBo7FDSKuqauWqmdmdjkPyWjklLYf1pyhqrHlKMFP7aTOT40qcirHI1QrKknjtv-vRFHkwL6Lqe96kLA6WOsS23v5Vqw3Ww0Ukxbs38PwDFBS-xum-nzeDdwKNE9LRjMiiG71SmAJODIrk",
-      imageAlt: "Technical commissioning and testing", isReversed: true, bgClass: "bg-surface-container-low"
+      imageAlt: "Capital Goods Supply", isReversed: true, bgClass: "bg-surface-container-low",
+      serviceTo: "/solutions/capital-goods"
     }
   ];
 
@@ -77,16 +72,17 @@ export function Services() {
         ))}
       </div>
 
+      <EpcLifecycleSection />
+
       <ProcessSection />
 
       <UnifiedCTA 
         heading="Ready to discuss your project?"
-        accent="Get in touch for a free consultation on products, MEPF design, or EPC contracting."
-        subtitle="Talk to our senior engineering specialists about specifications, layouts, and load requirements."
-        primaryText="GET FREE CONSULTATION"
+        subtitle="Get in touch for a free consultation."
+        primaryText="CONTACT US"
         primaryTo="/contact"
-        outlineText="EXPLORE COMPLETED PROJECTS"
-        outlineTo="/projects"
+        outlineText="VIEW PRODUCTS"
+        outlineTo="/products"
         uppercase={true}
       />
     </>

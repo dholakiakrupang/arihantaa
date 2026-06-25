@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Lenis from 'lenis';
 
 import { Header } from './components/layout/Header';
@@ -8,17 +8,14 @@ import { WhatsAppButton } from './components/ui/WhatsAppButton';
 import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { Services } from './pages/Services';
-import { SpecificService } from './pages/SpecificService';
-import { ServiceDetail } from './pages/ServiceDetail';
 import { Products } from './pages/Products';
 import { SpecificProduct } from './pages/SpecificProduct';
 import { ProductDetail } from './pages/ProductDetail';
-import { SpecificSector } from './pages/SpecificSector';
-import { Projects } from './pages/Projects';
-import { SpecificProject } from './pages/SpecificProject';
-import { News } from './pages/News';
-import { NewsArticle } from './pages/NewsArticle';
+
 import { Contact } from './pages/Contact';
+import { PartnershipVertiv } from './pages/PartnershipVertiv';
+import { SolutionsCapitalGoods } from './pages/SolutionsCapitalGoods';
+import { SolutionsEpcMepf } from './pages/SolutionsEpcMepf';
 
 function App() {
   const location = useLocation();
@@ -70,17 +67,16 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
-          <Route path="/services/:categoryId" element={<SpecificService />} />
-          <Route path="/services/:categoryId/:serviceId" element={<ServiceDetail />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:categoryId" element={<SpecificProduct />} />
           <Route path="/products/:categoryId/:productId" element={<ProductDetail />} />
-          <Route path="/sectors/:sectorId" element={<SpecificSector />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:projectId" element={<SpecificProject />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:articleId" element={<NewsArticle />} />
+
+          <Route path="/partners/vertiv" element={<PartnershipVertiv />} />
+          <Route path="/partnerships/vertiv" element={<PartnershipVertiv />} />
+          <Route path="/solutions/capital-goods" element={<SolutionsCapitalGoods />} />
+          <Route path="/solutions/epc-mepf" element={<SolutionsEpcMepf />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
       <Footer />
