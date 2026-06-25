@@ -31,7 +31,7 @@ export function OurStory() {
             <div className="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 w-36 sm:w-48 md:w-64 border-4 border-surface shadow-2xl overflow-hidden block">
               <img
                 src="/images/project-data-center.png"
-                alt="Data centre infrastructure"
+                alt="Data center infrastructure"
                 className="w-full h-24 sm:h-32 md:h-40 object-cover transition-all duration-700"
                 loading="lazy" decoding="async"
               />

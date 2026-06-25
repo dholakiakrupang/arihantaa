@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ALLIANCES = [
   {
     title: 'Vertiv Channel Partner',
-    role: 'AUTHORISED CHANNEL PARTNER',
+    role: 'AUTHORIZED CHANNEL PARTNER',
     desc: 'Official direct supply, factory-trained technical installation support, and OEM warranties across all Liebert UPS and thermal cooling cabinets.',
     link: '/partners/vertiv',
     badge: 'OEM AUTHORIZED',

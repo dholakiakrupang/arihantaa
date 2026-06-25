@@ -29,7 +29,7 @@ const telemetryData = {
   },
   "capital-goods-supply": {
     status: "ACTIVE",
-    readout: "PROCUREMENT: CONSOLIDATED // OEM: AUTHORISED",
+    readout: "PROCUREMENT: CONSOLIDATED // OEM: AUTHORIZED",
     ticker:
       "■ VERTIV UPS: ACTIVE ■ L&T TTA PANELS: TYPE-TESTED ■ LUCY RMU & CSS: COMMISSIONED ■ SINGLE PO: ACTIVE ■ AUTHORIZATION: OEM VALIDATED ■",
   },

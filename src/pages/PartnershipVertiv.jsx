@@ -51,140 +51,144 @@ export function PartnershipVertiv() {
 
       {/* ── Page Hero ────────────────────────────────────────── */}
       <section className="relative w-full bg-[#080808] overflow-hidden">
-        <div className="relative max-w-[1440px] mx-auto w-full flex flex-col px-8 md:px-16">
-        {/* Full-bleed right image panel */}
-        <motion.div
-          className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-16 lg:w-[48%] overflow-hidden"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <motion.img
-            src="/images/project-data-center.png"
-            alt="Data Centre Power Systems"
-            className="absolute inset-0 w-full h-full object-cover object-center"
-            initial={{ scale: 1.06 }}
-            animate={{ scale: 1.02 }}
-            transition={{ duration: 1.4, ease: [0.25, 1, 0.5, 1] }}
-          />
-          <div
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(8,8,8,0.78) 0%, rgba(8,8,8,0.2) 30%, transparent 60%)",
-            }}
-          />
-          <div
-            className="absolute inset-0 pointer-events-none z-10"
-            style={{
-              background:
-                "linear-gradient(to top, rgba(8,8,8,0.90) 0%, rgba(8,8,8,0.3) 28%, transparent 55%)",
-            }}
-          />
-          <div
-            className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(8,8,8,0.82) 0%, transparent 100%)",
-            }}
-          />
-
-          {/* Image label overlay */}
+        <div className="max-w-[1920px] mx-auto relative w-full flex flex-col lg:block">
+          {/* Full-bleed right image panel */}
           <motion.div
-            className="absolute left-6 bottom-6 lg:left-10 lg:bottom-[100px] z-20"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}
+            className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[50%] overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="flex items-center gap-2 mb-2">
-              <div className="w-5 h-px bg-accent" />
-              <span className="font-label-caps text-[9px] text-accent tracking-[0.22em] uppercase font-bold">
-                AUTHORIZED OEM PARTNER
-              </span>
-            </div>
-            <p className="font-headline text-[20px] font-black uppercase text-white leading-tight tracking-tight max-w-[260px]">
-              Critical Digital Infrastructure
-            </p>
-          </motion.div>
-        </motion.div>
+            <motion.img
+              src="/images/project-data-center.png"
+              alt="Data Center Power Systems"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              initial={{ scale: 1.06 }}
+              animate={{ scale: 1.02 }}
+              transition={{ duration: 1.4, ease: [0.25, 1, 0.5, 1] }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(8,8,8,0.78) 0%, rgba(8,8,8,0.2) 30%, transparent 60%)",
+              }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(8,8,8,0.90) 0%, rgba(8,8,8,0.3) 28%, transparent 55%)",
+              }}
+            />
+            <div
+              className="absolute top-0 left-0 right-0 h-32 pointer-events-none z-10"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(8,8,8,0.82) 0%, transparent 100%)",
+              }}
+            />
 
-        {/* Vertical divider */}
-        <div
-          aria-hidden
-          className="hidden lg:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none"
-        />
-
-        {/* Left content */}
-        <div className="relative z-10 flex flex-col flex-grow order-1 lg:order-none justify-center">
-          <div className="w-full lg:w-[52%] flex flex-col justify-center py-12 lg:py-20 lg:pr-16">
-            <div className="flex flex-col gap-0">
-              {/* Breadcrumb */}
-              <nav className="flex items-center gap-2 mb-6">
-                <Link
-                  to="/"
-                  className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
-                >
-                  Home
-                </Link>
-                <span className="material-symbols-outlined text-white/35 text-[14px]">
-                  chevron_right
+            {/* Image label overlay */}
+            <motion.div
+              className="absolute left-6 bottom-6 lg:left-10 lg:bottom-[100px] z-20"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.5,
+                ease: [0.25, 1, 0.5, 1],
+              }}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-5 h-px bg-accent" />
+                <span className="font-label-caps text-[9px] text-accent tracking-[0.22em] uppercase font-bold">
+                  AUTHORIZED OEM PARTNER
                 </span>
-                <Link
-                  to="/services"
-                  className="font-label-caps text-[10px] text-white/35 tracking-[0.2em] uppercase hover:text-white transition-colors duration-300"
-                >
-                  Solutions
-                </Link>
-                <span className="material-symbols-outlined text-white/35 text-[14px]">
-                  chevron_right
-                </span>
-                <span className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase font-bold">
-                  Vertiv
-                </span>
-              </nav>
-
-              {/* Badge & Eyebrow */}
-              <div className="flex flex-wrap items-center gap-3 mb-5">
-                <div className="px-3 py-1 border border-accent/30 bg-accent/10 select-none rounded-none text-accent font-label-caps text-[9px] tracking-widest uppercase font-bold flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                  Vertiv Authorised Channel Partner
-                </div>
               </div>
-
-              {/* Headline */}
-              <h1 className="font-headline font-black uppercase leading-[1.0] tracking-tighter mb-7 text-[28px] sm:text-[38px] md:text-[48px] lg:text-[54px] text-white">
-                Arihantaa Powertech <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">
-                  — Vertiv Authorised Partner
-                </span>
-              </h1>
-
-              {/* Description */}
-              <p className="font-body text-base md:text-lg text-white/50 leading-relaxed font-light w-full mb-9">
-                All Vertiv products supplied by Arihantaa Powertech come
-                with full OEM warranty, factory-trained installation
-                support, authorised spare parts, and direct Vertiv service
-                escalation. We are not a general reseller — we are an
-                authorised channel partner with trained engineers and
-                genuine supply chain routing.
+              <p className="font-headline text-[20px] font-black uppercase text-white leading-tight tracking-tight max-w-[260px]">
+                Critical Digital Infrastructure
               </p>
+            </motion.div>
+          </motion.div>
 
-              {/* CTA Row */}
-              <div className="flex flex-wrap items-center gap-5">
-                <Link to="/contact?inquiry=quote&item=Vertiv%20UPS%20and%20Thermal%20Systems">
-                  <Button
-                    variant="primary"
-                    theme="dark"
-                    size="lg"
-                    className="rounded-none shadow-sm text-[10px] tracking-[0.2em] font-bold"
+          {/* Vertical divider */}
+          <div
+            aria-hidden
+            className="hidden lg:block absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none"
+          />
+
+          {/* Left content */}
+          <div className="relative z-10 max-w-[1440px] mx-auto w-full flex flex-col px-8 md:px-16 order-1 lg:order-none justify-center">
+            <div className="w-full lg:w-[52%] flex flex-col justify-center py-12 lg:py-20 lg:pr-16">
+              <div className="flex flex-col gap-0">
+                {/* Breadcrumb */}
+                <nav className="flex items-center gap-2 mb-6">
+                  <Link
+                    to="/"
+                    className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase hover:opacity-70 transition-opacity"
                   >
-                    ENQUIRE ABOUT VERTIV PRODUCTS
-                  </Button>
-                </Link>
+                    Home
+                  </Link>
+                  <span className="material-symbols-outlined text-white/35 text-[14px]">
+                    chevron_right
+                  </span>
+                  <Link
+                    to="/services"
+                    className="font-label-caps text-[10px] text-white/35 tracking-[0.2em] uppercase hover:text-white transition-colors duration-300"
+                  >
+                    Solutions
+                  </Link>
+                  <span className="material-symbols-outlined text-white/35 text-[14px]">
+                    chevron_right
+                  </span>
+                  <span className="font-label-caps text-[10px] text-accent tracking-[0.2em] uppercase font-bold">
+                    Vertiv
+                  </span>
+                </nav>
+
+                {/* Badge & Eyebrow */}
+                <div className="flex flex-wrap items-center gap-3 mb-5">
+                  <div className="px-3 py-1 border border-accent/30 bg-accent/10 select-none rounded-none text-accent font-label-caps text-[9px] tracking-widest uppercase font-bold flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                    Vertiv Authorized Channel Partner
+                  </div>
+                </div>
+
+                {/* Headline */}
+                <h1 className="font-headline font-black uppercase leading-[1.0] tracking-tighter mb-7 text-[28px] sm:text-[38px] md:text-[48px] lg:text-[54px] text-white">
+                  Arihantaa Powertech <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent/60">
+                    — Vertiv Authorized Partner
+                  </span>
+                </h1>
+
+                {/* Description */}
+                <p className="font-body text-base md:text-lg text-white/50 leading-relaxed font-light w-full mb-9">
+                  All Vertiv products supplied by Arihantaa Powertech come with
+                  full OEM warranty, factory-trained installation support,
+                  authorized spare parts, and direct Vertiv service escalation.
+                  We are not a general reseller — we are an authorized channel
+                  partner with trained engineers and genuine supply chain
+                  routing.
+                </p>
+
+                {/* CTA Row */}
+                <div className="flex flex-wrap items-center gap-5">
+                  <Link to="/contact?inquiry=quote&item=Vertiv%20UPS%20and%20Thermal%20Systems">
+                    <Button
+                      variant="primary"
+                      theme="dark"
+                      size="lg"
+                      className="rounded-none shadow-sm text-[10px] tracking-[0.2em] font-bold"
+                    >
+                      ENQUIRE ABOUT VERTIV PRODUCTS
+                    </Button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </div>
       </section>
 
@@ -197,9 +201,9 @@ export function PartnershipVertiv() {
         </div>
 
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-16 items-center lg:items-stretch">
             {/* Left side: Text explanation */}
-            <div className="w-full lg:w-[48%] space-y-6">
+            <div className="w-full lg:w-[48%] space-y-6 flex flex-col justify-center">
               <div className="flex items-center gap-3">
                 <div className="h-[2px] w-8 bg-accent" />
                 <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase font-bold">
@@ -252,9 +256,9 @@ export function PartnershipVertiv() {
               </div>
             </div>
 
-            {/* Right side: Interactive Certification Certificate Scan Card */}
+            {/* Right side: Interactive Certification Card */}
             <div className="w-full lg:w-[52%] flex justify-center">
-              <div className="relative w-full max-w-[480px] bg-gradient-to-br from-white to-neutral-50 p-8 md:p-12 border-2 border-accent/25 hover:border-accent transition-all duration-500 shadow-2xl rounded-none relative group select-none overflow-hidden">
+              <div className="relative w-full max-w-[480px] min-h-[350px] lg:h-full bg-gradient-to-br from-white to-neutral-50 p-6 border-2 border-accent/25 hover:border-accent transition-all duration-500 shadow-2xl rounded-none group select-none overflow-hidden flex items-center justify-center">
                 {/* Certificate Border Details */}
                 <div className="absolute inset-2 border border-accent/15 pointer-events-none" />
 
@@ -264,55 +268,11 @@ export function PartnershipVertiv() {
                 <div className="absolute bottom-4 right-4 w-4 h-4 border-b-2 border-r-2 border-accent" />
                 <div className="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-accent" />
 
-                {/* Certificate Header */}
-                <div className="text-center pb-8 border-b border-accent/10">
-                  <span className="font-headline text-[13px] font-black text-neutral-400 tracking-[0.2em] uppercase block mb-1">
-                    Certificate of Partnership
-                  </span>
-                  <div className="h-[2px] w-12 bg-accent mx-auto my-3" />
-                  <span className="font-headline text-[24px] font-black text-neutral-900 tracking-[0.1em] uppercase block">
-                    VERTIV™
-                  </span>
-                </div>
-
-                {/* Certificate Content */}
-                <div className="py-8 space-y-6 text-center">
-                  <p className="font-label-caps text-[10px] text-neutral-400 tracking-wider uppercase font-bold">
-                    This is to certify that
-                  </p>
-                  <h3 className="font-headline text-[22px] font-black text-neutral-900 uppercase tracking-tight">
-                    ARIHANTAA POWERTECH
-                  </h3>
-                  <p className="font-body text-[13.5px] leading-relaxed text-neutral-600 max-w-sm mx-auto">
-                    is appointed as an{" "}
-                    <span className="text-accent font-bold">
-                      Authorised Channel Partner
-                    </span>{" "}
-                    in India, eligible to supply, install, and support critical
-                    infrastructure solutions.
-                  </p>
-                </div>
-
-                {/* Certificate Footer */}
-                <div className="pt-6 border-t border-accent/10 flex items-center justify-between text-neutral-500">
-                  <div className="text-left">
-                    <span className="font-label-caps text-[7.5px] tracking-wider uppercase block">
-                      Partnership Level
-                    </span>
-                    <span className="font-headline text-[11px] font-bold text-neutral-900 uppercase">
-                      CHANNEL PARTNER
-                    </span>
-                  </div>
-                  <div className="text-right">
-                    <span className="font-label-caps text-[7.5px] tracking-wider uppercase block">
-                      Status
-                    </span>
-                    <span className="font-headline text-[11px] font-bold text-accent uppercase flex items-center gap-1.5 justify-end">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                      ACTIVE
-                    </span>
-                  </div>
-                </div>
+                <img
+                  src="/images/vertiv-partner-certificate.png"
+                  alt="Vertiv Partner Certificate"
+                  className="max-w-full max-h-full object-contain block relative z-10"
+                />
               </div>
             </div>
           </div>
@@ -331,7 +291,7 @@ export function PartnershipVertiv() {
                 </span>
               </div>
               <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface uppercase tracking-tight">
-                Authorised Solutions & Products
+                Authorized Solutions & Products
               </h2>
             </div>
             <p className="font-body text-base text-secondary max-w-sm leading-relaxed">

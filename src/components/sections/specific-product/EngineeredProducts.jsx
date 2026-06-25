@@ -172,7 +172,7 @@ export function EngineeredProducts() {
               {categoryId === 'ups' && (
                 <div className="inline-flex items-center gap-2 mt-2 px-3 py-1 border border-accent/30 bg-accent/10 select-none rounded-none">
                   <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                  <span className="font-label-caps text-[8.5px] text-accent tracking-widest uppercase font-bold">Vertiv Authorised Channel Partner</span>
+                  <span className="font-label-caps text-[8.5px] text-accent tracking-widest uppercase font-bold">Vertiv Authorized Channel Partner</span>
                 </div>
               )}
             </motion.h1>

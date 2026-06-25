@@ -13,7 +13,7 @@ export function Services() {
       title: "MEPF Consultancy",
       description: [
         "Integrated Mechanical, Electrical, Plumbing, and Fire Protection consultancy services for government, industrial, commercial, healthcare, and smart city projects across India.",
-        "From precision HVAC load modelling and electrical load profiling to plumbing network design and NBC-compliant fire protection — all coordinated under BIM Level 2 frameworks."
+        "From precision HVAC load modeling and electrical load profiling to plumbing network design and NBC-compliant fire protection — all coordinated under BIM Level 2 frameworks."
       ],
       features: ["Mechanical & HVAC System Design", "Electrical Load Profiling & Optimization", "Plumbing & PHE Infrastructure", "Fire Protection (NBC & TAC Compliant)", "BIM Level 2 Coordination", "LEED & IGBC Energy Modeling"],
       imageSrc: "/images/philosophy-rigor.png",
@@ -38,12 +38,12 @@ export function Services() {
       eyebrow: "03 / SERVICE",
       title: "Vertiv Partner",
       description: [
-        "Authorised Vertiv Channel Partner supplying enterprise-grade Liebert online double-conversion UPS networks, modular DC systems, and high-density precision thermal coolers.",
+        "Authorized Vertiv Channel Partner supplying enterprise-grade Liebert online double-conversion UPS networks, modular DC systems, and high-density precision thermal coolers.",
         "Engineering alignment, certified deployment support, and preventive AMC contract operations directly synchronized with Vertiv's official global standards."
       ],
-      features: ["Authorised Vertiv Channel Partner", "Liebert Online Double-Conversion UPS", "Modular Telecom DC Power Systems", "Precision Cooling & Thermal Management", "Factory Acceptance Testing Support", "Preventive Maintenance AMC Contracts"],
+      features: ["Authorized Vertiv Channel Partner", "Liebert Online Double-Conversion UPS", "Modular Telecom DC Power Systems", "Precision Cooling & Thermal Management", "Factory Acceptance Testing Support", "Preventive Maintenance AMC Contracts"],
       imageSrc: "/images/project-data-center.png",
-      imageAlt: "Vertiv Authorised Partner", isReversed: false, bgClass: "bg-surface",
+      imageAlt: "Vertiv Authorized Partner", isReversed: false, bgClass: "bg-surface",
       serviceTo: "/partners/vertiv"
     },
     {

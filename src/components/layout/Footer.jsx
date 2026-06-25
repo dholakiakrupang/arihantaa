@@ -57,12 +57,12 @@ export function Footer() {
           <div className="flex-shrink-0 lg:w-[320px] lg:pr-16 flex flex-col gap-6 items-start">
             <Link
               to="/"
-              className="w-[140px] sm:w-[160px] lg:w-full lg:max-w-[180px] block"
+              className="inline-block"
             >
               <img
-                src="/arihantaa-vertical-logo.png"
+                src="/arihantaa-logo.png"
                 alt="Arihantaa Powertech Logo"
-                className="w-full h-auto object-contain grayscale brightness-200 transition-transform duration-300 hover:scale-[1.02] origin-left"
+                className="h-[80px] md:h-[90px] w-auto object-contain grayscale brightness-200 transition-transform duration-300 hover:scale-[1.02] origin-left"
               />
             </Link>
             <div className="space-y-2">
@@ -238,7 +238,7 @@ export function Footer() {
                         VERTIV
                       </span>
                       <span className="font-label-caps text-[7.5px] text-accent tracking-[0.15em] uppercase font-bold mt-2 leading-none">
-                        Authorised Channel Partner
+                        Authorized Channel Partner
                       </span>
                     </div>
                   </Link>
@@ -252,7 +252,7 @@ export function Footer() {
                 {/* Bottom Section: Core Operations Tags */}
                 <div className="space-y-3 mt-6">
                   <span className="font-label-caps text-[7.5px] text-white/30 tracking-[0.15em] uppercase block">
-                    Authorised Domains
+                    Authorized Domains
                   </span>
                   <div className="flex flex-wrap gap-2">
                     <Link
@@ -306,7 +306,7 @@ export function Footer() {
             <span className="whitespace-nowrap">ISO 9001:2015 Certified</span>
             <span className="inline-block w-1 h-1 bg-white/20 rounded-full shrink-0" />
             <span className="whitespace-nowrap">
-              Vertiv Authorised Channel Partner
+              Vertiv Authorized Channel Partner
             </span>
           </div>
           <div className="flex flex-wrap justify-center sm:justify-end gap-4 sm:gap-6">

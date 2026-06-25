@@ -187,7 +187,7 @@ export const productsData = [
         category: "Thermal Management",
         title: "Thermal & Cooling Systems",
         description:
-          "Precision cooling and thermal management solutions for data centres and industrial environments — perimeter cooling, in-row units, and direct liquid cooling.",
+          "Precision cooling and thermal management solutions for data centers and industrial environments — perimeter cooling, in-row units, and direct liquid cooling.",
         imageSrc:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuDlJNIGxcdbOZOJuEdLfFi4lf1vwyS_ME6J5x0SjsvFg0eE7uiMqMQvtPZOuvi5tHfiqT1k-W-CCx-aTUHi3OHzSwSyjNMJNBnbg8IuTtZHa7eeWtdFNG--wg_3glNKSx9QoqYOT8uxpW4v3LCKYrEllpFD-XSItW2jnMs90PUOxhdi6Neiaqcnh7SYAZnwGswo_ZYYxtvNK_VlJFdRm-z8WYNFGq1bD1e0GITVUXT4tJnV-i_mKPUyn5QfwZQZy7HemEl2vPyPgPQ",
         imageAlt: "Thermal cooling systems",
@@ -198,7 +198,7 @@ export const productsData = [
         category: "Infrastructure",
         title: "Racks & IT Enclosures",
         description:
-          "Modular server racks, IP-rated industrial cabinets, and micro-data centre pods for mission-critical deployments.",
+          "Modular server racks, IP-rated industrial cabinets, and micro-data center pods for mission-critical deployments.",
         imageSrc:
           "https://lh3.googleusercontent.com/aida-public/AB6AXuACB_nPIyMtbri73PQQFAnG19b_BncnFu7KL58l_XfxMAJ9WXMs8Pp5p0LGYjznm_S8I-puIj7w21yeTOxB6BMHXKrzt_chCbKwL0ujiRVX4LSgub1RZ-wapC9p2M_yBYUZFXmTqDiTztB4Lvun0ghVdcHPhTbIyPsQhaEQ1J2d-tsuF5buopUFd-Ep4mlclGlyHOG7j-AOl-Efom9HPIk78mX9NTG6ZWcUT4slsCUGCw_47Pmwa3L221wYGI9D9bF2hCXkMy1Xukk",
         imageAlt: "Server racks and enclosures",
@@ -225,7 +225,7 @@ export const trustStats = [
 ];
 
 export const industries = [
-  "Data Centres",
+  "Data Centers",
   "Healthcare",
   "Manufacturing",
   "Telecommunications",

@@ -4,7 +4,7 @@ export const engineeredServicesData = [
     id: "vertiv-partner",
     categoryId: "vertiv-partner",
     tag: "VERTIV PARTNER",
-    title: "Vertiv Authorised Channel Partner",
+    title: "Vertiv Authorized Channel Partner",
     scoreLabel: "OEM ALIGNMENT",
     scorePercentage: 100,
     description: "Official channel partner supply and technical alignment for Liebert online UPS systems, precision thermal cooling, smart power distribution cabinets, and DC power systems.",
@@ -14,7 +14,7 @@ export const engineeredServicesData = [
       "Precision Thermal Cooling",
       "DC Power Infrastructure",
       "Official Trust Authorization Certification",
-      "Authorised Spare Parts Escalation"
+      "Authorized Spare Parts Escalation"
     ],
     stats: [
       { label: "WARRANTY", value: "OEM Validated" },

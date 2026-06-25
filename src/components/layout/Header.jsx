@@ -642,9 +642,9 @@ function MobileDrawer({ isOpen, onClose }) {
             <div className="relative z-10 flex items-center justify-between px-6 py-5 shrink-0">
               <Link to="/" onClick={onClose} className="inline-block">
                 <img
-                  src="/arihantaa-vertical-logo.png"
+                  src="/arihantaa-logo.png"
                   alt="Arihantaa Powertech Logo"
-                  className="h-[44px] w-auto object-contain brightness-200"
+                  className="h-[44px] w-auto object-contain"
                 />
               </Link>
               <button
@@ -1404,18 +1404,18 @@ export function Header() {
         }`}
       >
         {/* Responsive padding aligned to standard B2B grid lines, adapting to 44px content height */}
-        <nav className="flex justify-between items-center w-full px-8 md:px-16 py-[10px] md:py-[18px] max-w-[1440px] mx-auto">
-          {/* Logo — aligned to CONTACT US button height (44px) */}
+        <nav className="flex justify-between items-center w-full px-8 md:px-16 py-[10px] md:py-0 max-w-[1440px] mx-auto">
+          {/* Logo — aligned to navigation bar height (~80px) */}
           <Link
             to="/"
-            className="flex items-center flex-shrink-0 h-[44px]"
+            className="flex items-center flex-shrink-0 h-[60px] md:h-[80px]"
             onClick={() => {
               close();
               closeMobile();
             }}
           >
             <img
-              src="/arihantaa-vertical-logo.png"
+              src="/arihantaa-logo.png"
               alt="Arihantaa Powertech Logo"
               className="h-full w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
             />

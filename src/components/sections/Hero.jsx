@@ -11,7 +11,7 @@ import { Button } from "../ui/Button";
 // ─── Technical Stats for Bottom Info Bar ──────────────────────────────────
 const HERO_METRICS = [
   { value: "ISO 9001:2015", label: "CERTIFIED QUALITY" },
-  { value: "Vertiv", label: "AUTHORISED PARTNER" },
+  { value: "Vertiv", label: "AUTHORIZED PARTNER" },
   { value: "500+", label: "PROJECTS DELIVERED" },
   { value: "Pan India Presence", label: "ACTIVE ACROSS INDIA" },
 ];
@@ -22,10 +22,10 @@ const HERO_PILLARS = [
     id: "vertiv-partner",
     index: "01",
     label: "VERTIV PARTNER",
-    headline: "Authorised Channel Partnership",
+    headline: "Authorized Channel Partnership",
     description:
       "Direct OEM warranty, factory-trained installation, and genuine spare parts access for all Vertiv products.",
-    image: "/images/hero-vertiv-datacenter.png",
+    image: "/images/project-data-center.png",
     link: "/partners/vertiv",
   },
   {
@@ -54,7 +54,7 @@ const HERO_PILLARS = [
 const HERO_PILLAR_ICONS = [
   {
     icon: "verified",
-    label: "Vertiv Authorised Partner",
+    label: "Vertiv Authorized Partner",
     link: "/partners/vertiv",
   },
   {
@@ -112,12 +112,12 @@ export function Hero() {
       ref={sectionRef}
       className="relative w-full bg-[#080808] overflow-hidden"
     >
-      <div className="relative max-w-[1440px] mx-auto w-full flex flex-col px-6 sm:px-8 lg:px-16">
+      <div className="max-w-[1920px] mx-auto relative w-full flex flex-col lg:block">
       {/* ══════════════════════════════════════════════════
           RIGHT IMAGE PANEL — Absolutely positioned,
           covers full section height from very top (behind header)
       ══════════════════════════════════════════════════ */}
-      <div className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-16 lg:w-[48%] overflow-hidden bg-[#080808]">
+      <div className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[50%] overflow-hidden bg-[#080808]">
         {/* Slideshow images — crossfade */}
         <AnimatePresence mode="sync">
           <motion.div
@@ -233,7 +233,7 @@ export function Hero() {
       {/* ══════════════════════════════════════════════════
           LEFT CONTENT — aligned to footer container
       ══════════════════════════════════════════════════ */}
-      <div className="relative z-10 flex flex-col flex-grow order-1 lg:order-none">
+      <div className="relative z-10 max-w-[1440px] mx-auto w-full flex flex-col px-6 sm:px-8 lg:px-16 order-1 lg:order-none">
         {/* Header spacer */}
         <div className="min-h-[88px] md:min-h-[96px] shrink-0" />
 
@@ -291,7 +291,7 @@ export function Hero() {
               >
                 Arihantaa Powertech is your single point of contact for all
                 capital goods supply, EPC project execution, and MEPF
-                consultancy — backed by an authorised Vertiv channel
+                consultancy — backed by an authorized Vertiv channel
                 partnership.
               </motion.p>
 
@@ -373,7 +373,7 @@ export function Hero() {
                 </span>
                 <span className="font-label-caps text-[7.5px] text-white/40 tracking-widest uppercase mt-0.5 leading-none">
                   {i === 0
-                    ? "Authorised Channel"
+                    ? "Authorized Channel"
                     : i === 1
                       ? "Under One Roof"
                       : i === 2

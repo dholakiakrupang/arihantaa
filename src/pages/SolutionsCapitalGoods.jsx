@@ -33,7 +33,7 @@ export function SolutionsCapitalGoods() {
     },
     {
       title: "Vertiv Liebert UPS Systems",
-      desc: "Authorised supply and engineering alignment for Liebert online uninterruptible power systems.",
+      desc: "Authorized supply and engineering alignment for Liebert online uninterruptible power systems.",
       icon: "battery_charging_full",
       link: "/partners/vertiv",
     },
@@ -86,10 +86,10 @@ export function SolutionsCapitalGoods() {
 
       {/* ── Page Hero ────────────────────────────────────────── */}
       <section className="relative w-full bg-[#080808] overflow-hidden">
-        <div className="relative max-w-[1440px] mx-auto w-full flex flex-col px-8 md:px-16">
+        <div className="max-w-[1920px] mx-auto relative w-full flex flex-col lg:block">
         {/* Full-bleed right image panel */}
         <motion.div
-          className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-16 lg:w-[48%] overflow-hidden"
+          className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[50%] overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.2 }}
@@ -146,11 +146,11 @@ export function SolutionsCapitalGoods() {
         {/* Vertical divider */}
         <div
           aria-hidden
-          className="hidden lg:block absolute top-0 left-[52%] w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none"
+          className="hidden lg:block absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent z-20 pointer-events-none"
         />
 
         {/* Left content */}
-        <div className="relative z-10 flex flex-col flex-grow order-1 lg:order-none justify-center">
+        <div className="relative z-10 max-w-[1440px] mx-auto w-full flex flex-col px-8 md:px-16 order-1 lg:order-none justify-center">
           <div className="w-full lg:w-[52%] flex flex-col justify-center py-12 lg:py-20 lg:pr-16">
             <div className="flex flex-col gap-0">
               {/* Breadcrumb */}

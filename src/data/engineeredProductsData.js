@@ -2004,7 +2004,7 @@ export const engineeredProductsData = [
     images: [
       { src: "/images/products/switchgear.png", alt: "TTA-630 Panel — Front View" }
     ],
-    applications: "Hospitals | Data Centres | Industrial Plants | Commercial Buildings | Infrastructure Projects",
+    applications: "Hospitals | Data Centers | Industrial Plants | Commercial Buildings | Infrastructure Projects",
     models: [
       { name: "TTA-630", capacity: "630 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.5%", height: 2000, width: 800, depth: 800, weight: "450 kg" }
     ]
@@ -2040,7 +2040,7 @@ export const engineeredProductsData = [
     images: [
       { src: "/images/products/switchgear.png", alt: "TTA-1600 Panel — Front View" }
     ],
-    applications: "Hospitals | Data Centres | Industrial Plants | Commercial Buildings | Infrastructure Projects",
+    applications: "Hospitals | Data Centers | Industrial Plants | Commercial Buildings | Infrastructure Projects",
     models: [
       { name: "TTA-1600", capacity: "1600 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.6%", height: 2200, width: 1000, depth: 1000, weight: "850 kg" }
     ]
@@ -2076,7 +2076,7 @@ export const engineeredProductsData = [
     images: [
       { src: "/images/products/switchgear.png", alt: "TTA-4000 Panel — Front View" }
     ],
-    applications: "Hospitals | Data Centres | Industrial Plants | Commercial Buildings | Infrastructure Projects",
+    applications: "Hospitals | Data Centers | Industrial Plants | Commercial Buildings | Infrastructure Projects",
     models: [
       { name: "TTA-4000", capacity: "4000 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.7%", height: 2200, width: 2400, depth: 1200, weight: "2100 kg" }
     ]
@@ -2112,7 +2112,7 @@ export const engineeredProductsData = [
     images: [
       { src: "/images/products/switchgear.png", alt: "TTA-800 Panel — Front View" }
     ],
-    applications: "Hospitals | Data Centres | Industrial Plants | Commercial Buildings | Infrastructure Projects",
+    applications: "Hospitals | Data Centers | Industrial Plants | Commercial Buildings | Infrastructure Projects",
     models: [
       { name: "TTA-800", capacity: "800 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.6%", height: 2100, width: 900, depth: 800, weight: "520 kg" }
     ]

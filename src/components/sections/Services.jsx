@@ -31,12 +31,12 @@ const SERVICES = [
   {
     id: 'vertiv-partner',
     title: 'Vertiv Partner',
-    desc: 'Authorised Vertiv Channel Partner supplying Liebert online UPS, DC systems, and thermal management units.',
+    desc: 'Authorized Vertiv Channel Partner supplying Liebert online UPS, DC systems, and thermal management units.',
     icon: 'verified',
     image: '/images/service-vertiv-partner.png',
     link: '/partners/vertiv',
     specs: [
-      { label: 'PARTNERSHIP', value: 'Authorised Channel' },
+      { label: 'PARTNERSHIP', value: 'Authorized Channel' },
       { label: 'SYSTEMS', value: 'UPS, DC, Thermal' },
       { label: 'ALIGNMENT', value: 'Engineering Supply' }
     ]
