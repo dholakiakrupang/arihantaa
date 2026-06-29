@@ -8,7 +8,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXL S1 UPS 300kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 97,
-    description: "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
+    description:
+      "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
     features: [
       "Dynamic Online Mode with 99% efficiency",
       "Robust double-conversion design (97% efficiency)",
@@ -22,11 +23,17 @@ export const engineeredProductsData = [
       { label: "VOLTAGE OPTIONS", value: "380 / 400 / 415 V" },
       { label: "PARALLEL CAPABILITY", value: "Up to 8 units" },
     ],
-    imageSrc: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXL S1 UPS 300kW",
     images: [
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg", alt: "Vertiv™ Liebert® EXL S1 UPS" },
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/liebert-exl-s14.png", alt: "Configuration Options" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXL S1 UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Configuration Options",
+      },
     ],
     models: [
       {
@@ -38,9 +45,9 @@ export const engineeredProductsData = [
         height: 1950,
         width: 1400,
         depth: 900,
-        weight: "1200 kg"
+        weight: "1200 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exl-s1-500kw",
@@ -50,7 +57,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXL S1 UPS 500kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 97,
-    description: "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
+    description:
+      "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
     features: [
       "Dynamic Online Mode with 99% efficiency",
       "Robust double-conversion design (97% efficiency)",
@@ -64,11 +72,17 @@ export const engineeredProductsData = [
       { label: "VOLTAGE OPTIONS", value: "380 / 400 / 415 V" },
       { label: "PARALLEL CAPABILITY", value: "Up to 8 units" },
     ],
-    imageSrc: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXL S1 UPS 500kW",
     images: [
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg", alt: "Vertiv™ Liebert® EXL S1 UPS" },
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/liebert-exl-s14.png", alt: "Configuration Options" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXL S1 UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Configuration Options",
+      },
     ],
     models: [
       {
@@ -80,9 +94,9 @@ export const engineeredProductsData = [
         height: 1950,
         width: 1400,
         depth: 900,
-        weight: "2000 kg"
+        weight: "2000 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exl-s1-600kw",
@@ -92,7 +106,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXL S1 UPS 600kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 97,
-    description: "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
+    description:
+      "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
     features: [
       "Dynamic Online Mode with 99% efficiency",
       "Robust double-conversion design (97% efficiency)",
@@ -106,11 +121,17 @@ export const engineeredProductsData = [
       { label: "VOLTAGE OPTIONS", value: "380 / 400 / 415 V" },
       { label: "PARALLEL CAPABILITY", value: "Up to 8 units" },
     ],
-    imageSrc: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXL S1 UPS 600kW",
     images: [
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg", alt: "Vertiv™ Liebert® EXL S1 UPS" },
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/liebert-exl-s14.png", alt: "Configuration Options" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXL S1 UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Configuration Options",
+      },
     ],
     models: [
       {
@@ -122,9 +143,9 @@ export const engineeredProductsData = [
         height: 1950,
         width: 2200,
         depth: 900,
-        weight: "2400 kg"
+        weight: "2400 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exl-s1-800kw",
@@ -134,7 +155,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXL S1 UPS 800kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 97,
-    description: "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
+    description:
+      "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
     features: [
       "Dynamic Online Mode with 99% efficiency",
       "Robust double-conversion design (97% efficiency)",
@@ -148,11 +170,17 @@ export const engineeredProductsData = [
       { label: "VOLTAGE OPTIONS", value: "380 / 400 / 415 V" },
       { label: "PARALLEL CAPABILITY", value: "Up to 8 units" },
     ],
-    imageSrc: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXL S1 UPS 800kW",
     images: [
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg", alt: "Vertiv™ Liebert® EXL S1 UPS" },
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/liebert-exl-s14.png", alt: "Configuration Options" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXL S1 UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Configuration Options",
+      },
     ],
     models: [
       {
@@ -164,9 +192,9 @@ export const engineeredProductsData = [
         height: 1950,
         width: 2200,
         depth: 900,
-        weight: "3200 kg"
+        weight: "3200 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exl-s1-1200kw",
@@ -176,7 +204,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXL S1 UPS 1200kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 97,
-    description: "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
+    description:
+      "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
     features: [
       "Dynamic Online Mode with 99% efficiency",
       "Robust double-conversion design (97% efficiency)",
@@ -190,11 +219,17 @@ export const engineeredProductsData = [
       { label: "VOLTAGE OPTIONS", value: "380 / 400 / 415 V" },
       { label: "PARALLEL CAPABILITY", value: "Up to 8 units" },
     ],
-    imageSrc: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXL S1 UPS 1200kW",
     images: [
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg", alt: "Vertiv™ Liebert® EXL S1 UPS" },
-      { src: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/liebert-exl-s14.png", alt: "Configuration Options" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXL S1 UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Configuration Options",
+      },
     ],
     models: [
       {
@@ -206,9 +241,9 @@ export const engineeredProductsData = [
         height: 1950,
         width: 440,
         depth: 900,
-        weight: "4800 kg"
+        weight: "4800 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exm2-100kw",
@@ -218,7 +253,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXM2 UPS 100kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Monolithic, high-efficiency UPS designed for mid-size applications. Incorporates next-generation cooling technologies and internal diagnostics to ensure maximum power reliability.",
+    description:
+      "Monolithic, high-efficiency UPS designed for mid-size applications. Incorporates next-generation cooling technologies and internal diagnostics to ensure maximum power reliability.",
     features: [
       "Up to 97% double conversion efficiency and 98.8% Dynamic Online efficiency",
       "Unity Power Factor (kVA = kW) ensuring maximum active power",
@@ -232,10 +268,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM EFFICIENCY", value: "Up to 98.8%" },
       { label: "FOOTPRINT", value: "0.64 m² (Highly Compact)" },
     ],
-    imageSrc: "https://www.vertiv.com/492dc0/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exm2-100-250kw/exm2-100-250kw-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXM2 UPS 100kW",
     images: [
-      { src: "https://www.vertiv.com/492dc0/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exm2-100-250kw/exm2-100-250kw-front.png", alt: "Vertiv Liebert EXM2 UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert EXM2 UPS",
+      },
     ],
     models: [
       {
@@ -247,9 +286,9 @@ export const engineeredProductsData = [
         height: 1900,
         width: 600,
         depth: 850,
-        weight: "400 kg"
+        weight: "400 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exm2-160kw",
@@ -259,7 +298,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXM2 UPS 160kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Monolithic, high-efficiency UPS designed for mid-size applications. Incorporates next-generation cooling technologies and internal diagnostics to ensure maximum power reliability.",
+    description:
+      "Monolithic, high-efficiency UPS designed for mid-size applications. Incorporates next-generation cooling technologies and internal diagnostics to ensure maximum power reliability.",
     features: [
       "Up to 97% double conversion efficiency and 98.8% Dynamic Online efficiency",
       "Unity Power Factor (kVA = kW) ensuring maximum active power",
@@ -273,10 +313,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM EFFICIENCY", value: "Up to 98.8%" },
       { label: "FOOTPRINT", value: "0.64 m² (Highly Compact)" },
     ],
-    imageSrc: "https://www.vertiv.com/492dc0/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exm2-100-250kw/exm2-100-250kw-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXM2 UPS 160kW",
     images: [
-      { src: "https://www.vertiv.com/492dc0/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exm2-100-250kw/exm2-100-250kw-front.png", alt: "Vertiv Liebert EXM2 UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert EXM2 UPS",
+      },
     ],
     models: [
       {
@@ -288,9 +331,9 @@ export const engineeredProductsData = [
         height: 1900,
         width: 1000,
         depth: 850,
-        weight: "640 kg"
+        weight: "640 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exm2-200kw",
@@ -300,7 +343,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXM2 UPS 200kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Monolithic, high-efficiency UPS designed for mid-size applications. Incorporates next-generation cooling technologies and internal diagnostics to ensure maximum power reliability.",
+    description:
+      "Monolithic, high-efficiency UPS designed for mid-size applications. Incorporates next-generation cooling technologies and internal diagnostics to ensure maximum power reliability.",
     features: [
       "Up to 97% double conversion efficiency and 98.8% Dynamic Online efficiency",
       "Unity Power Factor (kVA = kW) ensuring maximum active power",
@@ -314,10 +358,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM EFFICIENCY", value: "Up to 98.8%" },
       { label: "FOOTPRINT", value: "0.64 m² (Highly Compact)" },
     ],
-    imageSrc: "https://www.vertiv.com/492dc0/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exm2-100-250kw/exm2-100-250kw-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXM2 UPS 200kW",
     images: [
-      { src: "https://www.vertiv.com/492dc0/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exm2-100-250kw/exm2-100-250kw-front.png", alt: "Vertiv Liebert EXM2 UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert EXM2 UPS",
+      },
     ],
     models: [
       {
@@ -329,9 +376,9 @@ export const engineeredProductsData = [
         height: 1900,
         width: 1000,
         depth: 850,
-        weight: "800 kg"
+        weight: "800 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exm2-250kw",
@@ -341,7 +388,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXM2 UPS 250kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Monolithic, high-efficiency UPS designed for mid-size applications. Incorporates next-generation cooling technologies and internal diagnostics to ensure maximum power reliability.",
+    description:
+      "Monolithic, high-efficiency UPS designed for mid-size applications. Incorporates next-generation cooling technologies and internal diagnostics to ensure maximum power reliability.",
     features: [
       "Up to 97% double conversion efficiency and 98.8% Dynamic Online efficiency",
       "Unity Power Factor (kVA = kW) ensuring maximum active power",
@@ -355,10 +403,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM EFFICIENCY", value: "Up to 98.8%" },
       { label: "FOOTPRINT", value: "0.64 m² (Highly Compact)" },
     ],
-    imageSrc: "https://www.vertiv.com/492dc0/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exm2-100-250kw/exm2-100-250kw-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXM2 UPS 250kW",
     images: [
-      { src: "https://www.vertiv.com/492dc0/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exm2-100-250kw/exm2-100-250kw-front.png", alt: "Vertiv Liebert EXM2 UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert EXM2 UPS",
+      },
     ],
     models: [
       {
@@ -370,9 +421,9 @@ export const engineeredProductsData = [
         height: 1900,
         width: 1000,
         depth: 850,
-        weight: "1000 kg"
+        weight: "1000 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exm-15kva",
@@ -382,7 +433,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXM UPS 15kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "A highly versatile three-phase UPS designed to deliver scalable power protection for mid-sized IT spaces and server rooms, offering optimized efficiency and power density.",
+    description:
+      "A highly versatile three-phase UPS designed to deliver scalable power protection for mid-sized IT spaces and server rooms, offering optimized efficiency and power density.",
     features: [
       "High double-conversion efficiency of up to 96.5%",
       "Scalable design allowing capacity expansion without expanding the footprint",
@@ -396,10 +448,13 @@ export const engineeredProductsData = [
       { label: "PHASE CONFIG", value: "3-Phase Input/Output" },
       { label: "POWER FACTOR", value: "0.9" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0dfc/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exm-ups/liebert-exm-front.jpg",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXM UPS 15kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0dfc/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exm-ups/liebert-exm-front.jpg", alt: "Vertiv™ Liebert® EXM UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXM UPS",
+      },
     ],
     models: [
       {
@@ -411,9 +466,9 @@ export const engineeredProductsData = [
         height: 1600,
         width: 600,
         depth: 850,
-        weight: "60 kg"
+        weight: "60 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exm-30kva",
@@ -423,7 +478,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXM UPS 30kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "A highly versatile three-phase UPS designed to deliver scalable power protection for mid-sized IT spaces and server rooms, offering optimized efficiency and power density.",
+    description:
+      "A highly versatile three-phase UPS designed to deliver scalable power protection for mid-sized IT spaces and server rooms, offering optimized efficiency and power density.",
     features: [
       "High double-conversion efficiency of up to 96.5%",
       "Scalable design allowing capacity expansion without expanding the footprint",
@@ -437,10 +493,13 @@ export const engineeredProductsData = [
       { label: "PHASE CONFIG", value: "3-Phase Input/Output" },
       { label: "POWER FACTOR", value: "0.9" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0dfc/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exm-ups/liebert-exm-front.jpg",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXM UPS 30kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0dfc/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exm-ups/liebert-exm-front.jpg", alt: "Vertiv™ Liebert® EXM UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXM UPS",
+      },
     ],
     models: [
       {
@@ -452,9 +511,9 @@ export const engineeredProductsData = [
         height: 1600,
         width: 600,
         depth: 850,
-        weight: "120 kg"
+        weight: "120 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exm-90kva",
@@ -464,7 +523,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXM UPS 90kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "A highly versatile three-phase UPS designed to deliver scalable power protection for mid-sized IT spaces and server rooms, offering optimized efficiency and power density.",
+    description:
+      "A highly versatile three-phase UPS designed to deliver scalable power protection for mid-sized IT spaces and server rooms, offering optimized efficiency and power density.",
     features: [
       "High double-conversion efficiency of up to 96.5%",
       "Scalable design allowing capacity expansion without expanding the footprint",
@@ -478,10 +538,13 @@ export const engineeredProductsData = [
       { label: "PHASE CONFIG", value: "3-Phase Input/Output" },
       { label: "POWER FACTOR", value: "0.9" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0dfc/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exm-ups/liebert-exm-front.jpg",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXM UPS 90kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0dfc/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exm-ups/liebert-exm-front.jpg", alt: "Vertiv™ Liebert® EXM UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXM UPS",
+      },
     ],
     models: [
       {
@@ -493,9 +556,9 @@ export const engineeredProductsData = [
         height: 1600,
         width: 600,
         depth: 850,
-        weight: "360 kg"
+        weight: "360 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exm-100kva",
@@ -505,7 +568,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXM UPS 100kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "A highly versatile three-phase UPS designed to deliver scalable power protection for mid-sized IT spaces and server rooms, offering optimized efficiency and power density.",
+    description:
+      "A highly versatile three-phase UPS designed to deliver scalable power protection for mid-sized IT spaces and server rooms, offering optimized efficiency and power density.",
     features: [
       "High double-conversion efficiency of up to 96.5%",
       "Scalable design allowing capacity expansion without expanding the footprint",
@@ -519,10 +583,13 @@ export const engineeredProductsData = [
       { label: "PHASE CONFIG", value: "3-Phase Input/Output" },
       { label: "POWER FACTOR", value: "0.9" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0dfc/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exm-ups/liebert-exm-front.jpg",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXM UPS 100kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0dfc/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exm-ups/liebert-exm-front.jpg", alt: "Vertiv™ Liebert® EXM UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXM UPS",
+      },
     ],
     models: [
       {
@@ -534,9 +601,9 @@ export const engineeredProductsData = [
         height: 1600,
         width: 600,
         depth: 850,
-        weight: "400 kg"
+        weight: "400 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-apm2-120kw",
@@ -546,7 +613,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® APM2 Modular UPS 120kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 98,
-    description: "High-density, modular, and scalable UPS designed to support critical infrastructure including variable frequency drive (VFD) pumps and mechanical cooling systems in data centers.",
+    description:
+      "High-density, modular, and scalable UPS designed to support critical infrastructure including variable frequency drive (VFD) pumps and mechanical cooling systems in data centers.",
     features: [
       "Hot-scalable design with 30 kW power modules",
       "Dynamic Online mode with up to 99% system efficiency",
@@ -560,10 +628,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM EFFICIENCY", value: "Up to 99%" },
       { label: "FOOTPRINT", value: "Highly compact modular frame" },
     ],
-    imageSrc: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® APM2 Modular UPS 120kW",
     images: [
-      { src: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png", alt: "Vertiv Liebert APM2 UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert APM2 UPS",
+      },
     ],
     models: [
       {
@@ -575,9 +646,9 @@ export const engineeredProductsData = [
         height: 2000,
         width: 600,
         depth: 1000,
-        weight: "180.0 kg"
+        weight: "180.0 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-apm2-300kw",
@@ -587,7 +658,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® APM2 Modular UPS 300kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 98,
-    description: "High-density, modular, and scalable UPS designed to support critical infrastructure including variable frequency drive (VFD) pumps and mechanical cooling systems in data centers.",
+    description:
+      "High-density, modular, and scalable UPS designed to support critical infrastructure including variable frequency drive (VFD) pumps and mechanical cooling systems in data centers.",
     features: [
       "Hot-scalable design with 30 kW power modules",
       "Dynamic Online mode with up to 99% system efficiency",
@@ -601,10 +673,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM EFFICIENCY", value: "Up to 99%" },
       { label: "FOOTPRINT", value: "Highly compact modular frame" },
     ],
-    imageSrc: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® APM2 Modular UPS 300kW",
     images: [
-      { src: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png", alt: "Vertiv Liebert APM2 UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert APM2 UPS",
+      },
     ],
     models: [
       {
@@ -616,9 +691,9 @@ export const engineeredProductsData = [
         height: 2000,
         width: 1000,
         depth: 1000,
-        weight: "450.0 kg"
+        weight: "450.0 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-apm2-600kw",
@@ -628,7 +703,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® APM2 Modular UPS 600kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 98,
-    description: "High-density, modular, and scalable UPS designed to support critical infrastructure including variable frequency drive (VFD) pumps and mechanical cooling systems in data centers.",
+    description:
+      "High-density, modular, and scalable UPS designed to support critical infrastructure including variable frequency drive (VFD) pumps and mechanical cooling systems in data centers.",
     features: [
       "Hot-scalable design with 30 kW power modules",
       "Dynamic Online mode with up to 99% system efficiency",
@@ -642,10 +718,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM EFFICIENCY", value: "Up to 99%" },
       { label: "FOOTPRINT", value: "Highly compact modular frame" },
     ],
-    imageSrc: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® APM2 Modular UPS 600kW",
     images: [
-      { src: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png", alt: "Vertiv Liebert APM2 UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert APM2 UPS",
+      },
     ],
     models: [
       {
@@ -657,9 +736,9 @@ export const engineeredProductsData = [
         height: 2000,
         width: 1000,
         depth: 1000,
-        weight: "900.0 kg"
+        weight: "900.0 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-apm-30kw",
@@ -669,7 +748,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® APM Modular UPS 30kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "The Liebert® APM is a versatile, modular, and transformer-free UPS designed for medium- to large-sized business-critical applications requiring fast modular capacity scaling.",
+    description:
+      "The Liebert® APM is a versatile, modular, and transformer-free UPS designed for medium- to large-sized business-critical applications requiring fast modular capacity scaling.",
     features: [
       "Hot-swappable capacity scaling in 15kW increments",
       "Transformer-free design with high double conversion efficiency",
@@ -683,10 +763,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM TOPOLOGY", value: "Modular Transformer-free" },
       { label: "EFFICIENCY", value: "Up to 96.0% Online" },
     ],
-    imageSrc: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® APM Modular UPS 30kW",
     images: [
-      { src: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png", alt: "Vertiv Liebert APM UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert APM UPS",
+      },
     ],
     models: [
       {
@@ -698,9 +781,9 @@ export const engineeredProductsData = [
         height: 2000,
         width: 600,
         depth: 1000,
-        weight: "60 kg"
+        weight: "60 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-apm-90kw",
@@ -710,7 +793,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® APM Modular UPS 90kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "The Liebert® APM is a versatile, modular, and transformer-free UPS designed for medium- to large-sized business-critical applications requiring fast modular capacity scaling.",
+    description:
+      "The Liebert® APM is a versatile, modular, and transformer-free UPS designed for medium- to large-sized business-critical applications requiring fast modular capacity scaling.",
     features: [
       "Hot-swappable capacity scaling in 15kW increments",
       "Transformer-free design with high double conversion efficiency",
@@ -724,10 +808,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM TOPOLOGY", value: "Modular Transformer-free" },
       { label: "EFFICIENCY", value: "Up to 96.0% Online" },
     ],
-    imageSrc: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® APM Modular UPS 90kW",
     images: [
-      { src: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png", alt: "Vertiv Liebert APM UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert APM UPS",
+      },
     ],
     models: [
       {
@@ -739,9 +826,9 @@ export const engineeredProductsData = [
         height: 2000,
         width: 600,
         depth: 1000,
-        weight: "180 kg"
+        weight: "180 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-apm-150kw",
@@ -751,7 +838,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® APM Modular UPS 150kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "The Liebert® APM is a versatile, modular, and transformer-free UPS designed for medium- to large-sized business-critical applications requiring fast modular capacity scaling.",
+    description:
+      "The Liebert® APM is a versatile, modular, and transformer-free UPS designed for medium- to large-sized business-critical applications requiring fast modular capacity scaling.",
     features: [
       "Hot-swappable capacity scaling in 15kW increments",
       "Transformer-free design with high double conversion efficiency",
@@ -765,10 +853,13 @@ export const engineeredProductsData = [
       { label: "SYSTEM TOPOLOGY", value: "Modular Transformer-free" },
       { label: "EFFICIENCY", value: "Up to 96.0% Online" },
     ],
-    imageSrc: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® APM Modular UPS 150kW",
     images: [
-      { src: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-apm2/liebert-apm2-front.png", alt: "Vertiv Liebert APM UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert APM UPS",
+      },
     ],
     models: [
       {
@@ -780,9 +871,9 @@ export const engineeredProductsData = [
         height: 2000,
         width: 600,
         depth: 1000,
-        weight: "300 kg"
+        weight: "300 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exs-10kva",
@@ -792,7 +883,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXS Three-Phase UPS 10kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "A highly compact, transformer-free monolithic three-phase UPS, optimizing battery integration and footprint, making it the perfect choice for small IT spaces and retail offices.",
+    description:
+      "A highly compact, transformer-free monolithic three-phase UPS, optimizing battery integration and footprint, making it the perfect choice for small IT spaces and retail offices.",
     features: [
       "Compact footprint with integrated internal batteries",
       "High efficiency of up to 96.2% in double-conversion mode",
@@ -806,10 +898,13 @@ export const engineeredProductsData = [
       { label: "POWER FACTOR", value: "0.99" },
       { label: "BATTERY TYPE", value: "Integrated Internal Batteries" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exs/liebert-exs-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXS Three-Phase UPS 10kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exs/liebert-exs-front.png", alt: "Vertiv™ Liebert® EXS UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXS UPS",
+      },
     ],
     models: [
       {
@@ -821,9 +916,9 @@ export const engineeredProductsData = [
         height: 1400,
         width: 500,
         depth: 800,
-        weight: "100 kg"
+        weight: "100 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exs-20kva",
@@ -833,7 +928,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXS Three-Phase UPS 20kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "A highly compact, transformer-free monolithic three-phase UPS, optimizing battery integration and footprint, making it the perfect choice for small IT spaces and retail offices.",
+    description:
+      "A highly compact, transformer-free monolithic three-phase UPS, optimizing battery integration and footprint, making it the perfect choice for small IT spaces and retail offices.",
     features: [
       "Compact footprint with integrated internal batteries",
       "High efficiency of up to 96.2% in double-conversion mode",
@@ -847,10 +943,13 @@ export const engineeredProductsData = [
       { label: "POWER FACTOR", value: "0.99" },
       { label: "BATTERY TYPE", value: "Integrated Internal Batteries" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exs/liebert-exs-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXS Three-Phase UPS 20kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exs/liebert-exs-front.png", alt: "Vertiv™ Liebert® EXS UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXS UPS",
+      },
     ],
     models: [
       {
@@ -862,9 +961,9 @@ export const engineeredProductsData = [
         height: 1400,
         width: 500,
         depth: 800,
-        weight: "200 kg"
+        weight: "200 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exs-40kva",
@@ -874,7 +973,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXS Three-Phase UPS 40kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "A highly compact, transformer-free monolithic three-phase UPS, optimizing battery integration and footprint, making it the perfect choice for small IT spaces and retail offices.",
+    description:
+      "A highly compact, transformer-free monolithic three-phase UPS, optimizing battery integration and footprint, making it the perfect choice for small IT spaces and retail offices.",
     features: [
       "Compact footprint with integrated internal batteries",
       "High efficiency of up to 96.2% in double-conversion mode",
@@ -888,10 +988,13 @@ export const engineeredProductsData = [
       { label: "POWER FACTOR", value: "0.99" },
       { label: "BATTERY TYPE", value: "Integrated Internal Batteries" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exs/liebert-exs-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXS Three-Phase UPS 40kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exs/liebert-exs-front.png", alt: "Vertiv™ Liebert® EXS UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXS UPS",
+      },
     ],
     models: [
       {
@@ -903,9 +1006,9 @@ export const engineeredProductsData = [
         height: 1600,
         width: 600,
         depth: 850,
-        weight: "400 kg"
+        weight: "400 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-exs-80kva",
@@ -915,7 +1018,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® EXS Three-Phase UPS 80kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "A highly compact, transformer-free monolithic three-phase UPS, optimizing battery integration and footprint, making it the perfect choice for small IT spaces and retail offices.",
+    description:
+      "A highly compact, transformer-free monolithic three-phase UPS, optimizing battery integration and footprint, making it the perfect choice for small IT spaces and retail offices.",
     features: [
       "Compact footprint with integrated internal batteries",
       "High efficiency of up to 96.2% in double-conversion mode",
@@ -929,10 +1033,13 @@ export const engineeredProductsData = [
       { label: "POWER FACTOR", value: "0.99" },
       { label: "BATTERY TYPE", value: "Integrated Internal Batteries" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exs/liebert-exs-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® EXS Three-Phase UPS 80kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exs/liebert-exs-front.png", alt: "Vertiv™ Liebert® EXS UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® EXS UPS",
+      },
     ],
     models: [
       {
@@ -944,9 +1051,9 @@ export const engineeredProductsData = [
         height: 1600,
         width: 600,
         depth: 850,
-        weight: "800 kg"
+        weight: "800 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-aps-10kva",
@@ -956,7 +1063,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® APS Modular UPS 10kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 93,
-    description: "A modular, redundant UPS solution designed for small-to-medium data centers, offering high adaptability and easy hot-swappable capacity scaling.",
+    description:
+      "A modular, redundant UPS solution designed for small-to-medium data centers, offering high adaptability and easy hot-swappable capacity scaling.",
     features: [
       "Modular design with hot-swappable modules (power & battery)",
       "Internal N+1 redundancy capability for high availability",
@@ -970,10 +1078,13 @@ export const engineeredProductsData = [
       { label: "EFFICIENCY", value: "93.5% Double Conversion" },
       { label: "SCALABILITY", value: "Up to 4 Modules" },
     ],
-    imageSrc: "https://www.vertiv.com/492ee7/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-aps-ups/liebert-aps-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® APS Modular UPS 10kVA",
     images: [
-      { src: "https://www.vertiv.com/492ee7/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-aps-ups/liebert-aps-front.png", alt: "Vertiv Liebert APS UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert APS UPS",
+      },
     ],
     models: [
       {
@@ -985,9 +1096,9 @@ export const engineeredProductsData = [
         height: 1200,
         width: 600,
         depth: 800,
-        weight: "150 kg"
+        weight: "150 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-aps-20kva",
@@ -997,7 +1108,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® APS Modular UPS 20kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 93,
-    description: "A modular, redundant UPS solution designed for small-to-medium data centers, offering high adaptability and easy hot-swappable capacity scaling.",
+    description:
+      "A modular, redundant UPS solution designed for small-to-medium data centers, offering high adaptability and easy hot-swappable capacity scaling.",
     features: [
       "Modular design with hot-swappable modules (power & battery)",
       "Internal N+1 redundancy capability for high availability",
@@ -1011,10 +1123,13 @@ export const engineeredProductsData = [
       { label: "EFFICIENCY", value: "93.5% Double Conversion" },
       { label: "SCALABILITY", value: "Up to 4 Modules" },
     ],
-    imageSrc: "https://www.vertiv.com/492ee7/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-aps-ups/liebert-aps-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® APS Modular UPS 20kVA",
     images: [
-      { src: "https://www.vertiv.com/492ee7/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-aps-ups/liebert-aps-front.png", alt: "Vertiv Liebert APS UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert APS UPS",
+      },
     ],
     models: [
       {
@@ -1026,9 +1141,9 @@ export const engineeredProductsData = [
         height: 1720,
         width: 600,
         depth: 800,
-        weight: "300 kg"
+        weight: "300 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-ita2-5kva",
@@ -1038,7 +1153,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® ITA2 Convertible UPS 5kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Highly reliable, double-conversion UPS designed for rack or tower configuration, providing premium load protection for edge network cabinets and dusty industrial environments.",
+    description:
+      "Highly reliable, double-conversion UPS designed for rack or tower configuration, providing premium load protection for edge network cabinets and dusty industrial environments.",
     features: [
       "96.2% efficiency in double-conversion mode and 99% in Eco Mode",
       "0.99 Input Power Factor & Unity Output Power Factor",
@@ -1050,13 +1166,22 @@ export const engineeredProductsData = [
       { label: "CAPACITY", value: "5 kVA" },
       { label: "POWER FACTOR", value: "1.0 (Unity)" },
       { label: "HEIGHT", value: "2U / 3U rackmount space" },
-      { label: "BATTERY TYPE", value: "Internal / External Lead-Acid & Lithium-Ion" },
+      {
+        label: "BATTERY TYPE",
+        value: "Internal / External Lead-Acid & Lithium-Ion",
+      },
     ],
-    imageSrc: "https://www.vertiv.com/49e623/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® ITA2 Convertible UPS 5kVA",
     images: [
-      { src: "https://www.vertiv.com/49e623/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-front.png", alt: "Vertiv Liebert ITA2 UPS" },
-      { src: "https://www.vertiv.com/49e63c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-rack.png", alt: "Installed in Rack" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert ITA2 UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Installed in Rack",
+      },
     ],
     models: [
       {
@@ -1068,9 +1193,9 @@ export const engineeredProductsData = [
         height: 85,
         width: 438,
         depth: 680,
-        weight: "10 kg"
+        weight: "10 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-ita2-10kva",
@@ -1080,7 +1205,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® ITA2 Convertible UPS 10kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Highly reliable, double-conversion UPS designed for rack or tower configuration, providing premium load protection for edge network cabinets and dusty industrial environments.",
+    description:
+      "Highly reliable, double-conversion UPS designed for rack or tower configuration, providing premium load protection for edge network cabinets and dusty industrial environments.",
     features: [
       "96.2% efficiency in double-conversion mode and 99% in Eco Mode",
       "0.99 Input Power Factor & Unity Output Power Factor",
@@ -1092,13 +1218,22 @@ export const engineeredProductsData = [
       { label: "CAPACITY", value: "10 kVA" },
       { label: "POWER FACTOR", value: "1.0 (Unity)" },
       { label: "HEIGHT", value: "2U / 3U rackmount space" },
-      { label: "BATTERY TYPE", value: "Internal / External Lead-Acid & Lithium-Ion" },
+      {
+        label: "BATTERY TYPE",
+        value: "Internal / External Lead-Acid & Lithium-Ion",
+      },
     ],
-    imageSrc: "https://www.vertiv.com/49e623/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® ITA2 Convertible UPS 10kVA",
     images: [
-      { src: "https://www.vertiv.com/49e623/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-front.png", alt: "Vertiv Liebert ITA2 UPS" },
-      { src: "https://www.vertiv.com/49e63c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-rack.png", alt: "Installed in Rack" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert ITA2 UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Installed in Rack",
+      },
     ],
     models: [
       {
@@ -1110,9 +1245,9 @@ export const engineeredProductsData = [
         height: 85,
         width: 438,
         depth: 680,
-        weight: "20 kg"
+        weight: "20 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-ita2-20kva",
@@ -1122,7 +1257,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® ITA2 Convertible UPS 20kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Highly reliable, double-conversion UPS designed for rack or tower configuration, providing premium load protection for edge network cabinets and dusty industrial environments.",
+    description:
+      "Highly reliable, double-conversion UPS designed for rack or tower configuration, providing premium load protection for edge network cabinets and dusty industrial environments.",
     features: [
       "96.2% efficiency in double-conversion mode and 99% in Eco Mode",
       "0.99 Input Power Factor & Unity Output Power Factor",
@@ -1134,13 +1270,22 @@ export const engineeredProductsData = [
       { label: "CAPACITY", value: "20 kVA" },
       { label: "POWER FACTOR", value: "1.0 (Unity)" },
       { label: "HEIGHT", value: "2U / 3U rackmount space" },
-      { label: "BATTERY TYPE", value: "Internal / External Lead-Acid & Lithium-Ion" },
+      {
+        label: "BATTERY TYPE",
+        value: "Internal / External Lead-Acid & Lithium-Ion",
+      },
     ],
-    imageSrc: "https://www.vertiv.com/49e623/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® ITA2 Convertible UPS 20kVA",
     images: [
-      { src: "https://www.vertiv.com/49e623/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-front.png", alt: "Vertiv Liebert ITA2 UPS" },
-      { src: "https://www.vertiv.com/49e63c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-rack.png", alt: "Installed in Rack" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert ITA2 UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Installed in Rack",
+      },
     ],
     models: [
       {
@@ -1152,9 +1297,9 @@ export const engineeredProductsData = [
         height: 130,
         width: 438,
         depth: 750,
-        weight: "40 kg"
+        weight: "40 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-ita2-30kva",
@@ -1164,7 +1309,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® ITA2 Convertible UPS 30kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Highly reliable, double-conversion UPS designed for rack or tower configuration, providing premium load protection for edge network cabinets and dusty industrial environments.",
+    description:
+      "Highly reliable, double-conversion UPS designed for rack or tower configuration, providing premium load protection for edge network cabinets and dusty industrial environments.",
     features: [
       "96.2% efficiency in double-conversion mode and 99% in Eco Mode",
       "0.99 Input Power Factor & Unity Output Power Factor",
@@ -1176,13 +1322,22 @@ export const engineeredProductsData = [
       { label: "CAPACITY", value: "30 kVA" },
       { label: "POWER FACTOR", value: "1.0 (Unity)" },
       { label: "HEIGHT", value: "2U / 3U rackmount space" },
-      { label: "BATTERY TYPE", value: "Internal / External Lead-Acid & Lithium-Ion" },
+      {
+        label: "BATTERY TYPE",
+        value: "Internal / External Lead-Acid & Lithium-Ion",
+      },
     ],
-    imageSrc: "https://www.vertiv.com/49e623/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® ITA2 Convertible UPS 30kVA",
     images: [
-      { src: "https://www.vertiv.com/49e623/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-front.png", alt: "Vertiv Liebert ITA2 UPS" },
-      { src: "https://www.vertiv.com/49e63c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-ita2-5-10kva/liebert-ita2-rack.png", alt: "Installed in Rack" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert ITA2 UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Installed in Rack",
+      },
     ],
     models: [
       {
@@ -1194,9 +1349,9 @@ export const engineeredProductsData = [
         height: 130,
         width: 438,
         depth: 750,
-        weight: "60 kg"
+        weight: "60 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxt5-1500va",
@@ -1206,7 +1361,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXT5 VRLA UPS 1500VA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 95,
-    description: "Online double-conversion UPS system offering premium power outage protection and continuous power conditioning in a compact deployment footprint, ideal for edge server racks.",
+    description:
+      "Online double-conversion UPS system offering premium power outage protection and continuous power conditioning in a compact deployment footprint, ideal for edge server racks.",
     features: [
       "Continuous power conditioning with low noise output",
       "User-friendly multi-color LCD interface with gravity-sensing orientation",
@@ -1220,11 +1376,17 @@ export const engineeredProductsData = [
       { label: "CERTIFICATIONS", value: "Energy Star 2.0 / CE" },
       { label: "BATTERY TYPE", value: "VRLA (Lead-Acid)" },
     ],
-    imageSrc: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png",
+    imageSrc: "/images/products/gxt.png",
     imageAlt: "Vertiv™ Liebert® GXT5 VRLA UPS 1500VA",
     images: [
-      { src: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png", alt: "Vertiv Liebert GXT5 UPS" },
-      { src: "https://www.vertiv.com/49bba3/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-rear.png", alt: "Rear Connectors" },
+      {
+        src: "/images/products/gxt.png",
+        alt: "Vertiv Liebert GXT5 UPS",
+      },
+      {
+        src: "/images/products/gxt.png",
+        alt: "Rear Connectors",
+      },
     ],
     models: [
       {
@@ -1236,9 +1398,9 @@ export const engineeredProductsData = [
         height: 85,
         width: 430,
         depth: 540,
-        weight: "20 kg"
+        weight: "20 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxt5-3000va",
@@ -1248,7 +1410,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXT5 VRLA UPS 3000VA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 95,
-    description: "Online double-conversion UPS system offering premium power outage protection and continuous power conditioning in a compact deployment footprint, ideal for edge server racks.",
+    description:
+      "Online double-conversion UPS system offering premium power outage protection and continuous power conditioning in a compact deployment footprint, ideal for edge server racks.",
     features: [
       "Continuous power conditioning with low noise output",
       "User-friendly multi-color LCD interface with gravity-sensing orientation",
@@ -1262,11 +1425,17 @@ export const engineeredProductsData = [
       { label: "CERTIFICATIONS", value: "Energy Star 2.0 / CE" },
       { label: "BATTERY TYPE", value: "VRLA (Lead-Acid)" },
     ],
-    imageSrc: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png",
+    imageSrc: "/images/products/gxt.png",
     imageAlt: "Vertiv™ Liebert® GXT5 VRLA UPS 3000VA",
     images: [
-      { src: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png", alt: "Vertiv Liebert GXT5 UPS" },
-      { src: "https://www.vertiv.com/49bba3/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-rear.png", alt: "Rear Connectors" },
+      {
+        src: "/images/products/gxt.png",
+        alt: "Vertiv Liebert GXT5 UPS",
+      },
+      {
+        src: "/images/products/gxt.png",
+        alt: "Rear Connectors",
+      },
     ],
     models: [
       {
@@ -1278,9 +1447,9 @@ export const engineeredProductsData = [
         height: 85,
         width: 430,
         depth: 540,
-        weight: "28 kg"
+        weight: "28 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxt5-10000va",
@@ -1290,7 +1459,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXT5 VRLA UPS 10000VA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 95,
-    description: "Online double-conversion UPS system offering premium power outage protection and continuous power conditioning in a compact deployment footprint, ideal for edge server racks.",
+    description:
+      "Online double-conversion UPS system offering premium power outage protection and continuous power conditioning in a compact deployment footprint, ideal for edge server racks.",
     features: [
       "Continuous power conditioning with low noise output",
       "User-friendly multi-color LCD interface with gravity-sensing orientation",
@@ -1304,11 +1474,17 @@ export const engineeredProductsData = [
       { label: "CERTIFICATIONS", value: "Energy Star 2.0 / CE" },
       { label: "BATTERY TYPE", value: "VRLA (Lead-Acid)" },
     ],
-    imageSrc: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png",
+    imageSrc: "/images/products/gxt.png",
     imageAlt: "Vertiv™ Liebert® GXT5 VRLA UPS 10000VA",
     images: [
-      { src: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png", alt: "Vertiv Liebert GXT5 UPS" },
-      { src: "https://www.vertiv.com/49bba3/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-rear.png", alt: "Rear Connectors" },
+      {
+        src: "/images/products/gxt.png",
+        alt: "Vertiv Liebert GXT5 UPS",
+      },
+      {
+        src: "/images/products/gxt.png",
+        alt: "Rear Connectors",
+      },
     ],
     models: [
       {
@@ -1320,9 +1496,9 @@ export const engineeredProductsData = [
         height: 217,
         width: 430,
         depth: 630,
-        weight: "74 kg"
+        weight: "74 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxt5-li-1500va",
@@ -1332,7 +1508,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXT5 Lithium-Ion UPS 1500VA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Online double-conversion UPS using premium Lithium-Ion battery chemistry to deliver longer design life, smaller footprint, and faster recharge rates for edge network nodes.",
+    description:
+      "Online double-conversion UPS using premium Lithium-Ion battery chemistry to deliver longer design life, smaller footprint, and faster recharge rates for edge network nodes.",
     features: [
       "High temperature threshold resilience (up to 50°C)",
       "Up to 3x design life compared to VRLA (10 years operational life)",
@@ -1346,10 +1523,13 @@ export const engineeredProductsData = [
       { label: "DESIGN LIFE", value: "8-10 Years" },
       { label: "WARRANTY", value: "5-Year Full Warranty" },
     ],
-    imageSrc: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png",
+    imageSrc: "/images/products/gxt.png",
     imageAlt: "Vertiv™ Liebert® GXT5 Lithium-Ion UPS 1500VA",
     images: [
-      { src: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png", alt: "Vertiv Liebert GXT5 Lithium-Ion" },
+      {
+        src: "/images/products/gxt.png",
+        alt: "Vertiv Liebert GXT5 Lithium-Ion",
+      },
     ],
     models: [
       {
@@ -1361,9 +1541,9 @@ export const engineeredProductsData = [
         height: 85,
         width: 430,
         depth: 540,
-        weight: "14 kg"
+        weight: "14 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxt5-li-3000va",
@@ -1373,7 +1553,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXT5 Lithium-Ion UPS 3000VA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Online double-conversion UPS using premium Lithium-Ion battery chemistry to deliver longer design life, smaller footprint, and faster recharge rates for edge network nodes.",
+    description:
+      "Online double-conversion UPS using premium Lithium-Ion battery chemistry to deliver longer design life, smaller footprint, and faster recharge rates for edge network nodes.",
     features: [
       "High temperature threshold resilience (up to 50°C)",
       "Up to 3x design life compared to VRLA (10 years operational life)",
@@ -1387,10 +1568,13 @@ export const engineeredProductsData = [
       { label: "DESIGN LIFE", value: "8-10 Years" },
       { label: "WARRANTY", value: "5-Year Full Warranty" },
     ],
-    imageSrc: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png",
+    imageSrc: "/images/products/gxt.png",
     imageAlt: "Vertiv™ Liebert® GXT5 Lithium-Ion UPS 3000VA",
     images: [
-      { src: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png", alt: "Vertiv Liebert GXT5 Lithium-Ion" },
+      {
+        src: "/images/products/gxt.png",
+        alt: "Vertiv Liebert GXT5 Lithium-Ion",
+      },
     ],
     models: [
       {
@@ -1402,9 +1586,9 @@ export const engineeredProductsData = [
         height: 85,
         width: 430,
         depth: 540,
-        weight: "19 kg"
+        weight: "19 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxt5-li-10000va",
@@ -1414,7 +1598,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXT5 Lithium-Ion UPS 10000VA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 96,
-    description: "Online double-conversion UPS using premium Lithium-Ion battery chemistry to deliver longer design life, smaller footprint, and faster recharge rates for edge network nodes.",
+    description:
+      "Online double-conversion UPS using premium Lithium-Ion battery chemistry to deliver longer design life, smaller footprint, and faster recharge rates for edge network nodes.",
     features: [
       "High temperature threshold resilience (up to 50°C)",
       "Up to 3x design life compared to VRLA (10 years operational life)",
@@ -1428,10 +1613,13 @@ export const engineeredProductsData = [
       { label: "DESIGN LIFE", value: "8-10 Years" },
       { label: "WARRANTY", value: "5-Year Full Warranty" },
     ],
-    imageSrc: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png",
+    imageSrc: "/images/products/gxt.png",
     imageAlt: "Vertiv™ Liebert® GXT5 Lithium-Ion UPS 10000VA",
     images: [
-      { src: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png", alt: "Vertiv Liebert GXT5 Lithium-Ion" },
+      {
+        src: "/images/products/gxt.png",
+        alt: "Vertiv Liebert GXT5 Lithium-Ion",
+      },
     ],
     models: [
       {
@@ -1443,9 +1631,9 @@ export const engineeredProductsData = [
         height: 217,
         width: 430,
         depth: 630,
-        weight: "52 kg"
+        weight: "52 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxe-6kva",
@@ -1455,7 +1643,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXE Online UPS 6kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 94,
-    description: "Affordable, high-performance online double-conversion UPS system designed to protect servers, network cabinets, and small industrial processes.",
+    description:
+      "Affordable, high-performance online double-conversion UPS system designed to protect servers, network cabinets, and small industrial processes.",
     features: [
       "High output power factor of 0.9 or 1.0 depending on capacity",
       "Reliable online double-conversion technology with wide input range",
@@ -1469,10 +1658,13 @@ export const engineeredProductsData = [
       { label: "TOPOLOGY", value: "Online Double-Conversion" },
       { label: "EFFICIENCY", value: "Up to 94% Online" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-gxe/liebert-gxe-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® GXE Online UPS 6kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-gxe/liebert-gxe-front.png", alt: "Vertiv™ Liebert® GXE UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® GXE UPS",
+      },
     ],
     models: [
       {
@@ -1484,9 +1676,9 @@ export const engineeredProductsData = [
         height: 176,
         width: 438,
         depth: 600,
-        weight: "36 kg"
+        weight: "36 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxe-10kva",
@@ -1496,7 +1688,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXE Online UPS 10kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 94,
-    description: "Affordable, high-performance online double-conversion UPS system designed to protect servers, network cabinets, and small industrial processes.",
+    description:
+      "Affordable, high-performance online double-conversion UPS system designed to protect servers, network cabinets, and small industrial processes.",
     features: [
       "High output power factor of 0.9 or 1.0 depending on capacity",
       "Reliable online double-conversion technology with wide input range",
@@ -1510,10 +1703,13 @@ export const engineeredProductsData = [
       { label: "TOPOLOGY", value: "Online Double-Conversion" },
       { label: "EFFICIENCY", value: "Up to 94% Online" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-gxe/liebert-gxe-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® GXE Online UPS 10kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-gxe/liebert-gxe-front.png", alt: "Vertiv™ Liebert® GXE UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® GXE UPS",
+      },
     ],
     models: [
       {
@@ -1525,9 +1721,9 @@ export const engineeredProductsData = [
         height: 176,
         width: 438,
         depth: 600,
-        weight: "60 kg"
+        weight: "60 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxe-15kva",
@@ -1537,7 +1733,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXE Online UPS 15kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 94,
-    description: "Affordable, high-performance online double-conversion UPS system designed to protect servers, network cabinets, and small industrial processes.",
+    description:
+      "Affordable, high-performance online double-conversion UPS system designed to protect servers, network cabinets, and small industrial processes.",
     features: [
       "High output power factor of 0.9 or 1.0 depending on capacity",
       "Reliable online double-conversion technology with wide input range",
@@ -1551,10 +1748,13 @@ export const engineeredProductsData = [
       { label: "TOPOLOGY", value: "Online Double-Conversion" },
       { label: "EFFICIENCY", value: "Up to 94% Online" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-gxe/liebert-gxe-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® GXE Online UPS 15kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-gxe/liebert-gxe-front.png", alt: "Vertiv™ Liebert® GXE UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® GXE UPS",
+      },
     ],
     models: [
       {
@@ -1566,9 +1766,9 @@ export const engineeredProductsData = [
         height: 176,
         width: 438,
         depth: 600,
-        weight: "90 kg"
+        weight: "90 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-gxe-20kva",
@@ -1578,7 +1778,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® GXE Online UPS 20kVA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 94,
-    description: "Affordable, high-performance online double-conversion UPS system designed to protect servers, network cabinets, and small industrial processes.",
+    description:
+      "Affordable, high-performance online double-conversion UPS system designed to protect servers, network cabinets, and small industrial processes.",
     features: [
       "High output power factor of 0.9 or 1.0 depending on capacity",
       "Reliable online double-conversion technology with wide input range",
@@ -1592,10 +1793,13 @@ export const engineeredProductsData = [
       { label: "TOPOLOGY", value: "Online Double-Conversion" },
       { label: "EFFICIENCY", value: "Up to 94% Online" },
     ],
-    imageSrc: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-gxe/liebert-gxe-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® GXE Online UPS 20kVA",
     images: [
-      { src: "https://www.vertiv.com/4a0378/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-gxe/liebert-gxe-front.png", alt: "Vertiv™ Liebert® GXE UPS" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv™ Liebert® GXE UPS",
+      },
     ],
     models: [
       {
@@ -1607,9 +1811,9 @@ export const engineeredProductsData = [
         height: 176,
         width: 438,
         depth: 600,
-        weight: "120 kg"
+        weight: "120 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-psi5-1500va",
@@ -1619,7 +1823,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® PSI5 Line-Interactive UPS 1500VA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 97,
-    description: "Highly reliable line-interactive UPS system featuring Automatic Voltage Regulation (AVR) to protect critical edge servers and network switches in standard 19-inch IT racks.",
+    description:
+      "Highly reliable line-interactive UPS system featuring Automatic Voltage Regulation (AVR) to protect critical edge servers and network switches in standard 19-inch IT racks.",
     features: [
       "Line-interactive topology with sine-wave output",
       "Automatic Voltage Regulation (AVR) adjusts voltage swings without using battery",
@@ -1633,10 +1838,13 @@ export const engineeredProductsData = [
       { label: "CHASSIS SPACE", value: "2U Rackmount Frame" },
       { label: "AVR CONTROL", value: "Buck/Boost Regulation" },
     ],
-    imageSrc: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® PSI5 Line-Interactive UPS 1500VA",
     images: [
-      { src: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png", alt: "Vertiv Liebert PSI5" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert PSI5",
+      },
     ],
     models: [
       {
@@ -1648,9 +1856,9 @@ export const engineeredProductsData = [
         height: 88,
         width: 440,
         depth: 490,
-        weight: "18 kg"
+        weight: "18 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-psi5-2200va",
@@ -1660,7 +1868,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® PSI5 Line-Interactive UPS 2200VA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 97,
-    description: "Highly reliable line-interactive UPS system featuring Automatic Voltage Regulation (AVR) to protect critical edge servers and network switches in standard 19-inch IT racks.",
+    description:
+      "Highly reliable line-interactive UPS system featuring Automatic Voltage Regulation (AVR) to protect critical edge servers and network switches in standard 19-inch IT racks.",
     features: [
       "Line-interactive topology with sine-wave output",
       "Automatic Voltage Regulation (AVR) adjusts voltage swings without using battery",
@@ -1674,10 +1883,13 @@ export const engineeredProductsData = [
       { label: "CHASSIS SPACE", value: "2U Rackmount Frame" },
       { label: "AVR CONTROL", value: "Buck/Boost Regulation" },
     ],
-    imageSrc: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® PSI5 Line-Interactive UPS 2200VA",
     images: [
-      { src: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png", alt: "Vertiv Liebert PSI5" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert PSI5",
+      },
     ],
     models: [
       {
@@ -1689,9 +1901,9 @@ export const engineeredProductsData = [
         height: 88,
         width: 440,
         depth: 630,
-        weight: "24 kg"
+        weight: "24 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-liebert-psi5-3000va",
@@ -1701,7 +1913,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Liebert® PSI5 Line-Interactive UPS 3000VA",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 97,
-    description: "Highly reliable line-interactive UPS system featuring Automatic Voltage Regulation (AVR) to protect critical edge servers and network switches in standard 19-inch IT racks.",
+    description:
+      "Highly reliable line-interactive UPS system featuring Automatic Voltage Regulation (AVR) to protect critical edge servers and network switches in standard 19-inch IT racks.",
     features: [
       "Line-interactive topology with sine-wave output",
       "Automatic Voltage Regulation (AVR) adjusts voltage swings without using battery",
@@ -1715,10 +1928,13 @@ export const engineeredProductsData = [
       { label: "CHASSIS SPACE", value: "2U Rackmount Frame" },
       { label: "AVR CONTROL", value: "Buck/Boost Regulation" },
     ],
-    imageSrc: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Liebert® PSI5 Line-Interactive UPS 3000VA",
     images: [
-      { src: "https://www.vertiv.com/49bb9a/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-gxt5-1-3kva/gxt5-1-3kva-front.png", alt: "Vertiv Liebert PSI5" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Liebert PSI5",
+      },
     ],
     models: [
       {
@@ -1730,9 +1946,9 @@ export const engineeredProductsData = [
         height: 88,
         width: 440,
         depth: 630,
-        weight: "32 kg"
+        weight: "32 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-trinergy-1500kw",
@@ -1742,7 +1958,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Trinergy™ Hyperscale UPS 1500kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 99,
-    description: "Ultra-high capacity modular UPS designed to exceed Tier IV requirements, delivering optimal efficiency and availability for hyperscale data centers, HPC, and AI compute clusters.",
+    description:
+      "Ultra-high capacity modular UPS designed to exceed Tier IV requirements, delivering optimal efficiency and availability for hyperscale data centers, HPC, and AI compute clusters.",
     features: [
       "Modular architecture with physically segregated 400/500 kW cores",
       "Up to 99% efficiency in Dynamic Online mode, minimizing PUE",
@@ -1756,11 +1973,17 @@ export const engineeredProductsData = [
       { label: "CONFIGURATION", value: "Modular Segregated Cores" },
       { label: "APPLICATION", value: "Hyperscale, HPC & AI Clusters" },
     ],
-    imageSrc: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-trinergy-ups/trinergy-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Trinergy™ Hyperscale UPS 1500kW",
     images: [
-      { src: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-trinergy-ups/trinergy-front.png", alt: "Vertiv Trinergy UPS" },
-      { src: "https://www.vertiv.com/495be2/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-trinergy-ups/trinergy-cabinet.png", alt: "Hyperscale Setup" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Trinergy UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Hyperscale Setup",
+      },
     ],
     models: [
       {
@@ -1772,9 +1995,9 @@ export const engineeredProductsData = [
         height: 2000,
         width: 3200,
         depth: 1000,
-        weight: "6800 kg"
+        weight: "6800 kg",
       },
-    ]
+    ],
   },
   {
     id: "vertiv-trinergy-2000kw",
@@ -1784,7 +2007,8 @@ export const engineeredProductsData = [
     title: "Vertiv™ Trinergy™ Hyperscale UPS 2000kW",
     scoreLabel: "EFFICIENCY RATING",
     scorePercentage: 99,
-    description: "Ultra-high capacity modular UPS designed to exceed Tier IV requirements, delivering optimal efficiency and availability for hyperscale data centers, HPC, and AI compute clusters.",
+    description:
+      "Ultra-high capacity modular UPS designed to exceed Tier IV requirements, delivering optimal efficiency and availability for hyperscale data centers, HPC, and AI compute clusters.",
     features: [
       "Modular architecture with physically segregated 400/500 kW cores",
       "Up to 99% efficiency in Dynamic Online mode, minimizing PUE",
@@ -1798,11 +2022,17 @@ export const engineeredProductsData = [
       { label: "CONFIGURATION", value: "Modular Segregated Cores" },
       { label: "APPLICATION", value: "Hyperscale, HPC & AI Clusters" },
     ],
-    imageSrc: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-trinergy-ups/trinergy-front.png",
+    imageSrc: "/images/products/vertiv-ups.png",
     imageAlt: "Vertiv™ Trinergy™ Hyperscale UPS 2000kW",
     images: [
-      { src: "https://www.vertiv.com/495be1/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-trinergy-ups/trinergy-front.png", alt: "Vertiv Trinergy UPS" },
-      { src: "https://www.vertiv.com/495be2/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-trinergy-ups/trinergy-cabinet.png", alt: "Hyperscale Setup" },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Vertiv Trinergy UPS",
+      },
+      {
+        src: "/images/products/vertiv-ups.png",
+        alt: "Hyperscale Setup",
+      },
     ],
     models: [
       {
@@ -1814,11 +2044,10 @@ export const engineeredProductsData = [
         height: 2000,
         width: 4200,
         depth: 1000,
-        weight: "8900 kg"
+        weight: "8900 kg",
       },
-    ]
+    ],
   },
-
 
   // ─── ENCLOSURE COOLING ─────────────────────────────────────────────────────
   {
@@ -1829,51 +2058,56 @@ export const engineeredProductsData = [
     title: "Liebert® SRC Mini-Split Cooling",
     scoreLabel: "COOLING COMPLIANCE",
     scorePercentage: 92,
-    description: "High-efficiency vertical cooling systems engineered specifically for remote computing sites, network cabinets, and electrical enclosures without central HVAC.",
+    description:
+      "High-efficiency vertical cooling systems engineered specifically for remote computing sites, network cabinets, and electrical enclosures without central HVAC.",
     features: [
       "24/7 continuous operation design",
-      "EC Fan technology for precision speed",
+      "High-efficiency scroll compressor reliability",
+      "EC Fan technology and thermal expansion valve control",
       "Remote status reporting and alarms",
       "No condensation drainage hazards",
-      "Compact indoor wall-mounted unit"
+      "Compact indoor wall-mounted unit",
     ],
     stats: [
       { label: "COOLING CAP", value: "3.5 - 11.5 kW" },
       { label: "REFRIGERANT", value: "R410A / Low GWP" },
       { label: "EFFICIENCY COP", value: "Up to 3.8" },
-      { label: "SUPPORT NETWORK", value: "24/7 Remote NOC" }
+      { label: "SUPPORT NETWORK", value: "24/7 Remote NOC" },
     ],
     imageSrc: "/images/products/cooling.png",
     imageAlt: "Liebert SRC Mini-Split",
     images: [
       { src: "/images/products/cooling.png", alt: "Liebert SRC — Wall Mount" },
-      { src: "/images/products/ups.png", alt: "Liebert SRC — External Unit" },
-      { src: "/images/products/switchgear.png", alt: "Liebert SRC — Status Screen" }
+      { src: "/images/products/vertiv-ups.png", alt: "Liebert SRC — External Unit" },
+      {
+        src: "/images/products/switchgear.png",
+        alt: "Liebert SRC — Status Screen",
+      },
     ],
     models: [
-      { 
-        name: "Liebert SRC 035", 
-        capacity: "3.5 kW", 
-        inputVoltage: "230V Single-Phase", 
+      {
+        name: "Liebert SRC 035",
+        capacity: "3.5 kW",
+        inputVoltage: "230V Single-Phase",
         outputVoltage: "N/A",
-        efficiency: "COP 3.5", 
-        height: 800, 
-        width: 500, 
-        depth: 250, 
-        weight: "45 kg" 
+        efficiency: "COP 3.5",
+        height: 800,
+        width: 500,
+        depth: 250,
+        weight: "45 kg",
       },
-      { 
-        name: "Liebert SRC 115", 
-        capacity: "11.5 kW", 
-        inputVoltage: "400V 3-Phase", 
+      {
+        name: "Liebert SRC 115",
+        capacity: "11.5 kW",
+        inputVoltage: "400V 3-Phase",
         outputVoltage: "N/A",
-        efficiency: "COP 3.7", 
-        height: 1000, 
-        width: 600, 
-        depth: 350, 
-        weight: "85 kg" 
-      }
-    ]
+        efficiency: "COP 3.7",
+        height: 1000,
+        width: 600,
+        depth: 350,
+        weight: "85 kg",
+      },
+    ],
   },
 
   // ─── INTEGRATED SOLUTIONS ──────────────────────────────────────────────────
@@ -1885,51 +2119,61 @@ export const engineeredProductsData = [
     title: "Vertiv™ SmartCabinet™ Micro Data Center",
     scoreLabel: "INTEGRATION LEVEL",
     scorePercentage: 99,
-    description: "A pre-packaged, fully integrated micro data center containing power protection, cooling unit, cabling management, physical security, and monitoring in a single IT rack.",
+    description:
+      "A pre-packaged, fully integrated micro data center containing power protection, cooling unit, cabling management, physical security, and monitoring in a single IT rack.",
     features: [
       "Fully self-contained, dust-proof environment",
       "Integrated 3kVA rackmount UPS",
       "Built-in emergency backup ventilation",
       "Biometric access control for cybersecurity compliance",
-      "Central monitoring controller with alerts"
+      "Central monitoring controller with alerts",
     ],
     stats: [
       { label: "RACK SIZE", value: "24U / 42U" },
       { label: "COOLING CAPACITY", value: "Up to 3.5 kW" },
       { label: "UPS RATING", value: "3 kVA Double-Conversion" },
-      { label: "IP RATING", value: "IP54 Structural" }
+      { label: "IP RATING", value: "IP54 Structural" },
     ],
     imageSrc: "/images/products/switchgear.png",
     imageAlt: "Vertiv SmartCabinet",
     images: [
-      { src: "/images/products/switchgear.png", alt: "SmartCabinet — Rack Front" },
-      { src: "/images/products/ups.png", alt: "SmartCabinet — Interior View" },
-      { src: "/images/products/cooling.png", alt: "SmartCabinet — Cooling Integration" }
+      {
+        src: "/images/products/switchgear.png",
+        alt: "SmartCabinet — Rack Front",
+      },
+      {
+        src: "/images/products/switchgear.png",
+        alt: "SmartCabinet — Interior View",
+      },
+      {
+        src: "/images/products/switchgear.png",
+        alt: "SmartCabinet — Cooling Integration",
+      },
     ],
     models: [
-      { 
-        name: "SmartCabinet - 24U", 
-        capacity: "2.5 kW Net Load", 
-        inputVoltage: "230V Single-Phase", 
+      {
+        name: "SmartCabinet - 24U",
+        capacity: "2.5 kW Net Load",
+        inputVoltage: "230V Single-Phase",
         outputVoltage: "230V Single-Phase",
-        efficiency: "94% UPS / COP 3.1 Cooling", 
-        height: 1400, 
-        width: 800, 
-        depth: 1100, 
-        weight: "340 kg" 
+        efficiency: "94% UPS / COP 3.1 Cooling",
+        height: 1400,
+        width: 800,
+        depth: 1100,
+        weight: "340 kg",
       },
-      { 
-        name: "SmartCabinet - 42U", 
-        capacity: "3.5 kW Net Load", 
-        inputVoltage: "230V Single-Phase", 
+      {
+        name: "SmartCabinet - 42U",
+        capacity: "3.5 kW Net Load",
+        inputVoltage: "230V Single-Phase",
         outputVoltage: "230V Single-Phase",
-        efficiency: "94% UPS / COP 3.3 Cooling", 
-        height: 2000, 
-        width: 800, 
-        depth: 1200, 
-        weight: "510 kg" 
-      }
-    ]
+        efficiency: "94% UPS / COP 3.3 Cooling",
+        height: 2000,
+        width: 800,
+        depth: 1200,
+        weight: "510 kg",
+      },
+    ],
   },
 
   // ─── DIGITAL INFRASTRUCTURE SOLUTIONS ──────────────────────────────────────
@@ -1941,181 +2185,1012 @@ export const engineeredProductsData = [
     title: "Trellis™ Enterprise Suite (DCIM)",
     scoreLabel: "INFRASTRUCTURE VISIBILITY",
     scorePercentage: 97,
-    description: "Award-winning, comprehensive DCIM platform providing data-center managers with real-time optimization, heat mapping, asset management, and capacity metrics.",
+    description:
+      "Award-winning, comprehensive DCIM platform providing data-center managers with real-time optimization, heat mapping, asset management, and capacity metrics.",
     features: [
       "Real-time power and thermal path monitoring",
       "Automated capacity planning and forecasting",
       "Granular 3D visualization of floor layouts",
       "Alert correlations for rapid root-cause diagnosis",
-      "Integrates with virtualization layers (VMware, etc.)"
+      "Integrates with virtualization layers (VMware, etc.)",
     ],
     stats: [
       { label: "INTEGRATIONS", value: "10,000+ Device Library" },
       { label: "DEPLOYMENT", value: "On-Prem / Hybrid Cloud" },
       { label: "DATA RETENTION", value: "Granular Time-Series DB" },
-      { label: "ALERT TIME", value: "< 2 Seconds" }
+      { label: "ALERT TIME", value: "< 2 Seconds" },
     ],
     imageSrc: "/images/products/cooling.png",
     imageAlt: "Trellis Enterprise Suite Dashboard",
     models: [
-      { 
-        name: "Trellis VM Deployment", 
-        capacity: "Up to 50,000 Nodes", 
-        inputVoltage: "N/A", 
+      {
+        name: "Trellis VM Deployment",
+        capacity: "Up to 50,000 Nodes",
+        inputVoltage: "N/A",
         outputVoltage: "N/A",
-        efficiency: "99.9% Software Uptime", 
-        height: "Virtual Machine", 
-        width: "N/A", 
-        depth: "N/A", 
-        weight: "0 kg" 
-      }
-    ]
-  },
-
-  // ─── L&T BRAND TTA PANEL ──────────────────────────────────────────────────
-  {
-    id: "lt-tta-630",
-    categoryId: "lt-tta-panel",
-    tag: "CRITICAL POWER",
-    featured: true,
-    title: "TTA-630 Switchgear Panel",
-    brand: "L&T (Larsen & Toubro)",
-    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
-    jvLink: "https://synchroelectricals.com",
-    scoreLabel: "COMPLIANCE SCORE",
-    scorePercentage: 99,
-    description: "Reliable TTA-630 automatic transfer switch panel from L&T, supplied through our Virtual JV with Synchro Electricals — engineered for automatic power changeover under 630A loads in hospitals and critical utilities.",
-    features: [
-      "Triple source changeover (Mains / DG / Alternative)",
-      "Microprocessor-based automatic control logic",
-      "Optimized for ratings up to 630A",
-      "IS/IEC compliant, IP42/IP54 enclosure",
-      "Interlocking to prevent parallel operation",
-      "AMF (Auto Mains Failure) functionality available"
+        efficiency: "99.9% Software Uptime",
+        height: "Virtual Machine",
+        width: "N/A",
+        depth: "N/A",
+        weight: "0 kg",
+      },
     ],
-    stats: [
-      { label: "CURRENT RANGE", value: "Up to 630A" },
-      { label: "JV ALLIANCE", value: "Synchro Electricals" },
-      { label: "STANDARDS", value: "IS/IEC Compliant" },
-      { label: "INGRESS PROTECTION", value: "IP42 / IP54" }
-    ],
-    imageSrc: "/images/products/switchgear.png",
-    imageAlt: "TTA-630 Switchgear Panel",
-    images: [
-      { src: "/images/products/switchgear.png", alt: "TTA-630 Panel — Front View" }
-    ],
-    applications: "Hospitals | Data Centers | Industrial Plants | Commercial Buildings | Infrastructure Projects",
-    models: [
-      { name: "TTA-630", capacity: "630 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.5%", height: 2000, width: 800, depth: 800, weight: "450 kg" }
-    ]
   },
   {
-    id: "lt-tta-1600",
-    categoryId: "lt-tta-panel",
-    tag: "CRITICAL POWER",
-    featured: true,
-    title: "TTA-1600 Switchgear Panel",
-    brand: "L&T (Larsen & Toubro)",
-    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
-    jvLink: "https://synchroelectricals.com",
-    scoreLabel: "COMPLIANCE SCORE",
-    scorePercentage: 100,
-    description: "Advanced TTA-1600 automatic transfer switch panel from L&T, supplied through our Virtual JV with Synchro Electricals — configured for seamless power changeover under 1600A loads in core telecom hubs and high-rise commercial structures.",
-    features: [
-      "Triple source changeover (Mains / DG / Alternative)",
-      "Microprocessor-based automatic control logic",
-      "Optimized for ratings up to 1600A",
-      "IS/IEC compliant, IP42/IP54 enclosure",
-      "Interlocking to prevent parallel operation",
-      "AMF (Auto Mains Failure) functionality available"
-    ],
-    stats: [
-      { label: "CURRENT RANGE", value: "Up to 1600A" },
-      { label: "JV ALLIANCE", value: "Synchro Electricals" },
-      { label: "STANDARDS", value: "IS/IEC Compliant" },
-      { label: "INGRESS PROTECTION", value: "IP42 / IP54" }
-    ],
-    imageSrc: "/images/products/switchgear.png",
-    imageAlt: "TTA-1600 Switchgear Panel",
-    images: [
-      { src: "/images/products/switchgear.png", alt: "TTA-1600 Panel — Front View" }
-    ],
-    applications: "Hospitals | Data Centers | Industrial Plants | Commercial Buildings | Infrastructure Projects",
-    models: [
-      { name: "TTA-1600", capacity: "1600 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.6%", height: 2200, width: 1000, depth: 1000, weight: "850 kg" }
-    ]
-  },
-  {
-    id: "lt-tta-4000",
-    categoryId: "lt-tta-panel",
-    tag: "CRITICAL POWER",
-    featured: true,
-    title: "TTA-4000 Switchgear Panel",
-    brand: "L&T (Larsen & Toubro)",
-    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
-    jvLink: "https://synchroelectricals.com",
-    scoreLabel: "COMPLIANCE SCORE",
-    scorePercentage: 100,
-    description: "Industrial-grade heavy-duty TTA-4000 automatic transfer switch panel from L&T, supplied through our Virtual JV with Synchro Electricals — engineered for massive B2B power transfer configurations up to 4000A in manufacturing complexes.",
-    features: [
-      "Triple source changeover (Mains / DG / Alternative)",
-      "Microprocessor-based automatic control logic",
-      "Optimized for high ratings up to 4000A",
-      "IS/IEC compliant, IP42/IP54 enclosure",
-      "Interlocking to prevent parallel operation",
-      "AMF (Auto Mains Failure) functionality available"
-    ],
-    stats: [
-      { label: "CURRENT RANGE", value: "Up to 4000A" },
-      { label: "JV ALLIANCE", value: "Synchro Electricals" },
-      { label: "STANDARDS", value: "IS/IEC Compliant" },
-      { label: "INGRESS PROTECTION", value: "IP42 / IP54" }
-    ],
-    imageSrc: "/images/products/switchgear.png",
-    imageAlt: "TTA-4000 Switchgear Panel",
-    images: [
-      { src: "/images/products/switchgear.png", alt: "TTA-4000 Panel — Front View" }
-    ],
-    applications: "Hospitals | Data Centers | Industrial Plants | Commercial Buildings | Infrastructure Projects",
-    models: [
-      { name: "TTA-4000", capacity: "4000 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.7%", height: 2200, width: 2400, depth: 1200, weight: "2100 kg" }
-    ]
-  },
-  {
-    id: "lt-tta-800",
-    categoryId: "lt-tta-panel",
-    tag: "CRITICAL POWER",
+    id: "vertiv-liebert-rx-cabinet",
+    categoryId: "digital-infrastructure",
+    tag: "POWER DISTRIBUTION",
     featured: false,
-    title: "TTA-800 Switchgear Panel",
-    brand: "L&T (Larsen & Toubro)",
-    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
-    jvLink: "https://synchroelectricals.com",
-    scoreLabel: "COMPLIANCE SCORE",
-    scorePercentage: 99.5,
-    description: "Compact TTA-800 automatic transfer switch panel from L&T, supplied through our Virtual JV with Synchro Electricals — providing intermediate rating switchgear control for edge server sites and shopping zones.",
+    title: "Liebert® RX Distribution Cabinet",
+    brand: "Vertiv",
+    scoreLabel: "DISTRIBUTION EFFICIENCY",
+    scorePercentage: 99,
+    description:
+      "High-density power distribution cabinet offering space-saving footprint, advanced monitoring, and flexible configurations for critical data centers.",
     features: [
-      "Triple source changeover (Mains / DG / Alternative)",
-      "Microprocessor-based automatic control logic",
-      "Optimized for ratings up to 800A",
-      "IS/IEC compliant, IP42/IP54 enclosure",
-      "Interlocking to prevent parallel operation",
-      "AMF (Auto Mains Failure) functionality available"
+      "High-density distribution up to 84 poles in a compact footprint",
+      "Integrates with Liebert LDMF for branch circuit monitoring",
+      "Flexible input/output cable entries (top and bottom)",
+      "Built-in circuit breakers for secure load isolation",
+      "User-friendly touchscreen display panel interface",
     ],
     stats: [
-      { label: "CURRENT RANGE", value: "Up to 800A" },
-      { label: "JV ALLIANCE", value: "Synchro Electricals" },
-      { label: "STANDARDS", value: "IS/IEC Compliant" },
-      { label: "INGRESS PROTECTION", value: "IP42 / IP54" }
+      { label: "MONITORING", value: "LDMF Branch Circuit" },
+      { label: "CAPACITY", value: "400A / 600A" },
+      { label: "POLE CAPACITY", value: "Up to 84 Poles" },
+      { label: "FOOTPRINT", value: "Space-saving Design" },
     ],
-    imageSrc: "/images/products/switchgear.png",
-    imageAlt: "TTA-800 Switchgear Panel",
+    imageSrc: "/images/products/Products-RX-Distribution Cabinet.png",
+    imageAlt: "Liebert RX Distribution Cabinet",
     images: [
-      { src: "/images/products/switchgear.png", alt: "TTA-800 Panel — Front View" }
+      {
+        src: "/images/products/Products-RX-Distribution Cabinet.png",
+        alt: "Liebert RX Distribution Cabinet",
+      },
     ],
-    applications: "Hospitals | Data Centers | Industrial Plants | Commercial Buildings | Infrastructure Projects",
+    applications: "Data Centers | Server Rooms | Industrial Control Centers",
     models: [
-      { name: "TTA-800", capacity: "800 A", inputVoltage: "415V 3-Phase", outputVoltage: "415V 3-Phase", efficiency: "99.6%", height: 2100, width: 900, depth: 800, weight: "520 kg" }
-    ]
+      {
+        name: "Liebert RX 400A",
+        capacity: "400 A",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "230V / 415V",
+        efficiency: "99.8%",
+        height: 2000,
+        width: 600,
+        depth: 800,
+        weight: "280 kg",
+      },
+      {
+        name: "Liebert RX 600A",
+        capacity: "600 A",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "230V / 415V",
+        efficiency: "99.8%",
+        height: 2000,
+        width: 600,
+        depth: 800,
+        weight: "310 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-smb",
+    categoryId: "lt-tta-panel",
+    tag: "SOLAR POWER",
+    featured: true,
+    title: "String Monitoring Box (SMB)",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink: "https://synchroelectricals.com/products/string-monitoring-box/",
+    scoreLabel: "RELIABILITY INDEX",
+    scorePercentage: 100,
+    cooling: "Natural Convection (Passive)",
+    description:
+      "High-performance String Monitoring Boxes (SMBs) engineered to play a crucial role in ensuring safety, reliability, and efficiency in solar PV systems. Our SMBs provide real-time monitoring, accurate fault detection, and seamless SCADA compatibility, giving operators full control and visibility of their solar assets.",
+    features: [
+      "Real-time monitoring and early fault detection to minimize energy losses",
+      "Robust IP65/IP67-rated weatherproof and corrosion-resistant enclosures",
+      "Flexible configurations ranging from 8-in/1-out to 24-in/1-out",
+      "Integrated Surge Protection Devices (SPD) & DC circuit breakers/isolators",
+      "High-conductivity copper busbars with tin coating for minimal voltage drop",
+      "Seamless integration with SCADA systems for actionable operations insights",
+    ],
+    stats: [
+      { label: "INGRESS PROTECTION", value: "IP65 / IP67" },
+      { label: "INPUT CONFIGS", value: "8-In to 24-In" },
+      { label: "MONITORING TYPE", value: "SCADA Integrated" },
+      { label: "STANDARDS COMPLIANCE", value: "UL / IEC Certified" },
+    ],
+    imageSrc: "/images/products/synchro/smb.jpg",
+    imageAlt: "String Monitoring Box (SMB)",
+    images: [
+      {
+        src: "/images/products/synchro/smb.jpg",
+        alt: "String Monitoring Box — Overview",
+      },
+    ],
+    applications:
+      "Utility-Scale Solar | Commercial Installations | Industrial Solar Plants | Smart Grid Systems",
+    models: [
+      {
+        name: "SMB-0801",
+        capacity: "8-in / 1-out",
+        inputVoltage: "1000V / 1500V DC",
+        outputVoltage: "1000V / 1500V DC",
+        efficiency: "99.8%",
+        height: 600,
+        width: 500,
+        depth: 250,
+        weight: "18 kg",
+      },
+      {
+        name: "SMB-1601",
+        capacity: "16-in / 1-out",
+        inputVoltage: "1000V / 1500V DC",
+        outputVoltage: "1000V / 1500V DC",
+        efficiency: "99.8%",
+        height: 800,
+        width: 600,
+        depth: 300,
+        weight: "32 kg",
+      },
+      {
+        name: "SMB-2401",
+        capacity: "24-in / 1-out",
+        inputVoltage: "1000V / 1500V DC",
+        outputVoltage: "1000V / 1500V DC",
+        efficiency: "99.8%",
+        height: 1000,
+        width: 800,
+        depth: 300,
+        weight: "48 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-pcc",
+    categoryId: "lt-tta-panel",
+    tag: "POWER DISTRIBUTION",
+    featured: true,
+    title: "PCC Panel (Power Control Centre)",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink:
+      "https://synchroelectricals.com/products/pcc-power-control-centre-panel/",
+    scoreLabel: "DISTRIBUTION SCORE",
+    scorePercentage: 99,
+    cooling: "Forced Air Ventilation",
+    description:
+      "Main power control centre panels engineered for safe and centralized power distribution in industrial plants, core manufacturing facilities, and heavy commercial grids.",
+    features: [
+      "Centralized power distribution with up to 6300A current rating",
+      "High short-circuit withstand capacity up to 100kA",
+      "Neat busbar routing using high-conductivity ETP copper or aluminum",
+      "Compartmentalized safety structure preventing fault propagation",
+      "Compatible with major air circuit breaker (ACB) systems",
+    ],
+    stats: [
+      { label: "INGRESS PROTECTION", value: "IP42 / IP54" },
+      { label: "CURRENT RATING", value: "Up to 6300A" },
+      { label: "SHORT CIRCUIT RATING", value: "Up to 100kA" },
+      { label: "COMPLIANCE", value: "IEC 61439-1" },
+    ],
+    imageSrc: "/images/products/synchro/pcc.jpg",
+    imageAlt: "PCC Panel",
+    images: [
+      {
+        src: "/images/products/synchro/pcc.jpg",
+        alt: "PCC Panel — Front View",
+      },
+    ],
+    applications:
+      "Industrial Plants | Commercial Complexes | Data Centers | Infrastructure Projects",
+    models: [
+      {
+        name: "PCC-1600",
+        capacity: "1600 A",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "415V 3-Phase",
+        efficiency: "99.5%",
+        height: 2200,
+        width: 1000,
+        depth: 1000,
+        weight: "950 kg",
+      },
+      {
+        name: "PCC-3200",
+        capacity: "3200 A",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "415V 3-Phase",
+        efficiency: "99.5%",
+        height: 2200,
+        width: 2000,
+        depth: 1200,
+        weight: "1850 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-mcc",
+    categoryId: "lt-tta-panel",
+    tag: "MOTOR CONTROL",
+    featured: true,
+    title: "MCC Panel (Motor Control Centre)",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink:
+      "https://synchroelectricals.com/products/mcc-motor-control-centre-panel/",
+    scoreLabel: "CONTROL EFFICIENCY",
+    scorePercentage: 98,
+    cooling: "Forced Air Cooling",
+    description:
+      "Fully compartmentalized Motor Control Centre (MCC) panels designed for safe and centralized operation of industrial motors, pumps, and automated fans.",
+    features: [
+      "Centralized motor control architecture with custom starter feeders",
+      "Direct-On-Line (DOL), Star-Delta, and Soft Starter modules",
+      "Comprehensive overload, single-phasing, and short-circuit protection",
+      "Draw-out and fixed type functional compartmentalized compartments",
+      "Smart automation support with PLC and HMI console integration",
+    ],
+    stats: [
+      { label: "INGRESS PROTECTION", value: "IP42 / IP54" },
+      { label: "CONTROL VOLTAGE", value: "110V / 230V AC" },
+      { label: "BUSBAR CONDUCTIVITY", value: "High-Conductivity Copper" },
+      { label: "COMPLIANCE", value: "IS / IEC 60947" },
+    ],
+    imageSrc: "/images/products/synchro/mcc.jpg",
+    imageAlt: "MCC Panel",
+    images: [
+      {
+        src: "/images/products/synchro/mcc.jpg",
+        alt: "MCC Panel — Front View",
+      },
+    ],
+    applications:
+      "Industrial Plants | Pumping Stations | HVAC Systems | Treatment Plants",
+    models: [
+      {
+        name: "MCC-Standard",
+        capacity: "Custom feeders",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "415V 3-Phase",
+        efficiency: "99.2%",
+        height: 2200,
+        width: 1200,
+        depth: 800,
+        weight: "720 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-apfc",
+    categoryId: "lt-tta-panel",
+    tag: "POWER QUALITY",
+    featured: true,
+    title: "APFC Panel (Power Factor Correction)",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink: "https://synchroelectricals.com/products/apfc-panel/",
+    scoreLabel: "FACTOR OPTIMIZATION",
+    scorePercentage: 99,
+    cooling: "Forced Air Ventilation",
+    description:
+      "Advanced APFC panels designed to automatically correct power factor, eliminating utility reactive power surcharges, reducing energy losses, and stabilizing system voltages.",
+    features: [
+      "Microprocessor-based automatic controller with multi-stage correction",
+      "Premium heavy-duty capacitor banks with detuned filter reactors",
+      "Active protection against overvoltage, temperature rise, and harmonic surges",
+      "Neat modular structure allowing quick capacitor maintenance",
+      "Real-time logging of reactive power parameters and power factor value",
+    ],
+    stats: [
+      { label: "CONTROLLER CAPACITY", value: "8 to 16 Stages" },
+      { label: "INGRESS PROTECTION", value: "IP42 / IP52" },
+      { label: "VOLTAGE STABILIZATION", value: "Active Compensation" },
+      { label: "REACTORS", value: "Detuned (Harmonic Mitigation)" },
+    ],
+    imageSrc: "/images/products/synchro/apfc.jpg",
+    imageAlt: "APFC Panel",
+    images: [
+      {
+        src: "/images/products/synchro/apfc.jpg",
+        alt: "APFC Panel — Front View",
+      },
+    ],
+    applications:
+      "Manufacturing Units | Commercial Buildings | Substation Centers | Heavy Industries",
+    models: [
+      {
+        name: "APFC-250",
+        capacity: "250 kVAr",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "415V 3-Phase",
+        efficiency: "99.6%",
+        height: 2000,
+        width: 1000,
+        depth: 800,
+        weight: "480 kg",
+      },
+      {
+        name: "APFC-500",
+        capacity: "500 kVAr",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "415V 3-Phase",
+        efficiency: "99.6%",
+        height: 2200,
+        width: 1600,
+        depth: 800,
+        weight: "820 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-vfd",
+    categoryId: "lt-tta-panel",
+    tag: "DRIVE CONTROL",
+    featured: true,
+    title: "VFD Panel (Variable Frequency Drive)",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink: "https://synchroelectricals.com/products/vfd-panel/",
+    scoreLabel: "DRIVE STABILITY",
+    scorePercentage: 98,
+    cooling: "Forced Air (Fans)",
+    description:
+      "VFD panels engineered for precise motor speed regulation, soft-starting profiles, and high-efficiency operation of industrial compressors, pumps, and fans.",
+    features: [
+      "Smooth control of motor speed and startup torque profile",
+      "Energy-saving operation under variable load duty cycles",
+      "Soft start/stop features protecting mechanical gearing and pumps",
+      "Built-in drive bypass starters and isolation contactors",
+      "Integration with BMS and SCADA networks via Modbus protocols",
+    ],
+    stats: [
+      { label: "DRIVE RANGE", value: "0.75 kW to 500 kW" },
+      { label: "INGRESS PROTECTION", value: "IP42 / IP54" },
+      { label: "COMM PROTOCOLS", value: "Modbus / Profibus / TCP" },
+      { label: "SAFETY CONTROLS", value: "Emergency Stop & Bypass" },
+    ],
+    imageSrc: "/images/products/synchro/vfd.jpg",
+    imageAlt: "VFD Panel",
+    images: [
+      {
+        src: "/images/products/synchro/vfd.jpg",
+        alt: "VFD Panel — Front View",
+      },
+    ],
+    applications:
+      "HVAC Systems | Water Treatment | Steel Mills | Processing Lines | Mining",
+    models: [
+      {
+        name: "VFD-Standard",
+        capacity: "Custom kW",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "415V 3-Phase",
+        efficiency: "98.8%",
+        height: 2000,
+        width: 800,
+        depth: 600,
+        weight: "320 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-amf-ats",
+    categoryId: "lt-tta-panel",
+    tag: "BACKUP POWER",
+    featured: true,
+    title: "AMF & ATS Control Panel",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink:
+      "https://synchroelectricals.com/products/amf-panel-automatic-mains-failure-panel/",
+    scoreLabel: "RESPONSE WINDOW",
+    scorePercentage: 99,
+    cooling: "Natural Convection",
+    description:
+      "Automated control panels designed to monitor utility power, automatically start backup generators during outages, and cleanly transfer electrical loads.",
+    features: [
+      "Automatic Mains Failure (AMF) detection circuits",
+      "Mechanically and electrically interlocked switch changeovers",
+      "Built-in float/boost battery charger and mains sensor",
+      "Manual emergency bypass override and keypad interface",
+      "Comprehensive generator engine fault monitor systems",
+    ],
+    stats: [
+      { label: "TRANSFER TIME", value: "< 5 Seconds" },
+      { label: "CURRENT RANGE", value: "63A to 4000A" },
+      { label: "INGRESS PROTECTION", value: "IP42 / IP54" },
+      { label: "STANDARDS", value: "IS / IEC Compliant" },
+    ],
+    imageSrc: "/images/products/synchro/amf.jpg",
+    imageAlt: "AMF & ATS Panel",
+    images: [
+      {
+        src: "/images/products/synchro/amf.jpg",
+        alt: "AMF & ATS Panel — Front View",
+      },
+    ],
+    applications:
+      "Hospitals | Data Centers | Commercial Towers | Continuous Process Plants",
+    models: [
+      {
+        name: "AMF-ATS-630",
+        capacity: "630 A",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "415V 3-Phase",
+        efficiency: "99.7%",
+        height: 2000,
+        width: 800,
+        depth: 800,
+        weight: "480 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-sync",
+    categoryId: "lt-tta-panel",
+    tag: "GENERATOR SYNC",
+    featured: true,
+    title: "DG Synchronizing Panel",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink: "https://synchroelectricals.com/products/synchronizing-panel/",
+    scoreLabel: "SYNCHRONIZATION RATE",
+    scorePercentage: 100,
+    cooling: "Forced Air Cooling",
+    description:
+      "Heavy-duty generator synchronizing panels engineered to match frequency, voltage, and phase parameters of multiple generator sets for reliable backup power.",
+    features: [
+      "Automatic voltage and frequency parameters matching",
+      "Active and reactive KW/KVAr generator load sharing",
+      "Dynamic load-dependent starting, stopping, and load-shedding",
+      "Color touchscreen HMI with real-time grid synchroscope",
+      "Complete reverse power and alternator protection relays",
+    ],
+    stats: [
+      { label: "MAX GENERATORS", value: "Up to 8 DG Sets" },
+      { label: "SYNCHRONIZING TIME", value: "< 15 Seconds" },
+      { label: "INGRESS PROTECTION", value: "IP42 / IP54" },
+      { label: "COMPLIANCE", value: "IEC 61439-1 & 2" },
+    ],
+    imageSrc: "/images/products/synchro/sync.jpg",
+    imageAlt: "Synchronizing Panel",
+    images: [
+      {
+        src: "/images/products/synchro/sync.jpg",
+        alt: "Synchronizing Panel — Front View",
+      },
+    ],
+    applications:
+      "Mega Data Centers | Utility Stations | Large Factories | Core Telecom Hubs",
+    models: [
+      {
+        name: "Sync-Panel-Custom",
+        capacity: "Multi-Engine Sync",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "415V 3-Phase",
+        efficiency: "99.8%",
+        height: 2200,
+        width: 1800,
+        depth: 1000,
+        weight: "1250 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-vcb",
+    categoryId: "lt-tta-panel",
+    tag: "MV PROTECTION",
+    featured: true,
+    title: "VCB Panel (Vacuum Circuit Breaker)",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink:
+      "https://synchroelectricals.com/products/vcb-vacuum-circuit-breaker-panel/",
+    scoreLabel: "HT SAFETY RATING",
+    scorePercentage: 100,
+    cooling: "Natural Convection",
+    description:
+      "Medium and high voltage VCB switchgear panels engineered to protect power transformers, industrial feeders, and utility substation connections up to 33kV.",
+    features: [
+      "High-reliability vacuum interrupter technology",
+      "Arc-resistant compartmentalized enclosure with mechanical interlocks",
+      "Integrated numerical protection relays and CT/PT sensors",
+      "Convenient withdrawable cassette-type breaker chassis",
+      "Indoor and outdoor rated metal-clad structures",
+    ],
+    stats: [
+      { label: "VOLTAGE OPTIONS", value: "11 kV / 22 kV / 33 kV" },
+      { label: "SHORT CIRCUIT CAPACITY", value: "Up to 26.3 kA / 3 sec" },
+      { label: "INGRESS PROTECTION", value: "IP4X" },
+      { label: "STANDARDS", value: "IEC 62271-200" },
+    ],
+    imageSrc: "/images/products/synchro/vcb.jpg",
+    imageAlt: "VCB Panel",
+    images: [
+      {
+        src: "/images/products/synchro/vcb.jpg",
+        alt: "VCB Panel — Front View",
+      },
+    ],
+    applications:
+      "Solar Power Plants | Wind Farms | HT Substations | Heavy Manufacturing",
+    models: [
+      {
+        name: "VCB-11kV",
+        capacity: "1250 A",
+        inputVoltage: "11 kV AC",
+        outputVoltage: "11 kV AC",
+        efficiency: "99.9%",
+        height: 2200,
+        width: 1000,
+        depth: 1500,
+        weight: "1450 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-tta",
+    categoryId: "lt-tta-panel",
+    tag: "CERTIFIED PANELS",
+    featured: true,
+    title: "Type Tested Switchgear Assembly",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink: "https://synchroelectricals.com/products/type-tested-panel/",
+    scoreLabel: "TESTED ACCURACY",
+    scorePercentage: 100,
+    cooling: "Forced Air Ventilation",
+    description:
+      "Low voltage switchgear assemblies certified through exhaustive type testing, confirming safety limits, short-circuit withstands, and thermal stability.",
+    features: [
+      "Fully type-tested and certified to IEC 61439-1 & 2 guidelines",
+      "Proven short-circuit withstand and temperature rise margins",
+      "Modular busbar support insulation preventing phase faults",
+      "Rigid safety interlocks guarding operators from flash risks",
+      "Detailed factory validation documentation provided",
+    ],
+    stats: [
+      { label: "STANDARDS CERTIFIED", value: "IEC 61439-1 & 2" },
+      { label: "SHORT CIRCUIT WITHSTAND", value: "Up to 100kA" },
+      { label: "INGRESS PROTECTION", value: "IP42 / IP54" },
+      { label: "SAFETY COMPLIANCE", value: "Full Type Tested" },
+    ],
+    imageSrc: "/images/products/synchro/tta.jpg",
+    imageAlt: "Type Tested Panel",
+    images: [
+      {
+        src: "/images/products/synchro/tta.jpg",
+        alt: "Type Tested Panel — Front View",
+      },
+    ],
+    applications:
+      "Hospitals | High-density Compute | Heavy Machinery Zones | Infrastructure",
+    models: [
+      {
+        name: "TTA-Custom",
+        capacity: "Custom Rating",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "415V 3-Phase",
+        efficiency: "99.8%",
+        height: 2200,
+        width: 1200,
+        depth: 1000,
+        weight: "800 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-meter",
+    categoryId: "lt-tta-panel",
+    tag: "METERING",
+    featured: true,
+    title: "Multi-Utility Meter Panel",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink: "https://synchroelectricals.com/products/meter-panel/",
+    scoreLabel: "METERING ACCURACY",
+    scorePercentage: 98,
+    cooling: "Natural Convection",
+    description:
+      "Multi-tenant metering panels engineered with compartmentalized, secure sections for commercial utility buildings, shopping malls, and industrial parks.",
+    features: [
+      "Individually partitioned chambers for every tenant meter",
+      "CT loop and busbar chambers with strict utility locks",
+      "Highly legible display windows with durable plexiglass shields",
+      "Corrosion-resistant steel sheets built for outdoor installations",
+      "Compatible with AMR and smart digital prepaid meters",
+    ],
+    stats: [
+      { label: "CURRENT CAPACITY", value: "Up to 800A" },
+      { label: "INGRESS PROTECTION", value: "IP42 / IP55" },
+      { label: "METER OPTIONS", value: "AMR / Smart Prepaid / CT" },
+      { label: "SHEET METAL", value: "CRCA Electro-galvanized" },
+    ],
+    imageSrc: "/images/products/synchro/meter.jpg",
+    imageAlt: "Meter Panel",
+    images: [
+      {
+        src: "/images/products/synchro/meter.jpg",
+        alt: "Meter Panel — Front View",
+      },
+    ],
+    applications:
+      "Commercial Complexes | Shopping Malls | Multi-Tenant Housing | Tech Parks",
+    models: [
+      {
+        name: "MP-Custom",
+        capacity: "Multi-Tenant",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "230V / 415V",
+        efficiency: "99.9%",
+        height: 1800,
+        width: 1400,
+        depth: 400,
+        weight: "350 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-bus-duct",
+    categoryId: "lt-tta-panel",
+    tag: "INFRASTRUCTURE",
+    featured: true,
+    title: "LT & Sandwich Bus Duct System",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink:
+      "https://synchroelectricals.com/products/l-t-bus-duct-sandwich-bus-duct/",
+    scoreLabel: "TRANSMISSION INDEX",
+    scorePercentage: 100,
+    cooling: "Natural Convection",
+    description:
+      "Sandwich design busbar systems engineered for efficient high-current power transmission from transformers to PCC boards.",
+    features: [
+      "Compact sandwich composition requiring minimal clearance space",
+      "ETP grade copper or aluminum conductors with tin/silver contacts",
+      "Extremely low impedance and minimized voltage drop performance",
+      "High mechanical strength and short-circuit fault withstand capacity",
+      "Waterproof and dustproof IP55/IP65 outer metal enclosures",
+    ],
+    stats: [
+      { label: "CURRENT RANGE", value: "800A to 6300A" },
+      { label: "CONDUCTOR PURITY", value: "99.9% ETP Copper" },
+      { label: "INGRESS PROTECTION", value: "IP55 / IP65" },
+      { label: "INSULATION TYPE", value: "Class F / Mylar Wrap" },
+    ],
+    imageSrc: "/images/products/synchro/busduct.jpg",
+    imageAlt: "Sandwich Bus Duct System",
+    images: [
+      {
+        src: "/images/products/synchro/busduct.jpg",
+        alt: "Sandwich Bus Duct System — Section View",
+      },
+    ],
+    applications:
+      "Substation Runs | Riser Shafts | Large Heavy Industrial Complexes",
+    models: [
+      {
+        name: "BD-Sandwich",
+        capacity: "3200 A",
+        inputVoltage: "1000V AC Max",
+        outputVoltage: "1000V AC Max",
+        efficiency: "99.7%",
+        height: 200,
+        width: 300,
+        depth: 3000,
+        weight: "120 kg/m",
+      },
+    ],
+  },
+  {
+    id: "synchro-acdb-dcdb",
+    categoryId: "lt-tta-panel",
+    tag: "SOLAR DISTRIBUTION",
+    featured: true,
+    title: "Solar ACDB & DCDB Box",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink:
+      "https://synchroelectricals.com/products/solar-acdb-alternating-current-distribution-box/",
+    scoreLabel: "PROTECTION LEVEL",
+    scorePercentage: 99,
+    cooling: "Natural Convection (Passive)",
+    description:
+      "AC and DC distribution boxes housing protective components to shield solar inverter inputs and outputs from voltage spikes.",
+    features: [
+      "AC and DC surge protection devices (SPDs) installed",
+      "Weatherproof polycarbonate or sheet steel IP65 boxes",
+      "High-reliability DC isolation breakers and fuse holders",
+      "Pre-wired and internally jumpered for swift site installation",
+      "Clear visual window panels for quick checkup checks",
+    ],
+    stats: [
+      { label: "INGRESS PROTECTION", value: "IP65 / IP66" },
+      { label: "DC VOLTAGE LIMIT", value: "Up to 1500V DC" },
+      { label: "AC VOLTAGE LIMIT", value: "Up to 440V AC" },
+      { label: "ENCLOSURE CLASS", value: "UV Stable / Flame Retardant" },
+    ],
+    imageSrc: "/images/products/synchro/acdb.jpg",
+    imageAlt: "Solar ACDB / DCDB Box",
+    images: [
+      {
+        src: "/images/products/synchro/acdb.jpg",
+        alt: "Solar ACDB / DCDB Box — Front View",
+      },
+    ],
+    applications:
+      "Rooftop Solar Plants | Small Commercial PV arrays | Industrial Solar Blocks",
+    models: [
+      {
+        name: "ACDB-DCDB-Combo",
+        capacity: "50 kW PV System",
+        inputVoltage: "1000V DC / 415V AC",
+        outputVoltage: "1000V DC / 415V AC",
+        efficiency: "99.9%",
+        height: 500,
+        width: 400,
+        depth: 200,
+        weight: "12 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-800vac-panel",
+    categoryId: "lt-tta-panel",
+    tag: "HIGH-VOLTAGE SOLAR",
+    featured: true,
+    title: "800Vac Solar Type Tested Panel",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink:
+      "https://synchroelectricals.com/products/800vac-solar-type-tested-panel/",
+    scoreLabel: "HV PERFORMANCE",
+    scorePercentage: 100,
+    cooling: "Forced Air Cooling",
+    description:
+      "Switchgear assemblies engineered for utility solar arrays working on 800Vac inverter outputs, minimizing current losses and thermal loads.",
+    features: [
+      "Optimized insulation creepage distances for 800Vac operation",
+      "Fully type-tested to IEC 61439-1 & 2 switchgear standards",
+      "High short-circuit breaking capacity breakers for 800Vac",
+      "Enhanced natural or forced ventilation handling solar field heat",
+      "Advanced thermal imaging monitoring points in switchgear",
+    ],
+    stats: [
+      { label: "OPERATING VOLTAGE", value: "800 Vac" },
+      { label: "INGRESS PROTECTION", value: "IP54 / IP55" },
+      { label: "STANDARDS", value: "IEC 61439-1/2" },
+      { label: "CURRENT RATING", value: "Up to 4000A" },
+    ],
+    imageSrc: "/images/products/synchro/800vac.jpg",
+    imageAlt: "800Vac Solar Type Tested Panel",
+    images: [
+      {
+        src: "/images/products/synchro/800vac.jpg",
+        alt: "800Vac Solar Panel — Front View",
+      },
+    ],
+    applications:
+      "Utility-Scale Solar Power Plants | Large Central Inverter Blocks",
+    models: [
+      {
+        name: "Solar-800V-2500A",
+        capacity: "2500 A",
+        inputVoltage: "800V AC",
+        outputVoltage: "800V AC",
+        efficiency: "99.8%",
+        height: 2200,
+        width: 1200,
+        depth: 1000,
+        weight: "1150 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-combiner",
+    categoryId: "lt-tta-panel",
+    tag: "SOLAR COMBINER",
+    featured: true,
+    title: "Solar String Combiner Box",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink: "https://synchroelectricals.com/products/string-combinerbox/",
+    scoreLabel: "COMBINER EFFICIENCY",
+    scorePercentage: 100,
+    cooling: "Natural Convection (Passive)",
+    description:
+      "String Combiner Boxes engineered to safely combine parallel output from multiple solar PV strings, offering robust overcurrent protection.",
+    features: [
+      "Weatherproof IP65/IP67 enclosure built for direct outdoor installation",
+      "Available in configuration inputs from 8-in to 24-in runs",
+      "Premium fuse protection on every string with certified holders",
+      "Integrated Surge Protection Devices (SPDs) on DC buses",
+      "DC Isolator/Disconnect switches ensuring operator safety during service",
+    ],
+    stats: [
+      { label: "INGRESS PROTECTION", value: "IP65 / IP67" },
+      { label: "DC VOLTAGE LEVEL", value: "1000V / 1500V DC" },
+      { label: "INPUT CONFIGS", value: "8 to 24 Strings" },
+      { label: "SAFETY SWITCH", value: "DC Load Break Isolator" },
+    ],
+    imageSrc: "/images/products/synchro/scb.jpg",
+    imageAlt: "String Combiner Box",
+    images: [
+      {
+        src: "/images/products/synchro/scb.jpg",
+        alt: "String Combiner Box — Front View",
+      },
+    ],
+    applications:
+      "Utility Solar Fields | Mega Commercial Solar Arrays | Industrial Rooftops",
+    models: [
+      {
+        name: "SCB-1601",
+        capacity: "16 Strings",
+        inputVoltage: "1500V DC",
+        outputVoltage: "1500V DC",
+        efficiency: "99.9%",
+        height: 800,
+        width: 600,
+        depth: 300,
+        weight: "34 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-sitc",
+    categoryId: "lt-tta-panel",
+    tag: "PROJECT EXECUTION",
+    featured: true,
+    title: "Solar Turnkey Projects (SITC)",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink:
+      "https://synchroelectricals.com/products/turnkey-project-sitc-solar/",
+    scoreLabel: "EXECUTION INDEX",
+    scorePercentage: 100,
+    cooling: "N/A (Project Service)",
+    description:
+      "Turnkey project execution including Supply, Installation, Testing, and Commissioning (SITC) of utility-scale and commercial rooftop solar systems.",
+    features: [
+      "Comprehensive site surveys, feasibility audits, and engineering layouts",
+      "Procurement of certified solar PV panels, inverters, and structures",
+      "Licensed Class A electrical installation and connection works",
+      "Grid integration testing and net-metering regulatory approvals",
+      "Complete post-installation Operation & Maintenance (O&M) plans",
+    ],
+    stats: [
+      { label: "PROJECT CAPACITY", value: "KW to MW Scale" },
+      { label: "EXECUTION STANDARD", value: "SITC Turnkey" },
+      { label: "REGULATORY COMPLIANCE", value: "Grid Liaisoning Included" },
+      { label: "POST SUPPORT", value: "Comprehensive O&M Contract" },
+    ],
+    imageSrc: "/images/products/synchro/sitc.png",
+    imageAlt: "Solar SITC Project Site",
+    images: [
+      {
+        src: "/images/products/synchro/sitc.png",
+        alt: "Solar Turnkey Site — Overview",
+      },
+    ],
+    applications:
+      "Utility Solar Parks | Commercial Rooftops | Industrial Energy Projects",
+    models: [
+      {
+        name: "SITC-Turnkey",
+        capacity: "Custom MW Scale",
+        inputVoltage: "HT / LT Grid Connected",
+        outputVoltage: "HT / LT Grid Connected",
+        efficiency: "100% Execution SLA",
+        height: "N/A",
+        width: "N/A",
+        depth: "N/A",
+        weight: "0 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-ldp",
+    categoryId: "lt-tta-panel",
+    tag: "LIGHTING DISTRIBUTION",
+    featured: true,
+    title: "Lighting Distribution Panel (LDP)",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink: "https://synchroelectricals.com",
+    scoreLabel: "CIRCUIT CONTROL",
+    scorePercentage: 97,
+    cooling: "Natural Convection",
+    description:
+      "Centralized distribution board for control, scheduling, and overload protection of industrial and commercial lighting grids.",
+    features: [
+      "Centralized lighting circuit group control and load management",
+      "Overload and leakage protection switches on all branch feeders",
+      "Compact wall-mounting or floor-standing steel designs",
+      "Neat color-coded internal terminal blocks for easy installation",
+      "Integration with automated timer clocks or building BMS networks",
+    ],
+    stats: [
+      { label: "CURRENT CAPACITIES", value: "63A to 250A" },
+      { label: "INGRESS PROTECTION", value: "IP42 / IP54" },
+      { label: "VOLTAGE OPTIONS", value: "230V / 415V AC" },
+      { label: "ENCLOSURE STYLE", value: "CRCA Sheet Metal" },
+    ],
+    imageSrc: "/images/products/synchro/ldp.jpg",
+    imageAlt: "Lighting Distribution Panel (LDP)",
+    images: [
+      {
+        src: "/images/products/synchro/ldp.jpg",
+        alt: "LDP Board — Front View",
+      },
+    ],
+    applications: "Warehouses | Factories | Retail Centers | Office Buildings",
+    models: [
+      {
+        name: "LDP-125",
+        capacity: "125 A",
+        inputVoltage: "415V 3-Phase",
+        outputVoltage: "230V 1-Phase",
+        efficiency: "99.6%",
+        height: 800,
+        width: 600,
+        depth: 200,
+        weight: "38 kg",
+      },
+    ],
+  },
+  {
+    id: "synchro-1500vdc-dcdb",
+    categoryId: "lt-tta-panel",
+    tag: "SOLAR DISTRIBUTION",
+    featured: true,
+    title: "1500VDC Solar DCDB Panel",
+    brand: "Synchro Electricals",
+    jvSupply: "Synchro Electricals Pvt. Ltd. (Virtual JV)",
+    jvLink: "https://synchroelectricals.com",
+    scoreLabel: "DC SAFETY RATING",
+    scorePercentage: 100,
+    cooling: "Forced Air / Natural Convection",
+    description:
+      "Heavy-duty DC distribution panels engineered to manage high-voltage 1500V solar string connections safely.",
+    features: [
+      "Specifically insulated busbars and terminals rated for 1500V DC",
+      "Premium Class I / Class II DC Surge Protection Devices",
+      "Heavy-duty DC load break isolators certified for utility installations",
+      "Ventilation designs handling temperature rise in outdoor yards",
+      "Fully customized inputs to match specific solar central inverters",
+    ],
+    stats: [
+      { label: "VOLTAGE CAPACITY", value: "1500 VDC" },
+      { label: "INGRESS PROTECTION", value: "IP54 / IP65" },
+      { label: "COMPLIANCE STANDARDS", value: "IEC 61439-1 & 2" },
+      { label: "DC ISOLATOR RATING", value: "Up to 1600A" },
+    ],
+    imageSrc: "/images/products/synchro/1500vdc.jpg",
+    imageAlt: "1500VDC Solar DCDB Panel",
+    images: [
+      {
+        src: "/images/products/synchro/1500vdc.jpg",
+        alt: "1500VDC DCDB Panel — Front View",
+      },
+    ],
+    applications: "Utility-Scale Solar Fields | Mega Central Inverter Stations",
+    models: [
+      {
+        name: "DCDB-1500V-1000A",
+        capacity: "1000 A",
+        inputVoltage: "1500V DC",
+        outputVoltage: "1500V DC",
+        efficiency: "99.8%",
+        height: 2200,
+        width: 1000,
+        depth: 800,
+        weight: "580 kg",
+      },
+    ],
   },
 
   // ─── LUCY BRAND RMU ───────────────────────────────────────────────────────
@@ -2129,29 +3204,44 @@ export const engineeredProductsData = [
     jvSupply: "Direct brand supply",
     scoreLabel: "RELIABILITY INDEX",
     scorePercentage: 99,
-    description: "Lucy Electric Sabre VRN2a Ring Main Unit for compact, sealed, maintenance-free medium voltage switchgear — ideal for urban and industrial power distribution networks.",
+    description:
+      "Lucy Electric Sabre VRN2a Ring Main Unit for compact, sealed, maintenance-free medium voltage switchgear — ideal for urban and industrial power distribution networks.",
     features: [
       "Voltage range: 11kV / 250A",
       "SF6 gas-insulated design",
       "Fully sealed, maintenance-free design",
       "Fault passage indicators available",
-      "Compliant with IEC 62271-200 standards"
+      "Compliant with IEC 62271-200 standards",
     ],
     stats: [
       { label: "VOLTAGE RANGE", value: "11kV" },
       { label: "INSULATION TYPE", value: "SF6 Gas" },
       { label: "COMPLIANCE", value: "IEC 62271-200" },
-      { label: "DESIGN", value: "Sealed Maintenance-Free" }
+      { label: "DESIGN", value: "Sealed Maintenance-Free" },
     ],
-    imageSrc: "/images/products/lucy-rmu.png",
+    imageSrc: "/images/products/Products-LUCY-BRAND-RMU.png",
     imageAlt: "Lucy Electric Sabre VRN2a Ring Main Unit (RMU)",
     images: [
-      { src: "/images/products/lucy-rmu.png", alt: "Lucy Sabre VRN2a RMU — Front View" }
+      {
+        src: "/images/products/Products-LUCY-BRAND-RMU.png",
+        alt: "Lucy Sabre VRN2a RMU — Front View",
+      },
     ],
-    applications: "Urban Distribution | Industrial Substations | Underground Networks | Township Projects",
+    applications:
+      "Urban Distribution | Industrial Substations | Underground Networks | Township Projects",
     models: [
-      { name: "Sabre VRN2a", capacity: "11 kV / 630A", inputVoltage: "11 kV", outputVoltage: "11 kV", efficiency: "99.8%", height: 1450, width: 1050, depth: 850, weight: "420 kg" }
-    ]
+      {
+        name: "Sabre VRN2a",
+        capacity: "11 kV / 630A",
+        inputVoltage: "11 kV",
+        outputVoltage: "11 kV",
+        efficiency: "99.8%",
+        height: 1450,
+        width: 1050,
+        depth: 850,
+        weight: "420 kg",
+      },
+    ],
   },
   {
     id: "lucy-aegis-36",
@@ -2163,29 +3253,44 @@ export const engineeredProductsData = [
     jvSupply: "Direct brand supply",
     scoreLabel: "RELIABILITY INDEX",
     scorePercentage: 99,
-    description: "Lucy Electric Aegis 36 Ring Main Unit (33kV) for medium voltage grids — built for smart switching safety and high performance under harsh climatic situations.",
+    description:
+      "Lucy Electric Aegis 36 Ring Main Unit (33kV) for medium voltage grids — built for smart switching safety and high performance under harsh climatic situations.",
     features: [
       "Voltage range: 33kV",
       "Vacuum technology for load break switches",
       "Fully sealed, maintenance-free design",
       "Integrated earth switch configuration",
-      "Compliant with international standards"
+      "Compliant with international standards",
     ],
     stats: [
       { label: "VOLTAGE RANGE", value: "33kV" },
       { label: "INSULATION TYPE", value: "Vacuum" },
       { label: "COMPLIANCE", value: "IEC Certified" },
-      { label: "DESIGN", value: "Sealed Maintenance-Free" }
+      { label: "DESIGN", value: "Sealed Maintenance-Free" },
     ],
-    imageSrc: "/images/products/lucy-rmu.png",
+    imageSrc: "/images/products/Products-LUCY-BRAND-RMU.png",
     imageAlt: "Lucy Electric Aegis 36 Ring Main Unit (RMU)",
     images: [
-      { src: "/images/products/lucy-rmu.png", alt: "Lucy Aegis 36 RMU — Front View" }
+      {
+        src: "/images/products/Products-LUCY-BRAND-RMU.png",
+        alt: "Lucy Aegis 36 RMU — Front View",
+      },
     ],
-    applications: "Urban Distribution | Renewable Energy Substations | Heavy Industrial Networks",
+    applications:
+      "Urban Distribution | Renewable Energy Substations | Heavy Industrial Networks",
     models: [
-      { name: "Aegis 36", capacity: "33 kV / 630A", inputVoltage: "33 kV", outputVoltage: "33 kV", efficiency: "99.8%", height: 1800, width: 1200, depth: 950, weight: "780 kg" }
-    ]
+      {
+        name: "Aegis 36",
+        capacity: "33 kV / 630A",
+        inputVoltage: "33 kV",
+        outputVoltage: "33 kV",
+        efficiency: "99.8%",
+        height: 1800,
+        width: 1200,
+        depth: 950,
+        weight: "780 kg",
+      },
+    ],
   },
   {
     id: "lucy-sabre-vrn3a",
@@ -2197,29 +3302,43 @@ export const engineeredProductsData = [
     jvSupply: "Direct brand supply",
     scoreLabel: "RELIABILITY INDEX",
     scorePercentage: 98.5,
-    description: "Lucy Electric Sabre VRN3a RMU for 24kV operations — offering enhanced multi-way switching designs for urban township power distribution grids.",
+    description:
+      "Lucy Electric Sabre VRN3a RMU for 24kV operations — offering enhanced multi-way switching designs for urban township power distribution grids.",
     features: [
       "Voltage range: 24kV / 630A",
       "Flexible multi-way configuration blocks",
       "Compact structural enclosure footprint",
       "Sealed stainless steel SF6 chamber",
-      "Reliable mechanical mechanical lockouts"
+      "Reliable mechanical mechanical lockouts",
     ],
     stats: [
       { label: "VOLTAGE RANGE", value: "24kV" },
       { label: "INSULATION TYPE", value: "SF6 Gas" },
       { label: "COMPLIANCE", value: "IEC Standards" },
-      { label: "DESIGN", value: "Weatherproof IP54" }
+      { label: "DESIGN", value: "Weatherproof IP54" },
     ],
-    imageSrc: "/images/products/lucy-rmu.png",
+    imageSrc: "/images/products/Products-LUCY-BRAND-RMU.png",
     imageAlt: "Lucy Electric Sabre VRN3a Ring Main Unit (RMU)",
     images: [
-      { src: "/images/products/lucy-rmu.png", alt: "Lucy Sabre VRN3a RMU — Front View" }
+      {
+        src: "/images/products/Products-LUCY-BRAND-RMU.png",
+        alt: "Lucy Sabre VRN3a RMU — Front View",
+      },
     ],
     applications: "Township Networks | Smart Cities | Renewable Energy Parks",
     models: [
-      { name: "Sabre VRN3a", capacity: "24 kV / 630A", inputVoltage: "24 kV", outputVoltage: "24 kV", efficiency: "99.8%", height: 1550, width: 1150, depth: 900, weight: "510 kg" }
-    ]
+      {
+        name: "Sabre VRN3a",
+        capacity: "24 kV / 630A",
+        inputVoltage: "24 kV",
+        outputVoltage: "24 kV",
+        efficiency: "99.8%",
+        height: 1550,
+        width: 1150,
+        depth: 900,
+        weight: "510 kg",
+      },
+    ],
   },
   {
     id: "lucy-aegis-12",
@@ -2231,29 +3350,43 @@ export const engineeredProductsData = [
     jvSupply: "Direct brand supply",
     scoreLabel: "RELIABILITY INDEX",
     scorePercentage: 98.2,
-    description: "Lucy Electric Aegis 12 compact Ring Main Unit for 12kV installations, designed to deliver high levels of safety and operational ease in municipal grid systems.",
+    description:
+      "Lucy Electric Aegis 12 compact Ring Main Unit for 12kV installations, designed to deliver high levels of safety and operational ease in municipal grid systems.",
     features: [
       "Voltage range: 12kV",
       "Air insulated cable box fields",
       "Internal arc protection shield",
       "Robust stainless steel tank frame",
-      "Intuitive mimic display configuration"
+      "Intuitive mimic display configuration",
     ],
     stats: [
       { label: "VOLTAGE RANGE", value: "12kV" },
       { label: "INSULATION TYPE", value: "SF6 / Vacuum" },
       { label: "COMPLIANCE", value: "IEC Compliant" },
-      { label: "DESIGN", value: "Modular Enclosure" }
+      { label: "DESIGN", value: "Modular Enclosure" },
     ],
-    imageSrc: "/images/products/lucy-rmu.png",
+    imageSrc: "/images/products/Products-LUCY-BRAND-RMU.png",
     imageAlt: "Lucy Electric Aegis 12 Ring Main Unit (RMU)",
     images: [
-      { src: "/images/products/lucy-rmu.png", alt: "Lucy Aegis 12 RMU — Front View" }
+      {
+        src: "/images/products/Products-LUCY-BRAND-RMU.png",
+        alt: "Lucy Aegis 12 RMU — Front View",
+      },
     ],
     applications: "Urban Municipal Grids | Small Industrial Substations",
     models: [
-      { name: "Aegis 12", capacity: "12 kV / 630A", inputVoltage: "12 kV", outputVoltage: "12 kV", efficiency: "99.7%", height: 1600, width: 1000, depth: 900, weight: "490 kg" }
-    ]
+      {
+        name: "Aegis 12",
+        capacity: "12 kV / 630A",
+        inputVoltage: "12 kV",
+        outputVoltage: "12 kV",
+        efficiency: "99.7%",
+        height: 1600,
+        width: 1000,
+        depth: 900,
+        weight: "490 kg",
+      },
+    ],
   },
 
   // ─── LUCY BRAND CSS ───────────────────────────────────────────────────────
@@ -2267,29 +3400,43 @@ export const engineeredProductsData = [
     jvSupply: "Direct brand supply",
     scoreLabel: "INTEGRATION INDEX",
     scorePercentage: 98,
-    description: "CSS-500 (500 kVA CSS) Compact Secondary Substation from Lucy Electric — integrating MV switchgear, transformer, and LV board in a single weatherproof container.",
+    description:
+      "CSS-500 (500 kVA CSS) Compact Secondary Substation from Lucy Electric — integrating MV switchgear, transformer, and LV board in a single weatherproof container.",
     features: [
       "Integrated MV switchgear (RMU) + Transformer + LV Panel",
       "Capacity rating up to 500 kVA",
       "Weatherproof steel/GRP enclosure",
       "Factory-assembled and fully type-tested",
-      "Plug-in cable connections for easy linkups"
+      "Plug-in cable connections for easy linkups",
     ],
     stats: [
       { label: "CAPACITY RANGE", value: "500 kVA" },
       { label: "VOLTAGE STEP", value: "11kV / 415V" },
       { label: "INTEGRATION", value: "MV + TX + LV" },
-      { label: "ENCLOSURE", value: "Weatherproof IP23D/IP54" }
+      { label: "ENCLOSURE", value: "Weatherproof IP23D/IP54" },
     ],
-    imageSrc: "/images/products/lucy-css.png",
+    imageSrc: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
     imageAlt: "Lucy Electric CSS-500 Compact Substation",
     images: [
-      { src: "/images/products/lucy-css.png", alt: "CSS-500 Substation — Enclosure View" }
+      {
+        src: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
+        alt: "CSS-500 Substation — Enclosure View",
+      },
     ],
     applications: "Smart Cities | Townships | Industrial Parks | Metro Grids",
     models: [
-      { name: "CSS-500", capacity: "500 kVA", inputVoltage: "11 kV", outputVoltage: "415 V", efficiency: "98.5%", height: 2200, width: 2800, depth: 2200, weight: "4200 kg" }
-    ]
+      {
+        name: "CSS-500",
+        capacity: "500 kVA",
+        inputVoltage: "11 kV",
+        outputVoltage: "415 V",
+        efficiency: "98.5%",
+        height: 2200,
+        width: 2800,
+        depth: 2200,
+        weight: "4200 kg",
+      },
+    ],
   },
   {
     id: "lucy-css-1000",
@@ -2301,29 +3448,43 @@ export const engineeredProductsData = [
     jvSupply: "Direct brand supply",
     scoreLabel: "INTEGRATION INDEX",
     scorePercentage: 99,
-    description: "CSS-1000 (1000 kVA CSS) Compact Secondary Substation from Lucy Electric — robust weatherproof integration engineered for reliable power transfer under 1000 kVA capacities.",
+    description:
+      "CSS-1000 (1000 kVA CSS) Compact Secondary Substation from Lucy Electric — robust weatherproof integration engineered for reliable power transfer under 1000 kVA capacities.",
     features: [
       "Integrated MV switchgear (RMU) + Transformer + LV Panel",
       "Capacity rating up to 1000 kVA",
       "Weatherproof steel/GRP enclosure",
       "Factory-assembled and type-tested to IEC parameters",
-      "Optimized ventilation configuration"
+      "Optimized ventilation configuration",
     ],
     stats: [
       { label: "CAPACITY RANGE", value: "1000 kVA" },
       { label: "VOLTAGE STEP", value: "11kV / 415V" },
       { label: "INTEGRATION", value: "MV + TX + LV" },
-      { label: "ENCLOSURE", value: "Weatherproof IP23D/IP54" }
+      { label: "ENCLOSURE", value: "Weatherproof IP23D/IP54" },
     ],
-    imageSrc: "/images/products/lucy-css.png",
+    imageSrc: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
     imageAlt: "Lucy Electric CSS-1000 Compact Substation",
     images: [
-      { src: "/images/products/lucy-css.png", alt: "CSS-1000 Substation — Enclosure View" }
+      {
+        src: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
+        alt: "CSS-1000 Substation — Enclosure View",
+      },
     ],
     applications: "Smart Cities | Townships | Industrial Parks | Metro Grids",
     models: [
-      { name: "CSS-1000", capacity: "1000 kVA", inputVoltage: "11 kV", outputVoltage: "415 V", efficiency: "98.7%", height: 2400, width: 3400, depth: 2400, weight: "6800 kg" }
-    ]
+      {
+        name: "CSS-1000",
+        capacity: "1000 kVA",
+        inputVoltage: "11 kV",
+        outputVoltage: "415 V",
+        efficiency: "98.7%",
+        height: 2400,
+        width: 3400,
+        depth: 2400,
+        weight: "6800 kg",
+      },
+    ],
   },
   {
     id: "lucy-css-2500",
@@ -2335,29 +3496,43 @@ export const engineeredProductsData = [
     jvSupply: "Direct brand supply",
     scoreLabel: "INTEGRATION INDEX",
     scorePercentage: 99,
-    description: "CSS-2500 (2500 kVA CSS) Compact Secondary Substation from Lucy Electric — high capacity turnkey power package for large heavy industrial zone grids.",
+    description:
+      "CSS-2500 (2500 kVA CSS) Compact Secondary Substation from Lucy Electric — high capacity turnkey power package for large heavy industrial zone grids.",
     features: [
       "Integrated MV switchgear (RMU) + Transformer + LV Panel",
       "Capacity rating up to 2500 kVA",
       "Weatherproof steel/GRP enclosure",
       "Factory-assembled and type-tested to IEC standards",
-      "High thermal stability cooling design"
+      "High thermal stability cooling design",
     ],
     stats: [
       { label: "CAPACITY RANGE", value: "2500 kVA" },
       { label: "VOLTAGE STEP", value: "11kV / 415V" },
       { label: "INTEGRATION", value: "MV + TX + LV" },
-      { label: "ENCLOSURE", value: "Weatherproof IP23D/IP54" }
+      { label: "ENCLOSURE", value: "Weatherproof IP23D/IP54" },
     ],
-    imageSrc: "/images/products/lucy-css.png",
+    imageSrc: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
     imageAlt: "Lucy Electric CSS-2500 Compact Substation",
     images: [
-      { src: "/images/products/lucy-css.png", alt: "CSS-2500 Substation — Enclosure View" }
+      {
+        src: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
+        alt: "CSS-2500 Substation — Enclosure View",
+      },
     ],
     applications: "Smart Cities | Townships | Industrial Parks | Metro Grids",
     models: [
-      { name: "CSS-2500", capacity: "2500 kVA", inputVoltage: "11 kV", outputVoltage: "415 V", efficiency: "98.9%", height: 2600, width: 4200, depth: 2600, weight: "12500 kg" }
-    ]
+      {
+        name: "CSS-2500",
+        capacity: "2500 kVA",
+        inputVoltage: "11 kV",
+        outputVoltage: "415 V",
+        efficiency: "98.9%",
+        height: 2600,
+        width: 4200,
+        depth: 2600,
+        weight: "12500 kg",
+      },
+    ],
   },
   {
     id: "lucy-css-1500",
@@ -2369,28 +3544,42 @@ export const engineeredProductsData = [
     jvSupply: "Direct brand supply",
     scoreLabel: "INTEGRATION INDEX",
     scorePercentage: 98.4,
-    description: "CSS-1500 (1500 kVA CSS) Compact Secondary Substation from Lucy Electric — delivering robust MV and LV distribution configurations in a compact weatherproof container.",
+    description:
+      "CSS-1500 (1500 kVA CSS) Compact Secondary Substation from Lucy Electric — delivering robust MV and LV distribution configurations in a compact weatherproof container.",
     features: [
       "Integrated MV switchgear (RMU) + Transformer + LV Panel",
       "Capacity rating up to 1500 kVA",
       "Weatherproof steel/GRP enclosure",
       "Factory-assembled and type-tested to IEC standards",
-      "Optimal maintenance doors and locks"
+      "Optimal maintenance doors and locks",
     ],
     stats: [
       { label: "CAPACITY RANGE", value: "1500 kVA" },
       { label: "VOLTAGE STEP", value: "11kV / 415V" },
       { label: "INTEGRATION", value: "MV + TX + LV" },
-      { label: "ENCLOSURE", value: "Weatherproof IP23D/IP54" }
+      { label: "ENCLOSURE", value: "Weatherproof IP23D/IP54" },
     ],
-    imageSrc: "/images/products/lucy-css.png",
+    imageSrc: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
     imageAlt: "Lucy Electric CSS-1500 Compact Substation",
     images: [
-      { src: "/images/products/lucy-css.png", alt: "CSS-1500 Substation — Enclosure View" }
+      {
+        src: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
+        alt: "CSS-1500 Substation — Enclosure View",
+      },
     ],
     applications: "Smart Cities | Townships | Industrial Parks | Metro Grids",
     models: [
-      { name: "CSS-1500", capacity: "1500 kVA", inputVoltage: "11 kV", outputVoltage: "415 V", efficiency: "98.8%", height: 2500, width: 3800, depth: 2500, weight: "9200 kg" }
-    ]
-  }
+      {
+        name: "CSS-1500",
+        capacity: "1500 kVA",
+        inputVoltage: "11 kV",
+        outputVoltage: "415 V",
+        efficiency: "98.8%",
+        height: 2500,
+        width: 3800,
+        depth: 2500,
+        weight: "9200 kg",
+      },
+    ],
+  },
 ];

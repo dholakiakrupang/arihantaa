@@ -1,3 +1,5 @@
+import containerQueries from '@tailwindcss/container-queries'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -105,6 +107,8 @@ export default {
           "100%": { transform: "scale(0.95)", boxShadow: "0 0 0 0 rgba(233, 101, 43, 0)" }
         }
       },
+      "theme": {
+      },
       "animation": {
         "marquee": "marquee 40s linear infinite",
         "pulse-ring": "pulse-ring 2s infinite"
@@ -112,6 +116,6 @@ export default {
     },
   },
   plugins: [
-    require('@tailwindcss/container-queries')
+    containerQueries
   ],
 }

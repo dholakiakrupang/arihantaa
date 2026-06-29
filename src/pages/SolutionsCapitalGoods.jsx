@@ -95,7 +95,7 @@ export function SolutionsCapitalGoods() {
           transition={{ duration: 1, delay: 0.2 }}
         >
           <motion.img
-            src="/images/project-industrial.png"
+            src="/images/products/Services-Generator-Switchgear-Services.png"
             alt="Capital Goods Logistics & Supply"
             className="absolute inset-0 w-full h-full object-cover object-center"
             initial={{ scale: 1.06 }}

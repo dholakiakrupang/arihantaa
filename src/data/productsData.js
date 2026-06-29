@@ -14,34 +14,174 @@ export const productsData = [
       "Authorized source for Larsen & Toubro (L&T) Type Tested Assembly (TTA) switchgear panels, supplied via our Virtual JV with Synchro Electricals Pvt. Ltd. — engineered for maximum safety and uninterrupted power transfer under high-current loads.",
     cards: [
       {
-        id: "lt-tta-630",
+        id: "synchro-smb",
         categoryId: "lt-tta-panel",
-        category: "Switchgear",
-        title: "TTA-630 Switchgear Panel",
+        category: "Solar PV",
+        title: "String Monitoring Box (SMB)",
         description:
-          "Reliable TTA-630 automatic transfer switch panel from L&T — engineered for automatic power changeover under 630A loads in hospitals and critical utilities.",
-        imageSrc: "/images/products/switchgear.png",
-        imageAlt: "TTA-630 Switchgear Panel",
+          "High-performance String Monitoring Box (SMB) from Synchro Electricals — engineered for real-time monitoring, surge protection, and safety in utility-scale solar PV installations.",
+        imageSrc: "/images/products/synchro/smb.jpg",
+        imageAlt: "String Monitoring Box (SMB)",
       },
       {
-        id: "lt-tta-1600",
+        id: "synchro-pcc",
         categoryId: "lt-tta-panel",
-        category: "Switchgear",
-        title: "TTA-1600 Switchgear Panel",
+        category: "Industrial Panels",
+        title: "PCC Panel",
         description:
-          "Advanced TTA-1600 automatic transfer switch panel — configured for seamless power changeover under 1600A loads in core telecom hubs and high-rise commercial structures.",
-        imageSrc: "/images/products/switchgear.png",
-        imageAlt: "TTA-1600 Switchgear Panel",
+          "Main power control centre panels engineered for safe and centralized power distribution in industrial plants, featuring robust busbars and reliable switchgear.",
+        imageSrc: "/images/products/synchro/pcc.jpg",
+        imageAlt: "PCC Panel",
       },
       {
-        id: "lt-tta-4000",
+        id: "synchro-mcc",
         categoryId: "lt-tta-panel",
-        category: "Switchgear",
-        title: "TTA-4000 Switchgear Panel",
+        category: "Industrial Panels",
+        title: "MCC Panel",
         description:
-          "Industrial-grade heavy-duty TTA-4000 automatic transfer switch panel — engineered for massive B2B power transfer configurations up to 4000A in manufacturing complexes.",
-        imageSrc: "/images/products/switchgear.png",
-        imageAlt: "TTA-4000 Switchgear Panel",
+          "Centralized Motor Control Centre (MCC) panels designed for reliable motor operation, featuring dol/star-delta starters and smart protection units.",
+        imageSrc: "/images/products/synchro/mcc.jpg",
+        imageAlt: "MCC Panel",
+      },
+      {
+        id: "synchro-apfc",
+        categoryId: "lt-tta-panel",
+        category: "Industrial Panels",
+        title: "APFC Panel",
+        description:
+          "Automatic Power Factor Correction panels that optimize energy consumption, reduce reactive power surcharges, and stabilize supply voltage.",
+        imageSrc: "/images/products/synchro/apfc.jpg",
+        imageAlt: "APFC Panel",
+      },
+      {
+        id: "synchro-vfd",
+        categoryId: "lt-tta-panel",
+        category: "Industrial Panels",
+        title: "VFD Panel",
+        description:
+          "Variable Frequency Drive panels offering precise control over motor speed, soft starts, and significant energy savings under varying load conditions.",
+        imageSrc: "/images/products/synchro/vfd.jpg",
+        imageAlt: "VFD Panel",
+      },
+      {
+        id: "synchro-amf-ats",
+        categoryId: "lt-tta-panel",
+        category: "Industrial Panels",
+        title: "AMF & ATS Panel",
+        description:
+          "Automated AMF and ATS panels designed to detect mains failure, command backup generators to start, and seamlessly transfer critical loads.",
+        imageSrc: "/images/products/synchro/amf.jpg",
+        imageAlt: "AMF & ATS Panel",
+      },
+      {
+        id: "synchro-sync",
+        categoryId: "lt-tta-panel",
+        category: "Industrial Panels",
+        title: "Synchronizing Panel",
+        description:
+          "Generator synchronizing and load-sharing systems built to control multiple backup generators for balanced load sharing and peak efficiency.",
+        imageSrc: "/images/products/synchro/sync.jpg",
+        imageAlt: "Synchronizing Panel",
+      },
+      {
+        id: "synchro-vcb",
+        categoryId: "lt-tta-panel",
+        category: "HT Panels",
+        title: "VCB Panel",
+        description:
+          "Medium voltage Vacuum Circuit Breaker (VCB) panels engineered for robust overcurrent and earth fault protection in grids up to 33kV.",
+        imageSrc: "/images/products/synchro/vcb.jpg",
+        imageAlt: "VCB Panel",
+      },
+      {
+        id: "synchro-tta",
+        categoryId: "lt-tta-panel",
+        category: "Industrial Panels",
+        title: "Type Tested Panel",
+        description:
+          "Fully certified switchgear assemblies verifying thermal limits, short-circuit withstand capacity, and mechanical enclosure ratings.",
+        imageSrc: "/images/products/synchro/tta.jpg",
+        imageAlt: "Type Tested Panel",
+      },
+      {
+        id: "synchro-meter",
+        categoryId: "lt-tta-panel",
+        category: "Monitoring Products",
+        title: "Meter Panel",
+        description:
+          "Custom sub-metering and multi-tenant billing panels built for safe, compact, and sealable layouts in commercial complexes.",
+        imageSrc: "/images/products/synchro/meter.jpg",
+        imageAlt: "Meter Panel",
+      },
+      {
+        id: "synchro-bus-duct",
+        categoryId: "lt-tta-panel",
+        category: "Distribution Products",
+        title: "L.T. Bus Duct / Sandwich Bus Duct",
+        description:
+          "Sandwich design busbar systems engineered for efficient high-current power transmission from transformers to PCC boards.",
+        imageSrc: "/images/products/synchro/busduct.jpg",
+        imageAlt: "L.T. Bus Duct / Sandwich Bus Duct",
+      },
+      {
+        id: "synchro-acdb-dcdb",
+        categoryId: "lt-tta-panel",
+        category: "Solar Products",
+        title: "Solar ACDB / DCDB Box",
+        description:
+          "Pre-wired distribution boxes providing surge protection, overcurrent safety, and isolation for solar PV inverter systems.",
+        imageSrc: "/images/products/synchro/acdb.jpg",
+        imageAlt: "Solar ACDB / DCDB Box",
+      },
+      {
+        id: "synchro-800vac-panel",
+        categoryId: "lt-tta-panel",
+        category: "Solar Products",
+        title: "800Vac Solar Type Tested Panel",
+        description:
+          "High-voltage switchgear assemblies certified for 800Vac outputs from utility-scale solar PV system inverters.",
+        imageSrc: "/images/products/synchro/800vac.jpg",
+        imageAlt: "800Vac Solar Type Tested Panel",
+      },
+      {
+        id: "synchro-combiner",
+        categoryId: "lt-tta-panel",
+        category: "Solar Products",
+        title: "String Combiner Box",
+        description:
+          "Solar combiner panels designed to group string connections, incorporating overcurrent fuses and high-capacity surge protection.",
+        imageSrc: "/images/products/synchro/scb.jpg",
+        imageAlt: "String Combiner Box",
+      },
+      {
+        id: "synchro-sitc",
+        categoryId: "lt-tta-panel",
+        category: "Services",
+        title: "Turnkey Project (SITC)",
+        description:
+          "Turnkey project execution including Supply, Installation, Testing, and Commissioning (SITC) of utility-scale and rooftop solar arrays.",
+        imageSrc: "/images/products/synchro/sitc.png",
+        imageAlt: "Turnkey Project (SITC)",
+      },
+      {
+        id: "synchro-ldp",
+        categoryId: "lt-tta-panel",
+        category: "LDP",
+        title: "Lighting Distribution Panel (LDP)",
+        description:
+          "Centralized distribution board for control, scheduling, and overload protection of industrial and commercial lighting grids.",
+        imageSrc: "/images/products/synchro/ldp.jpg",
+        imageAlt: "Lighting Distribution Panel (LDP)",
+      },
+      {
+        id: "synchro-1500vdc-dcdb",
+        categoryId: "lt-tta-panel",
+        category: "Solar Products",
+        title: "1500VDC Solar DCDB Panel",
+        description:
+          "Heavy-duty DC distribution panels engineered to manage high-voltage 1500V solar string connections safely.",
+        imageSrc: "/images/products/synchro/1500vdc.jpg",
+        imageAlt: "1500VDC Solar DCDB Panel",
       },
     ],
   },
@@ -62,7 +202,7 @@ export const productsData = [
         title: "Sabre VRN2a RMU",
         description:
           "Lucy Electric Sabre VRN2a Ring Main Unit for compact, sealed, maintenance-free medium voltage switchgear — ideal for urban and industrial power distribution networks.",
-        imageSrc: "/images/products/lucy-rmu.png",
+        imageSrc: "/images/products/Products-LUCY-BRAND-RMU.png",
         imageAlt: "Lucy Electric Sabre VRN2a RMU",
       },
       {
@@ -72,7 +212,7 @@ export const productsData = [
         title: "Aegis 36 RMU",
         description:
           "Lucy Electric Aegis 36 Ring Main Unit (33kV) for medium voltage grids — built for smart switching safety and high performance under harsh climatic situations.",
-        imageSrc: "/images/products/lucy-rmu.png",
+        imageSrc: "/images/products/Products-LUCY-BRAND-RMU.png",
         imageAlt: "Lucy Electric Aegis 36 RMU",
       },
       {
@@ -82,7 +222,7 @@ export const productsData = [
         title: "Sabre VRN3a RMU",
         description:
           "Lucy Electric Sabre VRN3a RMU for 24kV operations — offering enhanced multi-way switching designs for urban township power distribution grids.",
-        imageSrc: "/images/products/lucy-rmu.png",
+        imageSrc: "/images/products/Products-LUCY-BRAND-RMU.png",
         imageAlt: "Lucy Electric Sabre VRN3a RMU",
       },
     ],
@@ -104,7 +244,7 @@ export const productsData = [
         title: "CSS-500 Substation",
         description:
           "CSS-500 (500 kVA) Compact Secondary Substation from Lucy Electric — integrating MV switchgear, transformer, and LV board in a single weatherproof container.",
-        imageSrc: "/images/products/lucy-css.png",
+        imageSrc: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
         imageAlt: "Lucy Electric CSS-500 Substation",
       },
       {
@@ -114,7 +254,7 @@ export const productsData = [
         title: "CSS-1000 Substation",
         description:
           "CSS-1000 (1000 kVA) Compact Secondary Substation — robust weatherproof integration engineered for reliable power transfer under 1000 kVA capacities.",
-        imageSrc: "/images/products/lucy-css.png",
+        imageSrc: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
         imageAlt: "Lucy Electric CSS-1000 Substation",
       },
       {
@@ -124,7 +264,7 @@ export const productsData = [
         title: "CSS-2500 Substation",
         description:
           "CSS-2500 (2500 kVA) Compact Secondary Substation — high capacity turnkey power package for large heavy industrial zone grids.",
-        imageSrc: "/images/products/lucy-css.png",
+        imageSrc: "/images/products/Products - Lucy-Brand-Compact-Substation (CSS).png",
         imageAlt: "Lucy Electric CSS-2500 Substation",
       },
     ],
@@ -146,7 +286,7 @@ export const productsData = [
         title: "Liebert® EXL S1 UPS 1200kW",
         description:
           "The Liebert® EXL S1 delivers secure power and first-class load protection, maximizing energy savings for medium-to-large data centers and mission-critical applications.",
-        imageSrc: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg",
+        imageSrc: "/images/products/vertiv-ups.png",
         imageAlt: "Vertiv Liebert EXL S1 UPS 1200kW",
       },
       {
@@ -156,7 +296,7 @@ export const productsData = [
         title: "Liebert® EXM2 UPS 250kW",
         description:
           "Monolithic, high-efficiency UPS designed for mid-size applications — incorporating next-generation cooling technologies and internal diagnostics for maximum power reliability.",
-        imageSrc: "https://www.vertiv.com/492dc0/globalassets/products/critical-power/uninterruptible-power-supplies-ups/liebert-exm2-100-250kw/exm2-100-250kw-front.png",
+        imageSrc: "/images/products/vertiv-ups.png",
         imageAlt: "Vertiv Liebert EXM2 UPS 250kW",
       },
       {
@@ -166,7 +306,7 @@ export const productsData = [
         title: "Liebert® APM2 Modular UPS 600kW",
         description:
           "High-density, modular, and scalable UPS designed to support critical infrastructure including variable frequency drive pumps and mechanical cooling systems in data centers.",
-        imageSrc: "https://www.vertiv.com/49841c/globalassets/products/critical-power/uninterruptible-power-supplies-ups/vertiv-liebert-exl-s1-ups/cp-ups-na-508x635-42362-exl-s1-ups.jpg",
+        imageSrc: "/images/products/vertiv-ups.png",
         imageAlt: "Vertiv Liebert APM2 Modular UPS 600kW",
       },
     ],

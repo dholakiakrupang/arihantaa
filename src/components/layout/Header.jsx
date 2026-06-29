@@ -1319,6 +1319,19 @@ export function Header() {
   const [hoveredLabel, setHoveredLabel] = useState(null); // track hovered navbar link
   const closeTimer = useRef(null);
   const headerRef = useRef(null);
+  const [headerHeight, setHeaderHeight] = useState(64);
+
+  // Measure header height dynamically in an effect to avoid ref access during render
+  useEffect(() => {
+    const measure = () => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight);
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure, { passive: true });
+    return () => window.removeEventListener("resize", measure);
+  }, [scrolled]);
 
   // Close mobile drawer on route change
   useEffect(() => {
@@ -1391,7 +1404,7 @@ export function Header() {
   const closeSearch = useCallback(() => setSearchOpen(false), []);
 
   const menu = open ? MEGA_MENUS[open] : null;
-  const headerH = headerRef.current?.offsetHeight ?? 64;
+  const headerH = headerHeight;
 
   return (
     <>

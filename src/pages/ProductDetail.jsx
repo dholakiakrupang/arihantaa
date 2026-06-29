@@ -1,87 +1,109 @@
-import { useEffect, useState, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Button } from '../components/ui/Button';
-import { ProductImageGallery } from '../components/ui/ProductImageGallery';
-import { engineeredProductsData } from '../data/engineeredProductsData';
-import { UnifiedCTA } from '../components/sections/UnifiedCTA';
+import { useEffect, useState, useRef } from "react";
+import { useParams, Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "../components/ui/Button";
+import { ProductImageGallery } from "../components/ui/ProductImageGallery";
+import { engineeredProductsData } from "../data/engineeredProductsData";
+import { UnifiedCTA } from "../components/sections/UnifiedCTA";
 
 /* ── Static Mappings ─────────────────────────────────────────────────────────── */
 
 const categoryMap = {
-  'ups': 'Uninterruptible Power Supplies (UPS)',
-  'lt-tta-panel': 'L&T TTA Panel',
-  'lucy-rmu': 'Lucy Electric RMU',
-  'lucy-css': 'Lucy Electric CSS',
-  'enclosure-cooling': 'Enclosure Cooling',
-  'integrated-solutions': 'Integrated Solutions',
-  'digital-infrastructure': 'Digital Infrastructure Solutions'
+  ups: "Uninterruptible Power Supplies (UPS)",
+  "lt-tta-panel": "L&T TTA Panel",
+  "lucy-rmu": "Lucy Electric RMU",
+  "lucy-css": "Lucy Electric CSS",
+  "enclosure-cooling": "Enclosure Cooling",
+  "integrated-solutions": "Integrated Solutions",
+  "digital-infrastructure": "Digital Infrastructure Solutions",
 };
 
 const categoryIcons = {
-  'ups': 'battery_charging_full',
-  'lt-tta-panel': 'electric_bolt',
-  'lucy-rmu': 'hub',
-  'lucy-css': 'domain',
-  'enclosure-cooling': 'mode_cool',
-  'integrated-solutions': 'developer_board',
-  'digital-infrastructure': 'monitoring'
+  ups: "battery_charging_full",
+  "lt-tta-panel": "electric_bolt",
+  "lucy-rmu": "hub",
+  "lucy-css": "domain",
+  "enclosure-cooling": "mode_cool",
+  "integrated-solutions": "developer_board",
+  "digital-infrastructure": "monitoring",
 };
 
 const getStatIcon = (label) => {
   const lbl = label.toLowerCase();
-  if (lbl.includes('capacity') || lbl.includes('power')) return 'bolt';
-  if (lbl.includes('efficiency') || lbl.includes('rating')) return 'trending_up';
-  if (lbl.includes('voltage')) return 'electrical_services';
-  if (lbl.includes('parallel') || lbl.includes('hub')) return 'device_hub';
-  if (lbl.includes('footprint') || lbl.includes('size') || lbl.includes('dimension')) return 'aspect_ratio';
-  if (lbl.includes('noise')) return 'volume_down';
-  if (lbl.includes('logistics') || lbl.includes('dispatch')) return 'schedule';
-  if (lbl.includes('accuracy') || lbl.includes('rate') || lbl.includes('index')) return 'verified';
-  if (lbl.includes('heat') || lbl.includes('cooling') || lbl.includes('cop')) return 'thermostat';
-  if (lbl.includes('flow')) return 'water_drop';
-  if (lbl.includes('coolant') || lbl.includes('refrigerant')) return 'science';
-  if (lbl.includes('pump') || lbl.includes('redundancy')) return 'sync';
-  if (lbl.includes('rack') || lbl.includes('integration')) return 'dns';
-  if (lbl.includes('deployment')) return 'cloud_upload';
-  if (lbl.includes('alert') || lbl.includes('time')) return 'notification_important';
-  if (lbl.includes('data') || lbl.includes('retention')) return 'database';
-  if (lbl.includes('support') || lbl.includes('network')) return 'support_agent';
-  if (lbl.includes('breaker')) return 'toggle_on';
-  if (lbl.includes('monitoring')) return 'monitor_heart';
-  if (lbl.includes('design') || lbl.includes('life')) return 'engineering';
-  if (lbl.includes('ip')) return 'shield';
-  if (lbl.includes('dynamic') || lbl.includes('stability')) return 'equalizer';
-  return 'settings_input_component';
+  if (lbl.includes("capacity") || lbl.includes("power")) return "bolt";
+  if (lbl.includes("efficiency") || lbl.includes("rating"))
+    return "trending_up";
+  if (lbl.includes("voltage")) return "electrical_services";
+  if (lbl.includes("parallel") || lbl.includes("hub")) return "device_hub";
+  if (
+    lbl.includes("footprint") ||
+    lbl.includes("size") ||
+    lbl.includes("dimension")
+  )
+    return "aspect_ratio";
+  if (lbl.includes("noise")) return "volume_down";
+  if (lbl.includes("logistics") || lbl.includes("dispatch")) return "schedule";
+  if (lbl.includes("accuracy") || lbl.includes("rate") || lbl.includes("index"))
+    return "verified";
+  if (lbl.includes("heat") || lbl.includes("cooling") || lbl.includes("cop"))
+    return "thermostat";
+  if (lbl.includes("flow")) return "water_drop";
+  if (lbl.includes("coolant") || lbl.includes("refrigerant")) return "science";
+  if (lbl.includes("pump") || lbl.includes("redundancy")) return "sync";
+  if (lbl.includes("rack") || lbl.includes("integration")) return "dns";
+  if (lbl.includes("deployment")) return "cloud_upload";
+  if (lbl.includes("alert") || lbl.includes("time"))
+    return "notification_important";
+  if (lbl.includes("data") || lbl.includes("retention")) return "database";
+  if (lbl.includes("support") || lbl.includes("network"))
+    return "support_agent";
+  if (lbl.includes("breaker")) return "toggle_on";
+  if (lbl.includes("monitoring")) return "monitor_heart";
+  if (lbl.includes("design") || lbl.includes("life")) return "engineering";
+  if (lbl.includes("ip")) return "shield";
+  if (lbl.includes("dynamic") || lbl.includes("stability")) return "equalizer";
+  return "settings_input_component";
 };
 
 const getFeatureIcon = (index) => {
   const icons = [
-    'settings_input_component', 'shield', 'cable', 'speed',
-    'monitor_heart', 'battery_5_bar', 'thermostat', 'hub',
-    'precision_manufacturing', 'bolt', 'verified', 'tune'
+    "settings_input_component",
+    "shield",
+    "cable",
+    "speed",
+    "monitor_heart",
+    "battery_5_bar",
+    "thermostat",
+    "hub",
+    "precision_manufacturing",
+    "bolt",
+    "verified",
+    "tune",
   ];
   return icons[index % icons.length];
 };
 
 const getApplicationIcon = (app) => {
   const a = app.toLowerCase().trim();
-  if (a.includes('hospital')) return 'local_hospital';
-  if (a.includes('data centre') || a.includes('data center')) return 'dns';
-  if (a.includes('industrial plant')) return 'precision_manufacturing';
-  if (a.includes('commercial building')) return 'corporate_fare';
-  if (a.includes('infrastructure')) return 'engineering';
-  if (a.includes('urban distribution')) return 'grid_view';
-  if (a.includes('substation')) return 'bolt';
-  if (a.includes('renewable') || a.includes('solar') || a.includes('wind')) return 'solar_power';
-  if (a.includes('underground')) return 'settings_input_composite';
-  if (a.includes('township') || a.includes('residential')) return 'location_city';
-  if (a.includes('smart city') || a.includes('smart cities')) return 'emoji_transportation';
-  if (a.includes('estate') || a.includes('factory')) return 'factory';
-  if (a.includes('park') || a.includes('sunny')) return 'wb_sunny';
-  if (a.includes('metro') || a.includes('rail')) return 'train';
-  if (a.includes('network') || a.includes('grid')) return 'hub';
-  return 'business_center';
+  if (a.includes("hospital")) return "local_hospital";
+  if (a.includes("data centre") || a.includes("data center")) return "dns";
+  if (a.includes("industrial plant")) return "precision_manufacturing";
+  if (a.includes("commercial building")) return "corporate_fare";
+  if (a.includes("infrastructure")) return "engineering";
+  if (a.includes("urban distribution")) return "grid_view";
+  if (a.includes("substation")) return "bolt";
+  if (a.includes("renewable") || a.includes("solar") || a.includes("wind"))
+    return "solar_power";
+  if (a.includes("underground")) return "settings_input_composite";
+  if (a.includes("township") || a.includes("residential"))
+    return "location_city";
+  if (a.includes("smart city") || a.includes("smart cities"))
+    return "emoji_transportation";
+  if (a.includes("estate") || a.includes("factory")) return "factory";
+  if (a.includes("park") || a.includes("sunny")) return "wb_sunny";
+  if (a.includes("metro") || a.includes("rail")) return "train";
+  if (a.includes("network") || a.includes("grid")) return "hub";
+  return "business_center";
 };
 
 /* ── Framer Motion Variants ──────────────────────────────────────────────────── */
@@ -91,36 +113,36 @@ const fadeUp = {
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }
-  })
+    transition: { duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] },
+  }),
 };
 
 const fadeIn = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }
+  visible: { opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const staggerContainer = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } }
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 /* ── Nav Items ───────────────────────────────────────────────────────────────── */
 
 const NAV_ITEMS = [
-  { id: 'overview', label: 'OVERVIEW', icon: 'visibility' },
-  { id: 'features', label: 'FEATURES', icon: 'star' },
-  { id: 'specifications', label: 'SPECIFICATIONS', icon: 'data_table' },
-  { id: 'downloads', label: 'DOWNLOADS', icon: 'download' }
+  { id: "overview", label: "OVERVIEW", icon: "visibility" },
+  { id: "features", label: "FEATURES", icon: "star" },
+  { id: "specifications", label: "SPECIFICATIONS", icon: "data_table" },
+  { id: "downloads", label: "DOWNLOADS", icon: "download" },
 ];
 
 /* ── Main Component ──────────────────────────────────────────────────────────── */
 
 export function ProductDetail() {
   const { categoryId, productId } = useParams();
-  const [activeSection, setActiveSection] = useState('overview');
-  const [unitSystem, setUnitSystem] = useState('metric');
-  const [activeTab, setActiveTab] = useState('elec');
+  const [activeSection, setActiveSection] = useState("overview");
+  const [unitSystem, setUnitSystem] = useState("metric");
+  const [activeTab, setActiveTab] = useState("elec");
   const [imageError, setImageError] = useState(false);
   const sectionRefs = useRef({});
 
@@ -128,15 +150,15 @@ export function ProductDetail() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setImageError(false);
-    setActiveTab('elec');
-    setUnitSystem('metric');
+    setActiveTab("elec");
+    setUnitSystem("metric");
   }, [productId]);
 
   // Precision Scroll Spy – IntersectionObserver
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-40% 0px -50% 0px',
+      rootMargin: "-40% 0px -50% 0px",
       threshold: 0,
     };
 
@@ -149,7 +171,7 @@ export function ProductDetail() {
     };
 
     const observer = new IntersectionObserver(handleIntersect, observerOptions);
-    const sectionIds = ['overview', 'features', 'specifications', 'downloads'];
+    const sectionIds = ["overview", "features", "specifications", "downloads"];
     sectionIds.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
@@ -165,23 +187,40 @@ export function ProductDetail() {
       const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
       const yOffset = isMobile ? -120 : isTablet ? -136 : -140;
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
   // Find product
-  const product = engineeredProductsData.find(item => item.id === productId);
-  const categoryTitle = product ? (categoryMap[categoryId] || categoryMap[product.categoryId] || 'Products') : 'Products';
-  const categoryIcon = product ? (categoryIcons[product.categoryId] || 'settings_input_component') : 'settings_input_component';
+  const product = engineeredProductsData.find((item) => item.id === productId);
+  const categoryTitle = product
+    ? categoryMap[categoryId] || categoryMap[product.categoryId] || "Products"
+    : "Products";
+  const categoryIcon = product
+    ? categoryIcons[product.categoryId] || "settings_input_component"
+    : "settings_input_component";
 
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-surface">
         <div className="text-center">
-          <span className="material-symbols-outlined text-[64px] text-secondary/30 mb-6 block">search_off</span>
-          <h2 className="font-headline text-2xl font-bold text-on-surface mb-3">Product Not Found</h2>
-          <p className="text-secondary mb-8 text-[15px]">The requested product could not be located in our catalog.</p>
-          <Button to="/products" variant="primary" theme="light" icon="arrow_forward" iconPosition="right" noTextAnimation={false}>
+          <span className="material-symbols-outlined text-[64px] text-secondary/30 mb-6 block">
+            search_off
+          </span>
+          <h2 className="font-headline text-2xl font-bold text-on-surface mb-3">
+            Product Not Found
+          </h2>
+          <p className="text-secondary mb-8 text-[15px]">
+            The requested product could not be located in our catalog.
+          </p>
+          <Button
+            to="/products"
+            variant="primary"
+            theme="light"
+            icon="arrow_forward"
+            iconPosition="right"
+            noTextAnimation={false}
+          >
             RETURN TO CATALOG
           </Button>
         </div>
@@ -191,18 +230,22 @@ export function ProductDetail() {
 
   // Unit conversion helpers
   const convertDimension = (val, system) => {
-    if (typeof val === 'number') {
-      return system === 'metric' ? `${val} mm` : `${(val / 25.4).toFixed(1)} in`;
+    if (typeof val === "number") {
+      return system === "metric"
+        ? `${val} mm`
+        : `${(val / 25.4).toFixed(1)} in`;
     }
-    return val || 'N/A';
+    return val || "N/A";
   };
 
   const convertWeight = (weightStr, system) => {
-    if (!weightStr) return 'N/A';
-    if (system === 'metric') return weightStr;
+    if (!weightStr) return "N/A";
+    if (system === "metric") return weightStr;
     const numbers = weightStr.match(/\d+/g);
     if (!numbers) return weightStr;
-    const converted = numbers.map(num => Math.round(parseInt(num, 10) * 2.20462));
+    const converted = numbers.map((num) =>
+      Math.round(parseInt(num, 10) * 2.20462),
+    );
     return converted.length === 2
       ? `${converted[0]}–${converted[1]} lbs`
       : converted.length === 1
@@ -211,76 +254,107 @@ export function ProductDetail() {
   };
 
   // Derived spec values for tabbed display
-  const specCapacity = product.stats?.find(s => s.label.includes('CAPACITY'))?.value || '6–200 kVA';
-  const specInputVoltage = product.models?.[0]?.inputVoltage || '400V (3-Phase) / 230V (1-Phase)';
-  const specOutputVoltage = product.models?.[0]?.outputVoltage || '400V ± 1% (Static)';
-  const specEfficiency = product.stats?.find(s => s.label.includes('EFFICIENCY'))?.value || 'Up to 97% in Eco Mode';
-  const specCooling = 'Redundant Forced Air Cooling';
-  const specEnclosure = 'IP42 Standard (IP54 Optional)';
-  const specFootprint = product.stats?.find(s => s.label.includes('FOOTPRINT'))?.value || 'Highly optimized space-saving footprint';
-  const specTemp = product.stats?.find(s => s.label.includes('TEMP'))?.value || '-10°C to +50°C';
+  const specCapacity =
+    product.stats?.find((s) => s.label.includes("CAPACITY"))?.value ||
+    "6–200 kVA";
+  const specInputVoltage =
+    product.models?.[0]?.inputVoltage || "400V (3-Phase) / 230V (1-Phase)";
+  const specOutputVoltage =
+    product.models?.[0]?.outputVoltage || "400V ± 1% (Static)";
+  const specEfficiency =
+    product.stats?.find((s) => s.label.includes("EFFICIENCY"))?.value ||
+    "Up to 97% in Eco Mode";
+  const specCooling = product.cooling || "Redundant Forced Air Cooling";
+  const specEnclosure =
+    product.stats?.find((s) => s.label.includes("INGRESS") || s.label.includes("IP"))?.value ||
+    "IP42 Standard (IP54 Optional)";
+  const specFootprint =
+    product.stats?.find((s) => s.label.includes("FOOTPRINT"))?.value ||
+    "Highly optimized space-saving footprint";
+  const specTemp =
+    product.stats?.find((s) => s.label.includes("TEMP"))?.value ||
+    "-10°C to +50°C";
 
   // Spec tab data
   const specTabs = [
     {
-      key: 'elec',
-      label: 'Electrical',
-      icon: 'bolt',
+      key: "elec",
+      label: "Electrical",
+      icon: "bolt",
       rows: [
-        ['Power / Capacity Range', specCapacity],
-        ['Input Voltage Configuration', specInputVoltage],
-        ['Output Voltage Regulation', specOutputVoltage],
-        ['Operating Efficiency', specEfficiency],
-      ]
+        ["Power / Capacity Range", specCapacity],
+        ["Input Voltage Configuration", specInputVoltage],
+        ["Output Voltage Regulation", specOutputVoltage],
+        ["Operating Efficiency", specEfficiency],
+      ],
     },
     {
-      key: 'phys',
-      label: 'Physical',
-      icon: 'straighten',
+      key: "phys",
+      label: "Physical",
+      icon: "straighten",
       rows: [
-        ['Enclosure Protection Rating', specEnclosure],
-        ['Cooling Architecture', specCooling],
-        ['System Footprint & Frame', specFootprint],
-        ['Cable Access & Entry', 'Top and Bottom Cable Entry, Full Front Access'],
-      ]
+        ["Enclosure Protection Rating", specEnclosure],
+        ["Cooling Architecture", specCooling],
+        ["System Footprint & Frame", specFootprint],
+        [
+          "Cable Access & Entry",
+          "Top and Bottom Cable Entry, Full Front Access",
+        ],
+      ],
     },
     {
-      key: 'env',
-      label: 'Environmental',
-      icon: 'thermostat',
+      key: "env",
+      label: "Environmental",
+      icon: "thermostat",
       rows: [
-        ['Operating Temperature Range', specTemp],
-        ['Operating Altitude Limits', '< 1000m without derating'],
-        ['Relative Humidity', '0% to 95% (Non-condensing)'],
-        ['Audible Noise Emission', '< 65 dBA at 1.5 meters (Standard)'],
-      ]
-    }
+        ["Operating Temperature Range", specTemp],
+        ["Operating Altitude Limits", "< 1000m without derating"],
+        ["Relative Humidity", "0% to 95% (Non-condensing)"],
+        ["Audible Noise Emission", "< 65 dBA at 1.5 meters (Standard)"],
+      ],
+    },
   ];
 
-  const activeSpecTab = specTabs.find(t => t.key === activeTab) || specTabs[0];
+  const activeSpecTab =
+    specTabs.find((t) => t.key === activeTab) || specTabs[0];
 
   return (
     <div className="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container pt-[56px] sm:pt-[64px] md:pt-[80px]">
-
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 1 — Sticky Sub-Navigation Bar
           ═══════════════════════════════════════════════════════════════════════ */}
       <div className="bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/30 sticky top-[56px] sm:top-[64px] md:top-[80px] z-40 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 md:px-16">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 py-3">
-
             {/* Breadcrumb Trail */}
-            <nav className="text-[11.5px] text-secondary flex flex-wrap items-center gap-1 font-medium leading-none" aria-label="Breadcrumb">
-              <Link to="/products" className="hover:text-accent transition-colors duration-200 flex items-center gap-1">
-                <span className="material-symbols-outlined text-[17px]">open_in_new</span>
+            <nav
+              className="text-[11.5px] text-secondary flex flex-wrap items-center gap-1 font-medium leading-none"
+              aria-label="Breadcrumb"
+            >
+              <Link
+                to="/products"
+                className="hover:text-accent transition-colors duration-200 flex items-center gap-1"
+              >
+                <span className="material-symbols-outlined text-[17px]">
+                  open_in_new
+                </span>
                 Products
               </Link>
-              <span className="material-symbols-outlined text-[16px] text-secondary/30 select-none">chevron_right</span>
-              <Link to={`/products/${product.categoryId}`} className="hover:text-accent transition-colors duration-200">
+              <span className="material-symbols-outlined text-[16px] text-secondary/30 select-none">
+                chevron_right
+              </span>
+              <Link
+                to={`/products/${product.categoryId}`}
+                className="hover:text-accent transition-colors duration-200"
+              >
                 {categoryTitle}
               </Link>
-              <span className="material-symbols-outlined text-[16px] text-secondary/30 select-none">chevron_right</span>
-              <span className="text-on-surface font-semibold truncate max-w-[200px]">{product.title}</span>
+              <span className="material-symbols-outlined text-[16px] text-secondary/30 select-none">
+                chevron_right
+              </span>
+              <span className="text-on-surface font-semibold truncate max-w-[200px]">
+                {product.title}
+              </span>
             </nav>
 
             {/* Anchor Navigation Tabs */}
@@ -291,26 +365,29 @@ export function ProductDetail() {
                   onClick={() => scrollToSection(item.id)}
                   className={`group relative px-4 py-2 font-label-caps text-[10px] tracking-[0.12em] font-bold whitespace-nowrap transition-all duration-300 flex items-center ${
                     activeSection === item.id
-                      ? 'text-accent'
-                      : 'text-secondary hover:text-on-surface'
+                      ? "text-accent"
+                      : "text-secondary hover:text-on-surface"
                   }`}
                 >
-                  <span className={`material-symbols-outlined text-[17px] transition-all duration-300 overflow-hidden ${
-                    activeSection === item.id 
-                      ? 'max-w-[22px] opacity-100 mr-1.5' 
-                      : 'max-w-0 opacity-0 mr-0 group-hover:max-w-[22px] group-hover:opacity-100 group-hover:mr-1.5'
-                  }`}>
+                  <span
+                    className={`material-symbols-outlined text-[17px] transition-all duration-300 overflow-hidden ${
+                      activeSection === item.id
+                        ? "max-w-[22px] opacity-100 mr-1.5"
+                        : "max-w-0 opacity-0 mr-0 group-hover:max-w-[22px] group-hover:opacity-100 group-hover:mr-1.5"
+                    }`}
+                  >
                     {item.icon}
                   </span>
                   {item.label}
                   {/* Active indicator bar */}
-                  <span className={`absolute bottom-0 left-2 right-2 h-[2px] bg-accent transition-transform duration-300 origin-left ${
-                    activeSection === item.id ? 'scale-x-100' : 'scale-x-0'
-                  }`} />
+                  <span
+                    className={`absolute bottom-0 left-2 right-2 h-[2px] bg-accent transition-transform duration-300 origin-left ${
+                      activeSection === item.id ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
                 </button>
               ))}
             </div>
-
           </div>
         </div>
       </div>
@@ -318,14 +395,16 @@ export function ProductDetail() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 2 — Premium Hero / Overview
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="overview" className="relative overflow-hidden bg-surface-container-lowest">
+      <section
+        id="overview"
+        className="relative overflow-hidden bg-surface-container-lowest"
+      >
         <div className="max-w-[1440px] mx-auto w-full grid grid-cols-12 border-t border-l border-outline-variant/30 gap-0 relative z-10 bg-white">
-
           {/* Left Column (Content & CTAs) */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: "-50px" }}
             variants={staggerContainer}
             className="col-span-12 lg:col-span-7 border-r border-outline-variant/30 p-8 md:p-16 flex flex-col justify-center order-2 lg:order-1"
           >
@@ -359,21 +438,38 @@ export function ProductDetail() {
 
             {/* Brand & JV Alignment */}
             {(product.brand || product.jvSupply) && (
-              <motion.div variants={fadeUp} custom={2.2} className="flex flex-wrap items-center gap-3 mb-6">
+              <motion.div
+                variants={fadeUp}
+                custom={2.2}
+                className="flex flex-wrap items-center gap-3 mb-6"
+              >
                 {product.brand && (
                   <span className="px-3 py-1.5 border border-outline-variant/30 bg-surface-container-high/30 text-on-surface font-label-caps text-[9.5px] tracking-wider uppercase font-bold">
-                    Brand: <span className="text-secondary font-semibold">{product.brand}</span>
+                    Brand:{" "}
+                    <span className="text-secondary font-semibold">
+                      {product.brand}
+                    </span>
                   </span>
                 )}
                 {product.jvSupply && (
                   <span className="px-3 py-1.5 border border-accent/25 bg-accent/[0.03] text-accent font-label-caps text-[9.5px] tracking-wider uppercase font-bold">
-                    JV / Supply: {product.jvLink ? (
-                      <a href={product.jvLink} target="_blank" rel="noopener noreferrer" className="hover:underline text-accent font-black inline-flex items-center gap-1">
+                    JV / Supply:{" "}
+                    {product.jvLink ? (
+                      <a
+                        href={product.jvLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline text-accent font-black inline-flex items-center gap-1"
+                      >
                         {product.jvSupply}
-                        <span className="material-symbols-outlined text-[12px] font-bold">open_in_new</span>
+                        <span className="material-symbols-outlined text-[12px] font-bold">
+                          open_in_new
+                        </span>
                       </a>
                     ) : (
-                      <span className="text-accent font-black">{product.jvSupply}</span>
+                      <span className="text-accent font-black">
+                        {product.jvSupply}
+                      </span>
                     )}
                   </span>
                 )}
@@ -386,24 +482,33 @@ export function ProductDetail() {
               custom={3}
               className="grid grid-cols-2 sm:grid-cols-4 border-t border-l border-outline-variant/30 gap-0 mb-10 bg-white"
             >
-              {product.stats && product.stats.slice(0, 4).map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="border-r border-b border-outline-variant/30 p-4 bg-surface-container-high/20 hover:bg-accent/[0.015] transition-all flex flex-col justify-between group"
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="material-symbols-outlined text-accent text-[20px]">{getStatIcon(stat.label)}</span>
-                    <span className="font-label-caps text-[9px] tracking-[0.06em] text-secondary/80 font-bold">{stat.label}</span>
+              {product.stats &&
+                product.stats.slice(0, 4).map((stat, idx) => (
+                  <div
+                    key={idx}
+                    className="border-r border-b border-outline-variant/30 p-4 bg-surface-container-high/20 hover:bg-accent/[0.015] transition-all flex flex-col justify-between group"
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="material-symbols-outlined text-accent text-[20px]">
+                        {getStatIcon(stat.label)}
+                      </span>
+                      <span className="font-label-caps text-[9px] tracking-[0.06em] text-secondary/80 font-bold">
+                        {stat.label}
+                      </span>
+                    </div>
+                    <div className="font-headline text-[13px] md:text-[14px] font-bold text-on-surface uppercase truncate">
+                      {stat.value}
+                    </div>
                   </div>
-                  <div className="font-headline text-[13px] md:text-[14px] font-bold text-on-surface uppercase truncate">
-                    {stat.value}
-                  </div>
-                </div>
-              ))}
+                ))}
             </motion.div>
 
             {/* CTA Buttons */}
-            <motion.div variants={fadeUp} custom={4} className="flex flex-col sm:flex-row gap-3.5">
+            <motion.div
+              variants={fadeUp}
+              custom={4}
+              className="flex flex-col sm:flex-row gap-3.5"
+            >
               <Button
                 to={`/contact?inquiry=quote&item=${encodeURIComponent(product.title)}`}
                 variant="primary"
@@ -416,7 +521,7 @@ export function ProductDetail() {
                 REQUEST A QUOTE
               </Button>
               <Button
-                onClick={() => scrollToSection('downloads')}
+                onClick={() => scrollToSection("downloads")}
                 variant="outline"
                 theme="light"
                 icon="expand_more"
@@ -433,7 +538,7 @@ export function ProductDetail() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp}
             className="col-span-12 lg:col-span-5 border-r border-b lg:border-b-0 border-outline-variant/30 pt-4 md:pt-6 lg:pt-0 pb-8 sm:pb-12 lg:pb-0 px-4 sm:px-6 lg:px-0 bg-surface-container-low/10 flex items-center justify-center order-1 lg:order-2 relative"
           >
@@ -445,7 +550,6 @@ export function ProductDetail() {
               onImageError={() => setImageError(true)}
             />
           </motion.div>
-
         </div>
       </section>
 
@@ -460,12 +564,11 @@ export function ProductDetail() {
           </div>
 
           <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
-            
             {/* Section Heading */}
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-80px' }}
+              viewport={{ once: true, margin: "-80px" }}
               variants={fadeUp}
               className="mb-12"
             >
@@ -474,13 +577,14 @@ export function ProductDetail() {
                 Target Applications & Sectors
               </h2>
               <p className="text-secondary text-[14px] mt-3 ml-12 max-w-[520px]">
-                Engineered for maximum reliability and seamless integration across these specific operational verticals.
+                Engineered for maximum reliability and seamless integration
+                across these specific operational verticals.
               </p>
             </motion.div>
 
             {/* Grid of Boxes */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-t border-l border-outline-variant/30 bg-white gap-0 shadow-md">
-              {product.applications.split('|').map((app, idx) => {
+              {product.applications.split("|").map((app, idx) => {
                 const appName = app.trim();
                 const iconName = getApplicationIcon(appName);
                 return (
@@ -488,7 +592,7 @@ export function ProductDetail() {
                     key={idx}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: '-40px' }}
+                    viewport={{ once: true, margin: "-40px" }}
                     variants={fadeUp}
                     custom={idx}
                     className="p-8 border-r border-b border-outline-variant/30 hover:bg-accent/[0.01] transition-all duration-300 flex flex-col items-center text-center justify-center min-h-[160px] group relative"
@@ -503,7 +607,6 @@ export function ProductDetail() {
                 );
               })}
             </div>
-
           </div>
         </section>
       )}
@@ -511,14 +614,16 @@ export function ProductDetail() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 3 — Core Features & Advantages
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="features" className="bg-surface-container border-y border-outline-variant/30 py-16 md:py-24">
+      <section
+        id="features"
+        className="bg-surface-container border-y border-outline-variant/30 py-16 md:py-24"
+      >
         <div className="max-w-[1440px] mx-auto px-8 md:px-16">
-
           {/* Section Heading */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
             className="mb-12"
           >
@@ -527,52 +632,58 @@ export function ProductDetail() {
               Core Features & Advantages
             </h2>
             <p className="text-secondary text-[14px] mt-3 ml-12 max-w-[520px]">
-              Engineered capabilities that set this system apart in demanding operational environments.
+              Engineered capabilities that set this system apart in demanding
+              operational environments.
             </p>
           </motion.div>
 
           {/* Feature Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30 gap-0 bg-white">
-            {product.features && product.features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: '-40px' }}
-                variants={fadeUp}
-                custom={idx}
-                className="bg-surface-container-lowest p-8 border-r border-b border-outline-variant/30 hover:bg-accent/[0.015] transition-all duration-400 flex flex-col group relative"
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <span className="material-symbols-outlined text-[34px] text-accent/80 group-hover:text-accent group-hover:scale-110 transition-all duration-300">
-                    {getFeatureIcon(idx)}
-                  </span>
-                  <span className="font-mono text-[14px] text-accent font-bold select-none">{String(idx + 1).padStart(2, '0')}</span>
-                </div>
-                <h3 className="font-headline text-[16px] font-bold mb-3 text-on-surface leading-snug uppercase tracking-tight">
-                  {feature}
-                </h3>
-                <p className="text-secondary text-[13.5px] leading-[1.65]">
-                  Engineered to deliver high-reliability performance and optimize operational capacity under demanding conditions.
-                </p>
-              </motion.div>
-            ))}
+            {product.features &&
+              product.features.map((feature, idx) => (
+                <motion.div
+                  key={idx}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-40px" }}
+                  variants={fadeUp}
+                  custom={idx}
+                  className="bg-surface-container-lowest p-8 border-r border-b border-outline-variant/30 hover:bg-accent/[0.015] transition-all duration-400 flex flex-col group relative"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="material-symbols-outlined text-[34px] text-accent/80 group-hover:text-accent group-hover:scale-110 transition-all duration-300">
+                      {getFeatureIcon(idx)}
+                    </span>
+                    <span className="font-mono text-[14px] text-accent font-bold select-none">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="font-headline text-[16px] font-bold mb-3 text-on-surface leading-snug uppercase tracking-tight">
+                    {feature}
+                  </h3>
+                  <p className="text-secondary text-[13.5px] leading-[1.65]">
+                    Engineered to deliver high-reliability performance and
+                    optimize operational capacity under demanding conditions.
+                  </p>
+                </motion.div>
+              ))}
           </div>
-
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 4 — Technical Specifications & Models
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="specifications" className="bg-surface-container-lowest py-16 md:py-24 border-b border-outline-variant/30">
+      <section
+        id="specifications"
+        className="bg-surface-container-lowest py-16 md:py-24 border-b border-outline-variant/30"
+      >
         <div className="max-w-[1440px] mx-auto px-8 md:px-16">
-
           {/* Section Heading */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
             className="mb-10"
           >
@@ -586,7 +697,7 @@ export function ProductDetail() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: true, margin: "-40px" }}
             variants={fadeUp}
             className="border border-outline-variant/30 bg-white overflow-hidden mb-16 shadow-none"
           >
@@ -598,16 +709,20 @@ export function ProductDetail() {
                   onClick={() => setActiveTab(tab.key)}
                   className={`relative px-6 py-4 font-label-caps text-[10px] tracking-[0.12em] font-bold whitespace-nowrap transition-all duration-300 flex items-center gap-2 border-r border-outline-variant/30 ${
                     activeTab === tab.key
-                      ? 'text-accent bg-surface-container-lowest'
-                      : 'text-secondary hover:text-on-surface hover:bg-surface-container-lowest/50'
+                      ? "text-accent bg-surface-container-lowest"
+                      : "text-secondary hover:text-on-surface hover:bg-surface-container-lowest/50"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-[20px]">{tab.icon}</span>
+                  <span className="material-symbols-outlined text-[20px]">
+                    {tab.icon}
+                  </span>
                   {tab.label}
                   {/* Active tab indicator */}
-                  <span className={`absolute bottom-0 left-0 right-0 h-[2px] bg-accent transition-transform duration-300 ${
-                    activeTab === tab.key ? 'scale-x-100' : 'scale-x-0'
-                  }`} />
+                  <span
+                    className={`absolute bottom-0 left-0 right-0 h-[2px] bg-accent transition-transform duration-300 ${
+                      activeTab === tab.key ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
                 </button>
               ))}
             </div>
@@ -643,38 +758,44 @@ export function ProductDetail() {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+            viewport={{ once: true, margin: "-40px" }}
             variants={fadeUp}
           >
             {/* Subheading with Metric/Imperial Toggle */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-6">
               <h3 className="font-headline text-[20px] text-on-surface font-bold uppercase tracking-tight flex items-center gap-3">
-                <span className="material-symbols-outlined text-accent text-[26px] normal-case tracking-normal">comparison</span>
+                <span className="material-symbols-outlined text-accent text-[26px] normal-case tracking-normal">
+                  comparison
+                </span>
                 Model Configuration Options
               </h3>
 
               {/* Unit Toggle */}
               <div className="flex border border-outline-variant/30 bg-white font-label-caps text-[10px] font-bold select-none shrink-0 self-start sm:self-auto overflow-hidden shadow-none">
                 <button
-                  onClick={() => setUnitSystem('metric')}
+                  onClick={() => setUnitSystem("metric")}
                   className={`px-4 py-2 transition-all duration-300 tracking-wider uppercase flex items-center gap-1.5 ${
-                    unitSystem === 'metric'
-                      ? 'bg-inverse-surface text-inverse-on-surface'
-                      : 'text-secondary hover:bg-surface-container'
+                    unitSystem === "metric"
+                      ? "bg-inverse-surface text-inverse-on-surface"
+                      : "text-secondary hover:bg-surface-container"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-[16px]">straighten</span>
+                  <span className="material-symbols-outlined text-[16px]">
+                    straighten
+                  </span>
                   Metric
                 </button>
                 <button
-                  onClick={() => setUnitSystem('imperial')}
+                  onClick={() => setUnitSystem("imperial")}
                   className={`px-4 py-2 transition-all duration-300 tracking-wider uppercase flex items-center gap-1.5 border-l border-outline-variant/30 ${
-                    unitSystem === 'imperial'
-                      ? 'bg-inverse-surface text-inverse-on-surface'
-                      : 'text-secondary hover:bg-surface-container'
+                    unitSystem === "imperial"
+                      ? "bg-inverse-surface text-inverse-on-surface"
+                      : "text-secondary hover:bg-surface-container"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-[16px]">square_foot</span>
+                  <span className="material-symbols-outlined text-[16px]">
+                    square_foot
+                  </span>
                   Imperial
                 </button>
               </div>
@@ -686,55 +807,75 @@ export function ProductDetail() {
                 <table className="w-full text-left border-collapse min-w-[760px]">
                   <thead>
                     <tr className="bg-surface-container-high/45 border-b border-outline-variant/30 text-on-surface font-label-caps text-[9.5px] tracking-[0.15em] uppercase">
-                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">Model ID</th>
-                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">Capacity</th>
-                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">Voltage Config</th>
-                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">Efficiency</th>
-                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">Dimensions (H × W × D)</th>
+                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">
+                        Model ID
+                      </th>
+                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">
+                        Capacity
+                      </th>
+                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">
+                        Voltage Config
+                      </th>
+                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">
+                        Efficiency
+                      </th>
+                      <th className="py-4 px-6 font-bold border-r border-outline-variant/20">
+                        Dimensions (H × W × D)
+                      </th>
                       <th className="py-4 px-6 font-bold">Weight</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {product.models && product.models.map((model, idx) => (
-                      <tr
-                        key={idx}
-                        className="border-b border-outline-variant/20 last:border-b-0 hover:bg-accent/[0.015] transition-colors duration-200"
-                      >
-                        <td className="py-4 px-6 font-headline text-[13px] font-bold text-accent border-r border-outline-variant/20">{model.name}</td>
-                        <td className="py-4 px-6 text-[13px] text-on-surface font-semibold border-r border-outline-variant/20">{model.capacity || 'N/A'}</td>
-                        <td className="py-4 px-6 text-[12.5px] text-secondary border-r border-outline-variant/20">
-                          {model.inputVoltage || model.voltage}
-                          {model.outputVoltage && ` / ${model.outputVoltage}`}
-                        </td>
-                        <td className="py-4 px-6 text-[13px] text-secondary font-medium border-r border-outline-variant/20">{model.efficiency || '—'}</td>
-                        <td className="py-4 px-6 text-[12.5px] text-secondary whitespace-nowrap border-r border-outline-variant/20">
-                          {convertDimension(model.height, unitSystem)} × {convertDimension(model.width, unitSystem)} × {convertDimension(model.depth, unitSystem)}
-                        </td>
-                        <td className="py-4 px-6 text-[13px] text-on-surface font-semibold">
-                          {convertWeight(model.weight, unitSystem)}
-                        </td>
-                      </tr>
-                    ))}
+                    {product.models &&
+                      product.models.map((model, idx) => (
+                        <tr
+                          key={idx}
+                          className="border-b border-outline-variant/20 last:border-b-0 hover:bg-accent/[0.015] transition-colors duration-200"
+                        >
+                          <td className="py-4 px-6 font-headline text-[13px] font-bold text-accent border-r border-outline-variant/20">
+                            {model.name}
+                          </td>
+                          <td className="py-4 px-6 text-[13px] text-on-surface font-semibold border-r border-outline-variant/20">
+                            {model.capacity || "N/A"}
+                          </td>
+                          <td className="py-4 px-6 text-[12.5px] text-secondary border-r border-outline-variant/20">
+                            {model.inputVoltage || model.voltage}
+                            {model.outputVoltage && ` / ${model.outputVoltage}`}
+                          </td>
+                          <td className="py-4 px-6 text-[13px] text-secondary font-medium border-r border-outline-variant/20">
+                            {model.efficiency || "—"}
+                          </td>
+                          <td className="py-4 px-6 text-[12.5px] text-secondary whitespace-nowrap border-r border-outline-variant/20">
+                            {convertDimension(model.height, unitSystem)} ×{" "}
+                            {convertDimension(model.width, unitSystem)} ×{" "}
+                            {convertDimension(model.depth, unitSystem)}
+                          </td>
+                          <td className="py-4 px-6 text-[13px] text-on-surface font-semibold">
+                            {convertWeight(model.weight, unitSystem)}
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>
             </div>
           </motion.div>
-
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 5 — Downloads & Resources
           ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="downloads" className="bg-surface-container py-16 md:py-24 border-b border-outline-variant/30">
+      <section
+        id="downloads"
+        className="bg-surface-container py-16 md:py-24 border-b border-outline-variant/30"
+      >
         <div className="max-w-[1440px] mx-auto px-8 md:px-16">
-
           {/* Section Heading */}
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
+            viewport={{ once: true, margin: "-80px" }}
             variants={fadeUp}
             className="mb-10"
           >
@@ -743,7 +884,8 @@ export function ProductDetail() {
               Resources & Downloads
             </h2>
             <p className="text-secondary text-[14px] mt-3 ml-12 max-w-[480px]">
-              Access technical documentation, datasheets, and installation guides.
+              Access technical documentation, datasheets, and installation
+              guides.
             </p>
           </motion.div>
 
@@ -753,11 +895,16 @@ export function ProductDetail() {
             <motion.a
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, margin: "-40px" }}
               variants={fadeUp}
               custom={0}
               href="#"
-              onClick={(e) => { e.preventDefault(); alert('Product Datasheet download started for: ' + product.title); }}
+              onClick={(e) => {
+                e.preventDefault();
+                alert(
+                  "Product Datasheet download started for: " + product.title,
+                );
+              }}
               className="border-r border-b border-outline-variant/30 p-8 hover:bg-accent/[0.015] group transition-all duration-300 bg-surface-container-lowest flex flex-col justify-between relative"
             >
               <div>
@@ -768,12 +915,15 @@ export function ProductDetail() {
                   Product Datasheet
                 </h4>
                 <p className="text-secondary text-[13.5px] leading-[1.65] mb-6">
-                  Detailed technical specifications, power charts, dimensions, and structural configuration options.
+                  Detailed technical specifications, power charts, dimensions,
+                  and structural configuration options.
                 </p>
               </div>
               <span className="text-accent font-label-caps text-[10px] font-bold flex items-center gap-2 tracking-[0.12em] select-none">
                 DOWNLOAD PDF
-                <span className="material-symbols-outlined text-[18px] group-hover:translate-y-0.5 transition-transform duration-300">download</span>
+                <span className="material-symbols-outlined text-[18px] group-hover:translate-y-0.5 transition-transform duration-300">
+                  download
+                </span>
               </span>
             </motion.a>
 
@@ -781,11 +931,14 @@ export function ProductDetail() {
             <motion.a
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: '-40px' }}
+              viewport={{ once: true, margin: "-40px" }}
               variants={fadeUp}
               custom={1}
               href="#"
-              onClick={(e) => { e.preventDefault(); alert('User Manual download started for: ' + product.title); }}
+              onClick={(e) => {
+                e.preventDefault();
+                alert("User Manual download started for: " + product.title);
+              }}
               className="border-r border-b border-outline-variant/30 p-8 hover:bg-accent/[0.015] group transition-all duration-300 bg-surface-container-lowest flex flex-col justify-between relative"
             >
               <div>
@@ -796,23 +949,25 @@ export function ProductDetail() {
                   User Manual
                 </h4>
                 <p className="text-secondary text-[13.5px] leading-[1.65] mb-6">
-                  Installation guidelines, terminal configurations, operation parameters, and maintenance checklists.
+                  Installation guidelines, terminal configurations, operation
+                  parameters, and maintenance checklists.
                 </p>
               </div>
               <span className="text-accent font-label-caps text-[10px] font-bold flex items-center gap-2 tracking-[0.12em] select-none">
                 DOWNLOAD PDF
-                <span className="material-symbols-outlined text-[18px] group-hover:translate-y-0.5 transition-transform duration-300">download</span>
+                <span className="material-symbols-outlined text-[18px] group-hover:translate-y-0.5 transition-transform duration-300">
+                  download
+                </span>
               </span>
             </motion.a>
           </div>
-
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════════════
           SECTION 6 — Standardized Get A Quote CTA
           ═══════════════════════════════════════════════════════════════════════ */}
-      <UnifiedCTA 
+      <UnifiedCTA
         heading={`Ready to configure your ${product.title}?`}
         accent="Partner with us."
         subtitle="Our engineering team will help you select the optimal configuration for your infrastructure requirements."
@@ -822,7 +977,6 @@ export function ProductDetail() {
         outlineTo="/products"
         uppercase={true}
       />
-
     </div>
   );
 }

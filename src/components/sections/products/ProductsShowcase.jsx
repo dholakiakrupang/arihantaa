@@ -17,14 +17,14 @@ const FEATURED_PRODUCTS = [
     ]
   },
   {
-    id: 'lt-tta-630',
+    id: 'synchro-pcc',
     categoryId: 'lt-tta-panel',
-    title: 'L&T TTA-630 Switchgear Panel',
-    category: 'AUTOMATIC POWER TRANSFER',
-    desc: 'Industrial-grade Triple Throw Automatic Transfer Switch Panel from L&T, supplied through our Virtual JV with Synchro Electricals.',
-    image: '/images/products/switchgear.png',
+    title: 'PCC Panel (Power Control Centre)',
+    category: 'INDUSTRIAL POWER DISTRIBUTION',
+    desc: 'Main power control centre panels engineered for safe and centralized power distribution in industrial plants, featuring robust busbars and reliable switchgear.',
+    image: '/images/products/synchro/pcc.jpg',
     stats: [
-      { label: 'CURRENT RANGE', value: 'Up to 630A' },
+      { label: 'VOLTAGE', value: 'Up to 690V' },
       { label: 'JV SUPPLY', value: 'Synchro Electricals' },
       { label: 'STANDARDS', value: 'IS/IEC Compliant' }
     ]
@@ -35,7 +35,7 @@ const FEATURED_PRODUCTS = [
     title: 'Lucy Sabre VRN2a RMU',
     category: 'MEDIUM VOLTAGE SWITCHGEAR',
     desc: 'Sealed, maintenance-free medium voltage Ring Main Unit switchgear board for smart, safe power distribution grids.',
-    image: '/images/products/lucy-rmu.png',
+    image: '/images/products/Products-LUCY-BRAND-RMU.png',
     stats: [
       { label: 'VOLTAGE RANGE', value: '11 kV' },
       { label: 'INSULATION', value: 'SF6 Gas' },
