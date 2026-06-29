@@ -106,7 +106,7 @@ function SectorRow({ sector, index }) {
 
       {/* ── Product cards grid ─────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16 md:mb-24">
-        {sector.cards.map((card, cardIndex) => (
+        {sector.cards.slice(0, 3).map((card, cardIndex) => (
           <ProductCard
             key={card.id}
             id={card.id}
