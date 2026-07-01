@@ -46,7 +46,7 @@ export function PartnershipVertiv() {
   ];
 
   return (
-    <div className="font-body selection:bg-accent selection:text-white bg-surface pt-[56px] sm:pt-[64px] md:pt-[80px]">
+    <div className="font-body selection:bg-accent selection:text-white bg-surface pt-[80px]">
       {styleTag}
 
       {/* ── Page Hero ────────────────────────────────────────── */}
@@ -301,7 +301,7 @@ export function PartnershipVertiv() {
           </div>
 
           {/* Zero-gap columns layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30 bg-white gap-0 shadow-md">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-outline-variant/30 bg-white gap-0 shadow-md">
             {vertivProducts.map((prod, idx) => {
               const CardContent = (
                 <div className="space-y-4">
@@ -320,16 +320,18 @@ export function PartnershipVertiv() {
               const cardClass =
                 "border-r border-b border-outline-variant/30 p-8 hover:bg-accent/[0.01] transition-all duration-300 group flex flex-col justify-between min-h-[220px]";
 
+              const wrapperClass = `${cardClass} ${idx === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}`;
+
               if (prod.link) {
                 return (
-                  <Link key={idx} to={prod.link} className={cardClass}>
+                  <Link key={idx} to={prod.link} className={wrapperClass}>
                     {CardContent}
                   </Link>
                 );
               }
 
               return (
-                <div key={idx} className={cardClass}>
+                <div key={idx} className={wrapperClass}>
                   {CardContent}
                 </div>
               );

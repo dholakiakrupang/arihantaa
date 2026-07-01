@@ -10,24 +10,27 @@ export function Leadership() {
         </div>
         <h2 className="font-headline text-4xl md:text-6xl font-bold mb-16">Leadership</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 border-t border-l border-outline-variant/30 gap-0 mt-12">
+        <div className="grid grid-cols-1 xl:grid-cols-12 border-t border-l border-outline-variant/30 gap-0 mt-12">
           
           {/* Anish Shah — Founder & CEO */}
           <motion.div
-            className="md:col-span-12 lg:col-span-8 border-r border-b border-outline-variant/30 p-6 md:p-8 lg:p-12 hover:bg-accent/[0.01] transition-all duration-300 flex flex-col lg:flex-row gap-6 lg:gap-10 items-start bg-surface rounded-none"
+            className="col-span-12 xl:col-span-8 border-r border-b border-outline-variant/30 p-6 md:p-8 lg:p-12 hover:bg-accent/[0.01] transition-all duration-300 flex flex-col md:flex-row gap-6 md:gap-10 items-start bg-surface rounded-none"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.65, ease: [0.25, 1, 0.5, 1] }}
           >
-            {/* Photo placeholder */}
-            <div className="w-full sm:w-[200px] shrink-0 aspect-[3/4] overflow-hidden transition-all duration-700 border border-outline-variant/20 bg-surface-container-low relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-surface-container to-accent/5 flex items-center justify-center">
-                <span className="material-symbols-outlined text-accent/40 text-[64px]">person</span>
+            {/* Premium Photo placeholder */}
+            <div className="w-full sm:w-[200px] shrink-0 aspect-[3/4] overflow-hidden border border-outline-variant/30 bg-surface-container-high relative group">
+              <div className="absolute inset-0 bg-gradient-to-tr from-accent/15 via-surface-container-high to-accent/5 flex flex-col items-center justify-center p-4">
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform duration-500">
+                  <span className="text-accent font-headline font-black text-xl">AS</span>
+                </div>
+                <span className="font-label-caps text-[9px] text-on-surface/40 tracking-[0.1em] uppercase">Executive Profile</span>
               </div>
-              {/* Photo placeholder text */}
-              <div className="absolute bottom-0 left-0 right-0 bg-inverse-surface/90 backdrop-blur-sm px-3 py-2">
-                <span className="font-label-caps text-[8px] text-white/60 tracking-[0.15em] uppercase">Photo pending</span>
+              {/* Photo pending label */}
+              <div className="absolute bottom-0 left-0 right-0 bg-[#080808]/90 backdrop-blur-md px-3 py-2 border-t border-white/5">
+                <span className="font-label-caps text-[8px] text-accent tracking-[0.15em] uppercase font-bold block text-center">Photo pending</span>
               </div>
             </div>
 
@@ -37,16 +40,16 @@ export function Leadership() {
               <p className="text-sm md:text-[15px] text-secondary leading-relaxed mb-6">
                 Anish Shah is the Founder & CEO of Arihantaa Powertech. With a strong foundation in electrical infrastructure and a vision for integrated engineering solutions, Anish established Arihantaa Powertech to address the growing demand for reliable, end-to-end powertech services in India. He leads the company's strategic alliances, project delivery, and expansion across MEPF consultancy, capital goods supply, and EPC project execution — anchored by the ethos of engineering excellence and trusted partnerships.
               </p>
-              <div className="flex items-center gap-3">
+              <div className="mt-6 pt-4 border-t border-outline-variant/10 flex items-center gap-3">
                 <div className="h-[2px] w-6 bg-accent" />
-                <span className="font-label-caps text-[10px] text-accent tracking-[0.18em] uppercase font-bold">From Grid to Greatness</span>
+                <span className="font-body text-xs italic text-accent font-medium">"From Grid to Greatness"</span>
               </div>
             </div>
           </motion.div>
 
           {/* Credential side panel */}
           <motion.div
-            className="md:col-span-12 lg:col-span-4 border-r border-b border-outline-variant/30 p-6 md:p-8 lg:p-10 bg-surface hover:bg-accent/[0.01] transition-all duration-300 flex flex-col justify-between rounded-none"
+            className="col-span-12 xl:col-span-4 border-r border-b border-outline-variant/30 p-6 md:p-8 lg:p-10 bg-surface hover:bg-accent/[0.01] transition-all duration-300 flex flex-col justify-between rounded-none"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}

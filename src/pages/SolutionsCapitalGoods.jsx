@@ -81,7 +81,7 @@ export function SolutionsCapitalGoods() {
   ];
 
   return (
-    <div className="font-body selection:bg-accent selection:text-white bg-surface pt-[56px] sm:pt-[64px] md:pt-[80px]">
+    <div className="font-body selection:bg-accent selection:text-white bg-surface pt-[80px]">
       {styleTag}
 
       {/* ── Page Hero ────────────────────────────────────────── */}

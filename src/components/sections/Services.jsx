@@ -58,11 +58,11 @@ const SERVICES = [
 
 export function Services() {
   return (
-    <section className="py-24 md:py-32 bg-surface relative overflow-hidden border-b border-outline-variant/30">
-      <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
+    <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-surface relative overflow-hidden border-b border-outline-variant/30">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16">
         
         {/* Header Block */}
-        <div className="mb-16 md:mb-20 flex flex-col gap-6">
+        <div className="mb-12 sm:mb-16 md:mb-20 flex flex-col gap-4 sm:gap-6">
           <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6">
             <div className="max-w-xl">
               <motion.div 
@@ -78,19 +78,19 @@ export function Services() {
                 </span>
               </motion.div>
               
-              <h2 className="font-headline text-[38px] sm:text-[48px] lg:text-[60px] leading-[1.0] font-black text-on-surface tracking-tighter uppercase">
+              <h2 className="font-headline text-[30px] sm:text-[38px] md:text-[48px] lg:text-[60px] leading-[1.05] sm:leading-[1.0] font-black text-on-surface tracking-tighter uppercase">
                 Precision <br /> Solutions.
               </h2>
             </div>
 
-            <p className="font-body text-[14px] md:text-[15px] text-secondary max-w-sm leading-relaxed text-left md:text-right">
+            <p className="font-body text-[13px] sm:text-[14px] md:text-[15px] text-secondary max-w-sm leading-relaxed text-left md:text-right">
               Delivering critical power, industrial ventilation, and cooling solutions for mission-critical sectors.
             </p>
           </div>
         </div>
         
         {/* Services 3-Column Single-Pixel Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:border-t lg:border-l border-outline-variant/30">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-0 lg:border-t lg:border-l border-outline-variant/30">
           {SERVICES.map((srv, idx) => (
             <motion.div
               key={srv.id}
@@ -103,7 +103,7 @@ export function Services() {
               {/* Overlay Link */}
               <Link to={srv.link} className="absolute inset-0 z-20" aria-label={`Explore ${srv.title}`} />
               
-              <div className="p-6 sm:p-8 lg:p-10 flex flex-col gap-6">
+              <div className="p-5 sm:p-6 md:p-8 lg:p-10 flex flex-col gap-4 sm:gap-5 lg:gap-6">
                 
                 {/* Header (Icon Only) */}
                 <div className="flex justify-start items-center">
@@ -114,10 +114,10 @@ export function Services() {
                 
                 {/* Title & Desc */}
                 <div>
-                  <h3 className="font-headline text-[22px] font-bold text-on-surface group-hover:text-accent transition-colors duration-300 leading-tight mb-2">
+                  <h3 className="font-headline text-[18px] sm:text-[20px] lg:text-[22px] font-bold text-on-surface group-hover:text-accent transition-colors duration-300 leading-tight mb-1.5 sm:mb-2">
                     {srv.title}
                   </h3>
-                  <p className="font-body text-[13.5px] text-secondary leading-relaxed">
+                  <p className="font-body text-[12px] sm:text-[13px] lg:text-[13.5px] text-secondary leading-relaxed">
                     {srv.desc}
                   </p>
                 </div>
@@ -144,7 +144,7 @@ export function Services() {
               </div>
 
               {/* Lower Section: Full-Width Image Block */}
-              <div className="relative h-52 border-t border-outline-variant/30 overflow-hidden bg-surface-container-low shrink-0">
+              <div className="relative h-40 sm:h-48 lg:h-52 border-t border-outline-variant/30 overflow-hidden bg-surface-container-low shrink-0">
                 <img 
                   src={srv.image} 
                   alt={srv.title}

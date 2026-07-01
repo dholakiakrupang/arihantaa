@@ -117,7 +117,7 @@ export function Hero() {
           RIGHT IMAGE PANEL — Absolutely positioned,
           covers full section height from very top (behind header)
       ══════════════════════════════════════════════════ */}
-      <div className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-full mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[50%] overflow-hidden bg-[#080808]">
+      <div className="relative w-full h-[280px] sm:h-[360px] md:h-[420px] lg:h-full mt-8 sm:mt-10 lg:mt-0 z-10 order-2 lg:order-none lg:absolute lg:top-0 lg:right-0 lg:w-[50%] overflow-hidden bg-[#080808]">
         {/* Slideshow images — crossfade */}
         <AnimatePresence mode="sync">
           <motion.div
@@ -165,7 +165,7 @@ export function Hero() {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPillar.id + "-label"}
-            className="absolute left-6 bottom-6 lg:left-10 lg:bottom-[100px] z-30"
+            className="absolute left-5 bottom-5 sm:left-6 sm:bottom-6 lg:left-10 lg:bottom-[100px] z-30"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -175,13 +175,13 @@ export function Hero() {
               to={currentPillar.link}
               className="block group/slide hover:opacity-90 transition-opacity"
             >
-              <div className="flex items-center gap-2 mb-1.5 sm:mb-2">
-                <div className="w-4 sm:w-5 h-px bg-accent group-hover/slide:w-7 transition-all duration-300" />
-                <span className="font-label-caps text-[8px] sm:text-[9px] text-accent tracking-[0.22em] uppercase font-bold">
+              <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-1.5 md:mb-2">
+                <div className="w-3 sm:w-4 md:w-5 h-px bg-accent group-hover/slide:w-7 transition-all duration-300" />
+                <span className="font-label-caps text-[7.5px] sm:text-[8px] md:text-[9px] text-accent tracking-[0.22em] uppercase font-bold">
                   {currentPillar.label}
                 </span>
               </div>
-              <p className="font-headline text-[16px] sm:text-[20px] lg:text-[22px] font-black uppercase text-white leading-tight tracking-tight max-w-[200px] sm:max-w-[280px] group-hover/slide:text-accent transition-colors duration-300">
+              <p className="font-headline text-[14px] sm:text-[16px] md:text-[20px] lg:text-[22px] font-black uppercase text-white leading-tight tracking-tight max-w-[180px] sm:max-w-[220px] md:max-w-[280px] group-hover/slide:text-accent transition-colors duration-300">
                 {currentPillar.headline}
               </p>
             </Link>
@@ -233,9 +233,9 @@ export function Hero() {
       {/* ══════════════════════════════════════════════════
           LEFT CONTENT — aligned to footer container
       ══════════════════════════════════════════════════ */}
-      <div className="relative z-10 max-w-[1440px] mx-auto w-full flex flex-col px-6 sm:px-8 lg:px-16 order-1 lg:order-none">
+      <div className="relative z-10 max-w-[1440px] mx-auto w-full flex flex-col px-5 sm:px-8 lg:px-16 order-1 lg:order-none">
         {/* Header spacer */}
-        <div className="min-h-[88px] md:min-h-[96px] shrink-0" />
+        <div className="min-h-[72px] sm:min-h-[80px] md:min-h-[96px] shrink-0" />
 
         {/* Outer wrapper matches footer: max-w-[1440px] mx-auto px-8 md:px-16 */}
         <motion.div
@@ -243,25 +243,25 @@ export function Hero() {
           style={{ y: textY }}
         >
           {/* Inner left column — 52% width, right padding creates gap before divider */}
-          <div className="w-full lg:w-[52%] flex flex-col justify-center py-10 lg:py-16 flex-grow lg:pr-16">
+          <div className="w-full lg:w-[52%] flex flex-col justify-center py-8 sm:py-10 lg:py-16 flex-grow lg:pr-16">
             {/* Single unified content block */}
             <div className="flex flex-col gap-0">
               {/* Eyebrow */}
               <motion.div
-                className="flex items-center gap-3 mb-5"
+                className="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-5"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
               >
-                <div className="w-8 h-px bg-accent" />
-                <span className="font-label-caps text-[10px] text-accent tracking-[0.28em] uppercase font-bold">
+                <div className="w-6 sm:w-8 h-px bg-accent" />
+                <span className="font-label-caps text-[9px] sm:text-[10px] text-accent tracking-[0.22em] sm:tracking-[0.28em] uppercase font-bold">
                   FROM GRID TO GREATNESS
                 </span>
               </motion.div>
 
               {/* H1 — 2 lines: "Powering Critical" + "Infrastructure." */}
               <motion.h1
-                className="font-headline font-black uppercase leading-[1.0] sm:leading-[0.92] tracking-tighter mb-7 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[68px]"
+                className="font-headline font-black uppercase leading-[1.05] sm:leading-[0.96] md:leading-[0.92] tracking-tighter mb-5 sm:mb-6 md:mb-7 text-[28px] sm:text-[38px] md:text-[52px] lg:text-[68px]"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -277,14 +277,14 @@ export function Hero() {
                   <span className="text-white">Every </span>
                   <span className="text-accent">Solution</span>
                 </span>
-                <span className="block text-white/60 text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-bold mt-1">
+                <span className="block text-white/60 text-[20px] sm:text-[28px] md:text-[36px] lg:text-[48px] font-bold mt-0.5 sm:mt-1">
                   Under One Roof.
                 </span>
               </motion.h1>
 
               {/* Description */}
               <motion.p
-                className="font-body text-base md:text-lg text-white/50 leading-relaxed font-light w-full mb-9"
+                className="font-body text-[14px] sm:text-base md:text-lg text-white/50 leading-relaxed font-light w-full mb-6 sm:mb-8 md:mb-9"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -297,7 +297,7 @@ export function Hero() {
 
               {/* Separator */}
               <motion.div
-                className="w-full h-px bg-white/8 mb-9"
+                className="w-full h-px bg-white/8 mb-6 sm:mb-8 md:mb-9"
                 initial={{ scaleX: 0, originX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
@@ -305,7 +305,7 @@ export function Hero() {
 
               {/* CTA buttons — original style from git */}
               <motion.div
-                className="flex flex-wrap items-center gap-5"
+                className="flex flex-wrap items-center gap-4 sm:gap-5"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.65 }}
@@ -316,7 +316,7 @@ export function Hero() {
                     variant="primary"
                     theme="dark"
                     size="lg"
-                    className="rounded-none shadow-sm text-[10px] tracking-[0.2em] font-bold"
+                    className="rounded-none shadow-sm text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.2em] font-bold"
                   >
                     GET A FREE CONSULTATION
                   </Button>
@@ -325,7 +325,7 @@ export function Hero() {
                 {/* Ghost: animated text-slide link with arrow */}
                 <Link
                   to="/products"
-                  className="inline-flex items-center gap-2.5 font-label-caps text-[10px] tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
+                  className="inline-flex items-center gap-2 sm:gap-2.5 font-label-caps text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
                 >
                   <span className="relative overflow-hidden inline-block">
                     <span className="block group-hover:-translate-y-full transition-transform duration-300">
@@ -335,7 +335,7 @@ export function Hero() {
                       EXPLORE PRODUCTS
                     </span>
                   </span>
-                  <span className="material-symbols-outlined text-[24px] group-hover:translate-x-1 transition-transform duration-300">
+                  <span className="material-symbols-outlined text-[20px] sm:text-[24px] group-hover:translate-x-1 transition-transform duration-300">
                     arrow_forward
                   </span>
                 </Link>
@@ -358,20 +358,20 @@ export function Hero() {
             <Link
               key={i}
               to={pillar.link}
-              className={`px-6 py-5 flex items-center gap-4 border-white/10 hover:bg-white/[0.02] transition-colors group cursor-pointer ${
+              className={`px-3 py-3 sm:px-5 sm:py-4 md:px-6 md:py-5 flex items-center gap-2.5 sm:gap-3 md:gap-4 border-white/10 hover:bg-white/[0.02] transition-colors group cursor-pointer ${
                 i < 2 ? "border-b border-white/10 md:border-b-0" : ""
               } ${i % 2 === 0 ? "border-r" : ""} ${
                 i < 3 ? "md:border-r" : "md:border-r-0"
               }`}
             >
-              <span className="material-symbols-outlined text-accent text-[28px] shrink-0 select-none group-hover:scale-110 transition-transform">
+              <span className="material-symbols-outlined text-accent text-[20px] sm:text-[24px] md:text-[28px] shrink-0 select-none group-hover:scale-110 transition-transform">
                 {pillar.icon}
               </span>
               <div className="flex flex-col justify-center min-w-0">
-                <span className="font-label-caps text-[10px] text-white/80 tracking-wider uppercase leading-tight font-black truncate group-hover:text-accent transition-colors">
+                <span className="font-label-caps text-[7.5px] sm:text-[9px] md:text-[10px] text-white/80 tracking-wider uppercase leading-snug font-black group-hover:text-accent transition-colors">
                   {pillar.label}
                 </span>
-                <span className="font-label-caps text-[7.5px] text-white/40 tracking-widest uppercase mt-0.5 leading-none">
+                <span className="font-label-caps text-[6.5px] sm:text-[7px] md:text-[7.5px] text-white/40 tracking-widest uppercase mt-0.5 leading-none block">
                   {i === 0
                     ? "Authorized Channel"
                     : i === 1

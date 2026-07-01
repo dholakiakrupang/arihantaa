@@ -38,7 +38,7 @@ export function EpcLifecycleSection() {
         </div>
 
         {/* 8-Step Timeline Horizontal Grid (collapses to 1 column on mobile, 2 on tablet, 4 on desktop) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 border-t border-l border-outline-variant/30 gap-0 bg-surface shadow-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-outline-variant/30 gap-0 bg-surface shadow-sm">
           {lifecycleSteps.map((step, idx) => (
             <motion.div
               key={idx}
@@ -53,7 +53,7 @@ export function EpcLifecycleSection() {
                 <span className="font-headline text-2xl font-black text-accent/80 group-hover:scale-110 transition-transform duration-300">
                   {`0${step.number}`}
                 </span>
-                <div className="w-2 h-2 bg-outline-variant/35 group-hover:bg-accent rounded-full transition-colors" />
+                <div className="w-2 h-2 bg-outline-variant/35 group-hover:bg-accent transition-colors" />
               </div>
 
               <div className="flex flex-col justify-start flex-grow">

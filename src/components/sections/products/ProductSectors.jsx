@@ -71,7 +71,7 @@ function SectorRow({ sector, index }) {
               to={sector.familyLink}
               className="group/title inline-flex items-center gap-3 md:gap-5 mb-4 transition-colors duration-300 hover:text-accent"
             >
-              <h2 className="font-headline text-[30px] sm:text-[42px] md:text-[56px] lg:text-[64px] leading-tight md:leading-[1.0] font-black text-on-surface uppercase tracking-tighter group-hover/title:text-accent transition-colors duration-300">
+              <h2 className="font-headline text-[26px] sm:text-[34px] md:text-[42px] lg:text-[52px] xl:text-[64px] leading-tight md:leading-[1.0] font-black text-on-surface uppercase tracking-tighter group-hover/title:text-accent transition-colors duration-300">
                 {sector.title}
               </h2>
               {/* Arrow — hidden by default, appears on hover */}
@@ -105,19 +105,20 @@ function SectorRow({ sector, index }) {
       </div>
 
       {/* ── Product cards grid ─────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-16 md:mb-24">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16 md:mb-24">
         {sector.cards.slice(0, 3).map((card, cardIndex) => (
-          <ProductCard
-            key={card.id}
-            id={card.id}
-            categoryId={card.categoryId}
-            category={card.category}
-            title={card.title}
-            description={card.description}
-            imageSrc={card.imageSrc}
-            imageAlt={card.imageAlt}
-            index={cardIndex}
-          />
+          <div key={card.id} className={cardIndex === 2 ? 'sm:col-span-2 lg:col-span-1' : ''}>
+            <ProductCard
+              id={card.id}
+              categoryId={card.categoryId}
+              category={card.category}
+              title={card.title}
+              description={card.description}
+              imageSrc={card.imageSrc}
+              imageAlt={card.imageAlt}
+              index={cardIndex}
+            />
+          </div>
         ))}
       </div>
     </div>

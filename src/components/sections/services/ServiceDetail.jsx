@@ -20,7 +20,7 @@ export function ServiceDetail({
       className={`relative py-20 md:py-28 ${bgClass} overflow-hidden scroll-mt-20 border-b border-outline-variant/30`}
     >
       {/* Faint section number watermark */}
-      <span className="absolute top-4 right-4 lg:top-8 lg:right-8 font-headline text-[80px] lg:text-[180px] font-black text-on-surface/[0.015] lg:text-on-surface/[0.03] leading-none select-none pointer-events-none tracking-tighter">
+      <span className="absolute top-4 right-4 lg:top-8 lg:right-8 font-headline text-[80px] sm:text-[120px] lg:text-[150px] xl:text-[180px] font-black text-on-surface/[0.015] lg:text-on-surface/[0.03] leading-none select-none pointer-events-none tracking-tighter">
         {eyebrow.split("/")[0].trim()}
       </span>
 
@@ -89,7 +89,7 @@ export function ServiceDetail({
                 to={serviceTo}
                 className="group/title inline-flex items-center gap-3 mb-5 transition-colors duration-300"
               >
-                <h2 className="font-headline text-[26px] sm:text-[36px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface group-hover/title:text-accent transition-colors duration-300">
+                <h2 className="font-headline text-[24px] sm:text-[32px] md:text-[36px] lg:text-[42px] xl:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface group-hover/title:text-accent transition-colors duration-300">
                   {title}
                 </h2>
                 <span className="material-symbols-outlined text-[24px] md:text-[36px] text-accent opacity-0 -translate-x-3 group-hover/title:opacity-100 group-hover/title:translate-x-0 transition-all duration-300 flex-shrink-0">
@@ -97,7 +97,7 @@ export function ServiceDetail({
                 </span>
               </Link>
             ) : (
-              <h2 className="font-headline text-[26px] sm:text-[36px] lg:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-5">
+              <h2 className="font-headline text-[24px] sm:text-[32px] md:text-[36px] lg:text-[42px] xl:text-[54px] leading-[1.05] font-black tracking-tighter text-on-surface mb-5">
                 {title}
               </h2>
             )}

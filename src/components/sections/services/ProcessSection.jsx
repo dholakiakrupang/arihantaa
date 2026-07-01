@@ -42,20 +42,23 @@ export function ProcessSection() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border-t border-l border-white/10 gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 border-t border-l border-white/10 gap-0">
           {steps.map((step, index) => (
             <motion.div 
               key={index} 
-              className={`border-r border-b border-white/10 p-6 md:p-8 hover:bg-white/[0.02] transition-colors duration-300 flex flex-col justify-start lg:justify-between group min-h-[150px] sm:min-h-[160px] lg:min-h-[250px] relative ${index === 4 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
+              className={`border-r border-b border-white/10 p-6 md:p-8 hover:bg-white/[0.02] transition-colors duration-300 flex flex-col justify-start xl:justify-between group min-h-[150px] md:min-h-[160px] xl:min-h-[250px] relative ${index === 4 ? 'md:col-span-2 xl:col-span-1' : ''}`}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 * index }}
             >
-              <div>
-                <span className="block font-headline text-sm font-bold text-primary mb-3 sm:mb-4 lg:mb-6 group-hover:translate-x-1 transition-transform duration-300">
-                  {`0${step.number}`}
-                </span>
+              <div className="flex flex-col justify-start w-full">
+                <div className="flex items-center justify-between mb-3 sm:mb-4 lg:mb-6 shrink-0">
+                  <span className="font-headline text-sm font-bold text-primary group-hover:scale-110 transition-transform duration-300">
+                    {`0${step.number}`}
+                  </span>
+                  <div className="w-2 h-2 bg-white/20 group-hover:bg-primary transition-colors duration-300" />
+                </div>
                 <h4 className="text-lg font-bold mb-3 text-white group-hover:text-primary transition-colors duration-300">
                   {step.title}
                 </h4>
@@ -63,6 +66,8 @@ export function ProcessSection() {
               <p className="text-white/60 text-[13px] leading-relaxed mt-2 lg:mt-4">
                 {step.desc}
               </p>
+              {/* Bottom active accent border */}
+              <div className="absolute bottom-0 left-0 right-0 h-[2px] w-0 bg-primary group-hover:w-full transition-all duration-500 ease-out" />
             </motion.div>
           ))}
         </div>

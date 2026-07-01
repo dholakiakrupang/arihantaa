@@ -30,12 +30,12 @@ export function Timeline() {
         </div>
 
         {/* Timeline Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border-t border-l border-outline-variant/30 gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 border-t border-l border-outline-variant/30 gap-0">
           {milestones.map((m, i) => (
             <motion.div
               key={m.year}
-              className={`p-6 lg:p-8 border-r border-b border-outline-variant/30 bg-surface hover:bg-accent/[0.015] transition-all duration-300 flex flex-col justify-start group min-h-[180px] sm:min-h-[200px] lg:min-h-[250px] rounded-none ${
-                i === 4 ? 'sm:col-span-2 lg:col-span-1' : ''
+              className={`p-6 md:p-6 xl:p-8 border-r border-b border-outline-variant/30 bg-surface hover:bg-accent/[0.015] transition-all duration-300 flex flex-col justify-start group min-h-[180px] md:min-h-[200px] xl:min-h-[250px] rounded-none ${
+                i === 4 ? 'md:col-span-2 xl:col-span-1' : ''
               }`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

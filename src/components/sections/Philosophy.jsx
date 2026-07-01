@@ -31,13 +31,13 @@ export function Philosophy() {
   const yImage = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
 
   return (
-    <section ref={containerRef} className="relative py-24 md:py-32 bg-surface overflow-hidden border-b border-outline-variant/30">
+    <section ref={containerRef} className="relative py-16 sm:py-20 md:py-28 lg:py-32 bg-surface overflow-hidden border-b border-outline-variant/30">
       
-      <div className="relative z-10 max-w-[1440px] mx-auto px-8 md:px-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-20 items-center">
           
           {/* ── Left Column: Premium Photo (5 cols) ── */}
-          <div className="lg:col-span-5 relative w-full aspect-[4/5] sm:aspect-[16/10] lg:aspect-[4/5] max-h-[640px] border border-outline-variant/30 overflow-hidden bg-surface-container-low">
+          <div className="lg:col-span-5 relative w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/5] max-h-[640px] border border-outline-variant/30 overflow-hidden bg-surface-container-low">
             {/* Scroll Parallax Raw Image */}
             <motion.img 
               style={{ y: yImage, scale: 1.2 }}
@@ -53,7 +53,7 @@ export function Philosophy() {
             {/* Header */}
             <div>
               <motion.div 
-                className="flex items-center gap-3 mb-4"
+                className="flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-4"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
@@ -66,7 +66,7 @@ export function Philosophy() {
               </motion.div>
 
               <motion.h2 
-                className="font-headline text-[38px] sm:text-[48px] lg:text-[56px] leading-[1.0] font-black text-on-surface tracking-tighter uppercase"
+                className="font-headline text-[30px] sm:text-[38px] md:text-[48px] lg:text-[56px] leading-[1.05] sm:leading-[1.0] font-black text-on-surface tracking-tighter uppercase"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
@@ -79,7 +79,7 @@ export function Philosophy() {
 
             {/* Description Paragraph */}
             <motion.p 
-              className="font-body text-[15px] md:text-[16px] leading-relaxed text-secondary max-w-xl"
+              className="font-body text-[13px] sm:text-[15px] md:text-[16px] leading-relaxed text-secondary max-w-xl"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
@@ -99,14 +99,14 @@ export function Philosophy() {
               {TENETS.map((t, idx) => (
                 <div 
                   key={idx}
-                  className="border-b border-outline-variant/30 py-4 flex items-start gap-6 group hover:bg-accent/[0.005] transition-colors duration-300"
+                  className="border-b border-outline-variant/30 py-3 sm:py-4 flex items-start gap-4 sm:gap-6 group hover:bg-accent/[0.005] transition-colors duration-300"
                 >
-                  <span className="font-mono text-[14px] text-accent/60 font-bold pt-0.5">{t.num}</span>
+                  <span className="font-mono text-[12px] sm:text-[14px] text-accent/60 font-bold pt-0.5">{t.num}</span>
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 flex-grow">
-                    <span className="font-label-caps text-[11px] font-bold text-on-surface tracking-widest sm:w-1/4 uppercase">
+                    <span className="font-label-caps text-[10px] sm:text-[11px] font-bold text-on-surface tracking-widest sm:w-1/4 uppercase">
                       {t.title}
                     </span>
-                    <span className="font-body text-[13px] text-secondary/80 sm:w-3/4">
+                    <span className="font-body text-[12px] sm:text-[13px] text-secondary/80 sm:w-3/4">
                       {t.desc}
                     </span>
                   </div>

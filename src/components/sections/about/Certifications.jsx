@@ -12,7 +12,7 @@ export function Certifications() {
           </h3>
         </Reveal>
         
-        <div className="grid grid-cols-2 border-t border-l border-white/10 w-full lg:w-auto gap-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 border-t border-l border-white/10 w-full lg:w-auto gap-0">
           <motion.div 
             className="p-8 border-r border-b border-white/10 bg-white/[0.02] text-center hover:bg-white/[0.04] transition-colors duration-300 rounded-none min-w-[150px] sm:min-w-[200px]"
             initial={{ opacity: 0, y: 15 }}

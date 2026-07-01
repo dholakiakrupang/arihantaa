@@ -4,11 +4,11 @@ export function OurStory() {
   return (
     <section className="py-16 md:py-24 bg-surface overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-8 md:px-16">
-        <div className="flex flex-col md:flex-row gap-16 md:gap-24 items-center">
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
 
           {/* ── Image stack ──────────────────────────────────────────── */}
           <motion.div
-            className="w-full md:w-[45%] relative flex-shrink-0"
+            className="w-full lg:w-[45%] relative flex-shrink-0"
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -22,17 +22,17 @@ export function OurStory() {
               <img
                 src="/images/project-industrial.png"
                 alt="Arihantaa engineering team at work"
-                className="w-full h-[420px] md:h-[520px] object-cover transition-all duration-700"
+                className="w-full h-[320px] sm:h-[420px] lg:h-[520px] object-cover transition-all duration-700"
                 loading="lazy" decoding="async"
               />
             </div>
 
             {/* Floating inset image */}
-            <div className="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 w-36 sm:w-48 md:w-64 border-4 border-surface shadow-2xl overflow-hidden block">
+            <div className="absolute -bottom-6 -right-4 sm:-bottom-8 sm:-right-8 w-36 sm:w-48 lg:w-64 border-4 border-surface shadow-2xl overflow-hidden block">
               <img
                 src="/images/project-data-center.png"
                 alt="Data center infrastructure"
-                className="w-full h-24 sm:h-32 md:h-40 object-cover transition-all duration-700"
+                className="w-full h-24 sm:h-32 lg:h-40 object-cover transition-all duration-700"
                 loading="lazy" decoding="async"
               />
             </div>
@@ -40,7 +40,7 @@ export function OurStory() {
 
           {/* ── Content ──────────────────────────────────────────────── */}
           <motion.div
-            className="w-full md:flex-1 mt-10 md:mt-0"
+            className="w-full lg:flex-1 mt-12 lg:mt-0"
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-60px' }}
@@ -51,7 +51,7 @@ export function OurStory() {
               <span className="font-label-caps text-[11px] text-accent tracking-[0.22em] uppercase">Our Story</span>
             </div>
 
-            <h2 className="font-headline text-[34px] md:text-[50px] leading-[1.05] font-black tracking-tighter text-on-surface mb-5">
+            <h2 className="font-headline text-[28px] sm:text-[34px] lg:text-[50px] leading-[1.05] font-black tracking-tighter text-on-surface mb-5">
               Who We Are
             </h2>
 

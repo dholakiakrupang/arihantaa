@@ -46,11 +46,11 @@ const FEATURED_PRODUCTS = [
 
 export function ProductsShowcase() {
   return (
-    <section className="py-24 md:py-32 bg-surface border-b border-outline-variant/30">
-      <div className="max-w-[1440px] mx-auto px-8 md:px-16">
+    <section className="py-16 sm:py-20 md:py-28 lg:py-32 bg-surface border-b border-outline-variant/30">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16">
         
         {/* Asymmetric Header Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end mb-16 md:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-16 items-end mb-12 sm:mb-16 md:mb-20">
           <div className="lg:col-span-8">
             <motion.div 
               className="flex items-center gap-3 mb-4"
@@ -64,7 +64,7 @@ export function ProductsShowcase() {
               </span>
             </motion.div>
             
-            <h2 className="font-headline text-[38px] sm:text-[48px] lg:text-[60px] leading-[1.0] font-black text-on-surface tracking-tighter uppercase">
+            <h2 className="font-headline text-[30px] sm:text-[38px] md:text-[48px] lg:text-[60px] leading-[1.05] sm:leading-[1.0] font-black text-on-surface tracking-tighter uppercase">
               Capital Goods.
             </h2>
           </div>
@@ -82,7 +82,7 @@ export function ProductsShowcase() {
         </div>
 
         {/* Stacked Asymmetric Layout */}
-        <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-6 sm:gap-8 lg:gap-10">
           {FEATURED_PRODUCTS.map((prod, idx) => {
             const isEven = idx % 2 === 0;
             return (
@@ -110,7 +110,7 @@ export function ProductsShowcase() {
                 </div>
 
                 {/* Content & Metadata Table */}
-                <div className="w-full lg:w-[45%] flex flex-col justify-between p-6 md:p-10">
+                <div className="w-full lg:w-[45%] flex flex-col justify-between p-5 sm:p-6 md:p-10">
                   <div>
                     {/* Category */}
                     <div className="flex items-center gap-2 mb-3">
@@ -123,24 +123,24 @@ export function ProductsShowcase() {
                     {/* Title */}
                     <Link 
                       to={`/products/${prod.categoryId}/${prod.id}`}
-                      className="font-headline text-[22px] md:text-[30px] font-black text-on-surface hover:text-accent transition-colors duration-300 leading-tight uppercase block mb-3"
+                      className="font-headline text-[20px] sm:text-[24px] md:text-[30px] font-black text-on-surface hover:text-accent transition-colors duration-300 leading-tight uppercase block mb-2 sm:mb-3"
                     >
                       {prod.title}
                     </Link>
 
                     {/* Description */}
-                    <p className="font-body text-[13px] md:text-[14px] text-secondary leading-relaxed mb-5 line-clamp-3">
+                    <p className="font-body text-[12px] sm:text-[13px] md:text-[14px] text-secondary leading-relaxed mb-4 sm:mb-5 line-clamp-3">
                       {prod.desc}
                     </p>
 
                     {/* Specifications Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 border border-outline-variant/30 mb-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 border border-outline-variant/30 mb-4 sm:mb-5">
                       {prod.stats.map((stat, sIdx) => (
-                        <div key={sIdx} className="p-3 flex flex-row sm:flex-col justify-between sm:justify-start gap-2 border-b sm:border-b-0 sm:border-r border-outline-variant/30 last:border-0">
-                          <span className="font-label-caps text-[8px] text-secondary/40 tracking-wider uppercase whitespace-nowrap">
+                        <div key={sIdx} className="p-2.5 sm:p-3 flex flex-row sm:flex-col justify-between sm:justify-start gap-1 sm:gap-2 border-b sm:border-b-0 sm:border-r border-outline-variant/30 last:border-0">
+                          <span className="font-label-caps text-[7.5px] sm:text-[8px] text-secondary/40 tracking-wider uppercase">
                             {stat.label}
                           </span>
-                          <span className="font-body text-[12px] font-bold text-on-surface text-right sm:text-left">
+                          <span className="font-body text-[12px] sm:text-[12px] font-bold text-on-surface text-right sm:text-left">
                             {stat.value}
                           </span>
                         </div>

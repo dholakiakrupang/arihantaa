@@ -123,7 +123,7 @@ export function SolutionsEpcMepf() {
   ];
 
   return (
-    <div className="font-body selection:bg-accent selection:text-white bg-surface pt-[56px] sm:pt-[64px] md:pt-[80px]">
+    <div className="font-body selection:bg-accent selection:text-white bg-surface pt-[80px]">
       {styleTag}
 
       {/* ── Page Hero ────────────────────────────────────────── */}
@@ -367,7 +367,7 @@ export function SolutionsEpcMepf() {
                 <h3 className="font-headline text-xl md:text-2xl font-black text-on-surface uppercase tracking-tight">
                   MEPF Design Consultancy
                 </h3>
-                <span className="font-label-caps text-[8px] bg-white/[0.02] border border-outline-variant/30 text-secondary px-2 py-0.5 font-bold uppercase tracking-wider">
+                <span className="font-label-caps text-[8px] bg-accent/10 border border-accent/20 text-accent px-2 py-0.5 font-bold uppercase tracking-wider">
                   ENGINEERING DESIGN
                 </span>
               </div>
@@ -406,8 +406,8 @@ export function SolutionsEpcMepf() {
       {/* ── Visual Timeline Section (EPC Lifecycle) ────────────────────────── */}
       <section className="py-24 md:py-32 bg-surface border-b border-outline-variant/30 relative overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-8 md:px-16">
-          <div className="mb-16 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+          <div className="mb-16 text-left">
+            <div className="flex items-center justify-start gap-3 mb-4">
               <div className="h-[2px] w-8 bg-accent" />
               <span className="font-label-caps text-[11px] text-accent tracking-[0.2em] uppercase font-bold">
                 EXECUTION TIMELINE
@@ -416,7 +416,7 @@ export function SolutionsEpcMepf() {
             <h2 className="font-headline text-3xl md:text-5xl font-black text-on-surface uppercase tracking-tight">
               EPC Project Lifecycle
             </h2>
-            <p className="font-body text-[15px] text-secondary leading-relaxed mt-2 max-w-xl mx-auto md:mx-0">
+            <p className="font-body text-[15px] text-secondary leading-relaxed mt-2 max-w-xl mx-0">
               We manage the entire engineering, procurement, and deployment
               timeline internally to guarantee strict alignment.
             </p>
@@ -510,7 +510,7 @@ export function SolutionsEpcMepf() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 border-t border-l border-outline-variant/30 bg-white gap-0 shadow-md">
+          <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-outline-variant/30 bg-white gap-0 shadow-md">
             {targetSectors.map((sector, idx) => (
               <div
                 key={idx}
@@ -698,28 +698,28 @@ function ExecutedProjectsShowcase() {
           </p>
 
           {/* ── Summary Stats Bar ──────────────────── */}
-          <div className="grid grid-cols-3 pb-8 border-b border-white/[0.06]">
-            <div className="flex items-baseline gap-2 justify-center border-r border-white/[0.06] py-2">
-              <span className="font-headline text-[36px] md:text-[48px] font-black text-accent leading-none">
+          <div className="grid grid-cols-3 border-y border-white/[0.06] py-6 mb-10">
+            <div className="flex flex-col items-center justify-center text-center border-r border-white/[0.06] px-2 py-1">
+              <span className="font-headline text-[32px] sm:text-[40px] md:text-[48px] font-black text-accent leading-none mb-2">
                 {totalExecutedProjects}
               </span>
-              <span className="font-label-caps text-[9px] text-white/30 tracking-[0.2em] uppercase font-bold">
+              <span className="font-label-caps text-[8px] sm:text-[9px] text-white/40 tracking-[0.18em] uppercase font-bold whitespace-nowrap">
                 Projects Executed
               </span>
             </div>
-            <div className="flex items-baseline gap-2 justify-center border-r border-white/[0.06] py-2">
-              <span className="font-headline text-[36px] md:text-[48px] font-black text-white leading-none">
+            <div className="flex flex-col items-center justify-center text-center border-r border-white/[0.06] px-2 py-1">
+              <span className="font-headline text-[32px] sm:text-[40px] md:text-[48px] font-black text-white leading-none mb-2">
                 {epcSectors.length}
               </span>
-              <span className="font-label-caps text-[9px] text-white/30 tracking-[0.2em] uppercase font-bold">
+              <span className="font-label-caps text-[8px] sm:text-[9px] text-white/40 tracking-[0.18em] uppercase font-bold whitespace-nowrap">
                 Industry Sectors
               </span>
             </div>
-            <div className="flex items-baseline gap-2 justify-center py-2">
-              <span className="font-headline text-[36px] md:text-[48px] font-black text-white leading-none">
+            <div className="flex flex-col items-center justify-center text-center px-2 py-1">
+              <span className="font-headline text-[32px] sm:text-[40px] md:text-[48px] font-black text-white leading-none mb-2">
                 5+
               </span>
-              <span className="font-label-caps text-[9px] text-white/30 tracking-[0.2em] uppercase font-bold">
+              <span className="font-label-caps text-[8px] sm:text-[9px] text-white/40 tracking-[0.18em] uppercase font-bold whitespace-nowrap">
                 States Covered
               </span>
             </div>
@@ -727,7 +727,7 @@ function ExecutedProjectsShowcase() {
         </div>
 
         {/* ── Smart Sector Navigation Bar (full viewport width) ──────── */}
-        <div className="sticky top-[64px] md:top-[80px] z-40 mb-10 md:mb-14 w-screen relative" style={{ marginLeft: 'calc(-50vw + 50%)' }}>
+        <div className="sticky top-[80px] z-40 mb-10 md:mb-14 w-screen relative" style={{ marginLeft: 'calc(-50vw + 50%)' }}>
           <nav className="bg-[#1a1a1a] border-y border-white/[0.08] overflow-hidden">
             <div className="flex items-stretch h-[54px] md:h-[58px]">
               {/* Fixed label pill — hidden below lg */}
@@ -918,16 +918,20 @@ function ExecutedProjectsShowcase() {
             transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-white/[0.06]"
           >
-            {activeSector.projects.map((project, idx) => (
-              <motion.div
-                key={`${activeSector.id}-${idx}`}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.35, delay: idx * 0.06 }}
-                className="group relative border-r border-b border-white/[0.06] bg-white/[0.015] hover:bg-white/[0.04] transition-all duration-400 overflow-hidden"
-              >
-                {/* Hover glow overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            {activeSector.projects.map((project, idx) => {
+              const isLastItem = idx === activeSector.projects.length - 1;
+              const isOddTotal = activeSector.projects.length % 2 !== 0;
+              const spanClass = (isLastItem && isOddTotal) ? "md:col-span-2 lg:col-span-1" : "";
+              return (
+                <motion.div
+                  key={`${activeSector.id}-${idx}`}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: idx * 0.06 }}
+                  className={`group relative border-r border-b border-white/[0.06] bg-white/[0.015] hover:bg-white/[0.04] transition-all duration-400 overflow-hidden ${spanClass}`}
+                >
+                  {/* Hover glow overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 <div className="relative z-10 p-6 md:p-7 flex flex-col h-full min-h-[220px]">
                   {/* Card Header */}
@@ -981,7 +985,8 @@ function ExecutedProjectsShowcase() {
                   </div>
                 </div>
               </motion.div>
-            ))}
+            );
+          })}
           </motion.div>
         </AnimatePresence>
 

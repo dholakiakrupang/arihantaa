@@ -12,8 +12,8 @@ export function UnifiedCTA({
   uppercase = false
 }) {
   return (
-    <section className="w-full bg-surface-variant/40 py-20 md:py-24 border-y border-outline-variant/30">
-      <div className="max-w-[1440px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 lg:gap-12">
+    <section className="w-full bg-surface-variant/40 py-14 sm:py-16 md:py-20 lg:py-24 border-y border-outline-variant/30">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-16 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8 lg:gap-12">
         
         {/* Left Column: Heading and Subtitle */}
         <motion.div 
@@ -23,12 +23,12 @@ export function UnifiedCTA({
           viewport={{ once: true }} 
           transition={{ duration: 0.6 }}
         >
-          <h3 className={`font-headline font-semibold text-[26px] sm:text-[32px] lg:text-[40px] text-secondary tracking-tight leading-tight ${uppercase ? 'uppercase' : ''}`}>
+          <h3 className={`font-headline font-semibold text-[22px] sm:text-[26px] md:text-[32px] lg:text-[40px] text-secondary tracking-tight leading-tight ${uppercase ? 'uppercase' : ''}`}>
             {heading}{' '}
             {accent && <span className="text-accent">{accent}</span>}
           </h3>
           {subtitle && (
-            <p className="font-body text-[14.5px] md:text-[15.5px] text-on-surface-variant font-light leading-relaxed">
+            <p className="font-body text-[13px] sm:text-[14.5px] md:text-[15.5px] text-on-surface-variant font-light leading-relaxed">
               {subtitle}
             </p>
           )}

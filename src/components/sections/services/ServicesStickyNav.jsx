@@ -149,7 +149,7 @@ export function ServicesStickyNav() {
       let current = "";
       const isMobile = window.innerWidth < 768;
       const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
-      const threshold = isMobile ? 125 : isTablet ? 140 : 145;
+      const threshold = isMobile ? 136 : isTablet ? 140 : 142;
 
       services.forEach(({ id }) => {
         const el = document.getElementById(id);
@@ -185,13 +185,13 @@ export function ServicesStickyNav() {
     if (el) {
       const isMobile = window.innerWidth < 768;
       const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
-      let offset = 140;
+      let offset = 138;
       if (isMobile) {
-        offset = 120;
+        offset = 134;
       } else if (isTablet) {
-        offset = 136;
+        offset = 138;
       } else {
-        offset = 140;
+        offset = 138;
       }
 
       const bodyRect = document.body.getBoundingClientRect().top;
@@ -209,7 +209,7 @@ export function ServicesStickyNav() {
   const doubled = [...services, ...services, ...services, ...services];
 
   return (
-    <nav className="sticky top-[64px] md:top-[80px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
+    <nav className="sticky top-[80px] z-40 bg-inverse-surface border-b border-secondary overflow-hidden">
       <div className="flex items-stretch h-[54px] md:h-[58px]">
         {/* Fixed label pill — hidden below lg */}
         <div className="hidden lg:flex flex-shrink-0 items-center gap-3 px-6 md:px-10 bg-accent border-r border-accent/40">
