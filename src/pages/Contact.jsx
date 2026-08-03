@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button } from "../components/ui/Button";
+import linkedinIcon from "../assets/icons/linkedin.svg";
+import instagramIcon from "../assets/icons/instagram.svg";
 
 export function Contact() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -354,6 +356,58 @@ export function Contact() {
                     </div>
                   </div>
                 </a>
+              </div>
+
+              {/* Connect with us — Social Links */}
+              <div className="pt-6 border-t border-outline-variant/20 mt-6">
+                <div className="flex items-center gap-2.5 mb-4">
+                  <div className="h-[2px] w-5 bg-accent" />
+                  <span className="font-label-caps text-[10px] text-accent tracking-[0.18em] uppercase font-bold">
+                    Connect with us
+                  </span>
+                </div>
+                <div className="space-y-3">
+                  {/* LinkedIn */}
+                  <a
+                    href="https://www.linkedin.com/company/arihantaa-powertech/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow Arihantaa Powertech on LinkedIn"
+                    className="flex items-center gap-3 group"
+                  >
+                    <div className="w-9 h-9 flex items-center justify-center bg-[#0A66C2]/10 border border-[#0A66C2]/20 group-hover:bg-[#0A66C2]/20 group-hover:border-[#0A66C2]/40 transition-all duration-300">
+                      <img
+                        src={linkedinIcon}
+                        alt="LinkedIn"
+                        className="w-[18px] h-[18px]"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-label-caps text-[9px] text-secondary/50 tracking-[0.12em] uppercase font-bold">LinkedIn</span>
+                      <span className="font-body text-[13px] text-on-surface group-hover:text-accent transition-colors duration-300">/arihantaa-powertech</span>
+                    </div>
+                  </a>
+                  {/* Instagram */}
+                  <a
+                    href="https://www.instagram.com/arihantaapowertech?igsh=d3dseHZnMGk1YTBp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow Arihantaa Powertech on Instagram"
+                    className="flex items-center gap-3 group"
+                  >
+                    <div className="w-9 h-9 flex items-center justify-center bg-[#E4405F]/10 border border-[#E4405F]/20 group-hover:bg-[#E4405F]/20 group-hover:border-[#E4405F]/40 transition-all duration-300">
+                      <img
+                        src={instagramIcon}
+                        alt="Instagram"
+                        className="w-[18px] h-[18px]"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-label-caps text-[9px] text-secondary/50 tracking-[0.12em] uppercase font-bold">Instagram</span>
+                      <span className="font-body text-[13px] text-on-surface group-hover:text-accent transition-colors duration-300">@arihantaapowertech</span>
+                    </div>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../ui/Button";
+import linkedinIcon from "../../assets/icons/linkedin.svg";
+import instagramIcon from "../../assets/icons/instagram.svg";
 
 export function Footer() {
   const location = useLocation();
@@ -324,25 +326,57 @@ export function Footer() {
             <span className="text-white/20">·</span>
             <span className="whitespace-nowrap">Vertiv Partner</span>
           </div>
-          <div className="flex flex-wrap justify-center sm:justify-end gap-3 sm:gap-4 md:gap-6">
-            <Link
-              to="/contact?inquiry=privacy"
-              className="hover:text-white transition-colors whitespace-nowrap"
-            >
-              Privacy
-            </Link>
-            <Link
-              to="/about"
-              className="hover:text-white transition-colors whitespace-nowrap"
-            >
-              Safety
-            </Link>
-            <Link
-              to="/contact?inquiry=legal"
-              className="hover:text-white transition-colors whitespace-nowrap"
-            >
-              Terms
-            </Link>
+          <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <a
+                href="https://www.linkedin.com/company/arihantaa-powertech/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Arihantaa Powertech on LinkedIn"
+                className="opacity-50 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <img
+                  src={linkedinIcon}
+                  alt="LinkedIn"
+                  className="w-5 h-5 sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px]"
+                />
+              </a>
+              <a
+                href="https://www.instagram.com/arihantaapowertech?igsh=d3dseHZnMGk1YTBp"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Arihantaa Powertech on Instagram"
+                className="opacity-50 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              >
+                <img
+                  src={instagramIcon}
+                  alt="Instagram"
+                  className="w-5 h-5 sm:w-[22px] sm:h-[22px] md:w-[24px] md:h-[24px]"
+                />
+              </a>
+            </div>
+            <div className="h-3 w-px bg-white/10 hidden sm:block" />
+            <div className="flex flex-wrap justify-center sm:justify-end gap-3 sm:gap-4 md:gap-6">
+              <Link
+                to="/contact?inquiry=privacy"
+                className="hover:text-white transition-colors whitespace-nowrap"
+              >
+                Privacy
+              </Link>
+              <Link
+                to="/about"
+                className="hover:text-white transition-colors whitespace-nowrap"
+              >
+                Safety
+              </Link>
+              <Link
+                to="/contact?inquiry=legal"
+                className="hover:text-white transition-colors whitespace-nowrap"
+              >
+                Terms
+              </Link>
+            </div>
           </div>
         </div>
       </div>

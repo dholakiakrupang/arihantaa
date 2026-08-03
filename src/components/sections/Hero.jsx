@@ -50,22 +50,62 @@ const HERO_PILLARS = [
   },
 ];
 
-// ─── 4 Pillar Icons for Homepage ─────────────────────────────────────────
-const HERO_PILLAR_ICONS = [
+// ─── 4 Pillar Tags for Homepage ─────────────────────────────────────────
+const FOUR_PILLARS = [
   {
-    icon: "verified",
-    label: "Vertiv Authorized Partner",
-    link: "/partners/vertiv",
+    icon: "bolt",
+    label: "Electrical EPC",
+    link: "/solutions/epc-mepf",
   },
   {
     icon: "inventory_2",
-    label: "All Capital Goods",
+    label: "Capital Goods Trading",
     link: "/solutions/capital-goods",
   },
-  { icon: "engineering", label: "EPC Solutions", link: "/solutions/epc-mepf" },
+  {
+    icon: "power",
+    label: "Critical Power",
+    link: "/partners/vertiv",
+  },
   {
     icon: "architecture",
     label: "MEPF Consultancy",
+    link: "/solutions/epc-mepf",
+  },
+];
+
+// ─── Trust Indicators ───────────────────────────────────────────────────
+const TRUST_INDICATORS = [
+  "Vertiv Authorised Channel Partner",
+  "L&T JV Partner",
+  "Pan India Presence",
+  "MEPF Certified",
+];
+
+// ─── Bottom Bar Pillar Icons ────────────────────────────────────────────
+const HERO_PILLAR_ICONS = [
+  {
+    icon: "bolt",
+    label: "Electrical EPC",
+    sub: "Turnkey Delivery",
+    link: "/solutions/epc-mepf",
+  },
+  {
+    icon: "inventory_2",
+    label: "Capital Goods Trading",
+    sub: "Under One Roof",
+    link: "/solutions/capital-goods",
+  },
+  {
+    icon: "power",
+    label: "Critical Power",
+    sub: "Vertiv Partner",
+    link: "/partners/vertiv",
+  },
+  {
+    icon: "architecture",
+    label: "MEPF Consultancy",
+    sub: "Design & Engineering",
     link: "/solutions/epc-mepf",
   },
 ];
@@ -242,13 +282,13 @@ export function Hero() {
           className="w-full flex flex-col flex-grow"
           style={{ y: textY }}
         >
-          {/* Inner left column — 52% width, right padding creates gap before divider */}
-          <div className="w-full lg:w-[52%] flex flex-col justify-center py-8 sm:py-10 lg:py-16 flex-grow lg:pr-16">
+          {/* Inner left column — Strictly lg:w-[48%] so it NEVER overlaps the right 50% image panel */}
+          <div className="w-full lg:w-[48%] xl:w-[48%] flex flex-col justify-center py-8 sm:py-10 lg:py-14 xl:py-16 flex-grow lg:pr-4 xl:pr-6">
             {/* Single unified content block */}
             <div className="flex flex-col gap-0">
               {/* Eyebrow */}
               <motion.div
-                className="flex items-center gap-2.5 sm:gap-3 mb-4 sm:mb-5"
+                className="flex items-center gap-2.5 sm:gap-3 mb-3.5 sm:mb-4 lg:mb-5"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
@@ -259,9 +299,9 @@ export function Hero() {
                 </span>
               </motion.div>
 
-              {/* H1 — 2 lines: "Powering Critical" + "Infrastructure." */}
+              {/* H1 — Exactly 2 lines: "ONE PARTNER." + "COMPLETE EPC SOLUTIONS." */}
               <motion.h1
-                className="font-headline font-black uppercase leading-[1.05] sm:leading-[0.96] md:leading-[0.92] tracking-tighter mb-5 sm:mb-6 md:mb-7 text-[28px] sm:text-[38px] md:text-[52px] lg:text-[68px]"
+                className="font-headline font-black uppercase leading-[1.05] sm:leading-[0.98] md:leading-[0.94] tracking-tighter mb-4 sm:mb-5 md:mb-6 text-[28px] sm:text-[38px] md:text-[46px] lg:text-[50px] xl:text-[58px]"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -270,75 +310,108 @@ export function Hero() {
                   delay: 0.15,
                 }}
               >
-                <span className="block">
-                  <span className="text-white">One Company.</span>
-                </span>
-                <span className="block">
-                  <span className="text-white">Every </span>
-                  <span className="text-accent">Solution</span>
-                </span>
-                <span className="block text-white/60 text-[20px] sm:text-[28px] md:text-[36px] lg:text-[48px] font-bold mt-0.5 sm:mt-1">
-                  Under One Roof.
-                </span>
+                <span className="block text-white">One Partner.</span>
+                <span className="block text-accent">Complete EPC Solutions.</span>
               </motion.h1>
+
+              {/* Four Pillar Tags — Strictly 1 single line inside 48% width without banner overlap */}
+              <motion.div
+                className="flex flex-wrap lg:flex-nowrap items-center gap-1 sm:gap-1.5 lg:gap-1.5 xl:gap-2 mb-5 sm:mb-6 lg:mb-7"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                {FOUR_PILLARS.map((pillar, i) => (
+                  <Link
+                    key={i}
+                    to={pillar.link}
+                    className="group inline-flex items-center gap-1 sm:gap-1.5 bg-white/[0.04] border border-white/10 hover:border-accent/40 hover:bg-accent/[0.06] px-2 sm:px-2.5 lg:px-2 xl:px-3 py-1.5 transition-all duration-300 whitespace-nowrap shrink-0"
+                  >
+                    <span className="material-symbols-outlined text-accent text-[14px] sm:text-[15px] lg:text-[15px] xl:text-[16px] group-hover:scale-110 transition-transform duration-300">
+                      {pillar.icon}
+                    </span>
+                    <span className="font-label-caps text-[7.5px] sm:text-[8px] lg:text-[7.5px] xl:text-[8.5px] text-white/80 tracking-[0.04em] sm:tracking-[0.06em] xl:tracking-[0.08em] uppercase font-bold group-hover:text-white transition-colors duration-300">
+                      {pillar.label}
+                    </span>
+                  </Link>
+                ))}
+              </motion.div>
 
               {/* Description */}
               <motion.p
-                className="font-body text-[14px] sm:text-base md:text-lg text-white/50 leading-relaxed font-light w-full mb-6 sm:mb-8 md:mb-9"
+                className="font-body text-[13px] sm:text-[14.5px] md:text-[15px] text-white/55 leading-relaxed font-light w-full mb-5 sm:mb-6"
+                style={{ lineHeight: 1.6 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Arihantaa Powertech is your single point of contact for all
-                capital goods supply, EPC project execution, and MEPF
-                consultancy — backed by an authorized Vertiv channel
-                partnership.
+                Arihantaa Powertech delivers reliable Engineering, Procurement, MEPF Consultancy, and supply solutions through strategic partnerships with leading global OEMs. We help industries execute projects with confidence — from concept to commissioning.
               </motion.p>
 
               {/* Separator */}
               <motion.div
-                className="w-full h-px bg-white/8 mb-6 sm:mb-8 md:mb-9"
+                className="w-full h-px bg-white/8 mb-5 sm:mb-6"
                 initial={{ scaleX: 0, originX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 0.7, delay: 0.5 }}
               />
 
-              {/* CTA buttons — original style from git */}
+              {/* CTA buttons */}
               <motion.div
-                className="flex flex-wrap items-center gap-4 sm:gap-5"
+                className="flex flex-wrap items-center gap-3.5 sm:gap-4 lg:gap-5 mb-5 sm:mb-6"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 0.65 }}
               >
-                {/* Primary: filled orange button */}
-                <Link to="/contact">
+                {/* Primary: filled orange button — Explore Our Services */}
+                <Link to="/services">
                   <Button
                     variant="primary"
                     theme="dark"
                     size="lg"
                     className="rounded-none shadow-sm text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.2em] font-bold"
                   >
-                    GET A FREE CONSULTATION
+                    EXPLORE OUR SERVICES
                   </Button>
                 </Link>
 
-                {/* Ghost: animated text-slide link with arrow */}
+                {/* Ghost: animated text-slide link with arrow — Contact Us */}
                 <Link
-                  to="/products"
+                  to="/contact"
                   className="inline-flex items-center gap-2 sm:gap-2.5 font-label-caps text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.2em] uppercase text-white/60 hover:text-white transition-colors duration-300 group"
                 >
                   <span className="relative overflow-hidden inline-block">
                     <span className="block group-hover:-translate-y-full transition-transform duration-300">
-                      EXPLORE PRODUCTS
+                      CONTACT US
                     </span>
                     <span className="absolute top-full left-0 group-hover:-translate-y-full transition-transform duration-300 text-accent">
-                      EXPLORE PRODUCTS
+                      CONTACT US
                     </span>
                   </span>
                   <span className="material-symbols-outlined text-[20px] sm:text-[24px] group-hover:translate-x-1 transition-transform duration-300">
                     arrow_forward
                   </span>
                 </Link>
+              </motion.div>
+
+              {/* Trust Indicators */}
+              <motion.div
+                className="flex flex-wrap items-center gap-x-4 sm:gap-x-5 gap-y-1.5"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.8 }}
+              >
+                {TRUST_INDICATORS.map((indicator, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center gap-1.5 font-label-caps text-[7px] sm:text-[8px] text-white/30 tracking-[0.12em] uppercase"
+                  >
+                    <span className="material-symbols-outlined text-accent/40 text-[12px] sm:text-[14px]">
+                      verified
+                    </span>
+                    {indicator}
+                  </span>
+                ))}
               </motion.div>
             </div>
           </div>
@@ -372,13 +445,7 @@ export function Hero() {
                   {pillar.label}
                 </span>
                 <span className="font-label-caps text-[6.5px] sm:text-[7px] md:text-[7.5px] text-white/40 tracking-widest uppercase mt-0.5 leading-none block">
-                  {i === 0
-                    ? "Authorized Channel"
-                    : i === 1
-                      ? "Under One Roof"
-                      : i === 2
-                        ? "Turnkey Delivery"
-                        : "Design & Engineering"}
+                  {pillar.sub}
                 </span>
               </div>
             </Link>
